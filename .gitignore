@@ -90,4 +90,4 @@ fastlane/test_output
 iOSInjectionProject/
 
 #removing ds_store
-.DS_Store
+*.DS_Store
