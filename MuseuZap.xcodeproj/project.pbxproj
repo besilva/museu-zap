@@ -17,6 +17,9 @@
 		64DD6FF5243E0BB800404321 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FF0243E0BB800404321 /* ListViewController.swift */; };
 		64DD6FF7243E0DB700404321 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FF6243E0DB700404321 /* ListViewModel.swift */; };
 		64DD6FF9243E10E400404321 /* TestCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FF8243E10E400404321 /* TestCoordinator.swift */; };
+		80D80EF02447365C00915F1C /* AboutCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D80EEF2447365C00915F1C /* AboutCoordinator.swift */; };
+		80D80EF32447377200915F1C /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D80EF22447377200915F1C /* AboutViewController.swift */; };
+		80D80EF62447378A00915F1C /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D80EF52447378A00915F1C /* AboutViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		64DD6FF0243E0BB800404321 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		64DD6FF6243E0DB700404321 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		64DD6FF8243E10E400404321 /* TestCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoordinator.swift; sourceTree = "<group>"; };
+		80D80EEF2447365C00915F1C /* AboutCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCoordinator.swift; sourceTree = "<group>"; };
+		80D80EF22447377200915F1C /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		80D80EF52447378A00915F1C /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +111,7 @@
 			children = (
 				64DD6FDF243E07D000404321 /* AppCoordinator.swift */,
 				64DD6FF8243E10E400404321 /* TestCoordinator.swift */,
+				80D80EEF2447365C00915F1C /* AboutCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -133,6 +140,7 @@
 		64DD6FE8243E0B1600404321 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				80D80EF12447374400915F1C /* About */,
 				64DD6FEA243E0BB800404321 /* List */,
 			);
 			path = Modules;
@@ -154,6 +162,15 @@
 				64DD6FF6243E0DB700404321 /* ListViewModel.swift */,
 			);
 			path = List;
+			sourceTree = "<group>";
+		};
+		80D80EF12447374400915F1C /* About */ = {
+			isa = PBXGroup;
+			children = (
+				80D80EF22447377200915F1C /* AboutViewController.swift */,
+				80D80EF52447378A00915F1C /* AboutViewModel.swift */,
+			);
+			path = About;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,7 +295,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80D80EF32447377200915F1C /* AboutViewController.swift in Sources */,
 				64DD6FE4243E084100404321 /* Coordinator.swift in Sources */,
+				80D80EF02447365C00915F1C /* AboutCoordinator.swift in Sources */,
+				80D80EF62447378A00915F1C /* AboutViewModel.swift in Sources */,
 				64DD6FF9243E10E400404321 /* TestCoordinator.swift in Sources */,
 				64DD6FE6243E0A4700404321 /* Stack.swift in Sources */,
 				64DD6FF7243E0DB700404321 /* ListViewModel.swift in Sources */,
