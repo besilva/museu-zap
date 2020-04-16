@@ -26,6 +26,7 @@ class ListViewModel: ListViewModelProtocol {
     var array = [("titulo", "subtitulo")]
     var count: Int { array.count }
     internal weak var delegate: ListViewModelDelegate?
+    internal weak var navigationDelegate: Delegatable?
     
     required init(array: [(String, String)]) {
         self.array = array
@@ -42,6 +43,7 @@ class ListViewModel: ListViewModelProtocol {
     
     func back() {
         //handle back from navigation
+        navigationDelegate?.handleNavigation(action: .back)
     }
     
     

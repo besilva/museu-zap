@@ -15,10 +15,13 @@ protocol Coordinator {
 enum Action {
     case back
 }
+protocol Delegatable: class {
+    func handleNavigation(action: Action)
+}
 
-protocol BaseCoordinator: Coordinator {
+protocol BaseCoordinator: Coordinator, Delegatable {
     associatedtype T: UIViewController
     init(rootViewController: T)
     var rootViewController: T { get set }
-    func handleNavigation(action: Action)
+    
 }

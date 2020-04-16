@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ListViewController: UIViewController{
+class ListViewController: UIViewController, ViewController {
+    var delegate: Delegatable?
+    
    
     private var myView: ListView {
         return view as! ListView
@@ -24,8 +26,10 @@ class ListViewController: UIViewController{
         //fake doing request
         let array = [("titulo", "subtitulo")]
         let viewModel = ListViewModel(array: array)
+        viewModel.navigationDelegate = self
         myView.viewModel = viewModel
     }
+    
     
 }
 
