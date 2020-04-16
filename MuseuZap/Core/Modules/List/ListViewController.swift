@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ListViewController: UIViewController, ViewController {
+class ListViewController: UIViewController, ViewController, Delegatable {
     var delegate: Delegatable?
     
    

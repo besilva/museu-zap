@@ -14,6 +14,7 @@
 		64A60C2E24489B9E003B0F26 /* ViewCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A60C2D24489B9E003B0F26 /* ViewCodable.swift */; };
 		64A60C3024489D62003B0F26 /* UIView+ConstraintsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A60C2F24489D62003B0F26 /* UIView+ConstraintsExtension.swift */; };
 		64A60C322448A78C003B0F26 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A60C312448A78C003B0F26 /* ListView.swift */; };
+		64A60C342448BD33003B0F26 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A60C332448BD33003B0F26 /* UIViewControllerExtension.swift */; };
 		64DD6FE0243E07D000404321 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FDF243E07D000404321 /* AppCoordinator.swift */; };
 		64DD6FE4243E084100404321 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FE3243E084100404321 /* Coordinator.swift */; };
 		64DD6FE6243E0A4700404321 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FE5243E0A4700404321 /* Stack.swift */; };
@@ -44,6 +45,7 @@
 		64A60C2D24489B9E003B0F26 /* ViewCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCodable.swift; sourceTree = "<group>"; };
 		64A60C2F24489D62003B0F26 /* UIView+ConstraintsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ConstraintsExtension.swift"; sourceTree = "<group>"; };
 		64A60C312448A78C003B0F26 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		64A60C332448BD33003B0F26 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		64DD6FDF243E07D000404321 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		64DD6FE3243E084100404321 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		64DD6FE5243E0A4700404321 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				64DD6FE3243E084100404321 /* Coordinator.swift */,
 				64A60C2D24489B9E003B0F26 /* ViewCodable.swift */,
 				64A60C2F24489D62003B0F26 /* UIView+ConstraintsExtension.swift */,
+				64A60C332448BD33003B0F26 /* UIViewControllerExtension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				64A60C2E24489B9E003B0F26 /* ViewCodable.swift in Sources */,
 				64DD6FE4243E084100404321 /* Coordinator.swift in Sources */,
 				64DD6FF9243E10E400404321 /* TestCoordinator.swift in Sources */,
+				64A60C342448BD33003B0F26 /* UIViewControllerExtension.swift in Sources */,
 				64DD6FE6243E0A4700404321 /* Stack.swift in Sources */,
 				64DD6FF7243E0DB700404321 /* ListViewModel.swift in Sources */,
 				64DD6FE0243E07D000404321 /* AppCoordinator.swift in Sources */,
