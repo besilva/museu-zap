@@ -17,8 +17,9 @@ protocol ListViewModelProtocol {
     var count: Int { get }
     var delegate: ListViewModelDelegate? { get set }
     func getAllAudios()
-    func getAudiot(at indexPath: IndexPath) -> (title: String, subtitle: String)
+    func getAudio(at indexPath: IndexPath) -> (title: String, subtitle: String)
     func back()
+    init(array: [(String, String)])
 }
 
 class ListViewModel: ListViewModelProtocol {
@@ -26,12 +27,16 @@ class ListViewModel: ListViewModelProtocol {
     var count: Int { array.count }
     internal weak var delegate: ListViewModelDelegate?
     
-    func getAllAudios() {
-        //get from some api
-        delegate?.reloadTableView()
+    required init(array: [(String, String)]) {
+        self.array = array
     }
     
-    func getAudiot(at indexPath: IndexPath) -> (title: String, subtitle: String) {
+    func getAllAudios() {
+        delegate?.reloadTableView()
+        delegate?.stopLoading()
+    }
+    
+    func getAudio(at indexPath: IndexPath) -> (title: String, subtitle: String) {
         return array[indexPath.row]
     }
     
