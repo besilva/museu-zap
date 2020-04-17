@@ -19,6 +19,7 @@ class TestCoordinator: BaseCoordinator {
     
     func startFlow() {
         let listController = ListViewController()
+        listController.delegate = self
         self.rootViewController.pushViewController(listController, animated: true)
     }
     
@@ -30,4 +31,3 @@ class TestCoordinator: BaseCoordinator {
     }
     
 }
-

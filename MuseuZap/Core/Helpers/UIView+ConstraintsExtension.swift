@@ -11,7 +11,7 @@ import UIKit
 protocol AutoLayoutView {
     func setupConstraints(completion: (UIView) -> Void)
 }
-extension AutoLayoutView where Self:UIView {
+extension AutoLayoutView where Self: UIView {
     func setupConstraints(completion: (UIView) -> Void) {
         if self.translatesAutoresizingMaskIntoConstraints {
             self.translatesAutoresizingMaskIntoConstraints = false
@@ -21,11 +21,10 @@ extension AutoLayoutView where Self:UIView {
 }
 extension UIView {
     func addSubviews(_ views: UIView...) {
-        for view in views{
+        for view in views {
             self.addSubview(view)
         }
     }
 }
 
 extension UIView: AutoLayoutView {}
-

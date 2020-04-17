@@ -20,12 +20,9 @@ class AppCoordinator: NSObject,Coordinator {
     }
     
     internal func startFlow() {
-        // TODO
         let testCoordinator = TestCoordinator(rootViewController: rootViewController)
         testCoordinator.startFlow()
         coordinators.push(testCoordinator)
     }
 
 }
-
-
