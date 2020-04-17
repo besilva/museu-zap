@@ -9,9 +9,7 @@
 import UIKit
 
 class ListViewController: UIViewController, ViewController, Delegatable {
-    var delegate: Delegatable?
-    
-   
+    weak var delegate: Delegatable?
     private var myView: ListView {
         return view as! ListView
     }
@@ -23,13 +21,11 @@ class ListViewController: UIViewController, ViewController, Delegatable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //fake doing request
+        // Fake doing request
         let array = [("titulo", "subtitulo")]
         let viewModel = ListViewModel(array: array)
         viewModel.navigationDelegate = self
         myView.viewModel = viewModel
     }
     
-    
 }
-

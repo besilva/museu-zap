@@ -14,6 +14,7 @@ protocol ListViewModelDelegate: class {
 }
 
 protocol ListViewModelProtocol {
+    var navigationDelegate: Delegatable? { get }
     var count: Int { get }
     var delegate: ListViewModelDelegate? { get set }
     func getAllAudios()
@@ -42,9 +43,8 @@ class ListViewModel: ListViewModelProtocol {
     }
     
     func back() {
-        //handle back from navigation
+        // Handle back from navigation
         navigationDelegate?.handleNavigation(action: .back)
     }
-    
     
 }

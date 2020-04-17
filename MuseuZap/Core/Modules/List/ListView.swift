@@ -98,5 +98,4 @@ extension ListView: ListViewModelDelegate {
         }
     }
     
-    
 }
