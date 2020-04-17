@@ -8,8 +8,8 @@
 
 import UIKit
 
-class ListViewController: UIViewController, ViewController, Delegatable {
-    weak var delegate: Delegatable?
+class ListViewController: UIViewController, ViewController, NavigationDelegate {
+    weak var delegate: NavigationDelegate?
     private var myView: ListView {
         return view as! ListView
     }

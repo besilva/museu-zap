@@ -14,7 +14,7 @@ protocol ListViewModelDelegate: class {
 }
 
 protocol ListViewModelProtocol {
-    var navigationDelegate: Delegatable? { get }
+    var navigationDelegate: NavigationDelegate? { get }
     var count: Int { get }
     var delegate: ListViewModelDelegate? { get set }
     func getAllAudios()
@@ -27,7 +27,7 @@ class ListViewModel: ListViewModelProtocol {
     var array = [("titulo", "subtitulo")]
     var count: Int { array.count }
     internal weak var delegate: ListViewModelDelegate?
-    internal weak var navigationDelegate: Delegatable?
+    internal weak var navigationDelegate: NavigationDelegate?
     
     required init(array: [(String, String)]) {
         self.array = array

@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol ViewController: UIViewController, Delegatable {
-    var delegate: Delegatable? {get set}
+protocol ViewController: UIViewController, NavigationDelegate {
+    var delegate: NavigationDelegate? {get set}
 }
 extension ViewController {
     func handleNavigation(action: Action) {
