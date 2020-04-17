@@ -8,7 +8,32 @@
 
 import UIKit
 
-struct AboutViewModel {
-    let appDescription: String = ""
-    let email: String = "foo@bar.com"
+protocol AboutViewModelDelegate: class {
+    func stopLoading()
+    func handleEmail()
+}
+
+protocol AboutViewModelProtocol {
+    var navigationDelegate: NavigationDelegate? { get }
+    var delegate: AboutViewModelDelegate? { get set }
+    var email: String { get set }
+    var description: String { get set }
+    func back()
+    init(email: String, description: String)
+}
+
+class AboutViewModel: AboutViewModelProtocol {
+    var navigationDelegate: NavigationDelegate?
+    var email: String = "foo@bar.com"
+    var description: String = "App description"
+    var delegate: AboutViewModelDelegate?
+    
+    required init(email: String, description: String) {
+        self.email = email
+        self.description = description
+    }
+    
+    func back() {
+        navigationDelegate?.handleNavigation(action: .back)
+    }
 }

@@ -18,8 +18,14 @@ class AboutCoordinator: BaseCoordinator {
     
     func startFlow() {
         let aboutController = AboutViewController()
-        let viewModel = AboutViewModel()
-        aboutController.viewModel = viewModel
+        aboutController.delegate = self
         self.rootViewController.pushViewController(aboutController, animated: true)
+    }
+
+    func handleNavigation(action: Action) {
+        switch action {
+        case .back:
+            self.rootViewController.dismiss(animated: true)
+        }
     }
 }
