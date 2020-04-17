@@ -9,6 +9,7 @@
 import UIKit
 
 class TestCoordinator: BaseCoordinator {
+    
     typealias T = UINavigationController
     var rootViewController: UINavigationController
     
@@ -18,9 +19,15 @@ class TestCoordinator: BaseCoordinator {
     
     func startFlow() {
         let listController = ListViewController()
-        let viewModel = ListViewModel()
-        listController.viewModel = viewModel
+        listController.delegate = self
         self.rootViewController.pushViewController(listController, animated: true)
     }
+    
+    func handleNavigation(action: Action) {
+        switch action {
+        case .back:
+            self.rootViewController.dismiss(animated: true)
+        }
+    }
+    
 }
-

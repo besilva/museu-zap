@@ -12,8 +12,16 @@ protocol Coordinator {
     func startFlow()
 }
 
-protocol BaseCoordinator: Coordinator {
+enum Action {
+    case back
+}
+protocol NavigationDelegate: class {
+    func handleNavigation(action: Action)
+}
+
+protocol BaseCoordinator: Coordinator, NavigationDelegate {
     associatedtype T: UIViewController
     init(rootViewController: T)
     var rootViewController: T { get set }
+    
 }
