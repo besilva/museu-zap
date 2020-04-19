@@ -48,7 +48,7 @@ class ListView: UIView, ViewCodable {
     }
     
     func setupConstraints() {
-        tableView.setupConstraints { (view) in
+        tableView.setupConstraints { (_) in // View
             tableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true

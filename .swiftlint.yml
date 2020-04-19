@@ -23,6 +23,7 @@ excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Products
   - Pods
   - Frameworks
+  - MuseuZap/Core/AppDelegate.swift
 analyzer_rules: # Rules run by `swiftlint analyze` (experimental)
   - explicit_self
 

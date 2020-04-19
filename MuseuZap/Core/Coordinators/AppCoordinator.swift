@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AppCoordinator: NSObject,Coordinator {
+class AppCoordinator: NSObject, Coordinator {
     typealias T = UINavigationController
     
     private var coordinators = Stack<Coordinator>()
