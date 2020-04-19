@@ -8,79 +8,24 @@
 
 import UIKit
 
-class ListViewController: UIViewController{
-    private var loader: UIActivityIndicatorView!
-    private var tableView: UITableView = UITableView()
-    
-    var viewModel: ListViewModelProtocol?
+class ListViewController: UIViewController, ViewController, NavigationDelegate {
+    weak var delegate: NavigationDelegate?
+    private var myView: ListView {
+        return view as! ListView
+    }
+ 
+    override func loadView() {
+        let myView = ListView()
+        view = myView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createLoader()
-        setupUI()
-        setupTableView()
-        viewModel?.getAllAudios()
+        // Fake doing request
+        let array = [("titulo", "subtitulo")]
+        let viewModel = ListViewModel(array: array)
+        viewModel.navigationDelegate = self
+        myView.viewModel = viewModel
     }
-    
-    func setupTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-    }
-    
-    func setupUI() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(tableView)
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        ])
-    }
-    
-    override func willMove(toParent parent: UIViewController?) {
-        super.willMove(toParent: parent)
-        guard parent != nil else {
-            viewModel?.back()
-            return
-        }
-    }
-    
-    func createLoader() {
-        loader = UIActivityIndicatorView(style: .gray)
-        loader.center = self.view.center
-        loader.startAnimating()
-        loader.hidesWhenStopped = true
-        self.view.addSubview(loader)
-    }
-}
-
-extension ListViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let viewModel = viewModel else { return 0 }
-        return viewModel.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let viewModel = viewModel else { return UITableViewCell() }
-        let cell = UITableViewCell.init(style: .subtitle, reuseIdentifier: "test")
-        let audio = viewModel.getAudiot(at: indexPath)
-        cell.textLabel?.text = audio.title
-        cell.detailTextLabel?.text = audio.subtitle
-        return cell
-    }
-}
-
-extension ListViewController: ListViewModelDelegate {
-    func reloadTableView() {
-        tableView.reloadData()
-    }
-    
-    func stopLoading() {
-        DispatchQueue.main.async {
-            self.loader.stopAnimating()
-        }
-    }
-    
     
 }
