@@ -17,34 +17,52 @@ protocol ListViewModelProtocol {
     var navigationDelegate: NavigationDelegate? { get }
     var count: Int { get }
     var delegate: ListViewModelDelegate? { get set }
-    func getAllAudios()
-    func getAudio(at indexPath: IndexPath) -> (title: String, subtitle: String)
+//    func getAllAudios()
+//    func getAudio(at indexPath: IndexPath) -> (title: String, subtitle: String)
+    func getTestTable(at indexPath: IndexPath) -> (title: String, subtitle: String)
     func back()
-    init(array: [(String, String)])
+    init(testeDAO: TesteDAO)
 }
 
 class ListViewModel: ListViewModelProtocol {
-    var array = [("titulo", "subtitulo")]
+    var testeDAO: TesteDAO
+    var array: [Teste] = []
     var count: Int { array.count }
     internal weak var delegate: ListViewModelDelegate?
     internal weak var navigationDelegate: NavigationDelegate?
     
-    required init(array: [(String, String)] = []) {
-        self.array = array
+    required init(testeDAO: TesteDAO) {
+        self.testeDAO = testeDAO
+        getArray()
     }
     
-    func getAllAudios() {
-        delegate?.reloadTableView()
-        delegate?.stopLoading()
-    }
-    
-    func getAudio(at indexPath: IndexPath) -> (title: String, subtitle: String) {
-        return array[indexPath.row]
-    }
+//    func getAllAudios() {
+//        delegate?.reloadTableView()
+//        delegate?.stopLoading()
+//    }
+//
+//    func getAudio(at indexPath: IndexPath) -> (title: String, subtitle: String) {
+//        return array[indexPath.row]
+//    }
     
     func back() {
         // Handle back from navigation
         navigationDelegate?.handleNavigation(action: .back)
+    }
+
+    // MARK: - Core Data
+    func getArray() {
+        do {
+            // Save information
+            array = try testeDAO.findAll()
+        } catch {
+            print(DatabaseErrors.fetch.errorDescription!)
+        }
+    }
+
+    func getTestTable(at indexPath: IndexPath) -> (title: String, subtitle: String) {
+        let element = array[indexPath.row]
+        return (title: element.titulo!, subtitle: element.subtitulo!)
     }
     
 }

@@ -10,6 +10,8 @@ import UIKit
 
 class ListViewController: UIViewController, ViewController, NavigationDelegate {
     weak var delegate: NavigationDelegate?
+    weak var testeDAO: TesteDAO?
+
     private var myView: ListView {
         return view as! ListView
     }
@@ -22,8 +24,8 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Fake doing request
-        let array = [("titulo", "subtitulo")]
-        let viewModel = ListViewModel(array: array)
+        let testeDAO = TesteDAO()
+        let viewModel = ListViewModel(testeDAO: testeDAO)
         viewModel.navigationDelegate = self
         myView.viewModel = viewModel
     }
