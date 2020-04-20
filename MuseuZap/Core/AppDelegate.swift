@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func addTestDataTesteEntity() {
         let context = CoreDataManager.sharedInstance.persistentContainer.viewContext
+        // Get entity, then generate an object from it
         guard let entity = NSEntityDescription.entity(forEntityName: "Teste", in: context)
         else {
             fatalError("Could not find entity")

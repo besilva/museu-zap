@@ -19,7 +19,7 @@ protocol DAO {
 
     /// Perfom a Fetch request to get all elements for a Entity Type
     /// - Returns: All objects for that Entity
-    static func findAll() throws -> [Entity]
+    func findAll() throws -> [Entity]
 
 //     static func fetchRequest() throws -> NSFetchRequest<Entity>
 }
@@ -31,13 +31,13 @@ extension DAO {
     /// Helper method to build a NSFetchRequest
     /// Entity argument matches the Entity Name of the resulting class name
     /// - Returns: Fetch Request of Result Type, is the class that represents the Request.entity
-    static func fetchRequest() -> NSFetchRequest<Entity> {
+    func fetchRequest() -> NSFetchRequest<Entity> {
         let entityName = String(describing: Entity.self)
         let request: NSFetchRequest = NSFetchRequest<Entity>(entityName: entityName)
         return request
     }
 
-    static func findAll() throws -> [Entity] {
+    func findAll() throws -> [Entity] {
         // Array of objects to be returned
         var array: [Entity]
 
