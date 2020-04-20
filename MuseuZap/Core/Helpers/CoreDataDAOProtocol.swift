@@ -1,5 +1,5 @@
 /*
-Copyright © MuseuZap. All rights reserved.
+Copyright © 2020 MuseuZap. All rights reserved.
 
 Abstract:
 Data Access Object base class
@@ -11,7 +11,6 @@ import UIKit
 import CoreData
 
 /// Data Access Object base class
-/// Every DAO should extend this class
 protocol DAO {
 
     /// Entity Type

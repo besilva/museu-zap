@@ -21,6 +21,10 @@
 		64DD6FF5243E0BB800404321 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FF0243E0BB800404321 /* ListViewController.swift */; };
 		64DD6FF7243E0DB700404321 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FF6243E0DB700404321 /* ListViewModel.swift */; };
 		64DD6FF9243E10E400404321 /* TestCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FF8243E10E400404321 /* TestCoordinator.swift */; };
+		C590954E244DFB1600B1C17F /* CoreDataServicesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C590954D244DFB1600B1C17F /* CoreDataServicesProtocol.swift */; };
+		C590954F244DFB1600B1C17F /* CoreDataServicesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C590954D244DFB1600B1C17F /* CoreDataServicesProtocol.swift */; };
+		C5909551244DFCEE00B1C17F /* TesteServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5909550244DFCEE00B1C17F /* TesteServices.swift */; };
+		C5909552244DFCEE00B1C17F /* TesteServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5909550244DFCEE00B1C17F /* TesteServices.swift */; };
 		C5A341B9244C0274006F1D0D /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5A341B7244C0274006F1D0D /* CoreDataModel.xcdatamodeld */; };
 		C5A341BA244C0274006F1D0D /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5A341B7244C0274006F1D0D /* CoreDataModel.xcdatamodeld */; };
 		C5A341BE244C032C006F1D0D /* Teste+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A341BC244C032C006F1D0D /* Teste+CoreDataClass.swift */; };
@@ -29,8 +33,7 @@
 		C5A341C1244C032C006F1D0D /* Teste+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A341BD244C032C006F1D0D /* Teste+CoreDataProperties.swift */; };
 		C5A341C3244C0342006F1D0D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A341C2244C0342006F1D0D /* CoreDataManager.swift */; };
 		C5A341C4244C0342006F1D0D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A341C2244C0342006F1D0D /* CoreDataManager.swift */; };
-		C5A341C6244C03A1006F1D0D /* CoreDataDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A341C5244C03A1006F1D0D /* CoreDataDAO.swift */; };
-		C5A341C7244C03A1006F1D0D /* CoreDataDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A341C5244C03A1006F1D0D /* CoreDataDAO.swift */; };
+		C5A341C6244C03A1006F1D0D /* CoreDataDAOProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A341C5244C03A1006F1D0D /* CoreDataDAOProtocol.swift */; };
 		C5A341D0244C0523006F1D0D /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A341CF244C0523006F1D0D /* DatabaseError.swift */; };
 		C5A341D1244C0523006F1D0D /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A341CF244C0523006F1D0D /* DatabaseError.swift */; };
 		C5A341D3244C05C5006F1D0D /* TestDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A341D2244C05C5006F1D0D /* TestDAO.swift */; };
@@ -66,11 +69,13 @@
 		64DD6FF0243E0BB800404321 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		64DD6FF6243E0DB700404321 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		64DD6FF8243E10E400404321 /* TestCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoordinator.swift; sourceTree = "<group>"; };
+		C590954D244DFB1600B1C17F /* CoreDataServicesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServicesProtocol.swift; sourceTree = "<group>"; };
+		C5909550244DFCEE00B1C17F /* TesteServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TesteServices.swift; path = MuseuZap/Core/Helpers/TesteServices.swift; sourceTree = SOURCE_ROOT; };
 		C5A341B8244C0274006F1D0D /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		C5A341BC244C032C006F1D0D /* Teste+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Teste+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C5A341BD244C032C006F1D0D /* Teste+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Teste+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C5A341C2244C0342006F1D0D /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		C5A341C5244C03A1006F1D0D /* CoreDataDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataDAO.swift; sourceTree = "<group>"; };
+		C5A341C5244C03A1006F1D0D /* CoreDataDAOProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataDAOProtocol.swift; sourceTree = "<group>"; };
 		C5A341CF244C0523006F1D0D /* DatabaseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
 		C5A341D2244C05C5006F1D0D /* TestDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDAO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -155,6 +160,8 @@
 		64DD6FE2243E081E00404321 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C5A341C5244C03A1006F1D0D /* CoreDataDAOProtocol.swift */,
+				C590954D244DFB1600B1C17F /* CoreDataServicesProtocol.swift */,
 				64DD6FE5243E0A4700404321 /* Stack.swift */,
 				64DD6FE3243E084100404321 /* Coordinator.swift */,
 				64A60C2D24489B9E003B0F26 /* ViewCodable.swift */,
@@ -215,7 +222,6 @@
 		C5F87027244DE5B20052ACFF /* DAO */ = {
 			isa = PBXGroup;
 			children = (
-				C5A341C5244C03A1006F1D0D /* CoreDataDAO.swift */,
 				C5A341D2244C05C5006F1D0D /* TestDAO.swift */,
 			);
 			path = DAO;
@@ -224,6 +230,7 @@
 		C5F87028244DE5BB0052ACFF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C5909550244DFCEE00B1C17F /* TesteServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -353,11 +360,13 @@
 				64A60C322448A78C003B0F26 /* ListView.swift in Sources */,
 				64A60C2E24489B9E003B0F26 /* ViewCodable.swift in Sources */,
 				C5A341B9244C0274006F1D0D /* CoreDataModel.xcdatamodeld in Sources */,
-				C5A341C6244C03A1006F1D0D /* CoreDataDAO.swift in Sources */,
+				C5909551244DFCEE00B1C17F /* TesteServices.swift in Sources */,
+				C5A341C6244C03A1006F1D0D /* CoreDataDAOProtocol.swift in Sources */,
 				C5A341C3244C0342006F1D0D /* CoreDataManager.swift in Sources */,
 				64DD6FE4243E084100404321 /* Coordinator.swift in Sources */,
 				64DD6FF9243E10E400404321 /* TestCoordinator.swift in Sources */,
 				C5A341BE244C032C006F1D0D /* Teste+CoreDataClass.swift in Sources */,
+				C590954E244DFB1600B1C17F /* CoreDataServicesProtocol.swift in Sources */,
 				C5A341D3244C05C5006F1D0D /* TestDAO.swift in Sources */,
 				64A60C342448BD33003B0F26 /* UIViewControllerExtension.swift in Sources */,
 				64DD6FE6243E0A4700404321 /* Stack.swift in Sources */,
@@ -376,12 +385,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5A341BF244C032C006F1D0D /* Teste+CoreDataClass.swift in Sources */,
+				C5909552244DFCEE00B1C17F /* TesteServices.swift in Sources */,
 				C5A341C1244C032C006F1D0D /* Teste+CoreDataProperties.swift in Sources */,
+				C590954F244DFB1600B1C17F /* CoreDataServicesProtocol.swift in Sources */,
 				C5A341BA244C0274006F1D0D /* CoreDataModel.xcdatamodeld in Sources */,
 				C5A341C4244C0342006F1D0D /* CoreDataManager.swift in Sources */,
 				C5A341D4244C05C5006F1D0D /* TestDAO.swift in Sources */,
 				6473EDEC243B6D3E00A10F2C /* MuseuZapTests.swift in Sources */,
-				C5A341C7244C03A1006F1D0D /* CoreDataDAO.swift in Sources */,
 				C5A341D1244C0523006F1D0D /* DatabaseError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
