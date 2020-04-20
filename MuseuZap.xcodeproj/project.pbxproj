@@ -70,7 +70,7 @@
 		64DD6FF6243E0DB700404321 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		64DD6FF8243E10E400404321 /* TestCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoordinator.swift; sourceTree = "<group>"; };
 		C590954D244DFB1600B1C17F /* CoreDataServicesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServicesProtocol.swift; sourceTree = "<group>"; };
-		C5909550244DFCEE00B1C17F /* TesteServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TesteServices.swift; path = MuseuZap/Core/Helpers/TesteServices.swift; sourceTree = SOURCE_ROOT; };
+		C5909550244DFCEE00B1C17F /* TesteServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TesteServices.swift; path = MuseuZap/Core/Database/Services/TesteServices.swift; sourceTree = SOURCE_ROOT; };
 		C5A341B8244C0274006F1D0D /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		C5A341BC244C032C006F1D0D /* Teste+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Teste+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C5A341BD244C032C006F1D0D /* Teste+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Teste+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -150,9 +150,10 @@
 				64DD6FDE243E07BC00404321 /* Coordinators */,
 				64DD6FE2243E081E00404321 /* Helpers */,
 				64DD6FE8243E0B1600404321 /* Modules */,
-				64DD6FE9243E0B3100404321 /* Resource */,
+				C5F87028244DE5BB0052ACFF /* Services */,
 				C5A341BB244C0310006F1D0D /* Database */,
 				C5A341CE244C03F0006F1D0D /* Error */,
+				64DD6FE9243E0B3100404321 /* Resource */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -198,15 +199,22 @@
 			path = List;
 			sourceTree = "<group>";
 		};
+		C5909553244E248000B1C17F /* Model Classes */ = {
+			isa = PBXGroup;
+			children = (
+				C5A341BC244C032C006F1D0D /* Teste+CoreDataClass.swift */,
+				C5A341BD244C032C006F1D0D /* Teste+CoreDataProperties.swift */,
+			);
+			path = "Model Classes";
+			sourceTree = "<group>";
+		};
 		C5A341BB244C0310006F1D0D /* Database */ = {
 			isa = PBXGroup;
 			children = (
 				C5A341C2244C0342006F1D0D /* CoreDataManager.swift */,
 				C5A341B7244C0274006F1D0D /* CoreDataModel.xcdatamodeld */,
-				C5F87028244DE5BB0052ACFF /* Services */,
 				C5F87027244DE5B20052ACFF /* DAO */,
-				C5A341BC244C032C006F1D0D /* Teste+CoreDataClass.swift */,
-				C5A341BD244C032C006F1D0D /* Teste+CoreDataProperties.swift */,
+				C5909553244E248000B1C17F /* Model Classes */,
 			);
 			path = Database;
 			sourceTree = "<group>";

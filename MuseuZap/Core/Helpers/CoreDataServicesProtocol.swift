@@ -22,5 +22,4 @@ protocol Services {
 
 //    static func getAllDiseases(_ completion: @escaping (_ errorMessage: Error?,
 //    _ ocurrence: [DiseaseOccurrence]?) -> Void) {)
-
 }

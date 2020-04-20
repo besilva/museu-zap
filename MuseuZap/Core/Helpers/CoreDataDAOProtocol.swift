@@ -34,6 +34,9 @@ extension DAO {
         return request
     }
 
+    /// Method responsible for getting all teste from database
+    /// - returns: array of teste from database
+    /// - throws: if an error occurs during getting an object from database (Errors.DatabaseError)
     func findAll() throws -> [Entity] {
         // Array of objects to be returned
         var array: [Entity]
