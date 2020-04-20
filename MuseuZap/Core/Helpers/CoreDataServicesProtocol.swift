@@ -18,6 +18,10 @@ protocol Services {
 
     /// Perfom a Fetch request to get all elements for a Entity Type
     /// - Returns: All objects for that Entity
-//    func fetch() throws -> [Entity]
+//    func fetch(
+
+
+//    static func getAllDiseases(_ completion: @escaping (_ errorMessage: Error?,
+//    _ ocurrence: [DiseaseOccurrence]?) -> Void) {)
 
 }

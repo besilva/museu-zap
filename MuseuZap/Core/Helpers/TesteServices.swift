@@ -10,15 +10,32 @@ Error Handling + doing aditional treatment to data
 import Foundation
 import UIKit
 
-class TesteServices: Services {
+class TesteServices {
 
-    typealias Entity = Teste
+    var DAO = TesteDAO()
 
     // MARK: - Get
 
-//    func fetch() throws -> [Teste] {
-//        print("vaar")
-//    }
+    // Dao not async
+    // Service handles error by casting it and gives it to ViewController
+    func getAllTeste(_ completion: @escaping (_ errorMessage: Error?,
+                                              _ entity: [Teste]?) -> Void) {
+        // Error to be returned in case of failure
+        var raisedError: DatabaseErrors? = nil
+        var testes: [Teste]?
 
-
+        do {
+            // Save information
+            testes = try DAO.findAll()
+            completion(nil, testes)
+        }
+        catch let error as DatabaseErrors {
+            raisedError = error
+            completion(raisedError, nil)
+        }
+        catch {
+            print("Unexpected error: \(error).")
+        }
     }
+
+}

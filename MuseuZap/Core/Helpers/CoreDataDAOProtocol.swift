@@ -19,8 +19,6 @@ protocol DAO {
     /// Perfom a Fetch request to get all elements for a Entity Type
     /// - Returns: All objects for that Entity
     func findAll() throws -> [Entity]
-
-//     static func fetchRequest() throws -> NSFetchRequest<Entity>
 }
 
 // MARK: - Fetch
