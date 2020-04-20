@@ -13,6 +13,7 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
     weak var testeDAO: TesteDAO?
 
     private var myView: ListView {
+        // swiftlint:disable force_cast
         return view as! ListView
     }
  
