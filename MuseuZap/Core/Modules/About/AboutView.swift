@@ -56,7 +56,11 @@ class AboutView: UIView, ViewCodable {
     }
     
     func render() {
-        contentView.backgroundColor = .white
+        if #available(iOS 13, *) {
+            contentView.backgroundColor = .systemBackground
+            mailLabel.tintColor = .label
+        }
+        return
     }
     
     func updateView() {
@@ -77,12 +81,6 @@ class AboutView: UIView, ViewCodable {
     }
     
     @objc func handleTap() {
-        if let url = URL(string: "mailto:\(viewModel?.email ?? "foo@bar.com")") {
-          if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url)
-          } else {
-            UIApplication.shared.openURL(url)
-          }
-        }
+        self.viewModel?.delegate?.handleTap()
     }
 }

@@ -9,8 +9,7 @@
 import UIKit
 
 protocol AboutViewModelDelegate: class {
-    func stopLoading()
-    func handleEmail()
+    func handleTap()
 }
 
 protocol AboutViewModelProtocol {
@@ -23,10 +22,10 @@ protocol AboutViewModelProtocol {
 }
 
 class AboutViewModel: AboutViewModelProtocol {
-    var navigationDelegate: NavigationDelegate?
+    weak var navigationDelegate: NavigationDelegate?
     var email: String = "foo@bar.com"
     var description: String = "App description"
-    var delegate: AboutViewModelDelegate?
+    weak var delegate: AboutViewModelDelegate?
     
     required init(email: String, description: String) {
         self.email = email

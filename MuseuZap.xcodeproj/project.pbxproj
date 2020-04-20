@@ -171,9 +171,9 @@
 		64DD6FEA243E0BB800404321 /* List */ = {
 			isa = PBXGroup;
 			children = (
+				64A60C312448A78C003B0F26 /* ListView.swift */,
 				64DD6FF0243E0BB800404321 /* ListViewController.swift */,
 				64DD6FF6243E0DB700404321 /* ListViewModel.swift */,
-				64A60C312448A78C003B0F26 /* ListView.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -477,7 +477,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				DEVELOPMENT_TEAM = B73YH55T95;
 				INFOPLIST_FILE = MuseuZap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -495,7 +495,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				DEVELOPMENT_TEAM = B73YH55T95;
 				INFOPLIST_FILE = MuseuZap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
