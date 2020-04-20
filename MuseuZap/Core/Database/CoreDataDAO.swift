@@ -19,7 +19,7 @@ protocol DAO {
 
     /// Perfom a Fetch request to get all elements for a Entity Type
     /// - Returns: All objects for that Entity
-    static func findAll() -> [Entity]
+    static func findAll() throws -> [Entity]
 
 //     static func fetchRequest() throws -> NSFetchRequest<Entity>
 }
@@ -48,7 +48,7 @@ extension DAO {
             // Perform search
             array = try CoreDataManager.sharedInstance.persistentContainer.viewContext.fetch(request)
         } catch {
-            throw error
+            throw DatabaseErrors.fetch
         }
 
         return array

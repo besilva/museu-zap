@@ -10,13 +10,7 @@ Data Access Object
 import UIKit
 import CoreData
 
-class TestDAO: DAO {
-    static func findAll() -> [Teste] {
-        <#code#>
-    }
-
+class TesteDAO: DAO {
     typealias Entity = Teste
-
-
 
 }

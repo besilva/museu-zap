@@ -194,9 +194,9 @@
 		C5A341BB244C0310006F1D0D /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				C5A341B7244C0274006F1D0D /* CoreDataModel.xcdatamodeld */,
 				C5A341BC244C032C006F1D0D /* Teste+CoreDataClass.swift */,
 				C5A341BD244C032C006F1D0D /* Teste+CoreDataProperties.swift */,
-				C5A341B7244C0274006F1D0D /* CoreDataModel.xcdatamodeld */,
 				C5A341C2244C0342006F1D0D /* CoreDataManager.swift */,
 				C5A341C5244C03A1006F1D0D /* CoreDataDAO.swift */,
 				C5A341D2244C05C5006F1D0D /* TestDAO.swift */,
