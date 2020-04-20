@@ -23,8 +23,8 @@
 		64DD6FF9243E10E400404321 /* TestCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FF8243E10E400404321 /* TestCoordinator.swift */; };
 		C590954E244DFB1600B1C17F /* CoreDataServicesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C590954D244DFB1600B1C17F /* CoreDataServicesProtocol.swift */; };
 		C590954F244DFB1600B1C17F /* CoreDataServicesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C590954D244DFB1600B1C17F /* CoreDataServicesProtocol.swift */; };
-		C5909551244DFCEE00B1C17F /* TesteServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5909550244DFCEE00B1C17F /* TesteServices.swift */; };
-		C5909552244DFCEE00B1C17F /* TesteServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5909550244DFCEE00B1C17F /* TesteServices.swift */; };
+		C5909555244E28A400B1C17F /* TesteServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5909554244E28A400B1C17F /* TesteServices.swift */; };
+		C5909556244E28A400B1C17F /* TesteServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5909554244E28A400B1C17F /* TesteServices.swift */; };
 		C5A341B9244C0274006F1D0D /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5A341B7244C0274006F1D0D /* CoreDataModel.xcdatamodeld */; };
 		C5A341BA244C0274006F1D0D /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5A341B7244C0274006F1D0D /* CoreDataModel.xcdatamodeld */; };
 		C5A341BE244C032C006F1D0D /* Teste+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A341BC244C032C006F1D0D /* Teste+CoreDataClass.swift */; };
@@ -70,7 +70,7 @@
 		64DD6FF6243E0DB700404321 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		64DD6FF8243E10E400404321 /* TestCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoordinator.swift; sourceTree = "<group>"; };
 		C590954D244DFB1600B1C17F /* CoreDataServicesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServicesProtocol.swift; sourceTree = "<group>"; };
-		C5909550244DFCEE00B1C17F /* TesteServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TesteServices.swift; path = MuseuZap/Core/Database/Services/TesteServices.swift; sourceTree = SOURCE_ROOT; };
+		C5909554244E28A400B1C17F /* TesteServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TesteServices.swift; sourceTree = "<group>"; };
 		C5A341B8244C0274006F1D0D /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		C5A341BC244C032C006F1D0D /* Teste+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Teste+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C5A341BD244C032C006F1D0D /* Teste+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Teste+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -238,7 +238,7 @@
 		C5F87028244DE5BB0052ACFF /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				C5909550244DFCEE00B1C17F /* TesteServices.swift */,
+				C5909554244E28A400B1C17F /* TesteServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -368,7 +368,7 @@
 				64A60C322448A78C003B0F26 /* ListView.swift in Sources */,
 				64A60C2E24489B9E003B0F26 /* ViewCodable.swift in Sources */,
 				C5A341B9244C0274006F1D0D /* CoreDataModel.xcdatamodeld in Sources */,
-				C5909551244DFCEE00B1C17F /* TesteServices.swift in Sources */,
+				C5909555244E28A400B1C17F /* TesteServices.swift in Sources */,
 				C5A341C6244C03A1006F1D0D /* CoreDataDAOProtocol.swift in Sources */,
 				C5A341C3244C0342006F1D0D /* CoreDataManager.swift in Sources */,
 				64DD6FE4243E084100404321 /* Coordinator.swift in Sources */,
@@ -393,7 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5A341BF244C032C006F1D0D /* Teste+CoreDataClass.swift in Sources */,
-				C5909552244DFCEE00B1C17F /* TesteServices.swift in Sources */,
+				C5909556244E28A400B1C17F /* TesteServices.swift in Sources */,
 				C5A341C1244C032C006F1D0D /* Teste+CoreDataProperties.swift in Sources */,
 				C590954F244DFB1600B1C17F /* CoreDataServicesProtocol.swift in Sources */,
 				C5A341BA244C0274006F1D0D /* CoreDataModel.xcdatamodeld in Sources */,
