@@ -10,7 +10,6 @@ import UIKit
 
 class ListViewController: UIViewController, ViewController, NavigationDelegate {
     weak var delegate: NavigationDelegate?
-    weak var testeDAO: TesteDAO?
 
     private var myView: ListView {
         // swiftlint:disable force_cast
@@ -25,8 +24,8 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Fake doing request
-        let testeDAO = TesteDAO()
-        let viewModel = ListViewModel(testeDAO: testeDAO)
+        let testeServices = TesteServices()
+        let viewModel = ListViewModel(testeServices: testeServices)
         viewModel.navigationDelegate = self
         myView.viewModel = viewModel
     }

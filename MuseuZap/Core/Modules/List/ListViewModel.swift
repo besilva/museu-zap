@@ -21,18 +21,18 @@ protocol ListViewModelProtocol {
 //    func getAudio(at indexPath: IndexPath) -> (title: String, subtitle: String)
     func getTestTable(at indexPath: IndexPath) -> (title: String, subtitle: String)
     func back()
-    init(testeDAO: TesteDAO)
+    init(testeServices: TesteServices)
 }
 
 class ListViewModel: ListViewModelProtocol {
-    var testeDAO: TesteDAO
+    var testeServices: TesteServices
     var array: [Teste] = []
     var count: Int { array.count }
     internal weak var delegate: ListViewModelDelegate?
     internal weak var navigationDelegate: NavigationDelegate?
     
-    required init(testeDAO: TesteDAO) {
-        self.testeDAO = testeDAO
+    required init(testeServices: TesteServices) {
+        self.testeServices = testeServices
         getArray()
     }
     
@@ -52,11 +52,16 @@ class ListViewModel: ListViewModelProtocol {
 
     // MARK: - Core Data
     func getArray() {
-        do {
-            // Save information
-            array = try testeDAO.findAll()
-        } catch {
-            print(DatabaseErrors.fetch.errorDescription!)
+
+        testeServices.getAllTeste { (error, testeArray) in
+            if let testes = testeArray {
+                // Assign teste Array
+                self.array = testes
+            } else {
+                // Display error here because it was not possible to load season list
+                // TODO: Como tratar erros + enum?
+                print(error ?? "Some default error value")
+            }
         }
     }
 

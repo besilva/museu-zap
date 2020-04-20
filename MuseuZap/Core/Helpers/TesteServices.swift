@@ -21,19 +21,17 @@ class TesteServices {
     func getAllTeste(_ completion: @escaping (_ errorMessage: Error?,
                                               _ entity: [Teste]?) -> Void) {
         // Error to be returned in case of failure
-        var raisedError: DatabaseErrors? = nil
+        var raisedError: DatabaseErrors?
         var testes: [Teste]?
 
         do {
             // Save information
             testes = try DAO.findAll()
             completion(nil, testes)
-        }
-        catch let error as DatabaseErrors {
+        } catch let error as DatabaseErrors {
             raisedError = error
             completion(raisedError, nil)
-        }
-        catch {
+        } catch {
             print("Unexpected error: \(error).")
         }
     }
