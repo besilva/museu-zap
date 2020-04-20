@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,9 +23,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         coordinator?.startFlow()
         window?.rootViewController = navController
         window?.makeKeyAndVisible()
+
+        addTestDataTesteEntity()
+
         return true
     }
-    
+
+    func addTestDataTesteEntity() {
+        let context = CoreDataManager.sharedInstance.persistentContainer.viewContext
+        guard let entity = NSEntityDescription.entity(forEntityName: "Teste", in: context)
+        else {
+            fatalError("Could not find entity")
+        }
+
+        for i in 1...3 {
+            let teste = Teste(entity: entity, insertInto: context)
+
+            teste.titulo = "titulo \(i)"
+            teste.subtitulo = "subtitulo \(i)"
+        }
+}
+
     func applicationWillResignActive(_ application: UIApplication) {
            // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
            // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

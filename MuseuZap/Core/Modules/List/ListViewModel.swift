@@ -29,7 +29,7 @@ class ListViewModel: ListViewModelProtocol {
     internal weak var delegate: ListViewModelDelegate?
     internal weak var navigationDelegate: NavigationDelegate?
     
-    required init(array: [(String, String)]) {
+    required init(array: [(String, String)] = []) {
         self.array = array
     }
     
