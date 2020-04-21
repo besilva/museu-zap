@@ -24,3 +24,7 @@ extension DatabaseErrors: LocalizedError {
 
 // Let error: Error = MyError.customError
 // Print(error.localizedDescription) // A user-friendly description of the error.
+
+class Playdata {
+    var words = [String]()
+}
