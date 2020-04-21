@@ -10,11 +10,6 @@ Codegen set to manual
 
 import Foundation
 import CoreData
-//
-//protocol TesteProtocol {
-//    @NSManaged public var titulo: String { get set }
-//    @NSManaged public var subtitulo: String { get set }
-//}
 
 public class Teste: NSManagedObject {
 

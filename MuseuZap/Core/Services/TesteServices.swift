@@ -29,7 +29,7 @@ class TesteServices {
             // Save information
             testes = try DAO.findAll()
             completion(nil, testes)
-        } catch let error as DatabaseErrors {
+        } catch let error as DatabaseErrors { // TODO: vale a pena esse cast aqui?
             raisedError = error
             completion(raisedError, nil)
         } catch {

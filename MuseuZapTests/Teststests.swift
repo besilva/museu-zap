@@ -24,11 +24,6 @@ class TestTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-//    func testAllWordsLoaded() {
-//        let data = Playdata()
-//        XCTAssertEqual(data.words.count, 0, "must be -")
-//    }
-
     // TODO: INIT em teste?? 
 
 //    func testgetTestTable() {
