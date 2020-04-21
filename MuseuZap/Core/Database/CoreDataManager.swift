@@ -1,10 +1,10 @@
-//
-//  CoreDataManager.swift
-//  GameOfThronesGuide
-//
-//  Created by Fernando Celarino on 29/08/17.
-//  Copyright © 2017 Eldorado. All rights reserved.
-//
+/*
+Copyright © 2020 MuseuZap. All rights reserved.
+
+Abstract:
+CoreDataManager, context manager
+
+*/
 
 import UIKit
 import CoreData

@@ -14,12 +14,13 @@ protocol ListViewModelDelegate: class {
 }
 
 protocol ListViewModelProtocol {
+    var array: [Teste] { get set }
     var navigationDelegate: NavigationDelegate? { get }
     var count: Int { get }
     var delegate: ListViewModelDelegate? { get set }
 //    func getAllAudios()
 //    func getAudio(at indexPath: IndexPath) -> (title: String, subtitle: String)
-    func getTestTable(at indexPath: IndexPath) -> (title: String, subtitle: String)
+    func getTestTable(from array: [Teste], at indexPath: IndexPath) -> (title: String, subtitle: String)
     func back()
     init(testeServices: TesteServices)
 }
@@ -65,7 +66,7 @@ class ListViewModel: ListViewModelProtocol {
         }
     }
 
-    func getTestTable(at indexPath: IndexPath) -> (title: String, subtitle: String) {
+    func getTestTable(from array: [Teste], at indexPath: IndexPath) -> (title: String, subtitle: String) {
         let element = array[indexPath.row]
         return (title: element.titulo!, subtitle: element.subtitulo!)
     }

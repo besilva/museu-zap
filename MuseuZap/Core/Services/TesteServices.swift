@@ -2,7 +2,8 @@
 Copyright © 2020 MuseuZap. All rights reserved.
 
 Abstract:
-Services Layer. Independent from adopted database
+Services Layer for Teste Entity
+Independent from adopted database
 Error Handling + doing aditional treatment to data
 
 */

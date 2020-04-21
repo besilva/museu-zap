@@ -2,7 +2,7 @@
 Copyright © 2020 MuseuZap. All rights reserved.
 
 Abstract:
-Data Access Object
+Data Access Object for Teste Entity
 
 */
 
