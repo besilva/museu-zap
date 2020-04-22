@@ -1,14 +1,15 @@
-/*
-Copyright © MuseuZap. All rights reserved.
-
-Abstract:
-Errors in database
-errorDescription is a friendlier message
-
-*/
+//
+//  DatabaseErrors.swift
+//  MuseuZap
+//
+//  Created by Ivo Dutra on 22/04/20.
+//  Copyright © 2020 Bernardo. All rights reserved.
+//
 
 import Foundation
 
+/// Errors in database.
+/// errorDescription is a friendlier message
 public enum DatabaseErrors: Error {
     case fetch
 }

@@ -1,17 +1,18 @@
-/*
-Copyright © 2020 MuseuZap. All rights reserved.
-
-Abstract:
-Services Layer. Independent from adopted database
-Error Handling + doing aditional treatment to data
-
-*/
+//
+//  ServicesCoreDataProtocol.swift
+//  MuseuZap
+//
+//  Created by Ivo Dutra on 22/04/20.
+//  Copyright © 2020 Bernardo. All rights reserved.
+//
 
 import Foundation
 import UIKit
 
-/// CoreData Services base class
-protocol Services {
+/// CoreData Services Layer base class.
+/// Independent from adopted database.
+/// Error Handling + doing aditional treatment to data.
+protocol ServicesCoreData {
 
     /// Entity Type
     associatedtype Entity

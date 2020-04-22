@@ -9,7 +9,7 @@
 import XCTest
 @testable import MuseuZap
 
-//class TesteDAOTests: XCTestCase {
+//Class TesteDAOTests: XCTestCase {
 //
 //    var sut: TesteDAO!
 //

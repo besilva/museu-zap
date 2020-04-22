@@ -1,19 +1,15 @@
-/*
-Copyright © 2020 MuseuZap. All rights reserved.
-
-Abstract:
-CoreDataManager, context manager
-
-*/
+//
+//  CoreDataManager.swift
+//  MuseuZap
+//
+//  Created by Ivo Dutra on 22/04/20.
+//  Copyright © 2020 Bernardo. All rights reserved.
+//
 
 import UIKit
 import CoreData
 
-// Protocol CoreDataManagerProtocol {
-//
-//    var persistentContainer: NSPersistentContainer { get }
-//}
-
+/// CoreDataManager, context manager
 class CoreDataManager {
 
     /// Empty initializer to avoid external instantiation

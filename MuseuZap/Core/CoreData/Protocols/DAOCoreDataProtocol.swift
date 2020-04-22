@@ -1,17 +1,16 @@
-/*
-Copyright © 2020 MuseuZap. All rights reserved.
-
-Abstract:
-Data Access Object base class
-Every DAO should extend this class
-
-*/
+//
+//  DAOCoreDataProtocol.swift
+//  MuseuZap
+//
+//  Created by Ivo Dutra on 22/04/20.
+//  Copyright © 2020 Bernardo. All rights reserved.
+//
 
 import UIKit
 import CoreData
 
-/// Data Access Object base class
-protocol DAO {
+/// Core Data Data Access Object base class
+protocol DAOCoreData {
 
     /// Entity Type
     associatedtype Entity: NSManagedObject
@@ -23,7 +22,7 @@ protocol DAO {
 
 // MARK: - Fetch
 
-extension DAO {
+extension DAOCoreData {
 
     /// Helper method to build a NSFetchRequest
     /// Entity argument matches the Entity Name of the resulting class name

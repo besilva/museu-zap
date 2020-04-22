@@ -1,17 +1,17 @@
-/*
-Copyright © 2020 MuseuZap. All rights reserved.
-
-Abstract:
-Services Layer for Teste Entity
-Independent from adopted database
-Error Handling + doing aditional treatment to data
-
-*/
+//
+//  TesteServices.swift
+//  MuseuZap
+//
+//  Created by Ivo Dutra on 22/04/20.
+//  Copyright © 2020 Bernardo. All rights reserved.
+//
 
 import Foundation
 import UIKit
 
-// TODO: colocar comentarios auqi e deixar header nrmal
+/// Services Layer for Teste Entity.
+/// Independent from adopted database.
+/// Error Handling + doing aditional treatment to data.
 class TesteServices {
 
     var DAO = TesteDAO()

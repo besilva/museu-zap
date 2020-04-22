@@ -1,14 +1,15 @@
-/*
-Copyright © 2020 MuseuZap. All rights reserved.
-
-Abstract:
-Data Access Object for Teste Entity
-
-*/
+//
+//  TesteDAO.swift
+//  MuseuZap
+//
+//  Created by Ivo Dutra on 22/04/20.
+//  Copyright © 2020 Bernardo. All rights reserved.
+//
 
 import CoreData
 
-class TesteDAO: DAO {
+/// Data Access Object for Teste Entity
+class TesteDAO: DAOCoreData {
 
     typealias Entity = Teste
 
