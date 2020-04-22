@@ -11,6 +11,7 @@ import UIKit
 class ListViewController: UIViewController, ViewController, NavigationDelegate {
     weak var delegate: NavigationDelegate?
     private var myView: ListView {
+        // swiftlint:disable force_cast
         return view as! ListView
     }
  
