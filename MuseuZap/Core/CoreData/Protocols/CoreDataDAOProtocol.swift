@@ -52,6 +52,5 @@ extension DAO {
         }
 
         return array
-
     }
 }

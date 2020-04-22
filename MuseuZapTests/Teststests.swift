@@ -9,26 +9,25 @@
 import XCTest
 @testable import MuseuZap
 
-class TestTests: XCTestCase {
-
-    var sut: ListViewModel!
-    var array: [Teste]!
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        sut = ListViewModel(testeServices: TesteServices())
-        
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    // TODO: INIT em teste?? 
-
+//class TesteDAOTests: XCTestCase {
+//
+//    var sut: TesteDAO!
+//
+//    override func setUp() {
+//        // Put setup code here. This method is called before the invocation of each test method in the class.
+//        sut = TesteDAO
+//        
+//    }
+//
+//    override func tearDown() {
+//        // Put teardown code here. This method is called after the invocation of each test method in the class.
+//    }
+//
+//    // TODO: INIT em teste?? 
+//
 //    func testgetTestTable() {
 //        let element = Teste()
 //        let array = []
 //    }
-
-}
+//
+//}

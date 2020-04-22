@@ -9,7 +9,13 @@ CoreDataManager, context manager
 import UIKit
 import CoreData
 
+// Protocol CoreDataManagerProtocol {
+//
+//    var persistentContainer: NSPersistentContainer { get }
+//}
+
 class CoreDataManager {
+
     /// Empty initializer to avoid external instantiation
     private init() {
 

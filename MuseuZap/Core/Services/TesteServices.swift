@@ -11,6 +11,7 @@ Error Handling + doing aditional treatment to data
 import Foundation
 import UIKit
 
+// TODO: colocar comentarios auqi e deixar header nrmal
 class TesteServices {
 
     var DAO = TesteDAO()
