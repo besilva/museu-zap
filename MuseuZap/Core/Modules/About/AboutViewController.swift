@@ -26,18 +26,5 @@ class AboutViewController: UIViewController, ViewController, NavigationDelegate 
         let viewModel = AboutViewModel(email: "sample@mail.com", description: "sample description"  )
         myView.viewModel = viewModel
         viewModel.navigationDelegate = self
-        viewModel.delegate = self
-    }
-}
-
-extension AboutViewController: AboutViewModelDelegate {
-    func handleTap() {
-        if let url = URL(string: "mailto:\(viewModel?.email ?? "foo@bar.com")") {
-          if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url)
-          } else {
-            UIApplication.shared.openURL(url)
-          }
-        }
     }
 }

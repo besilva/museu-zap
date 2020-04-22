@@ -8,24 +8,20 @@
 
 import UIKit
 
-protocol AboutViewModelDelegate: class {
-    func handleTap()
-}
 
 protocol AboutViewModelProtocol {
     var navigationDelegate: NavigationDelegate? { get }
-    var delegate: AboutViewModelDelegate? { get set }
     var email: String { get set }
     var description: String { get set }
     func back()
+    func sendEmail() throws
     init(email: String, description: String)
 }
 
 class AboutViewModel: AboutViewModelProtocol {
     weak var navigationDelegate: NavigationDelegate?
-    var email: String = "foo@bar.com"
-    var description: String = "App description"
-    weak var delegate: AboutViewModelDelegate?
+    var email: String
+    var description: String
     
     required init(email: String, description: String) {
         self.email = email
@@ -34,5 +30,15 @@ class AboutViewModel: AboutViewModelProtocol {
     
     func back() {
         navigationDelegate?.handleNavigation(action: .back)
+    }
+    
+    func sendEmail() throws{
+        if let url = URL(string: "mailto:\(self.email)") {
+          if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url)
+          } else {
+            UIApplication.shared.openURL(url)
+          }
+        }
     }
 }

@@ -80,7 +80,11 @@ class AboutView: UIView, ViewCodable {
         
     }
     
-    @objc func handleTap() {
-        self.viewModel?.delegate?.handleTap()
+    @objc func handleTap() throws {
+        if let viewModel = self.viewModel {
+            try viewModel.sendEmail()
+        } else {
+            throw AboutError.nilValue
+        }
     }
 }
