@@ -42,7 +42,7 @@ class AboutViewTests: XCTestCase {
 
     func testBackgroundColor() throws {
         if #available(iOS 13, *) {
-            XCTAssertEqual(self.aboutView?.contentView.backgroundColor, UIColor.systemBackground)
+            XCTAssertEqual(self.aboutView?.contentView.backgroundColor, UIColor.Default.background)
         } else {
             XCTAssertEqual(self.aboutView?.contentView.backgroundColor, UIColor.white)
         }
@@ -50,7 +50,7 @@ class AboutViewTests: XCTestCase {
 
     func testLabelColor() throws {
         if #available(iOS 13, *) {
-            XCTAssertEqual(self.aboutView?.mailLabel.tintColor, UIColor.label)
+            XCTAssertEqual(self.aboutView?.mailLabel.tintColor, UIColor.Default.label)
         } else {
             XCTAssertEqual(self.aboutView?.mailLabel.tintColor, UIColor.black)
         }
