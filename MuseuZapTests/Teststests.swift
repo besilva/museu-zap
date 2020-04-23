@@ -104,21 +104,21 @@ class TesteDAOTests: XCTestCase {
         XCTAssertNil(errorDatabase, "error nao nil!")
     }
 
-//    func testSave() {
-//        var entity = Teste()
-//
-//        entity.subtitulo = "Bernardo é god"
-//        entity.titulo = "Bernardo tem paciencia"
-//
-//        var errorDatabase: Error?
-//
-//        do {
-//            try sut.save(entity)
-//        } catch {
-//            errorDatabase = error
-//            print(errorDatabase)
-//        }
-//
-//        XCTAssertNil(errorDatabase, "nao rolou!")
-//    }
+    func testSave() {
+        var entity = Teste(container: coreDataHelper.mockPersistantContainer)
+
+        entity.subtitulo = "Bernardo é god"
+        entity.titulo = "Bernardo tem paciencia"
+
+        var errorDatabase: Error?
+
+        do {
+            try sut.save(entity)
+        } catch {
+            errorDatabase = error
+            print(errorDatabase)
+        }
+
+        XCTAssertNil(errorDatabase, "nao rolou!")
+    }
 }

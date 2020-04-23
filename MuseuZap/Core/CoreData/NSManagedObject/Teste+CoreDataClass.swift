@@ -15,14 +15,20 @@ import UIKit
 /// Codegen set to manual
 public class Teste: NSManagedObject {
 
-    convenience init() {
+    convenience init(container: NSPersistentContainer? = nil) {
         // Use the default container for production environment
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
           fatalError("Can not get shared app delegate")
         }
-
+        
+        let managedObjectContext: NSManagedObjectContext
+        if let container = container {
+            managedObjectContext = container.viewContext
+        } else {
+            managedObjectContext = appDelegate.persistentContainer.viewContext
+        }
         // Get context
-        let managedObjectContext: NSManagedObjectContext = appDelegate.persistentContainer.viewContext
+       
         // Create entity description
         let entityDescription = NSEntityDescription.entity(forEntityName: "Teste", in: managedObjectContext)
 
