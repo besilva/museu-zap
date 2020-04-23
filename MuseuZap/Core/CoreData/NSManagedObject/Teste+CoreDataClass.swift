@@ -16,11 +16,6 @@ import UIKit
 public class Teste: NSManagedObject {
 
     convenience init(container: NSPersistentContainer? = nil) {
-        // Use the default container for production environment
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-          fatalError("Can not get shared app delegate")
-        }
-        
         let managedObjectContext: NSManagedObjectContext
         if let container = container {
             managedObjectContext = container.viewContext
