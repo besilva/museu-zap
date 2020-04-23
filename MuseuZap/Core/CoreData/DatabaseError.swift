@@ -8,17 +8,27 @@
 
 import Foundation
 
-/// Errors in database.
+/// Possible Errors in database.
 /// errorDescription is a friendlier message
 public enum DatabaseErrors: Error {
-    case fetch
+    case create
+    case read
+    case update
+    case delete
 }
 
+// Sobre localização: Fazer um enum com as strings para usar um único identifier quando formos localizar o App
 extension DatabaseErrors: LocalizedError {
     public var errorDescription: String? {
         switch self {
-        case .fetch:
+        case .create:
+            return NSLocalizedString("Database could not create the desired record.", comment: "DatabaseErrors")
+        case .read:
             return NSLocalizedString("Database does not contain any record of the wanted entity.", comment: "DatabaseErrors")
+        case .update:
+            return NSLocalizedString("Database could not update the desired record", comment: "DatabaseErrors")
+        case .delete:
+            return NSLocalizedString("Database could not delete the desired record.", comment: "DatabaseErrors")
         }
     }
 }

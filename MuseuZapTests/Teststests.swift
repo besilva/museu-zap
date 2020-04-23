@@ -10,6 +10,8 @@ import XCTest
 @testable import MuseuZap
 import CoreData
 
+    // MARK: - CoreDataTestHelper
+
 class CoreDataTestHelper {
 
     lazy var managedObjectModel: NSManagedObjectModel = {
@@ -60,15 +62,19 @@ class CoreDataTestHelper {
 
     func flushData() {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: "Teste")
+        // swiftlint:disable force_try
         let objs = try! mockPersistantContainer.viewContext.fetch(fetchRequest)
+
         for case let obj as NSManagedObject in objs {
             mockPersistantContainer.viewContext.delete(obj)
         }
-        // swiftlint:disable force_try
+
         try! mockPersistantContainer.viewContext.save()
         // swiftlint:enable force_try
     }
 }
+
+    // MARK: - DAO
 
 class TesteDAOTests: XCTestCase {
 
@@ -94,7 +100,7 @@ class TesteDAOTests: XCTestCase {
         var array = [Teste]()
 
         do {
-            try array = sut.findAll()
+            try array = sut.read()
         } catch {
             errorDatabase = error
             print(errorDatabase ?? "nil")
@@ -105,7 +111,7 @@ class TesteDAOTests: XCTestCase {
     }
 
     func testSave() {
-        var entity = Teste(container: coreDataHelper.mockPersistantContainer)
+        let entity = Teste(container: coreDataHelper.mockPersistantContainer)
 
         entity.subtitulo = "Bernardo é god"
         entity.titulo = "Bernardo tem paciencia"
@@ -113,7 +119,7 @@ class TesteDAOTests: XCTestCase {
         var errorDatabase: Error?
 
         do {
-            try sut.save(entity)
+            try sut.create(entity)
         } catch {
             errorDatabase = error
             print(errorDatabase)

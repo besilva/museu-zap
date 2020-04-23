@@ -9,17 +9,17 @@
 import CoreData
 import UIKit
 
-// Data Access Object for Teste Entity
+/// Data Access Object for Teste Entity
 class TesteDAO: DAOCoreData {
-  typealias Entity = Teste
-  var container: NSPersistentContainer!
-    
-  required init(container: NSPersistentContainer) {
-    self.container = container
-  }
-    
-  convenience init() {
+    typealias Entity = Teste
+    var container: NSPersistentContainer!
+
+    required init(container: NSPersistentContainer) {
+        self.container = container
+    }
+
+    convenience init() {
     // Use the default container for production environment
-    self.init(container: CoreDataManager.sharedInstance.persistentContainer)
-  }
+        self.init(container: CoreDataManager.sharedInstance.persistentContainer)
+    }
 }
