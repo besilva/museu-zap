@@ -27,4 +27,23 @@ class AboutViewController: UIViewController, ViewController, NavigationDelegate 
         myView.viewModel = viewModel
         viewModel.navigationDelegate = self
     }
+    
+    func handleNavigation(action: Action) {
+        switch action {
+        case .presentAlert( _, let message, let timeout, let preferredStyle):
+            let alert = UIAlertController(title: nil, message: message, preferredStyle: preferredStyle)
+            
+            alert.show(self, sender: nil)
+            let when = DispatchTime.now() + (timeout ?? 2)
+//            Dismiss after delay
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                alert.dismiss(animated: true, completion: nil)
+            }
+            present(alert, animated: true)
+            
+        default:
+            delegate?.handleNavigation(action: action)
+        }
+                
+    }
 }

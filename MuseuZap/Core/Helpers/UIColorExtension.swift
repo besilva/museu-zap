@@ -6,4 +6,12 @@
 //  Copyright © 2020 Bernardo. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+extension UIColor {
+    struct Default {
+        static let background = UIColor(named: "background")
+        static let lightBackground = UIColor(named: "lightBackground")
+        static let label = UIColor(named: "label")
+    }
+}

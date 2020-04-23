@@ -8,12 +8,12 @@
 
 import UIKit
 
-
 protocol AboutViewModelProtocol {
     var navigationDelegate: NavigationDelegate? { get }
     var email: String { get set }
     var description: String { get set }
     func back()
+    func copy()
     func sendEmail() throws
     init(email: String, description: String)
 }
@@ -32,7 +32,11 @@ class AboutViewModel: AboutViewModelProtocol {
         navigationDelegate?.handleNavigation(action: .back)
     }
     
-    func sendEmail() throws{
+    func copy() {
+        navigationDelegate?.handleNavigation(action: .presentAlert("", "Email copiado!", nil, .alert))
+    }
+    
+    func sendEmail() throws {
         if let url = URL(string: "mailto:\(self.email)") {
           if #available(iOS 10.0, *) {
             UIApplication.shared.open(url)

@@ -26,6 +26,8 @@ class AboutCoordinator: BaseCoordinator {
         switch action {
         case .back:
             self.rootViewController.dismiss(animated: true)
+        default:
+            break
         }
     }
 }
