@@ -25,8 +25,9 @@ protocol DAOCoreData {
     // CRUD Operations: Create, Read, Update, Delete
     func create(_ objectToBeSaved: Entity) throws
     func readAll() throws -> [Entity]
-    func update(_ objectToBeUpdated: Entity) throws
+    func updateContext() throws
     func delete(_ objectToBeDeleted: Entity) throws
+//    func deleteAll(_ objectToBeDeleted: Entity) throws
 }
 
 // MARK: - Implementations
@@ -75,11 +76,13 @@ extension DAOCoreData {
 
     // MARK: - Update
 
+    // TODO: read about fetch request predicate
+
     /// Method responsible for updating an Entity into CoreData
     /// - parameters:
     ///     - objectToBeUpdated: Entity to be updated on CoreData
     /// - throws: If an error occurs during updating an object into CoreData (DatabaseErrors.update)
-    func update(_ objectToBeUpdated: Entity) throws {
+    func updateContext() throws {
         do {
             // Persist changes at the context
             try container.viewContext.save()
@@ -108,6 +111,19 @@ extension DAOCoreData {
 
     // DELETE
     // ALL
+    // TODO: delete vs DeleteAll: qual a diferença das duas?
+
+//    func deleteAll(_ objectToBeDeleted: Entity) throws {
+//        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: "Teste")
+//        let objs = try! container.viewContext.fetch(fetchRequest)
+//
+//        for case let obj as NSManagedObject in objs {
+//            container.viewContext.delete(obj)
+//        }
+//
+//        try! container.viewContext.save()
+//        // swiftlint:enable force_try
+//    }
 
     // MARK: - Helper
 
