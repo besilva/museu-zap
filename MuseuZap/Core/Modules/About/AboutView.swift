@@ -38,8 +38,8 @@ class AboutView: UIView, ViewCodable {
         setupContentViewEmailLabel()
         setupEmailLabel()
         setupClipboard()
-//        setupEmailTitle()
-//        setupEmailDescription()
+        setupEmailTitle()
+        setupEmailDescription()
     }
     
     func setupHierarchy() {
@@ -48,7 +48,7 @@ class AboutView: UIView, ViewCodable {
 //        Inserts the copy content view and the email into a content view
         contentViewMailLabel.addSubviews(mailLabel, copyView)
 //        Adds email content view into the main view
-        contentView.addSubviews(contentViewMailLabel)
+        contentView.addSubviews(mailTitle, mailDescription, contentViewMailLabel)
         addSubview(contentView)
     }
     
@@ -62,10 +62,23 @@ class AboutView: UIView, ViewCodable {
             contentView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         }
         
+//        Setup Email title label constraints
+        mailTitle.setupConstraints { (_) in
+            mailTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
+            mailTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12).isActive = true
+        }
+        
+//        Setup Email description constraints
+        mailDescription.setupConstraints { (_) in
+            mailDescription.topAnchor.constraint(equalTo: mailTitle.bottomAnchor, constant: 12).isActive = true
+            mailDescription.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12).isActive = true
+            mailDescription.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12).isActive = true
+        }
+
 //        Setup constraints for the content view containing email features
         contentViewMailLabel.setupConstraints { (_) in
             contentViewMailLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-            contentViewMailLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 56).isActive = true
+            contentViewMailLabel.topAnchor.constraint(equalTo: mailDescription.bottomAnchor, constant: 22).isActive = true
             contentViewMailLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12).isActive = true
             contentViewMailLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12).isActive = true
             contentViewMailLabel.heightAnchor.constraint(equalToConstant: 56).isActive = true
@@ -112,11 +125,11 @@ class AboutView: UIView, ViewCodable {
     }
     
     func updateView() {
-//        setupEmailTitle()
-//        setupEmailDescription()
         setupContentViewEmailLabel()
         setupEmailLabel()
         setupClipboard()
+        setupEmailTitle()
+        setupEmailDescription()
     }
     
     func setupEmailLabel() {
@@ -154,28 +167,31 @@ class AboutView: UIView, ViewCodable {
         contentViewMailLabel.layer.cornerRadius = 4
     }
 
-//    func setupEmailTitle() {
-//        mailTitle.frame = CGRect(x: 0, y: 0, width: 127, height: 22)
-//        mailTitle.backgroundColor = .white
-//        mailTitle.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-//        mailTitle.font = UIFont(name: "SFProText-Semibold", size: 17)
-//        let paragraphStyle = NSMutableParagraphStyle()
-//        paragraphStyle.lineHeightMultiple = 1.08
-//        mailTitle.attributedText = NSMutableAttributedString(string: "Submeter áudio", attributes: [NSAttributedString.Key.kern: -0.41, NSAttributedString.Key.paragraphStyle: paragraphStyle])
-//    }
-//
-//    func setupEmailDescription() {
-//        mailDescription.frame = CGRect(x: 0, y: 0, width: 374, height: 36)
-//        mailDescription.backgroundColor = .white
-//        mailDescription.textColor = UIColor(red: 0.557, green: 0.557, blue: 0.576, alpha: 1)
-//        mailDescription.font = UIFont(name: "SFProText-Regular", size: 15)
-//        mailDescription.numberOfLines = 0
-//        mailDescription.lineBreakMode = .byWordWrapping
-//        let paragraphStyle = NSMutableParagraphStyle()
-//        paragraphStyle.lineHeightMultiple = 1.01
-//
-//        mailDescription.attributedText = NSMutableAttributedString(string: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi elementum nunc, sollicitudin non:", attributes: [NSAttributedString.Key.kern: -0.24, NSAttributedString.Key.paragraphStyle: paragraphStyle])
-//    }
+    func setupEmailTitle() {
+        mailTitle.frame = CGRect(x: 0, y: 0, width: 127, height: 22)
+        mailTitle.textColor = UIColor.Default.label
+        mailTitle.font = UIFont(name: "SFProText-Semibold", size: 17)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 1.08
+        mailTitle.attributedText = NSMutableAttributedString(string: "Submeter áudio",
+                                                             attributes: [NSAttributedString.Key.kern: -0.41,
+                                                                          NSAttributedString.Key.paragraphStyle: paragraphStyle])
+    }
+
+    func setupEmailDescription() {
+        mailDescription.frame = CGRect(x: 0, y: 0, width: 374, height: 36)
+        mailDescription.textColor = UIColor.Default.text
+        mailDescription.font = UIFont(name: "SFProText-Regular", size: 15)
+        mailDescription.numberOfLines = 0
+        mailDescription.lineBreakMode = .byWordWrapping
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 1.01
+        
+        let emailDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi elementum nunc, sollicitudin non:"
+        mailDescription.attributedText = NSMutableAttributedString(string: emailDescription,
+                                                                   attributes: [NSAttributedString.Key.kern: -0.24,
+                                                                                NSAttributedString.Key.paragraphStyle: paragraphStyle])
+    }
 
     @objc func handleTap() throws {
 //        Sends email to viewModel email, throws error if viewModel is nil

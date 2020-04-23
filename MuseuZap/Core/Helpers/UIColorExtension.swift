@@ -13,5 +13,6 @@ extension UIColor {
         static let background = UIColor(named: "background")
         static let lightBackground = UIColor(named: "lightBackground")
         static let label = UIColor(named: "label")
+        static let text = UIColor(named: "text")
     }
 }

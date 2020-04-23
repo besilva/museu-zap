@@ -9,6 +9,10 @@
 import UIKit
 
 class ListViewController: UIViewController, ViewController, NavigationDelegate {
+    func handleNavigation(action: Action) {
+        return
+    }
+    
     weak var delegate: NavigationDelegate?
     private var myView: ListView {
         // swiftlint:disable force_cast

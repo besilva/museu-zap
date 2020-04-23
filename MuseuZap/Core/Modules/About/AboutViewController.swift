@@ -23,6 +23,7 @@ class AboutViewController: UIViewController, ViewController, NavigationDelegate 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Info"
         let viewModel = AboutViewModel(email: "sample@mail.com", description: "sample description"  )
         myView.viewModel = viewModel
         viewModel.navigationDelegate = self
