@@ -27,7 +27,7 @@ protocol DAOCoreData {
     func readAll() throws -> [Entity]
     func updateContext() throws
     func delete(_ objectToBeDeleted: Entity) throws
-//    func deleteAll(_ objectToBeDeleted: Entity) throws
+    func deleteAll(_ objectToBeDeleted: Entity) throws
 }
 
 // MARK: - Implementations
@@ -51,9 +51,6 @@ extension DAOCoreData {
             throw DatabaseErrors.create
         }
     }
-
-    // SAVE
-    // ALL
 
     // MARK: - Read
 
@@ -109,21 +106,18 @@ extension DAOCoreData {
         }
     }
 
-    // DELETE
-    // ALL
-    // TODO: delete vs DeleteAll: qual a diferença das duas?
+    func deleteAll(_ objectToBeDeleted: Entity) throws {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: "Teste")
+        // swiftlint:disable force_try
+        let objs = try! container.viewContext.fetch(fetchRequest)
 
-//    func deleteAll(_ objectToBeDeleted: Entity) throws {
-//        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: "Teste")
-//        let objs = try! container.viewContext.fetch(fetchRequest)
-//
-//        for case let obj as NSManagedObject in objs {
-//            container.viewContext.delete(obj)
-//        }
-//
-//        try! container.viewContext.save()
-//        // swiftlint:enable force_try
-//    }
+        for case let obj as NSManagedObject in objs {
+            container.viewContext.delete(obj)
+        }
+
+        try! container.viewContext.save()
+        // swiftlint:enable force_try
+    }
 
     // MARK: - Helper
 

@@ -201,4 +201,37 @@ class DAOTests: XCTestCase {
         XCTAssertEqual(newArray.count, 1, "Database should have only one record")
         XCTAssertNil(errorDatabase, "databaseError update")
     }
+
+    /// Fetches the Elements, delete one and see if newArray count is one
+    func testDeleteAll() {
+        var errorDatabase: Error?
+        var array = [Teste]()
+        var newArray = [Teste]()
+
+        do {
+           try array = sut.readAll()
+        } catch {
+           errorDatabase = error
+           print(errorDatabase ?? "databaseError1 read")
+        }
+
+        let element = array[0]
+
+        do {
+           try sut.deleteAll(element)
+        } catch {
+           errorDatabase = error
+           print(errorDatabase ?? "databaseError1 delete")
+        }
+
+        do {
+           try newArray = sut.readAll()
+        } catch {
+           errorDatabase = error
+           print(errorDatabase ?? "databaseError2 read")
+        }
+
+        XCTAssertEqual(newArray.count, 0, "Database should have no records)
+        XCTAssertNil(errorDatabase, "databaseError update")
+    }
 }
