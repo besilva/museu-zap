@@ -25,7 +25,7 @@ public class Teste: NSManagedObject {
         if let container = container {
             managedObjectContext = container.viewContext
         } else {
-            managedObjectContext = appDelegate.persistentContainer.viewContext
+            managedObjectContext = CoreDataManager.sharedInstance.persistentContainer.viewContext
         }
         // Get context
        

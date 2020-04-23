@@ -11,6 +11,7 @@
 		6473EDDE243B6D3E00A10F2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6473EDDD243B6D3E00A10F2C /* Assets.xcassets */; };
 		6473EDE1243B6D3E00A10F2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6473EDDF243B6D3E00A10F2C /* LaunchScreen.storyboard */; };
 		6473EDEC243B6D3E00A10F2C /* MuseuZapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6473EDEB243B6D3E00A10F2C /* MuseuZapTests.swift */; };
+		64796F0A2451C10A00104448 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64796F092451C10A00104448 /* CoreDataManager.swift */; };
 		64A60C2E24489B9E003B0F26 /* ViewCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A60C2D24489B9E003B0F26 /* ViewCodable.swift */; };
 		64A60C3024489D62003B0F26 /* UIView+ConstraintsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A60C2F24489D62003B0F26 /* UIView+ConstraintsExtension.swift */; };
 		64A60C322448A78C003B0F26 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A60C312448A78C003B0F26 /* ListView.swift */; };
@@ -52,6 +53,7 @@
 		6473EDE7243B6D3E00A10F2C /* MuseuZapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MuseuZapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6473EDEB243B6D3E00A10F2C /* MuseuZapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuseuZapTests.swift; sourceTree = "<group>"; };
 		6473EDED243B6D3E00A10F2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64796F092451C10A00104448 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		64A60C2D24489B9E003B0F26 /* ViewCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCodable.swift; sourceTree = "<group>"; };
 		64A60C2F24489D62003B0F26 /* UIView+ConstraintsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ConstraintsExtension.swift"; sourceTree = "<group>"; };
 		64A60C312448A78C003B0F26 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				C5909553244E248000B1C17F /* NSManagedObject */,
 				C5A341B7244C0274006F1D0D /* MuseuZap.xcdatamodeld */,
 				C5A341CF244C0523006F1D0D /* DatabaseError.swift */,
+				64796F092451C10A00104448 /* CoreDataManager.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				64A60C322448A78C003B0F26 /* ListView.swift in Sources */,
 				64A60C2E24489B9E003B0F26 /* ViewCodable.swift in Sources */,
 				C5A341B9244C0274006F1D0D /* MuseuZap.xcdatamodeld in Sources */,
+				64796F0A2451C10A00104448 /* CoreDataManager.swift in Sources */,
 				C5909555244E28A400B1C17F /* TesteServices.swift in Sources */,
 				C5A341C6244C03A1006F1D0D /* DAOCoreDataProtocol.swift in Sources */,
 				64DD6FE4243E084100404321 /* Coordinator.swift in Sources */,
