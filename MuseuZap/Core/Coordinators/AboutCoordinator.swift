@@ -1,15 +1,14 @@
 //
-//  TestCoordinator.swift
+//  DetailCoordinator.swift
 //  MuseuZap
 //
-//  Created by Bernardo Silva on 08/04/20.
+//  Created by Ignácio Espinoso Ribeiro on 15/04/20.
 //  Copyright © 2020 Bernardo. All rights reserved.
 //
 
 import UIKit
 
-class TestCoordinator: BaseCoordinator {
-    
+class AboutCoordinator: BaseCoordinator {
     typealias T = UINavigationController
     var rootViewController: UINavigationController
     
@@ -18,11 +17,11 @@ class TestCoordinator: BaseCoordinator {
     }
     
     func startFlow() {
-        let listController = ListViewController()
-        listController.delegate = self
-        self.rootViewController.pushViewController(listController, animated: true)
+        let aboutController = AboutViewController()
+        aboutController.delegate = self
+        self.rootViewController.pushViewController(aboutController, animated: true)
     }
-    
+
     func handleNavigation(action: Action) {
         switch action {
         case .back:
@@ -31,5 +30,4 @@ class TestCoordinator: BaseCoordinator {
             break
         }
     }
-    
 }
