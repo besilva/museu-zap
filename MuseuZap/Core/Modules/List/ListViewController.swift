@@ -26,6 +26,7 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "List"
         // Fake doing request
         let array = [("titulo", "subtitulo")]
         let viewModel = ListViewModel(array: array)

@@ -15,6 +15,12 @@ struct Stack<Element> {
         array.append(element)
     }
     
+    mutating func push(_ elements: Element...) {
+        for element in elements {
+            self.push(element)
+        }
+    }
+    
     mutating func pop() -> Element? {
         return array.popLast()
     }
