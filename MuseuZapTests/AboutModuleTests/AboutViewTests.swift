@@ -26,7 +26,7 @@ class MockAboutViewModelDelegate: AboutViewModel {
 }
 
 class AboutViewTests: XCTestCase {
-    var aboutView: AboutView?
+    var aboutView: AboutView!
     var aboutViewModel: MockAboutViewModel?
 
     override func setUpWithError() throws {
