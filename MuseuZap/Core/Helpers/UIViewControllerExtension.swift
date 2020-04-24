@@ -11,8 +11,3 @@ import UIKit
 protocol ViewController: UIViewController, NavigationDelegate {
     var delegate: NavigationDelegate? {get set}
 }
-extension ViewController {
-    func handleNavigation(action: Action) {
-        delegate?.handleNavigation(action: action)
-    }
-}

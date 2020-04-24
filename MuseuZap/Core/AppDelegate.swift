@@ -16,12 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let navController = UINavigationController()
+        let tabController =  TabBar()
         self.window = UIWindow(frame: UIScreen.main.bounds)
         // Initialise the first coordinator with the main navigation controller
-        coordinator = AppCoordinator(rootViewController: navController)
+        coordinator = AppCoordinator(rootViewController: tabController)
         coordinator?.startFlow()
-        window?.rootViewController = navController
+        window?.rootViewController = tabController
         window?.makeKeyAndVisible()
 
         addTestDataTesteEntity()

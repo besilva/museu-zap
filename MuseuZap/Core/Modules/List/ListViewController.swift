@@ -9,6 +9,10 @@
 import UIKit
 
 class ListViewController: UIViewController, ViewController, NavigationDelegate {
+    func handleNavigation(action: Action) {
+        return
+    }
+    
     weak var delegate: NavigationDelegate?
 
     private var myView: ListView {
@@ -23,6 +27,7 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "List"
         // Fake doing request
         let testeServices = TesteServices()
         let viewModel = ListViewModel(testeServices: testeServices)

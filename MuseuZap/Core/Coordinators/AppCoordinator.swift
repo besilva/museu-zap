@@ -9,20 +9,27 @@
 import UIKit
 
 class AppCoordinator: NSObject, Coordinator {
-    typealias T = UINavigationController
+    typealias T = UITabBarController
     
     private var coordinators = Stack<Coordinator>()
     
-    var rootViewController: UINavigationController
+    var rootViewController: UITabBarController
     
-    required init(rootViewController: UINavigationController) {
+    required init(rootViewController: UITabBarController) {
         self.rootViewController = rootViewController
     }
     
     internal func startFlow() {
-        let testCoordinator = TestCoordinator(rootViewController: rootViewController)
+        let testCoordinator = TestCoordinator()
         testCoordinator.startFlow()
-        coordinators.push(testCoordinator)
+        
+        let aboutCoordinator = AboutCoordinator()
+        aboutCoordinator.startFlow()
+        
+        rootViewController.addChild(testCoordinator.rootViewController,
+                                    aboutCoordinator.rootViewController)
+        coordinators.push(testCoordinator, aboutCoordinator)
+
     }
 
 }
