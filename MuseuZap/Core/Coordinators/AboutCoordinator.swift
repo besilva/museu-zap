@@ -12,7 +12,7 @@ class AboutCoordinator: BaseCoordinator {
     typealias T = UINavigationController
     var rootViewController: UINavigationController
     
-    required init(rootViewController: UINavigationController) {
+    required init(rootViewController: UINavigationController = UINavigationController()) {
         self.rootViewController = rootViewController
     }
     
