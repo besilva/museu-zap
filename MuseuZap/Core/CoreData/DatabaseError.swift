@@ -17,7 +17,8 @@ public enum DatabaseErrors: Error {
     case delete
 }
 
-// Sobre localização: Fazer um enum com as strings para usar um único identifier quando formos localizar o App
+// Sobre localização: Fazer um enum com as strings para usar um único identifier quando formos localizar o App.
+// Não vai ser essa mensagem que o usuário vai ver
 extension DatabaseErrors: LocalizedError {
     public var errorDescription: String? {
         switch self {

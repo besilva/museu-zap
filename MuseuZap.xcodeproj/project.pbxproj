@@ -31,8 +31,6 @@
 		80E6C368244DF09700A42A4C /* AboutViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E6C367244DF09700A42A4C /* AboutViewTests.swift */; };
 		80FAABD82451BFD6008B7DB8 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FAABD72451BFD6008B7DB8 /* UIColorExtension.swift */; };
 		C52E7444244F37D300E1DDA4 /* DAOCoreDataProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52E7442244F37D300E1DDA4 /* DAOCoreDataProtocolTests.swift */; };
-		C590954E244DFB1600B1C17F /* ServicesCoreDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C590954D244DFB1600B1C17F /* ServicesCoreDataProtocol.swift */; };
-		C590954F244DFB1600B1C17F /* ServicesCoreDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C590954D244DFB1600B1C17F /* ServicesCoreDataProtocol.swift */; };
 		C5909555244E28A400B1C17F /* TesteServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5909554244E28A400B1C17F /* TesteServices.swift */; };
 		C5A341B9244C0274006F1D0D /* MuseuZap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5A341B7244C0274006F1D0D /* MuseuZap.xcdatamodeld */; };
 		C5A341BE244C032C006F1D0D /* Teste+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A341BC244C032C006F1D0D /* Teste+CoreDataClass.swift */; };
@@ -81,7 +79,6 @@
 		80E6C367244DF09700A42A4C /* AboutViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewTests.swift; sourceTree = "<group>"; };
 		80FAABD72451BFD6008B7DB8 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		C52E7442244F37D300E1DDA4 /* DAOCoreDataProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAOCoreDataProtocolTests.swift; sourceTree = "<group>"; };
-		C590954D244DFB1600B1C17F /* ServicesCoreDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesCoreDataProtocol.swift; sourceTree = "<group>"; };
 		C5909554244E28A400B1C17F /* TesteServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TesteServices.swift; sourceTree = "<group>"; };
 		C5A341B8244C0274006F1D0D /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		C5A341BC244C032C006F1D0D /* Teste+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Teste+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -236,7 +233,6 @@
 			isa = PBXGroup;
 			children = (
 				C5A341C5244C03A1006F1D0D /* DAOCoreDataProtocol.swift */,
-				C590954D244DFB1600B1C17F /* ServicesCoreDataProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -416,7 +412,6 @@
 				80D80EF62447378A00915F1C /* AboutViewModel.swift in Sources */,
 				64DD6FF9243E10E400404321 /* TestCoordinator.swift in Sources */,
 				C5A341BE244C032C006F1D0D /* Teste+CoreDataClass.swift in Sources */,
-				C590954E244DFB1600B1C17F /* ServicesCoreDataProtocol.swift in Sources */,
 				C5A341D3244C05C5006F1D0D /* TestDAO.swift in Sources */,
 				64A60C342448BD33003B0F26 /* UIViewControllerExtension.swift in Sources */,
 				64DD6FE6243E0A4700404321 /* Stack.swift in Sources */,
@@ -434,7 +429,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				80E6C368244DF09700A42A4C /* AboutViewTests.swift in Sources */,
-				C590954F244DFB1600B1C17F /* ServicesCoreDataProtocol.swift in Sources */,
 				C52E7444244F37D300E1DDA4 /* DAOCoreDataProtocolTests.swift in Sources */,
 				C5A4CD2C2451138500F190A5 /* MuseuZap.xcdatamodeld in Sources */,
 				6473EDEC243B6D3E00A10F2C /* MuseuZapTests.swift in Sources */,

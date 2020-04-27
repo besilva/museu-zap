@@ -12,6 +12,8 @@ import CoreData
 // MARK: - Protocol
 
 /// Core Data Data Access Object base class
+/// Protocol Oriented
+/// TODO: refactor dao firebase?
 protocol DAOCoreData {
 
     /// Adopted persistentContainer.

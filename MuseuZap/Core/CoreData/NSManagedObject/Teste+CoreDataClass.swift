@@ -23,7 +23,8 @@ public class Teste: NSManagedObject {
             managedObjectContext = CoreDataManager.sharedInstance.persistentContainer.viewContext
         }
         // Get context
-       
+//        self.objectID USAR COMO ID
+
         // Create entity description
         let entityDescription = NSEntityDescription.entity(forEntityName: "Teste", in: managedObjectContext)
 

@@ -29,10 +29,13 @@ class TesteServices {
         do {
             // Save information
             testes = try DAO.readAll()
+            // FORCAR dao mockado produzir erro
+            // Assert fail
             completion(nil, testes)
         } catch let error as DatabaseErrors { // TODO: vale a pena esse cast aqui?
             raisedError = error
             completion(raisedError, nil)
+            // Assert success
         } catch {
             print("Unexpected error: \(error).")
         }
