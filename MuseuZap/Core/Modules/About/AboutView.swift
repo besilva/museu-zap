@@ -9,15 +9,18 @@
 import UIKit
 
 class AboutView: UIView, ViewCodable {
-    var mailTitle: UILabel = UILabel()
-    var mailLabel: UILabel = UILabel()
-    var mailDescription: UILabel = UILabel()
+    var submitLabel: UILabel = DynamicLabel()
+    var mailLabel: UILabel = DynamicLabel()
+    var mailDescription: UILabel = DynamicLabel()
     var contentViewMailLabel: UIView = UIView()
     var contentView: UIView = UIView()
     
     let copyView = UIView()
-    let copyLabel = UILabel()
+    let copyLabel = DynamicLabel()
     let clipboardIcon = UIImageView()
+    
+    let moreInfoTitle = DynamicLabel()
+    let moreInfoDescription = DynamicLabel()
     
     var viewModel: AboutViewModelProtocol? {
         didSet {
@@ -38,8 +41,10 @@ class AboutView: UIView, ViewCodable {
         setupContentViewEmailLabel()
         setupEmailLabel()
         setupClipboard()
-        setupEmailTitle()
+        setupSubmitLabel()
         setupEmailDescription()
+        setupMoreInfoTitle()
+        setupMoreInfoDescription()
     }
     
     func setupHierarchy() {
@@ -48,7 +53,7 @@ class AboutView: UIView, ViewCodable {
 //        Inserts the copy content view and the email into a content view
         contentViewMailLabel.addSubviews(mailLabel, copyView)
 //        Adds email content view into the main view
-        contentView.addSubviews(mailTitle, mailDescription, contentViewMailLabel)
+        contentView.addSubviews(submitLabel, mailDescription, contentViewMailLabel, moreInfoTitle, moreInfoDescription)
         addSubview(contentView)
     }
     
@@ -63,24 +68,24 @@ class AboutView: UIView, ViewCodable {
         }
         
 //        Setup Email title label constraints
-        mailTitle.setupConstraints { (_) in
-            mailTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
-            mailTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12).isActive = true
+        submitLabel.setupConstraints { (_) in
+            submitLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24).isActive = true
+            submitLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         }
         
 //        Setup Email description constraints
         mailDescription.setupConstraints { (_) in
-            mailDescription.topAnchor.constraint(equalTo: mailTitle.bottomAnchor, constant: 12).isActive = true
-            mailDescription.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12).isActive = true
-            mailDescription.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12).isActive = true
+            mailDescription.topAnchor.constraint(equalTo: submitLabel.bottomAnchor, constant: 12).isActive = true
+            mailDescription.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+            mailDescription.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         }
 
 //        Setup constraints for the content view containing email features
         contentViewMailLabel.setupConstraints { (_) in
             contentViewMailLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
             contentViewMailLabel.topAnchor.constraint(equalTo: mailDescription.bottomAnchor, constant: 22).isActive = true
-            contentViewMailLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12).isActive = true
-            contentViewMailLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12).isActive = true
+            contentViewMailLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+            contentViewMailLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
             contentViewMailLabel.heightAnchor.constraint(equalToConstant: 56).isActive = true
         }
 
@@ -88,7 +93,7 @@ class AboutView: UIView, ViewCodable {
         mailLabel.textAlignment = .left
         mailLabel.setupConstraints { (_) in
             mailLabel.centerYAnchor.constraint(equalTo: contentViewMailLabel.centerYAnchor).isActive = true
-            mailLabel.leadingAnchor.constraint(equalTo: contentViewMailLabel.leadingAnchor, constant: 12).isActive = true
+            mailLabel.leadingAnchor.constraint(equalTo: contentViewMailLabel.leadingAnchor, constant: 20).isActive = true
             mailLabel.trailingAnchor.constraint(lessThanOrEqualTo: copyView.leadingAnchor, constant: -8).isActive = true
             mailLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
         }
@@ -97,14 +102,14 @@ class AboutView: UIView, ViewCodable {
         copyView.setupConstraints { (_) in
             copyView.centerYAnchor.constraint(equalTo: contentViewMailLabel.centerYAnchor).isActive = true
             copyView.heightAnchor.constraint(equalToConstant: 24).isActive = true
-            copyView.trailingAnchor.constraint(equalTo: contentViewMailLabel.trailingAnchor, constant: -12).isActive = true
+            copyView.trailingAnchor.constraint(equalTo: contentViewMailLabel.trailingAnchor, constant: -20).isActive = true
         }
 
 //        Setup the copy label constraints
         copyLabel.textAlignment = .right
         copyLabel.setupConstraints { (_) in
             copyLabel.centerYAnchor.constraint(equalTo: copyView.centerYAnchor).isActive = true
-            copyLabel.leadingAnchor.constraint(equalTo: copyView.leadingAnchor, constant: 8).isActive = true
+            copyLabel.leadingAnchor.constraint(equalTo: copyView.leadingAnchor).isActive = true
             copyLabel.trailingAnchor.constraint(equalTo: clipboardIcon.leadingAnchor, constant: -8).isActive = true
             copyLabel.heightAnchor.constraint(equalTo: copyView.heightAnchor).isActive = true
         }
@@ -112,8 +117,24 @@ class AboutView: UIView, ViewCodable {
 //        Setup clipboard image constraints
         clipboardIcon.setupConstraints { (_) in
             clipboardIcon.centerYAnchor.constraint(equalTo: copyView.centerYAnchor).isActive = true
-            clipboardIcon.trailingAnchor.constraint(equalTo: copyView.trailingAnchor, constant: -12).isActive = true
+            clipboardIcon.trailingAnchor.constraint(equalTo: copyView.trailingAnchor).isActive = true
             clipboardIcon.heightAnchor.constraint(equalTo: copyView.heightAnchor).isActive = true
+        }
+        
+//        Setup more info title constraints
+        moreInfoTitle.setupConstraints { (_) in
+            moreInfoTitle.topAnchor.constraint(equalTo: contentViewMailLabel.bottomAnchor, constant: 24).isActive = true
+            moreInfoTitle.heightAnchor.constraint(equalToConstant: 22).isActive = true
+            moreInfoTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+            moreInfoTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+        }
+        
+//        Setup more info description constraints
+        moreInfoDescription.setupConstraints { (_) in
+            moreInfoDescription.topAnchor.constraint(equalTo: moreInfoTitle.bottomAnchor, constant: 8).isActive = true
+            moreInfoDescription.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+            moreInfoDescription.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+            moreInfoDescription.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -24).isActive = true
         }
     }
     
@@ -122,14 +143,20 @@ class AboutView: UIView, ViewCodable {
         contentView.backgroundColor = UIColor.Default.background
         contentViewMailLabel.backgroundColor = UIColor.Default.lightBackground
         mailLabel.tintColor = UIColor.Default.label
+        submitLabel.textColor = UIColor.Default.label
+        mailDescription.textColor = UIColor.Default.text
+        moreInfoTitle.textColor = UIColor.Default.label
+        moreInfoDescription.textColor = UIColor.Default.text
     }
     
     func updateView() {
         setupContentViewEmailLabel()
         setupEmailLabel()
         setupClipboard()
-        setupEmailTitle()
+        setupSubmitLabel()
         setupEmailDescription()
+        setupMoreInfoTitle()
+        setupMoreInfoDescription()
     }
     
     func setupEmailLabel() {
@@ -141,7 +168,7 @@ class AboutView: UIView, ViewCodable {
         let underlineAttriString = NSAttributedString(string: viewModel.email,
                                                   attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
         mailLabel.attributedText = underlineAttriString
-        
+        mailLabel.dynamicFont = mailLabel.font
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         mailLabel.addGestureRecognizer(tap)
         mailLabel.isUserInteractionEnabled = true
@@ -152,6 +179,7 @@ class AboutView: UIView, ViewCodable {
         copyLabel.text = "Copiar"
         copyLabel.textAlignment = .right
         copyLabel.font = copyLabel.font.withSize(14)
+        copyLabel.dynamicFont = copyLabel.font
     
 //        Sets clipboard icon image
         clipboardIcon.image = UIImage(named: "doc.on.doc")
@@ -167,21 +195,23 @@ class AboutView: UIView, ViewCodable {
         contentViewMailLabel.layer.cornerRadius = 4
     }
 
-    func setupEmailTitle() {
-        mailTitle.frame = CGRect(x: 0, y: 0, width: 127, height: 22)
-        mailTitle.textColor = UIColor.Default.label
-        mailTitle.font = UIFont(name: "SFProText-Semibold", size: 17)
+    func setupSubmitLabel() {
+        let submitLabelFont = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        submitLabel.font = submitLabelFont
+        submitLabel.dynamicFont = submitLabelFont
+
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.08
-        mailTitle.attributedText = NSMutableAttributedString(string: "Submeter áudio",
+        submitLabel.attributedText = NSMutableAttributedString(string: "Submeter áudio",
                                                              attributes: [NSAttributedString.Key.kern: -0.41,
                                                                           NSAttributedString.Key.paragraphStyle: paragraphStyle])
     }
 
     func setupEmailDescription() {
-        mailDescription.frame = CGRect(x: 0, y: 0, width: 374, height: 36)
-        mailDescription.textColor = UIColor.Default.text
-        mailDescription.font = UIFont(name: "SFProText-Regular", size: 15)
+        let mailDescriptionFont = UIFont.systemFont(ofSize: 15, weight: .regular)
+        mailDescription.font = mailDescriptionFont
+        mailDescription.dynamicFont = mailDescriptionFont
+
         mailDescription.numberOfLines = 0
         mailDescription.lineBreakMode = .byWordWrapping
         let paragraphStyle = NSMutableParagraphStyle()
@@ -189,6 +219,38 @@ class AboutView: UIView, ViewCodable {
         
         let emailDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi elementum nunc, sollicitudin non:"
         mailDescription.attributedText = NSMutableAttributedString(string: emailDescription,
+                                                                   attributes: [NSAttributedString.Key.kern: -0.24,
+                                                                                NSAttributedString.Key.paragraphStyle: paragraphStyle])
+    }
+    
+    func setupMoreInfoTitle() {
+        let moreInfoDescriptionFont = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        moreInfoTitle.font = moreInfoDescriptionFont
+        moreInfoTitle.dynamicFont = moreInfoDescriptionFont
+
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 1.08
+        moreInfoTitle.attributedText = NSMutableAttributedString(string: "Sobre o Museu do Zap",
+                                                            attributes: [NSAttributedString.Key.kern: -0.41,
+                                                                         NSAttributedString.Key.paragraphStyle: paragraphStyle])
+    }
+    
+    func setupMoreInfoDescription() {
+//        Loads content from view model
+        guard let viewModel = viewModel else { return }
+        let aboutDescription = viewModel.description
+
+//        Sets text and font attributes
+        let moreInfoDescriptionFont = UIFont.systemFont(ofSize: 15, weight: .regular)
+        moreInfoDescription.font = moreInfoDescriptionFont
+        moreInfoDescription.dynamicFont = moreInfoDescriptionFont
+
+        moreInfoDescription.numberOfLines = 0
+        moreInfoDescription.lineBreakMode = .byWordWrapping
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 1.01
+
+        moreInfoDescription.attributedText = NSMutableAttributedString(string: aboutDescription,
                                                                    attributes: [NSAttributedString.Key.kern: -0.24,
                                                                                 NSAttributedString.Key.paragraphStyle: paragraphStyle])
     }
