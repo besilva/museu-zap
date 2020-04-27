@@ -23,6 +23,11 @@
 		64DD6FF7243E0DB700404321 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FF6243E0DB700404321 /* ListViewModel.swift */; };
 		64DD6FF9243E10E400404321 /* TestCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FF8243E10E400404321 /* TestCoordinator.swift */; };
 		8024DA2D2449F19000093D37 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8024DA2C2449F19000093D37 /* AboutView.swift */; };
+		80ABB7AF2457181F0020CF42 /* AudioCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ABB7AE2457181F0020CF42 /* AudioCellViewModelProtocol.swift */; };
+		80ABB7B1245718300020CF42 /* AudioCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ABB7B0245718300020CF42 /* AudioCellView.swift */; };
+		80ABB7B324571C460020CF42 /* MyLibAudioCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ABB7B224571C460020CF42 /* MyLibAudioCellViewModel.swift */; };
+		80ABB7B524571C780020CF42 /* PublicAudioCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ABB7B424571C780020CF42 /* PublicAudioCellViewModel.swift */; };
+		80ABB7B72457230C0020CF42 /* TimeInterval+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ABB7B62457230C0020CF42 /* TimeInterval+Extension.swift */; };
 		80C3D4CC24508EDA0001879C /* AboutError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3D4CA24508E0E0001879C /* AboutError.swift */; };
 		80D80EF02447365C00915F1C /* AboutCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D80EEF2447365C00915F1C /* AboutCoordinator.swift */; };
 		80D80EF32447377200915F1C /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D80EF22447377200915F1C /* AboutViewController.swift */; };
@@ -63,6 +68,11 @@
 		64DD6FF6243E0DB700404321 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		64DD6FF8243E10E400404321 /* TestCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoordinator.swift; sourceTree = "<group>"; };
 		8024DA2C2449F19000093D37 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		80ABB7AE2457181F0020CF42 /* AudioCellViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCellViewModelProtocol.swift; sourceTree = "<group>"; };
+		80ABB7B0245718300020CF42 /* AudioCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCellView.swift; sourceTree = "<group>"; };
+		80ABB7B224571C460020CF42 /* MyLibAudioCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibAudioCellViewModel.swift; sourceTree = "<group>"; };
+		80ABB7B424571C780020CF42 /* PublicAudioCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicAudioCellViewModel.swift; sourceTree = "<group>"; };
+		80ABB7B62457230C0020CF42 /* TimeInterval+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extension.swift"; sourceTree = "<group>"; };
 		80C3D4CA24508E0E0001879C /* AboutError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutError.swift; sourceTree = "<group>"; };
 		80D80EEF2447365C00915F1C /* AboutCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCoordinator.swift; sourceTree = "<group>"; };
 		80D80EF22447377200915F1C /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +170,7 @@
 				80FAABD72451BFD6008B7DB8 /* UIColorExtension.swift */,
 				64796F0B2453152800104448 /* TabBarController.swift */,
 				80F7235D245319DA00583137 /* UILabel+Extension.swift */,
+				80ABB7B62457230C0020CF42 /* TimeInterval+Extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -167,6 +178,7 @@
 		64DD6FE8243E0B1600404321 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				80ABB7AD245717F40020CF42 /* Audio Cell */,
 				80D80EF12447374400915F1C /* About */,
 				64DD6FEA243E0BB800404321 /* List */,
 			);
@@ -190,6 +202,17 @@
 				64DD6FF6243E0DB700404321 /* ListViewModel.swift */,
 			);
 			path = List;
+			sourceTree = "<group>";
+		};
+		80ABB7AD245717F40020CF42 /* Audio Cell */ = {
+			isa = PBXGroup;
+			children = (
+				80ABB7AE2457181F0020CF42 /* AudioCellViewModelProtocol.swift */,
+				80ABB7B224571C460020CF42 /* MyLibAudioCellViewModel.swift */,
+				80ABB7B424571C780020CF42 /* PublicAudioCellViewModel.swift */,
+				80ABB7B0245718300020CF42 /* AudioCellView.swift */,
+			);
+			path = "Audio Cell";
 			sourceTree = "<group>";
 		};
 		80D80EF12447374400915F1C /* About */ = {
@@ -336,13 +359,18 @@
 				80FAABD82451BFD6008B7DB8 /* UIColorExtension.swift in Sources */,
 				64A60C322448A78C003B0F26 /* ListView.swift in Sources */,
 				64A60C2E24489B9E003B0F26 /* ViewCodable.swift in Sources */,
+				80ABB7B1245718300020CF42 /* AudioCellView.swift in Sources */,
 				64796F0C2453152800104448 /* TabBarController.swift in Sources */,
 				80D80EF32447377200915F1C /* AboutViewController.swift in Sources */,
 				64DD6FE4243E084100404321 /* Coordinator.swift in Sources */,
 				80C3D4CC24508EDA0001879C /* AboutError.swift in Sources */,
+				80ABB7B524571C780020CF42 /* PublicAudioCellViewModel.swift in Sources */,
 				8024DA2D2449F19000093D37 /* AboutView.swift in Sources */,
 				80D80EF02447365C00915F1C /* AboutCoordinator.swift in Sources */,
+				80ABB7B72457230C0020CF42 /* TimeInterval+Extension.swift in Sources */,
+				80ABB7B324571C460020CF42 /* MyLibAudioCellViewModel.swift in Sources */,
 				80F7235E245319DA00583137 /* UILabel+Extension.swift in Sources */,
+				80ABB7AF2457181F0020CF42 /* AudioCellViewModelProtocol.swift in Sources */,
 				80D80EF62447378A00915F1C /* AboutViewModel.swift in Sources */,
 				64DD6FF9243E10E400404321 /* TestCoordinator.swift in Sources */,
 				64A60C342448BD33003B0F26 /* UIViewControllerExtension.swift in Sources */,
