@@ -17,7 +17,6 @@ extension UILabel {
                 // Real-time size update
                 self.adjustsFontForContentSizeCategory = true
             }
-            
             let fontMetrics = UIFontMetrics(forTextStyle: .body)
             self.font = fontMetrics.scaledFont(for: newValue)
         }
@@ -25,5 +24,17 @@ extension UILabel {
         get {
             return self.font
         }
+    }
+}
+
+class DynamicLabel: UILabel {
+    var textStyle: UIFont.TextStyle = .body
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
 }

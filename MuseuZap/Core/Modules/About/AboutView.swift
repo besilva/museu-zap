@@ -9,18 +9,18 @@
 import UIKit
 
 class AboutView: UIView, ViewCodable {
-    var submitLabel: UILabel = UILabel()
-    var mailLabel: UILabel = UILabel()
-    var mailDescription: UILabel = UILabel()
+    var submitLabel: UILabel = DynamicLabel()
+    var mailLabel: UILabel = DynamicLabel()
+    var mailDescription: UILabel = DynamicLabel()
     var contentViewMailLabel: UIView = UIView()
     var contentView: UIView = UIView()
     
     let copyView = UIView()
-    let copyLabel = UILabel()
+    let copyLabel = DynamicLabel()
     let clipboardIcon = UIImageView()
     
-    let moreInfoTitle = UILabel()
-    let moreInfoDescription = UILabel()
+    let moreInfoTitle = DynamicLabel()
+    let moreInfoDescription = DynamicLabel()
     
     var viewModel: AboutViewModelProtocol? {
         didSet {
