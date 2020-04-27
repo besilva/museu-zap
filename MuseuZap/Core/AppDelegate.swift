@@ -32,17 +32,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func addTestDataTesteEntity() {
         let context = CoreDataManager.sharedInstance.persistentContainer.viewContext
         // Get entity, then generatehow  an object from it
-        guard let entity = NSEntityDescription.entity(forEntityName: "Audio", in: context)
+        guard let entity1 = NSEntityDescription.entity(forEntityName: "Audio", in: context),
+            let entity2 = NSEntityDescription.entity(forEntityName: "Category", in: context)
         else {
-            fatalError("Could not find entity")
+            fatalError("Could not find entities")
         }
 
         for i in 1...3 {
-            let audio = Audio(entity: entity, insertInto: context)
+            let audio = Audio(entity: entity1, insertInto: context)
+            let category = Category(entity: entity2, insertInto: context)
+
+            category.categoryName = "Categoria \(i)"
 
             audio.audioName = "Gemidao do Zap v.\(i)"
             audio.audioPath = "/Documents/MuseuZap/Audio\(i)"
             audio.isPrivate = true
+            audio.belongsTo = category
         }
     }
 

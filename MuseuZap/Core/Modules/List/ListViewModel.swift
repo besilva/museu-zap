@@ -20,7 +20,8 @@ protocol ListViewModelProtocol {
     var delegate: ListViewModelDelegate? { get set }
 //    func getAllAudios()
 //    func getAudio(at indexPath: IndexPath) -> (title: String, subtitle: String)
-    func getAudioTable(at indexPath: IndexPath) -> (name: String, path: String, isPrivate: Bool)
+    // TODO: faz sentido ter essa tupla gigante? SwiftLint ta com disable por enquanto
+    func getAudioTable(at indexPath: IndexPath) -> (name: String, path: String, isPrivate: Bool, category: String?)
     func back()
     init(audioServices: AudioServices)
 }
@@ -57,9 +58,9 @@ class ListViewModel: ListViewModelProtocol {
         }
     }
 
-    func getAudioTable(at indexPath: IndexPath) -> (name: String, path: String, isPrivate: Bool) {
+    func getAudioTable(at indexPath: IndexPath) -> (name: String, path: String, isPrivate: Bool, category: String?) {
         let element = array[indexPath.row]
-        return (name: element.audioName, path: element.audioPath, isPrivate: element.isPrivate)
+        return (name: element.audioName, path: element.audioPath, isPrivate: element.isPrivate, category: element.belongsTo?.categoryName)
     }
     
 }

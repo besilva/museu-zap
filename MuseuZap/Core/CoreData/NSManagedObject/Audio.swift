@@ -1,5 +1,5 @@
 //
-//  Audio+CoreDataClass.swift
+//  Audio.swift
 //  MuseuZap
 //
 //  Created by Ivo Dutra on 27/04/20.
@@ -41,5 +41,6 @@ extension Audio {
     @NSManaged public var audioName: String
     @NSManaged public var audioPath: String
     @NSManaged public var isPrivate: Bool
+    @NSManaged public var belongsTo: Category?
 
 }
