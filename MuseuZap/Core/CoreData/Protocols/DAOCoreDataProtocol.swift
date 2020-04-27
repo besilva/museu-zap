@@ -13,7 +13,6 @@ import CoreData
 
 /// Core Data Data Access Object base class
 /// Protocol Oriented
-/// TODO: refactor dao firebase?
 protocol DAOCoreData {
 
     /// Adopted persistentContainer.
@@ -76,6 +75,7 @@ extension DAOCoreData {
     // MARK: - Update
 
     // TODO: read about fetch request predicate
+    // PRECISAREI pra fazer o método de retornar apenas audios publicos e privados
 
     /// Method responsible for updating an Entity into CoreData
     /// - parameters:

@@ -14,37 +14,28 @@ protocol ListViewModelDelegate: class {
 }
 
 protocol ListViewModelProtocol {
-    var array: [Teste] { get set }
+    var array: [Audio] { get set }
     var navigationDelegate: NavigationDelegate? { get }
     var count: Int { get }
     var delegate: ListViewModelDelegate? { get set }
 //    func getAllAudios()
 //    func getAudio(at indexPath: IndexPath) -> (title: String, subtitle: String)
-    func getTestTable(at indexPath: IndexPath) -> (title: String, subtitle: String)
+    func getAudioTable(at indexPath: IndexPath) -> (name: String, path: String, isPrivate: Bool)
     func back()
-    init(testeServices: TesteServices)
+    init(audioServices: AudioServices)
 }
 
 class ListViewModel: ListViewModelProtocol {
-    var testeServices: TesteServices
-    var array: [Teste] = []
+    var audioServices: AudioServices
+    var array: [Audio] = []
     var count: Int { array.count }
     internal weak var delegate: ListViewModelDelegate?
     internal weak var navigationDelegate: NavigationDelegate?
     
-    required init(testeServices: TesteServices) {
-        self.testeServices = testeServices
+    required init(audioServices: AudioServices) {
+        self.audioServices = audioServices
         getArray()
     }
-    
-//    func getAllAudios() {
-//        delegate?.reloadTableView()
-//        delegate?.stopLoading()
-//    }
-//
-//    func getAudio(at indexPath: IndexPath) -> (title: String, subtitle: String) {
-//        return array[indexPath.row]
-//    }
     
     func back() {
         // Handle back from navigation
@@ -54,10 +45,10 @@ class ListViewModel: ListViewModelProtocol {
     // MARK: - Core Data
     func getArray() {
 
-        testeServices.getAllTeste { (error, testeArray) in
-            if let testes = testeArray {
+        audioServices.getAllAudios { (error, audioArray) in
+            if let audios = audioArray {
                 // Assign teste Array
-                self.array = testes
+                self.array = audios
             } else {
                 // Display error here because it was not possible to load season list
                 // TODO: Como tratar erros + enum?
@@ -66,9 +57,9 @@ class ListViewModel: ListViewModelProtocol {
         }
     }
 
-    func getTestTable(at indexPath: IndexPath) -> (title: String, subtitle: String) {
+    func getAudioTable(at indexPath: IndexPath) -> (name: String, path: String, isPrivate: Bool) {
         let element = array[indexPath.row]
-        return (title: element.titulo!, subtitle: element.subtitulo!)
+        return (name: element.audioName, path: element.audioPath, isPrivate: element.isPrivate)
     }
     
 }

@@ -80,9 +80,11 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let viewModel = viewModel else { return UITableViewCell() }
         let cell = UITableViewCell.init(style: .subtitle, reuseIdentifier: "test")
-        let audio = viewModel.getTestTable(at: indexPath)
-        cell.textLabel?.text = audio.title
-        cell.detailTextLabel?.text = audio.subtitle
+        let audio = viewModel.getAudioTable(at: indexPath)
+
+        cell.textLabel?.text = audio.name + "   privado: \(audio.isPrivate)"
+        cell.detailTextLabel?.text = audio.path
+
         return cell
     }
 }

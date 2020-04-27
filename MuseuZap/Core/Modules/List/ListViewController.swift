@@ -29,8 +29,8 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
         super.viewDidLoad()
         self.title = "List"
         // Fake doing request
-        let testeServices = TesteServices()
-        let viewModel = ListViewModel(testeServices: testeServices)
+        let audioServices = AudioServices()
+        let viewModel = ListViewModel(audioServices: audioServices)
         viewModel.navigationDelegate = self
         myView.viewModel = viewModel
     }
