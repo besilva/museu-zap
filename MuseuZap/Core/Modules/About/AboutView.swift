@@ -142,11 +142,24 @@ class AboutView: UIView, ViewCodable {
 //        Sets label colors
         contentView.backgroundColor = UIColor.Default.background
         contentViewMailLabel.backgroundColor = UIColor.Default.lightBackground
+
         mailLabel.tintColor = UIColor.Default.label
+        mailLabel.font = UIFont.Default.regular?.withSize(14)
+
         submitLabel.textColor = UIColor.Default.label
+        submitLabel.font = UIFont.Default.semibold?.withSize(20)
+        
         mailDescription.textColor = UIColor.Default.text
+        mailDescription.font = UIFont.Default.regular?.withSize(14)
+        
         moreInfoTitle.textColor = UIColor.Default.label
+        moreInfoTitle.font = UIFont.Default.semibold?.withSize(20)
+
         moreInfoDescription.textColor = UIColor.Default.text
+        moreInfoDescription.font = UIFont.Default.regular?.withSize(14)
+        
+        copyLabel.font = UIFont.Default.regular?.withSize(14)
+        clipboardIcon.tintColor = UIColor(named: "primaryColor")
     }
     
     func updateView() {
@@ -157,6 +170,7 @@ class AboutView: UIView, ViewCodable {
         setupEmailDescription()
         setupMoreInfoTitle()
         setupMoreInfoDescription()
+        render()
     }
     
     func setupEmailLabel() {
@@ -192,6 +206,7 @@ class AboutView: UIView, ViewCodable {
     }
 
     func setupContentViewEmailLabel() {
+        contentViewMailLabel.backgroundColor = UIColor.Default.lightBackground
         contentViewMailLabel.layer.cornerRadius = 4
     }
 

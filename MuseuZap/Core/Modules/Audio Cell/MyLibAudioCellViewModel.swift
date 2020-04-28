@@ -31,11 +31,7 @@ class MyLibAudioCellViewModel: AudioCellViewModelProtocol {
         self.playing = false
         // TODO: Call to API function to retrieve audio data
         self.title = "Lorem Ipsum"
-        self.duration = 60
-    }
-    
-    func back() {
-        navigationDelegate?.handleNavigation(action: .back)
+        self.duration = 90
     }
     
     func changePlayStatus() {

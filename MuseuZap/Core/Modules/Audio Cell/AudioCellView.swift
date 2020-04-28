@@ -70,7 +70,7 @@ class AudioCellView: UIView, ViewCodable {
         }
         
         shareIcon.setupConstraints { (_) in
-            shareIcon.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: 	8).isActive = true
+            shareIcon.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -9).isActive = true
             shareIcon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
         }
     }
@@ -83,7 +83,7 @@ class AudioCellView: UIView, ViewCodable {
     }
     
     func updateView() {
-        setupTitleLabel()
+        configure()
     }
 
     func setupTitleLabel() {

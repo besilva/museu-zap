@@ -14,7 +14,6 @@ protocol AudioCellViewModelProtocol {
     var audioURL: String { get set }
     var duration: TimeInterval { get set }
     var playing: Bool { get set }
-    func back()
     func changePlayStatus()
     func share()
     
