@@ -16,7 +16,8 @@ class CustomCellSnapshotTests: FBSnapshotTestCase {
         super.setUp()
         customCellView = AudioCellView(frame: CGRect(x: 0, y: 0, width: 374, height: 76))
         customCellView?.backgroundColor = .red
-        recordMode = false
+        customCellView?.contentView.backgroundColor = .blue
+        recordMode = true
     }
 
     override func tearDown() {

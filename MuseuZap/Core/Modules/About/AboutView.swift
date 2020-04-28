@@ -75,7 +75,7 @@ class AboutView: UIView, ViewCodable {
         
 //        Setup Email description constraints
         mailDescription.setupConstraints { (_) in
-            mailDescription.topAnchor.constraint(equalTo: submitLabel.bottomAnchor, constant: 12).isActive = true
+            mailDescription.topAnchor.constraint(equalTo: submitLabel.bottomAnchor, constant: 8).isActive = true
             mailDescription.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
             mailDescription.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         }
@@ -139,26 +139,33 @@ class AboutView: UIView, ViewCodable {
     }
     
     func render() {
-//        Sets label colors
+//        Sets label colors and font attributes
         contentView.backgroundColor = UIColor.Default.background
         contentViewMailLabel.backgroundColor = UIColor.Default.lightBackground
 
         mailLabel.tintColor = UIColor.Default.label
         mailLabel.font = UIFont.Default.regular?.withSize(14)
-
+        mailLabel.dynamicFont = mailLabel.font
+        
         submitLabel.textColor = UIColor.Default.label
         submitLabel.font = UIFont.Default.semibold?.withSize(20)
+        submitLabel.dynamicFont = submitLabel.font
         
         mailDescription.textColor = UIColor.Default.text
         mailDescription.font = UIFont.Default.regular?.withSize(14)
+        mailDescription.dynamicFont = mailDescription.font
         
         moreInfoTitle.textColor = UIColor.Default.label
         moreInfoTitle.font = UIFont.Default.semibold?.withSize(20)
+        moreInfoTitle.dynamicFont = moreInfoTitle.font
 
         moreInfoDescription.textColor = UIColor.Default.text
         moreInfoDescription.font = UIFont.Default.regular?.withSize(14)
-        
+        moreInfoDescription.dynamicFont = moreInfoDescription.font
+
         copyLabel.font = UIFont.Default.regular?.withSize(14)
+        copyLabel.dynamicFont = copyLabel.font
+
         clipboardIcon.tintColor = UIColor(named: "primaryColor")
     }
     
@@ -182,7 +189,7 @@ class AboutView: UIView, ViewCodable {
         let underlineAttriString = NSAttributedString(string: viewModel.email,
                                                   attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
         mailLabel.attributedText = underlineAttriString
-        mailLabel.dynamicFont = mailLabel.font
+
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         mailLabel.addGestureRecognizer(tap)
         mailLabel.isUserInteractionEnabled = true
@@ -192,8 +199,6 @@ class AboutView: UIView, ViewCodable {
 //        Sets copy label attributes
         copyLabel.text = "Copiar"
         copyLabel.textAlignment = .right
-        copyLabel.font = copyLabel.font.withSize(14)
-        copyLabel.dynamicFont = copyLabel.font
     
 //        Sets clipboard icon image
         clipboardIcon.image = UIImage(named: "doc.on.doc")
@@ -207,46 +212,35 @@ class AboutView: UIView, ViewCodable {
 
     func setupContentViewEmailLabel() {
         contentViewMailLabel.backgroundColor = UIColor.Default.lightBackground
+        contentViewMailLabel.tintColor = UIColor.Default.lightBackground
         contentViewMailLabel.layer.cornerRadius = 4
     }
 
     func setupSubmitLabel() {
-        let submitLabelFont = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        submitLabel.font = submitLabelFont
-        submitLabel.dynamicFont = submitLabelFont
-
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineHeightMultiple = 1.08
+        paragraphStyle.lineHeightMultiple = 0.83
         submitLabel.attributedText = NSMutableAttributedString(string: "Submeter áudio",
-                                                             attributes: [NSAttributedString.Key.kern: -0.41,
+                                                               attributes: [NSAttributedString.Key.kern: 0.38,
                                                                           NSAttributedString.Key.paragraphStyle: paragraphStyle])
     }
 
     func setupEmailDescription() {
-        let mailDescriptionFont = UIFont.systemFont(ofSize: 15, weight: .regular)
-        mailDescription.font = mailDescriptionFont
-        mailDescription.dynamicFont = mailDescriptionFont
-
         mailDescription.numberOfLines = 0
         mailDescription.lineBreakMode = .byWordWrapping
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineHeightMultiple = 1.01
+        paragraphStyle.lineHeightMultiple = 0.86
         
         let emailDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi elementum nunc, sollicitudin non:"
         mailDescription.attributedText = NSMutableAttributedString(string: emailDescription,
-                                                                   attributes: [NSAttributedString.Key.kern: -0.24,
+                                                                   attributes: [NSAttributedString.Key.kern: 0.28,
                                                                                 NSAttributedString.Key.paragraphStyle: paragraphStyle])
     }
     
     func setupMoreInfoTitle() {
-        let moreInfoDescriptionFont = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        moreInfoTitle.font = moreInfoDescriptionFont
-        moreInfoTitle.dynamicFont = moreInfoDescriptionFont
-
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineHeightMultiple = 1.08
+        paragraphStyle.lineHeightMultiple = 0.86
         moreInfoTitle.attributedText = NSMutableAttributedString(string: "Sobre o Museu do Zap",
-                                                            attributes: [NSAttributedString.Key.kern: -0.41,
+                                                                 attributes: [NSAttributedString.Key.kern: 0.28,
                                                                          NSAttributedString.Key.paragraphStyle: paragraphStyle])
     }
     
@@ -255,18 +249,14 @@ class AboutView: UIView, ViewCodable {
         guard let viewModel = viewModel else { return }
         let aboutDescription = viewModel.description
 
-//        Sets text and font attributes
-        let moreInfoDescriptionFont = UIFont.systemFont(ofSize: 15, weight: .regular)
-        moreInfoDescription.font = moreInfoDescriptionFont
-        moreInfoDescription.dynamicFont = moreInfoDescriptionFont
-
+//        Sets text attributes
         moreInfoDescription.numberOfLines = 0
         moreInfoDescription.lineBreakMode = .byWordWrapping
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineHeightMultiple = 1.01
+        paragraphStyle.lineHeightMultiple = 0.83
 
         moreInfoDescription.attributedText = NSMutableAttributedString(string: aboutDescription,
-                                                                   attributes: [NSAttributedString.Key.kern: -0.24,
+                                                                       attributes: [NSAttributedString.Key.kern: 0.38,
                                                                                 NSAttributedString.Key.paragraphStyle: paragraphStyle])
     }
 

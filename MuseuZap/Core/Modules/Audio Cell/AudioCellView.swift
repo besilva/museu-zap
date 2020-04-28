@@ -10,9 +10,11 @@ import UIKit
 
 class AudioCellView: UIView, ViewCodable {
     var contentView: UIView = UIView()
-
+    
+    var audioDataContentView: UIView = UIView()
     var titleLabel: UILabel = UILabel()
     var durationLabel: UILabel = UILabel()
+
     var playIcon: UIImageView = UIImageView()
     var shareIcon: UIImageView = UIImageView()
 
@@ -39,7 +41,8 @@ class AudioCellView: UIView, ViewCodable {
     }
     
     func setupHierarchy() {
-        contentView.addSubviews(titleLabel, durationLabel, playIcon, shareIcon)
+        audioDataContentView.addSubviews(titleLabel, durationLabel)
+        contentView.addSubviews(audioDataContentView, playIcon, shareIcon)
         addSubview(contentView)
     }
     
@@ -51,34 +54,51 @@ class AudioCellView: UIView, ViewCodable {
             contentView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
             contentView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         }
+
+//      Setup audio data content view constraints
+        audioDataContentView.setupConstraints { (_) in
+            audioDataContentView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
+            audioDataContentView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 16).isActive = true
+            audioDataContentView.trailingAnchor.constraint(equalTo: shareIcon.leadingAnchor, constant: 8).isActive = true
+        }
         
+//        Setup audio title constraints
+        titleLabel.setupConstraints { (_) in
+            titleLabel.topAnchor.constraint(equalTo: audioDataContentView.topAnchor).isActive = true
+            titleLabel.leadingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor).isActive = true
+//            titleLabel.trailingAnchor.constraint(equalTo: audioDataContentView.trailingAnchor).isActive = true
+        }
+        
+//        Setup audio duration constraints
+        durationLabel.setupConstraints { (_) in
+            durationLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4).isActive = true
+            durationLabel.leadingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor).isActive = true
+//            durationLabel.trailingAnchor.constraint(equalTo: audioDataContentView.trailingAnchor).isActive = true
+            durationLabel.bottomAnchor.constraint(equalTo: audioDataContentView.bottomAnchor).isActive = true
+        }
+
         playIcon.setupConstraints { (_) in
-            playIcon.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
-            playIcon.rightAnchor.constraint(equalTo: titleLabel.leftAnchor, constant: -16).isActive = true
+            playIcon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
+            playIcon.trailingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor, constant: 16).isActive = true
             playIcon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
         }
-        
-        titleLabel.setupConstraints { (_) in
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
-            titleLabel.bottomAnchor.constraint(equalTo: durationLabel.topAnchor, constant: 4).isActive = true
-            titleLabel.rightAnchor.constraint(equalTo: shareIcon.leftAnchor, constant: 8).isActive = true
-        }
-        
-        durationLabel.setupConstraints { (_) in
-            durationLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 16).isActive = true
-            durationLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 76).isActive = true
-        }
-        
+
         shareIcon.setupConstraints { (_) in
-            shareIcon.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -9).isActive = true
+            shareIcon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -9).isActive = true
             shareIcon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
         }
     }
     
     func render() {
         contentView.backgroundColor = UIColor.Default.background
+
         titleLabel.textColor = UIColor.Default.label
+        titleLabel.font = UIFont.Default.semibold
+        titleLabel.dynamicFont = titleLabel.font
+
         durationLabel.textColor = UIColor.Default.label
+        durationLabel.font = UIFont.Default.regular?.withSize(12)
+
         shareIcon.tintColor = UIColor.systemBlue
     }
     
@@ -89,19 +109,17 @@ class AudioCellView: UIView, ViewCodable {
     func setupTitleLabel() {
         guard let viewModel = viewModel else { return }
         let audioTitle = viewModel.title
-
-        let titleLabelFont = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        titleLabel.font = titleLabelFont
-        titleLabel.dynamicFont = titleLabelFont
-        
+    
         titleLabel.numberOfLines = 0
         let paragraphStyle = NSMutableParagraphStyle()
 
-        paragraphStyle.lineHeightMultiple = 1.12
+        paragraphStyle.lineHeightMultiple = 0.34
         let attributedText = NSMutableAttributedString(string: audioTitle,
-                                                       attributes: [NSAttributedString.Key.kern: -0.24,
+                                                       attributes: [NSAttributedString.Key.kern: 0.9,
                                                                     	NSAttributedString.Key.paragraphStyle: paragraphStyle])
         titleLabel.attributedText = attributedText
+        titleLabel.textAlignment = .left
+        titleLabel.backgroundColor = .black
     }
     
     func setupDurationLabel() {
@@ -113,9 +131,13 @@ class AudioCellView: UIView, ViewCodable {
         durationLabel.dynamicFont = durationlabelFont
         
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineHeightMultiple = 0.99
-
-        durationLabel.attributedText = NSMutableAttributedString(string: durationString, attributes: [NSAttributedString.Key.kern: 0.07, NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        paragraphStyle.lineHeightMultiple = 0.72
+        
+        let attributedText = NSMutableAttributedString(string: durationString,
+                                                       	attributes: [NSAttributedString.Key.kern: 0.07, NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        durationLabel.attributedText = attributedText
+        durationLabel.textAlignment = .left
+        durationLabel.backgroundColor = .black
     }
 
     func setupPlayButton() {
