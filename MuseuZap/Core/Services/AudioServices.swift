@@ -32,11 +32,11 @@ class AudioServices {
         do {
             // Save information
             try DAO.create(audio)
-        } catch let error {
+        } catch {
             if let closureError = completion {
                 closureError(error)
             } else {
-                print(error)
+                print("AUDIO SERVICES UNKNOWN ERROR", error)
             }
         }
     }
@@ -57,10 +57,13 @@ class AudioServices {
             // Save information
             audios = try DAO.readAll()
             completion(nil, audios)
-        } catch let error as DatabaseErrors { // TODO: vale a pena esse cast aqui?
+        } catch let error as DatabaseErrors {
+            // Vale a pena do ponto de vista do usuario
+            // Tambem ter esse tratamento diferente na camada de cima.
             raisedError = error
             completion(raisedError, nil)
         } catch {
+            completion(error, nil)
             print("Unexpected error: \(error).")
         }
     }
@@ -69,7 +72,7 @@ class AudioServices {
 
     /// Function responsible for updating all audio records
     /// - parameters:
-    ///     - season: Audio to be updated
+    ///     - audio: Audio to be updated
     ///     - completion: closure to be executed at the end of this method
     /// - throws: if an error occurs during saving an object into database (DatabaseErrors.update)
     func updateAllAudios(errorCompletion: ((_ error: Error?) -> Void)?) {

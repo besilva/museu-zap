@@ -21,8 +21,6 @@ public class Audio: NSManagedObject {
         } else {
             managedObjectContext = CoreDataManager.sharedInstance.persistentContainer.viewContext
         }
-        // Get context
-        // Self.objectID USAR COMO ID
 
         // Create entity description
         let entityDescription = NSEntityDescription.entity(forEntityName: "Audio", in: managedObjectContext)
@@ -43,4 +41,20 @@ extension Audio {
     @NSManaged public var isPrivate: Bool
     @NSManaged public var category: Category
 
+}
+
+/// Used to reduce clutter for View
+struct AudioProperties {
+
+    init(from audio: Audio) {
+        self.name = audio.audioName
+        self.path = audio.audioPath
+        self.category = audio.category.categoryName
+        self.isPrivate = audio.isPrivate
+    }
+
+    var name: String
+    var path: String
+    var isPrivate: Bool
+    var category: String?
 }

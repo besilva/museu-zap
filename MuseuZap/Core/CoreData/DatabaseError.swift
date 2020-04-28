@@ -10,6 +10,7 @@ import Foundation
 
 /// Possible Errors in database.
 /// errorDescription is a friendlier message
+/// Original errors are always printed before
 public enum DatabaseErrors: Error {
     case create
     case read

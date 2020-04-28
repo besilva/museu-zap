@@ -10,22 +10,19 @@ import XCTest
 @testable import MuseuZap
 import CoreData
 
-// TODO: como jogar o erro para cima usando os enums? Se faço cast como DatabaseErros, qnd dou print pego apenas o nome
-
     // MARK: - Audio Services
 
 class AudioServicesTests: XCTestCase {
 
     var sut: AudioServices!
-    /// Sistem under Test with Mocked DAO to produce errors
-    var sutErrors: AudioServices!
+    /// In order to create Audio Entities
     var coreDataHelper: CoreDataTestHelper!
+    /// Mocked Audio DAO to throw DatabaseErrors, case shouldThrowError. Else, do nothing.
+    let audioDAO = AudioDAOMock()
 
     override func setUp() {
         coreDataHelper = CoreDataTestHelper()
-        sut = AudioServices(dao: AudioDAOMock())
-
-        sutErrors = AudioServices(dao: AudioDAOMockErrors())
+        sut = AudioServices(dao: audioDAO)
     }
 
     override func tearDown() {
@@ -41,18 +38,24 @@ class AudioServicesTests: XCTestCase {
 
     // Mock DAO does nothing, should not produce errors
     func testCreate() {
+        audioDAO.shouldThrowError = false
+
         let audio = Audio(container: coreDataHelper.mockPersistantContainer)
 
         sut.createAudio(audio: audio) { (error) in
-            XCTAssertNil(error, "Services create error")
+            print("Services create error", error as Any)
+            XCTFail("Closure should not be invoked")
         }
     }
 
     // SUT with Mocked DAO to produce errors
     func testCreateError() {
+        audioDAO.shouldThrowError = true
+
         let audio = Audio(container: coreDataHelper.mockPersistantContainer)
 
-        sutErrors.createAudio(audio: audio) { (error) in
+        sut.createAudio(audio: audio) { (error) in
+            // Closure only invoked if there was error
             XCTAssertEqual(error as? DatabaseErrors, DatabaseErrors.create)
         }
     }
@@ -60,6 +63,8 @@ class AudioServicesTests: XCTestCase {
     // MARK: - Read
 
     func testGetAllAudios() {
+        audioDAO.shouldThrowError = false
+
         // Audio Array should contain exactly one record
         sut.getAllAudios { (error, audioArray) in
             XCTAssertEqual(audioArray?.count, 1, "AudioDAO Mock create func creates only 1 item not \(audioArray?.count ?? 100)!")
@@ -68,8 +73,9 @@ class AudioServicesTests: XCTestCase {
     }
 
     func testGetAllAudiosError() {
+        audioDAO.shouldThrowError = true
 
-        sutErrors.getAllAudios { (error, audioArray) in
+        sut.getAllAudios { (error, audioArray) in
             XCTAssertEqual(error as? DatabaseErrors, DatabaseErrors.read)
             XCTAssertNil(audioArray, "Array should be nil")
         }
@@ -79,16 +85,20 @@ class AudioServicesTests: XCTestCase {
 
     // Mock DAO does nothing, should not produce errors
     func testUpdateAllAudios() {
+        audioDAO.shouldThrowError = false
 
         sut.updateAllAudios { (error) in
-            XCTAssertNil(error, "Services update error")
+            print("Services update error", error as Any)
+            XCTFail("Closure should not be invoked")
         }
     }
 
     // SUT with Mocked DAO to produce errors
     func testUpdateAllAudiosError() {
+        audioDAO.shouldThrowError = true
 
         sut.updateAllAudios { (error) in
+            // Closure only invoked if there was error
             XCTAssertEqual(error as? DatabaseErrors, DatabaseErrors.update)
         }
     }
@@ -97,18 +107,24 @@ class AudioServicesTests: XCTestCase {
     
     // Mock DAO does nothing, should not produce errors
     func testDelete() {
+        audioDAO.shouldThrowError = false
+
         let audio = Audio(container: coreDataHelper.mockPersistantContainer)
 
         sut.deleteAudio(audio: audio) { (error) in
-            XCTAssertNil(error, "Services delete error")
+            print("Services update error", error as Any)
+            XCTFail("Closure should not be invoked")
         }
     }
 
     // SUT with Mocked DAO to produce errors
     func testDeleteErrors() {
+        audioDAO.shouldThrowError = true
+
         let audio = Audio(container: coreDataHelper.mockPersistantContainer)
 
         sut.deleteAudio(audio: audio) { (error) in
+            // Closure only invoked if there was error
             XCTAssertEqual(error as? DatabaseErrors, DatabaseErrors.delete)
         }
     }
@@ -117,49 +133,44 @@ class AudioServicesTests: XCTestCase {
 
 // MARK: - DAO mocks
 
+/// Mocked Audio DAO to throw DatabaseErrors, case shouldThrowError. Else, do nothing.
 class AudioDAOMock: AudioDAOProtocol {
+
+    var shouldThrowError: Bool = false
 
     var coreDataHelper = CoreDataTestHelper()
 
     func create(_ objectToBeSaved: Audio) throws {
+        if shouldThrowError {
+            throw DatabaseErrors.create
+        }
     }
 
     func readAll() throws -> [Audio] {
-        let audio = Audio(container: coreDataHelper.mockPersistantContainer)
-        return [audio]
+        if shouldThrowError {
+            throw DatabaseErrors.read
+        } else {
+            let audio = Audio(container: coreDataHelper.mockPersistantContainer)
+            return [audio]
+        }
     }
 
     func updateContext() throws {
+        if shouldThrowError {
+            throw DatabaseErrors.update
+        }
     }
 
     func delete(_ objectToBeDeleted: Audio) throws {
+        if shouldThrowError {
+            throw DatabaseErrors.delete
+        }
     }
 
     func deleteAll(_ objectToBeDeleted: Audio) throws {
-    }
-
-}
-
-/// Mocked DAO to throw DatabaseErrors
-class AudioDAOMockErrors: AudioDAOProtocol {
-    func create(_ objectToBeSaved: Audio) throws {
-        throw DatabaseErrors.create
-    }
-
-    func readAll() throws -> [Audio] {
-        throw DatabaseErrors.read
-    }
-
-    func updateContext() throws {
-        throw DatabaseErrors.update
-    }
-
-    func delete(_ objectToBeDeleted: Audio) throws {
-        throw DatabaseErrors.delete
-    }
-
-    func deleteAll(_ objectToBeDeleted: Audio) throws {
-        throw DatabaseErrors.delete
+        if shouldThrowError {
+            throw DatabaseErrors.delete
+        }
     }
 
 }

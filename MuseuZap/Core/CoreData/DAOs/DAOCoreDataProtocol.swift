@@ -49,7 +49,8 @@ extension DAOCoreData {
             // Aersist changes at the context
             try container.viewContext.save()
         } catch {
-            throw error // TODO: how to through the error message?
+            print("DATABASE ERROR CREATE \n", error)
+            throw DatabaseErrors.create
         }
     }
 
@@ -67,6 +68,7 @@ extension DAOCoreData {
             // Perform search
             array = try container.viewContext.fetch(request)
         } catch {
+            print("DATABASE ERROR READ \n", error)
             throw DatabaseErrors.read
         }
         return array
@@ -75,7 +77,6 @@ extension DAOCoreData {
     // MARK: - Update
 
     // TODO: read about fetch request predicate
-    // PRECISAREI pra fazer o método de retornar apenas audios publicos e privados
 
     /// Method responsible for updating an Entity into CoreData
     /// - parameters:
@@ -86,6 +87,7 @@ extension DAOCoreData {
             // Persist changes at the context
             try container.viewContext.save()
         } catch {
+            print("DATABASE ERROR UPDATE \n", error)
             throw DatabaseErrors.update
         }
     }
@@ -104,6 +106,7 @@ extension DAOCoreData {
             // Persist the operation
             try container.viewContext.save()
         } catch {
+            print("DATABASE ERROR DELETE \n", error)
             throw DatabaseErrors.delete
         }
     }
