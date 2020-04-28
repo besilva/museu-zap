@@ -42,33 +42,6 @@ class CoreDataTestHelper {
     }()
 
     func initStubs() {
-// Confusão com os 2
-//        func insertCategory() -> Category {
-//            let obj = NSEntityDescription.insertNewObject(forEntityName: "Category", into: mockPersistantContainer.viewContext)
-//
-//            obj.setValue("Mock", forKey: "categoryName")
-//            guard let entity = NSEntityDescription.entity(forEntityName: "Category", in: mockPersistantContainer.viewContext)
-//            else {
-//                fatalError("Could not find entities")
-//            }
-//
-//            let category = Category(entity: entity, insertInto: mockPersistantContainer.viewContext)
-//            category.categoryName
-//
-//
-//            return obj as? Category
-//        }
-
-        // CAGAR para essa funcao fdp que ele fez. Se quiser ver como ele fez, OLHA ONLINE NO GIT
-
-        // Fazer a entidade direto da categorua, cria uma entidade audio a partir da entidade categoria
-
-        // NUM FOR!! 3 registros
-
-        // Pq ai VOU SALVAR logo em seguida e CABOU CARAI.
-
-        // PQP VIU SÓ COPIAR A FUNCAO DO APP DELEGATE PRA CA DEUS DO CEU MAINHA
-
         // Contex is RAM Memory insted of the own App Database
         let context = mockPersistantContainer.viewContext
         // Get entity, then generatehow  an object from it
@@ -83,35 +56,13 @@ class CoreDataTestHelper {
             let category = Category(entity: entity2, insertInto: context)
 
             category.categoryName = "Category \(i)"
-            category.has = NSSet.init(array: [audio])
 
             audio.audioName = "Mock v.\(i)"
             audio.audioPath = "/Mocks/MuseuZap/Audio\(i)"
             audio.isPrivate = true
-            audio.belongsTo = category
-        }
 
-//        func insertAudio() -> Audio {
-//            guard let entity = NSEntityDescription.entity(forEntityName: "Category", in: mockPersistantContainer.viewContext)
-//            else {
-//                fatalError("Could not find Category Entity")
-//            }
-//
-//            let category = Category(entity: entity, insertInto: mockPersistantContainer.viewContext)
-//            category.categoryName
-//
-//
-//            let obj = NSEntityDescription.insertNewObject(forEntityName: "Audio", into: mockPersistantContainer.viewContext)
-//
-//            obj.setValue("MockAudio", forKey: "audioName")
-//            obj.setValue("/Documents/MuseuZap/Mock", forKey: "audioPath")
-//            obj.setValue(false, forKey: "isPrivate")
-//            obj.setValue(insertCategory(), forKey: "belongsTo")
-//
-//            return obj as? Audio ?? Audio()
-//        }
-//
-//        _ = insertAudio()
+            category.addToAudios(audio)
+        }
 
         do {
             try mockPersistantContainer.viewContext.save()
@@ -152,8 +103,9 @@ class DAOTests: XCTestCase {
     override func tearDown() {
         // This method is called after the invocation of each test method in the class.
         sut = nil
-        coreDataHelper.flushData(from: "Category")
+        // Audio should be flushed first because category cannot be nil
         coreDataHelper.flushData(from: "Audio")
+        coreDataHelper.flushData(from: "Category")
         coreDataHelper = nil
     }
 
@@ -161,8 +113,6 @@ class DAOTests: XCTestCase {
 
     /// Creates a new Element and asserts if error is nil
     func testCreate() {
-
-        print("iiiiiiiii")
 //        let category = Category(container: coreDataHelper.mockPersistantContainer)
 //        let audio = Audio(container: coreDataHelper.mockPersistantContainer)
 //        var databaseError: Error?
