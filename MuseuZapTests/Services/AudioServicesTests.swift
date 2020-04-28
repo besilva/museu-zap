@@ -10,23 +10,18 @@ import XCTest
 @testable import MuseuZap
 import CoreData
 
-// TODO: como jogar o erro para cima usando os enums?
+// TODO: como jogar o erro para cima usando os enums? Se faço cast como DatabaseErros, qnd dou print pego apenas o nome
 
     // MARK: - AudioDAOMock
 
 class AudioDAOMock: AudioDAOProtocol {
 
-    // TODO: nunca vai ser mudado aqui..
+    // TODO: COMO alternar as funcoes do mock para produzirem erro???
 
-    var shouldThrowError: Bool = true
     var coreDataHelper = CoreDataTestHelper()
 
     func create(_ objectToBeSaved: Audio) throws {
-        if shouldThrowError {
-            throw DatabaseErrors.create
-        } else {
 
-        }
     }
 
     func readAll() throws -> [Audio] {
@@ -45,6 +40,13 @@ class AudioDAOMock: AudioDAOProtocol {
     func deleteAll(_ objectToBeDeleted: Audio) throws {
 
     }
+
+    // MARK: - CRUD ERRORS
+
+    func readAllError() throws -> [Audio] {
+        throw DatabaseErrors.read
+    }
+
 
 }
 
@@ -71,13 +73,18 @@ class AudioServicesTests: XCTestCase {
 
     // MARK: - Create
 
+    // Mock DAO does nothing, should not produce errors
     func testCreate() {
+        let audio = Audio(container: coreDataHelper.mockPersistantContainer)
 
+        sut.createAudio(audio: audio) { (error) in
+            XCTAssertNil(error, "Services create error")
+        }
     }
 
     // MARK: - Read
 
-    /// Creates a new Element (first without viewContext) and asserts if error is nil
+    // Creates a new Element (first without viewContext) and asserts if error is nil
     func testGetAllAudios() {
 
         // Audio Array should contain exactly one record
@@ -85,11 +92,35 @@ class AudioServicesTests: XCTestCase {
             XCTAssertEqual(audioArray?.count, 1, "AudioDAO Mock create func creates only 1 item not \(audioArray?.count ?? 100)!")
             XCTAssertNil(error, "Services get error")
         }
-
     }
 
     // MARK: - Update
 
+    // Mock DAO does nothing, should not produce errors
+    func testUpdateAllAudios() {
+
+        sut.updateAllAudios { (error) in
+            XCTAssertNil(error, "Services update error")
+        }
+    }
+
     // MARK: - Delete
+
+    func testDelete() {
+        let audio = Audio(container: coreDataHelper.mockPersistantContainer)
+
+        sut.deleteAudio(audio: audio) { (error) in
+            XCTAssertNil(error, "Services delete error")
+        }
+    }
+    // MARK: - FAIL TESTS
+
+//    func testGetAllAudiosError() {
+//
+//        XCTAssertThrowsError(try sut.getAllAudios({ (_, _) in
+//        })) { error in
+//            XCTAssertEqual(error as! DatabaseErrors, DatabaseErrors.read)
+//        }
+//    }
 
 }

@@ -46,6 +46,7 @@ class ListViewModel: ListViewModelProtocol {
     // MARK: - Core Data
     func getArray() {
 
+        // TODO: adicionar isso para outra queue que não a main
         audioServices.getAllAudios { (error, audioArray) in
             if let audios = audioArray {
                 // Assign teste Array
