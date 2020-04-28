@@ -13,12 +13,13 @@ import UIKit
 /// Error Handling + doing aditional treatment to data.
 class AudioServices {
 
-    required init(dao: AudioDAO) {
+    /// Used Data Access Object
+    var DAO: AudioDAOProtocol
+
+    // Dependency Injection in order to make a testable class
+    required init(dao: AudioDAOProtocol) {
         self.DAO = dao
     }
-
-    /// Used Data Access Object
-    var DAO = AudioDAO()
 
     // MARK: - Get
 

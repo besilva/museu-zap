@@ -38,9 +38,6 @@
 		C558EC7024575C6500A0B32C /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = C558EC6E24575C6500A0B32C /* Audio.swift */; };
 		C558EC7324575E3500A0B32C /* AudioDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C558EC7224575E3500A0B32C /* AudioDAO.swift */; };
 		C558EC7524575F4400A0B32C /* AudioServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C558EC7424575F4400A0B32C /* AudioServices.swift */; };
-		C558EC79245765CC00A0B32C /* RETIRAR1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5909554244E28A400B1C17F /* RETIRAR1.swift */; };
-		C558EC7A245765CE00A0B32C /* RETIRAR2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A341D2244C05C5006F1D0D /* RETIRAR2.swift */; };
-		C558EC7B245765CF00A0B32C /* RETIRAR.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A341BC244C032C006F1D0D /* RETIRAR.swift */; };
 		C558EC9124576EF000A0B32C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = C558EC8D24576EEF00A0B32C /* Category.swift */; };
 		C5A341B9244C0274006F1D0D /* MuseuZap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5A341B7244C0274006F1D0D /* MuseuZap.xcdatamodeld */; };
 		C5A341C6244C03A1006F1D0D /* DAOCoreDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A341C5244C03A1006F1D0D /* DAOCoreDataProtocol.swift */; };
@@ -95,12 +92,9 @@
 		C558EC7224575E3500A0B32C /* AudioDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDAO.swift; sourceTree = "<group>"; };
 		C558EC7424575F4400A0B32C /* AudioServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioServices.swift; sourceTree = "<group>"; };
 		C558EC8D24576EEF00A0B32C /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
-		C5909554244E28A400B1C17F /* RETIRAR1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RETIRAR1.swift; sourceTree = "<group>"; };
 		C5A341B8244C0274006F1D0D /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
-		C5A341BC244C032C006F1D0D /* RETIRAR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RETIRAR.swift; sourceTree = "<group>"; };
 		C5A341C5244C03A1006F1D0D /* DAOCoreDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAOCoreDataProtocol.swift; sourceTree = "<group>"; };
 		C5A341CF244C0523006F1D0D /* DatabaseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
-		C5A341D2244C05C5006F1D0D /* RETIRAR2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RETIRAR2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,14 +241,6 @@
 			path = AboutModuleTests;
 			sourceTree = "<group>";
 		};
-		C57C8ABE24508D5A00D8C288 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				C5A341C5244C03A1006F1D0D /* DAOCoreDataProtocol.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		C5909553244E248000B1C17F /* NSManagedObject */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,15 +253,11 @@
 		C5A341BB244C0310006F1D0D /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				C57C8ABE24508D5A00D8C288 /* Protocols */,
 				C5F87027244DE5B20052ACFF /* DAOs */,
 				C5909553244E248000B1C17F /* NSManagedObject */,
 				C5A341B7244C0274006F1D0D /* MuseuZap.xcdatamodeld */,
 				64796F092451C10A00104448 /* CoreDataManager.swift */,
 				C5A341CF244C0523006F1D0D /* DatabaseError.swift */,
-				C5909554244E28A400B1C17F /* RETIRAR1.swift */,
-				C5A341D2244C05C5006F1D0D /* RETIRAR2.swift */,
-				C5A341BC244C032C006F1D0D /* RETIRAR.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -300,6 +282,7 @@
 		C5F87027244DE5B20052ACFF /* DAOs */ = {
 			isa = PBXGroup;
 			children = (
+				C5A341C5244C03A1006F1D0D /* DAOCoreDataProtocol.swift */,
 				C558EC7224575E3500A0B32C /* AudioDAO.swift */,
 				C50385DB24584AEC00559CB4 /* CategoryDAO.swift */,
 			);
@@ -441,7 +424,6 @@
 				C558EC9124576EF000A0B32C /* Category.swift in Sources */,
 				64A60C2E24489B9E003B0F26 /* ViewCodable.swift in Sources */,
 				64796F0C2453152800104448 /* TabBarController.swift in Sources */,
-				C558EC7A245765CE00A0B32C /* RETIRAR2.swift in Sources */,
 				80D80EF32447377200915F1C /* AboutViewController.swift in Sources */,
 				C5A341B9244C0274006F1D0D /* MuseuZap.xcdatamodeld in Sources */,
 				64796F0A2451C10A00104448 /* CoreDataManager.swift in Sources */,
@@ -452,14 +434,12 @@
 				8024DA2D2449F19000093D37 /* AboutView.swift in Sources */,
 				80D80EF02447365C00915F1C /* AboutCoordinator.swift in Sources */,
 				C558EC7024575C6500A0B32C /* Audio.swift in Sources */,
-				C558EC7B245765CF00A0B32C /* RETIRAR.swift in Sources */,
 				80F7235E245319DA00583137 /* UILabel+Extension.swift in Sources */,
 				80D80EF62447378A00915F1C /* AboutViewModel.swift in Sources */,
 				64DD6FF9243E10E400404321 /* TestCoordinator.swift in Sources */,
 				C558EC7324575E3500A0B32C /* AudioDAO.swift in Sources */,
 				64A60C342448BD33003B0F26 /* UIViewControllerExtension.swift in Sources */,
 				64DD6FE6243E0A4700404321 /* Stack.swift in Sources */,
-				C558EC79245765CC00A0B32C /* RETIRAR1.swift in Sources */,
 				64DD6FF7243E0DB700404321 /* ListViewModel.swift in Sources */,
 				64DD6FE0243E07D000404321 /* AppCoordinator.swift in Sources */,
 				64DD6FF5243E0BB800404321 /* ListViewController.swift in Sources */,

@@ -142,16 +142,16 @@ class DAOTests: XCTestCase {
     /// Read mocked database, count should be igual to 3
     func testReadAll() {
         var databaseError: Error?
-        var array = [Audio]()
+        var audioArray = [Audio]()
 
         do {
-            try array = sut.readAll()
+            try audioArray = sut.readAll()
         } catch {
             databaseError = error
             print(databaseError ?? "databaseError read")
         }
 
-        XCTAssertEqual(array.count, 3, "initStubs create only 3 item not \(array.count)!")
+        XCTAssertEqual(audioArray.count, 3, "initStubs create only 3 item not \(audioArray.count)!")
         XCTAssertNil(databaseError, "databaseError read")
     }
 
@@ -160,12 +160,12 @@ class DAOTests: XCTestCase {
     /// Update saves the current context. Change the context and see if it was saved
     func testUpdate() {
         var databaseError: Error?
-        var array = [Audio]()
+        var audioArray = [Audio]()
         var element: Audio?
 
         do {
-            try array = sut.readAll()
-            element = array[0]
+            try audioArray = sut.readAll()
+            element = audioArray[0]
         } catch {
             databaseError = error
             print(databaseError ?? "databaseError read")
@@ -190,17 +190,17 @@ class DAOTests: XCTestCase {
     /// Fetches the Elements, delete one and see if newArray count is two
     func testDelete() {
         var databaseError: Error?
-        var array = [Audio]()
+        var audioArray = [Audio]()
         var newArray = [Audio]()
 
         do {
-           try array = sut.readAll()
+           try audioArray = sut.readAll()
         } catch {
            databaseError = error
            print(databaseError ?? "databaseError1 read")
         }
 
-        let element = array[0]
+        let element = audioArray[0]
 
         do {
            try sut.delete(element)
