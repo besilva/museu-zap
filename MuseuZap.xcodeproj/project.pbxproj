@@ -145,7 +145,8 @@
 		6473EDEA243B6D3E00A10F2C /* MuseuZapTests */ = {
 			isa = PBXGroup;
 			children = (
-				C52E7442244F37D300E1DDA4 /* DAOCoreDataProtocolTests.swift */,
+				C5E6FBF22457922C00C506B9 /* Services */,
+				C5E6FBF12457921C00C506B9 /* DAO */,
 				80E6C366244DF05500A42A4C /* AboutModuleTests */,
 				6473EDEB243B6D3E00A10F2C /* MuseuZapTests.swift */,
 				6473EDED243B6D3E00A10F2C /* Info.plist */,
@@ -271,6 +272,21 @@
 				C5A341BC244C032C006F1D0D /* RETIRAR.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		C5E6FBF12457921C00C506B9 /* DAO */ = {
+			isa = PBXGroup;
+			children = (
+				C52E7442244F37D300E1DDA4 /* DAOCoreDataProtocolTests.swift */,
+			);
+			path = DAO;
+			sourceTree = "<group>";
+		};
+		C5E6FBF22457922C00C506B9 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		C5F87027244DE5B20052ACFF /* DAOs */ = {

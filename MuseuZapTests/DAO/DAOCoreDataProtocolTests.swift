@@ -1,0 +1,304 @@
+//
+//  MuseuZapTests.swift
+//  MuseuZapTests
+//
+//  Created by Bernardo Silva on 06/04/20.
+//  Copyright © 2020 Bernardo. All rights reserved.
+//
+
+import XCTest
+@testable import MuseuZap
+import CoreData
+
+// TODO: TEST from services
+
+    // MARK: - CoreDataTestHelper
+
+class CoreDataTestHelper {
+
+    lazy var managedObjectModel: NSManagedObjectModel = {
+            let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: type(of: self))] )!
+            return managedObjectModel
+    }()
+
+    lazy var mockPersistantContainer: NSPersistentContainer = {
+
+        let container = NSPersistentContainer(name: "MuseuZap", managedObjectModel: self.managedObjectModel)
+        let description = NSPersistentStoreDescription()
+        description.type = NSInMemoryStoreType
+        description.shouldAddStoreAsynchronously = false // Make it simpler in test env
+
+        container.persistentStoreDescriptions = [description]
+        container.loadPersistentStores { (description, error) in
+            // Check if the data store is in memory
+            precondition( description.type == NSInMemoryStoreType )
+
+            // Check if creating container wrong
+            if let error = error {
+                fatalError("Create an in-mem coordinator failed \(error)")
+            }
+        }
+        return container
+    }()
+
+    func initStubs() {
+// Confusão com os 2
+//        func insertCategory() -> Category {
+//            let obj = NSEntityDescription.insertNewObject(forEntityName: "Category", into: mockPersistantContainer.viewContext)
+//
+//            obj.setValue("Mock", forKey: "categoryName")
+//            guard let entity = NSEntityDescription.entity(forEntityName: "Category", in: mockPersistantContainer.viewContext)
+//            else {
+//                fatalError("Could not find entities")
+//            }
+//
+//            let category = Category(entity: entity, insertInto: mockPersistantContainer.viewContext)
+//            category.categoryName
+//
+//
+//            return obj as? Category
+//        }
+
+        // CAGAR para essa funcao fdp que ele fez. Se quiser ver como ele fez, OLHA ONLINE NO GIT
+
+        // Fazer a entidade direto da categorua, cria uma entidade audio a partir da entidade categoria
+
+        // NUM FOR!! 3 registros
+
+        // Pq ai VOU SALVAR logo em seguida e CABOU CARAI.
+
+        // PQP VIU SÓ COPIAR A FUNCAO DO APP DELEGATE PRA CA DEUS DO CEU MAINHA
+
+        // Contex is RAM Memory insted of the own App Database
+        let context = mockPersistantContainer.viewContext
+        // Get entity, then generatehow  an object from it
+        guard let entity1 = NSEntityDescription.entity(forEntityName: "Audio", in: context),
+            let entity2 = NSEntityDescription.entity(forEntityName: "Category", in: context)
+        else {
+            fatalError("Could not find entities")
+        }
+
+        for i in 1...3 {
+            let audio = Audio(entity: entity1, insertInto: context)
+            let category = Category(entity: entity2, insertInto: context)
+
+            category.categoryName = "Category \(i)"
+            category.has = NSSet.init(array: [audio])
+
+            audio.audioName = "Mock v.\(i)"
+            audio.audioPath = "/Mocks/MuseuZap/Audio\(i)"
+            audio.isPrivate = true
+            audio.belongsTo = category
+        }
+
+//        func insertAudio() -> Audio {
+//            guard let entity = NSEntityDescription.entity(forEntityName: "Category", in: mockPersistantContainer.viewContext)
+//            else {
+//                fatalError("Could not find Category Entity")
+//            }
+//
+//            let category = Category(entity: entity, insertInto: mockPersistantContainer.viewContext)
+//            category.categoryName
+//
+//
+//            let obj = NSEntityDescription.insertNewObject(forEntityName: "Audio", into: mockPersistantContainer.viewContext)
+//
+//            obj.setValue("MockAudio", forKey: "audioName")
+//            obj.setValue("/Documents/MuseuZap/Mock", forKey: "audioPath")
+//            obj.setValue(false, forKey: "isPrivate")
+//            obj.setValue(insertCategory(), forKey: "belongsTo")
+//
+//            return obj as? Audio ?? Audio()
+//        }
+//
+//        _ = insertAudio()
+
+        do {
+            try mockPersistantContainer.viewContext.save()
+        } catch {
+            print("create fakes error \(error)")
+        }
+
+    }
+
+    func flushData(from entity: String) {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        // swiftlint:disable force_try
+        let objs = try! mockPersistantContainer.viewContext.fetch(fetchRequest)
+
+        for case let obj as NSManagedObject in objs {
+            mockPersistantContainer.viewContext.delete(obj)
+        }
+
+        try! mockPersistantContainer.viewContext.save()
+        // swiftlint:enable force_try
+    }
+}
+
+    // MARK: - DAO
+
+class DAOTests: XCTestCase {
+
+    var sut: AudioDAO!
+    var coreDataHelper: CoreDataTestHelper!
+
+    override func setUp() {
+        // This method is called before the invocation of each test method in the class.
+        coreDataHelper = CoreDataTestHelper()
+        sut = AudioDAO(container: coreDataHelper.mockPersistantContainer)
+        coreDataHelper.initStubs()
+    }
+
+    override func tearDown() {
+        // This method is called after the invocation of each test method in the class.
+        sut = nil
+        coreDataHelper.flushData(from: "Category")
+        coreDataHelper.flushData(from: "Audio")
+        coreDataHelper = nil
+    }
+
+    // MARK: - Create
+
+    /// Creates a new Element and asserts if error is nil
+    func testCreate() {
+
+        print("iiiiiiiii")
+//        let category = Category(container: coreDataHelper.mockPersistantContainer)
+//        let audio = Audio(container: coreDataHelper.mockPersistantContainer)
+//        var databaseError: Error?
+//
+//        category.categoryName = "Mock Category"
+//
+//        audio.audioName = "Mock create"
+//        audio.audioPath = "/Mocks/Path/"
+//        audio.isPrivate = false
+//        audio.belongsTo = category
+//
+//        category.has = NSSet.init(array: [audio])
+//
+//        do {
+//            try sut.create(audio)
+//        } catch {
+//            databaseError = error
+//            print(databaseError ?? "databaseError Create")
+//        }
+//
+//        XCTAssertNil(databaseError, "databaseError Create")
+    }
+
+    // MARK: - Read
+//
+//    /// Read mocked database, count should be igual to 2
+//    func testReadAll() {
+//        var errorDatabase: Error?
+//        var array = [Teste]()
+//
+//        do {
+//            try array = sut.readAll()
+//        } catch {
+//            errorDatabase = error
+//            print(errorDatabase ?? "databaseError read")
+//        }
+//
+//        XCTAssertEqual(array.count, 2, "initStubs create only 2 item not \(array.count)!")
+//        XCTAssertNil(errorDatabase, "databaseError read")
+//    }
+//
+//    // MARK: - Update
+//
+//    /// Update saves the current context. Change the context and see if it was saved
+//    func testUpdate() {
+//        var errorDatabase: Error?
+//        var array = [Teste]()
+//        var element: Teste?
+//
+//        do {
+//            try array = sut.readAll()
+//            element = array[0]
+//        } catch {
+//            errorDatabase = error
+//            print(errorDatabase ?? "databaseError read")
+//        }
+//
+//        guard let item = element else { return }
+//
+//        do {
+//            item.titulo = "item updated"
+//            try sut.updateContext()
+//        } catch {
+//            errorDatabase = error
+//            print(errorDatabase ?? "databaseError update")
+//        }
+//
+//        XCTAssertEqual(item.titulo, "item updated", "Database was not updated")
+//        XCTAssertNil(errorDatabase, "databaseError update")
+//    }
+//
+//    // MARK: - Delete
+//
+//    /// Fetches the Elements, delete one and see if newArray count is one
+//    func testDelete() {
+//        var errorDatabase: Error?
+//        var array = [Teste]()
+//        var newArray = [Teste]()
+//
+//        do {
+//           try array = sut.readAll()
+//        } catch {
+//           errorDatabase = error
+//           print(errorDatabase ?? "databaseError1 read")
+//        }
+//
+//        let element = array[0]
+//
+//        do {
+//           try sut.delete(element)
+//        } catch {
+//           errorDatabase = error
+//           print(errorDatabase ?? "databaseError1 delete")
+//        }
+//
+//        do {
+//           try newArray = sut.readAll()
+//        } catch {
+//           errorDatabase = error
+//           print(errorDatabase ?? "databaseError2 read")
+//        }
+//
+//        XCTAssertEqual(newArray.count, 1, "Database should have only one record")
+//        XCTAssertNil(errorDatabase, "databaseError update")
+//    }
+//
+//    /// Fetches the Elements, delete all and see if newArray count is zero
+//    func testDeleteAll() {
+//        var errorDatabase: Error?
+//        var array = [Teste]()
+//        var newArray = [Teste]()
+//
+//        do {
+//           try array = sut.readAll()
+//        } catch {
+//           errorDatabase = error
+//           print(errorDatabase ?? "databaseError1 read")
+//        }
+//
+//        let element = array[0]
+//
+//        do {
+//           try sut.deleteAll(element)
+//        } catch {
+//           errorDatabase = error
+//           print(errorDatabase ?? "databaseError1 delete")
+//        }
+//
+//        do {
+//           try newArray = sut.readAll()
+//        } catch {
+//           errorDatabase = error
+//           print(errorDatabase ?? "databaseError2 read")
+//        }
+//
+//        XCTAssertEqual(newArray.count, 0, "Database should have no records")
+//        XCTAssertNil(errorDatabase, "databaseError update")
+//    }
+}

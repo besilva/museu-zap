@@ -60,7 +60,7 @@ class ListViewModel: ListViewModelProtocol {
 
     func getAudioTable(at indexPath: IndexPath) -> (name: String, path: String, isPrivate: Bool, category: String?) {
         let element = array[indexPath.row]
-        return (name: element.audioName, path: element.audioPath, isPrivate: element.isPrivate, category: element.belongsTo?.categoryName)
+        return (name: element.audioName, path: element.audioPath, isPrivate: element.isPrivate, category: element.category.categoryName)
     }
     
 }

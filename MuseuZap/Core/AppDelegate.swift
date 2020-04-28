@@ -47,7 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             audio.audioName = "Gemidao do Zap v.\(i)"
             audio.audioPath = "/Documents/MuseuZap/Audio\(i)"
             audio.isPrivate = true
-            audio.belongsTo = category
+
+            category.addToAudios(audio)
         }
     }
 

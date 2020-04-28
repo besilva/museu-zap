@@ -10,6 +10,9 @@
 import Foundation
 import CoreData
 
+/// NSManagedObject for Teste Entity.
+/// Properties can be accessed through object properties a class instead of "set value for..".
+/// Codegen set to manual
 @objc(Category)
 public class Category: NSManagedObject {
     convenience init(container: NSPersistentContainer? = nil) {
@@ -37,23 +40,23 @@ extension Category {
     }
 
     @NSManaged public var categoryName: String?
-    @NSManaged public var has: NSSet?
+    @NSManaged public var audios: NSSet?
 
 }
 
-// MARK: Generated accessors for has
+// MARK: Generated accessors for audios
 extension Category {
 
-    @objc(addHasObject:)
-    @NSManaged public func addToHas(_ value: Audio)
+    @objc(addAudiosObject:)
+    @NSManaged public func addToAudios(_ value: Audio)
 
-    @objc(removeHasObject:)
-    @NSManaged public func removeFromHas(_ value: Audio)
+    @objc(removeAudiosObject:)
+    @NSManaged public func removeFromAudios(_ value: Audio)
 
-    @objc(addHas:)
-    @NSManaged public func addToHas(_ values: NSSet)
+    @objc(addAudios:)
+    @NSManaged public func addToAudios(_ values: NSSet)
 
-    @objc(removeHas:)
-    @NSManaged public func removeFromHas(_ values: NSSet)
+    @objc(removeAudios:)
+    @NSManaged public func removeFromAudios(_ values: NSSet)
 
 }
