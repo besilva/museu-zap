@@ -40,7 +40,7 @@ extension Category {
     }
 
     @NSManaged public var categoryName: String?
-    @NSManaged public var audios: NSSet?
+    @NSManaged public var audios: Set<Audio>?
 
 }
 
@@ -59,4 +59,26 @@ extension Category {
     @objc(removeAudios:)
     @NSManaged public func removeFromAudios(_ values: NSSet)
 
+}
+
+    // MARK: - Properties
+
+/// Used to reduce clutter for View
+struct CategoryProperties {
+
+    init(from category: Category) {
+        self.name = category.categoryName ?? " - "
+        
+        if let audios = category.audios {
+            for audio in audios {
+                self.audios?.append(audio.audioName)
+            }
+        } else {
+            self.audios = nil
+        }
+
+    }
+
+    var name: String
+    var audios: [String]?
 }

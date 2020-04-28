@@ -43,6 +43,8 @@ extension Audio {
 
 }
 
+    // MARK: - Properties
+
 /// Used to reduce clutter for View
 struct AudioProperties {
 
