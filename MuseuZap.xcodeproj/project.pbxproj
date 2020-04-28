@@ -10,7 +10,6 @@
 		6473EDD5243B6D3700A10F2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6473EDD4243B6D3700A10F2C /* AppDelegate.swift */; };
 		6473EDDE243B6D3E00A10F2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6473EDDD243B6D3E00A10F2C /* Assets.xcassets */; };
 		6473EDE1243B6D3E00A10F2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6473EDDF243B6D3E00A10F2C /* LaunchScreen.storyboard */; };
-		6473EDEC243B6D3E00A10F2C /* MuseuZapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6473EDEB243B6D3E00A10F2C /* MuseuZapTests.swift */; };
 		64796F0A2451C10A00104448 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64796F092451C10A00104448 /* CoreDataManager.swift */; };
 		64796F0C2453152800104448 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64796F0B2453152800104448 /* TabBarController.swift */; };
 		64A60C2E24489B9E003B0F26 /* ViewCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A60C2D24489B9E003B0F26 /* ViewCodable.swift */; };
@@ -35,6 +34,7 @@
 		C50385DA2458424700559CB4 /* CategoryServicesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50385D92458424700559CB4 /* CategoryServicesTests.swift */; };
 		C50385DC24584AEC00559CB4 /* CategoryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50385DB24584AEC00559CB4 /* CategoryDAO.swift */; };
 		C52E7444244F37D300E1DDA4 /* DAOCoreDataProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52E7442244F37D300E1DDA4 /* DAOCoreDataProtocolTests.swift */; };
+		C54170D62458816F004BCC73 /* CategoryServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54170D52458816F004BCC73 /* CategoryServices.swift */; };
 		C558EC7024575C6500A0B32C /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = C558EC6E24575C6500A0B32C /* Audio.swift */; };
 		C558EC7324575E3500A0B32C /* AudioDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C558EC7224575E3500A0B32C /* AudioDAO.swift */; };
 		C558EC7524575F4400A0B32C /* AudioServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C558EC7424575F4400A0B32C /* AudioServices.swift */; };
@@ -62,7 +62,6 @@
 		6473EDE0243B6D3E00A10F2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6473EDE2243B6D3E00A10F2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6473EDE7243B6D3E00A10F2C /* MuseuZapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MuseuZapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6473EDEB243B6D3E00A10F2C /* MuseuZapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuseuZapTests.swift; sourceTree = "<group>"; };
 		6473EDED243B6D3E00A10F2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64796F092451C10A00104448 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		64796F0B2453152800104448 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -88,6 +87,7 @@
 		C50385D92458424700559CB4 /* CategoryServicesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryServicesTests.swift; sourceTree = "<group>"; };
 		C50385DB24584AEC00559CB4 /* CategoryDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDAO.swift; sourceTree = "<group>"; };
 		C52E7442244F37D300E1DDA4 /* DAOCoreDataProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAOCoreDataProtocolTests.swift; sourceTree = "<group>"; };
+		C54170D52458816F004BCC73 /* CategoryServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryServices.swift; sourceTree = "<group>"; };
 		C558EC6E24575C6500A0B32C /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		C558EC7224575E3500A0B32C /* AudioDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDAO.swift; sourceTree = "<group>"; };
 		C558EC7424575F4400A0B32C /* AudioServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioServices.swift; sourceTree = "<group>"; };
@@ -148,7 +148,6 @@
 				C5E6FBF22457922C00C506B9 /* Services */,
 				C5E6FBF12457921C00C506B9 /* DAO */,
 				80E6C366244DF05500A42A4C /* AboutModuleTests */,
-				6473EDEB243B6D3E00A10F2C /* MuseuZapTests.swift */,
 				6473EDED243B6D3E00A10F2C /* Info.plist */,
 				6473EDD2243B6D3700A10F2C /* Products */,
 			);
@@ -293,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				C558EC7424575F4400A0B32C /* AudioServices.swift */,
+				C54170D52458816F004BCC73 /* CategoryServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -428,6 +428,7 @@
 				C5A341B9244C0274006F1D0D /* MuseuZap.xcdatamodeld in Sources */,
 				64796F0A2451C10A00104448 /* CoreDataManager.swift in Sources */,
 				C5A341C6244C03A1006F1D0D /* DAOCoreDataProtocol.swift in Sources */,
+				C54170D62458816F004BCC73 /* CategoryServices.swift in Sources */,
 				64DD6FE4243E084100404321 /* Coordinator.swift in Sources */,
 				80C3D4CC24508EDA0001879C /* AboutError.swift in Sources */,
 				C50385DC24584AEC00559CB4 /* CategoryDAO.swift in Sources */,
@@ -459,7 +460,6 @@
 				C5A4CD2C2451138500F190A5 /* MuseuZap.xcdatamodeld in Sources */,
 				C50385DA2458424700559CB4 /* CategoryServicesTests.swift in Sources */,
 				C50385D82458423B00559CB4 /* AudioServicesTests.swift in Sources */,
-				6473EDEC243B6D3E00A10F2C /* MuseuZapTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

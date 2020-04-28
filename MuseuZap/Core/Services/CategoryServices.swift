@@ -1,5 +1,5 @@
 //
-//  AudioServices.swift
+//  CategoryServices.swift
 //  MuseuZap
 //
 //  Created by Ivo Dutra on 27/04/20.
@@ -8,30 +8,30 @@
 
 import UIKit
 
-/// Services Layer for Audio Entity.
+/// Services Layer for Category Entity.
 /// Independent from adopted database.
 /// Error Handling + doing aditional treatment to data.
-class AudioServices {
+class CategoryServices {
 
     /// Used Data Access Object
-    var DAO: AudioDAOProtocol
+    var DAO: CategoryDAOProtocol
 
     // Dependency Injection in order to make a testable class
-    required init(dao: AudioDAOProtocol) {
+    required init(dao: CategoryDAOProtocol) {
         self.DAO = dao
     }
 
     // MARK: - Create
 
-    /// Function responsible for storing an Audio
+    /// Function responsible for storing an Category
     /// - parameters:
-    ///     - audio: Audio to be Saved
+    ///     - category: Category to be Saved
     ///     - completion: closure to be executed at the end of this method
     /// - throws: if an error occurs during saving an object into database (DatabaseErrors.create)
-    func createAudio(audio: Audio, _ completion: ((_ error: Error?) -> Void)?) {
+    func createCategory(category: Category, _ completion: ((_ error: Error?) -> Void)?) {
         do {
             // Save information
-            try DAO.create(audio)
+            try DAO.create(category)
         } catch let error {
             if let closureError = completion {
                 closureError(error)
@@ -43,20 +43,20 @@ class AudioServices {
 
     // MARK: - Read
 
-    /// Function responsible for getting all Audios
+    /// Function responsible for getting all categories
     /// - parameters:
     ///     - completion: closure to be executed at the end of this method
     /// - throws: if an error occurs during getting an object from database  (DatabaseErrors.read)
-    func getAllAudios(_ completion: @escaping (_ errorMessage: Error?,
-                                               _ entity: [Audio]?) -> Void) {
+    func getAllCategories(_ completion: @escaping (_ errorMessage: Error?,
+                                                   _ entity: [Category]?) -> Void) {
         // Error to be returned in case of failure
         var raisedError: DatabaseErrors?
-        var audios: [Audio]?
+        var categories: [Category]?
 
         do {
             // Save information
-            audios = try DAO.readAll()
-            completion(nil, audios)
+            categories = try DAO.readAll()
+            completion(nil, categories)
         } catch let error as DatabaseErrors { // TODO: vale a pena esse cast aqui?
             raisedError = error
             completion(raisedError, nil)
@@ -67,12 +67,12 @@ class AudioServices {
 
     // MARK: - Update
 
-    /// Function responsible for updating all audio records
+    /// Function responsible for updating all category records
     /// - parameters:
-    ///     - season: Audio to be updated
+    ///     - category: Category to be updated
     ///     - completion: closure to be executed at the end of this method
     /// - throws: if an error occurs during saving an object into database (DatabaseErrors.update)
-    func updateAllAudios(errorCompletion: ((_ error: Error?) -> Void)?) {
+    func updateAllCategories(errorCompletion: ((_ error: Error?) -> Void)?) {
         do {
             // Save information
             try DAO.updateContext()
@@ -87,15 +87,15 @@ class AudioServices {
 
     // MARK: - Delete
 
-    /// Function responsible for deleting an Audio
+    /// Function responsible for deleting an Category
     /// - parameters:
-    ///     - audio: audio to be deleted
+    ///     - category: category to be deleted
     ///     - completion: closure to be executed at the end of this method
     /// - throws: if an error occurs during saving an object into database (DatabaseErrors.delete)
-    func deleteAudio(audio: Audio, _ completion: ((_ error: Error?) -> Void)?) {
+    func deleteCategory(category: Category, _ completion: ((_ error: Error?) -> Void)?) {
         do {
             // Save information
-            try DAO.delete(audio)
+            try DAO.delete(category)
         } catch let error {
             if let closureError = completion {
                 closureError(error)
@@ -104,5 +104,6 @@ class AudioServices {
             }
         }
     }
-    
+
 }
+
