@@ -10,13 +10,15 @@ import FBSnapshotTestCase
 @testable import MuseuZap
 
 class CustomCellSnapshotTests: FBSnapshotTestCase {
-    var customCellView: AudioCellView?
+    var customCellView: AudioCellView!
     
     override func setUp() {
         super.setUp()
         customCellView = AudioCellView(frame: CGRect(x: 0, y: 0, width: 374, height: 76))
-        customCellView?.backgroundColor = .red
-        customCellView?.contentView.backgroundColor = .blue
+        customCellView.backgroundColor = .red
+        customCellView.audioDataContentView.backgroundColor = .blue
+        customCellView.titleLabel.backgroundColor = .systemGray
+        customCellView.durationLabel.backgroundColor = .systemTeal
         recordMode = true
     }
 

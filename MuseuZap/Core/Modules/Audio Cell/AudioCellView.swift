@@ -47,9 +47,8 @@ class AudioCellView: UIView, ViewCodable {
     }
     
     func setupConstraints() {
-        let margins = self.layoutMarginsGuide
         contentView.setupConstraints { (_) in
-            contentView.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
+            contentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
             contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
             contentView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
             contentView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
@@ -58,34 +57,34 @@ class AudioCellView: UIView, ViewCodable {
 //      Setup audio data content view constraints
         audioDataContentView.setupConstraints { (_) in
             audioDataContentView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
-            audioDataContentView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 16).isActive = true
-            audioDataContentView.trailingAnchor.constraint(equalTo: shareIcon.leadingAnchor, constant: 8).isActive = true
+            audioDataContentView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -16).isActive = true
+            audioDataContentView.trailingAnchor.constraint(equalTo: shareIcon.leadingAnchor, constant: -8).isActive = true
         }
         
 //        Setup audio title constraints
         titleLabel.setupConstraints { (_) in
             titleLabel.topAnchor.constraint(equalTo: audioDataContentView.topAnchor).isActive = true
             titleLabel.leadingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor).isActive = true
-//            titleLabel.trailingAnchor.constraint(equalTo: audioDataContentView.trailingAnchor).isActive = true
         }
         
 //        Setup audio duration constraints
         durationLabel.setupConstraints { (_) in
             durationLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4).isActive = true
-            durationLabel.leadingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor).isActive = true
-//            durationLabel.trailingAnchor.constraint(equalTo: audioDataContentView.trailingAnchor).isActive = true
             durationLabel.bottomAnchor.constraint(equalTo: audioDataContentView.bottomAnchor).isActive = true
+            durationLabel.leadingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor).isActive = true
         }
 
+//        Setup play icon constraints
         playIcon.setupConstraints { (_) in
-            playIcon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
-            playIcon.trailingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor, constant: 16).isActive = true
             playIcon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
+            playIcon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
+            playIcon.trailingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor, constant: -16).isActive = true
         }
 
+//        Setup share icon constraints
         shareIcon.setupConstraints { (_) in
-            shareIcon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -9).isActive = true
             shareIcon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
+            shareIcon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -9).isActive = true
         }
     }
     
@@ -104,6 +103,10 @@ class AudioCellView: UIView, ViewCodable {
     
     func updateView() {
         configure()
+    }
+    
+    func setupAudioDataContentView() {
+        audioDataContentView.backgroundColor = UIColor.Default.background
     }
 
     func setupTitleLabel() {
