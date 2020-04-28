@@ -31,6 +31,9 @@
 		80E6C368244DF09700A42A4C /* AboutViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E6C367244DF09700A42A4C /* AboutViewTests.swift */; };
 		80F7235E245319DA00583137 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F7235D245319DA00583137 /* UILabel+Extension.swift */; };
 		80FAABD82451BFD6008B7DB8 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FAABD72451BFD6008B7DB8 /* UIColorExtension.swift */; };
+		C50385D82458423B00559CB4 /* AudioServicesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50385D72458423B00559CB4 /* AudioServicesTests.swift */; };
+		C50385DA2458424700559CB4 /* CategoryServicesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50385D92458424700559CB4 /* CategoryServicesTests.swift */; };
+		C50385DC24584AEC00559CB4 /* CategoryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50385DB24584AEC00559CB4 /* CategoryDAO.swift */; };
 		C52E7444244F37D300E1DDA4 /* DAOCoreDataProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52E7442244F37D300E1DDA4 /* DAOCoreDataProtocolTests.swift */; };
 		C558EC7024575C6500A0B32C /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = C558EC6E24575C6500A0B32C /* Audio.swift */; };
 		C558EC7324575E3500A0B32C /* AudioDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C558EC7224575E3500A0B32C /* AudioDAO.swift */; };
@@ -84,6 +87,9 @@
 		80E6C367244DF09700A42A4C /* AboutViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewTests.swift; sourceTree = "<group>"; };
 		80F7235D245319DA00583137 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		80FAABD72451BFD6008B7DB8 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		C50385D72458423B00559CB4 /* AudioServicesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioServicesTests.swift; sourceTree = "<group>"; };
+		C50385D92458424700559CB4 /* CategoryServicesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryServicesTests.swift; sourceTree = "<group>"; };
+		C50385DB24584AEC00559CB4 /* CategoryDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDAO.swift; sourceTree = "<group>"; };
 		C52E7442244F37D300E1DDA4 /* DAOCoreDataProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAOCoreDataProtocolTests.swift; sourceTree = "<group>"; };
 		C558EC6E24575C6500A0B32C /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		C558EC7224575E3500A0B32C /* AudioDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDAO.swift; sourceTree = "<group>"; };
@@ -252,8 +258,8 @@
 		C5909553244E248000B1C17F /* NSManagedObject */ = {
 			isa = PBXGroup;
 			children = (
-				C558EC8D24576EEF00A0B32C /* Category.swift */,
 				C558EC6E24575C6500A0B32C /* Audio.swift */,
+				C558EC8D24576EEF00A0B32C /* Category.swift */,
 			);
 			path = NSManagedObject;
 			sourceTree = "<group>";
@@ -285,6 +291,8 @@
 		C5E6FBF22457922C00C506B9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C50385D72458423B00559CB4 /* AudioServicesTests.swift */,
+				C50385D92458424700559CB4 /* CategoryServicesTests.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -293,6 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				C558EC7224575E3500A0B32C /* AudioDAO.swift */,
+				C50385DB24584AEC00559CB4 /* CategoryDAO.swift */,
 			);
 			path = DAOs;
 			sourceTree = "<group>";
@@ -439,6 +448,7 @@
 				C5A341C6244C03A1006F1D0D /* DAOCoreDataProtocol.swift in Sources */,
 				64DD6FE4243E084100404321 /* Coordinator.swift in Sources */,
 				80C3D4CC24508EDA0001879C /* AboutError.swift in Sources */,
+				C50385DC24584AEC00559CB4 /* CategoryDAO.swift in Sources */,
 				8024DA2D2449F19000093D37 /* AboutView.swift in Sources */,
 				80D80EF02447365C00915F1C /* AboutCoordinator.swift in Sources */,
 				C558EC7024575C6500A0B32C /* Audio.swift in Sources */,
@@ -467,6 +477,8 @@
 				80E6C368244DF09700A42A4C /* AboutViewTests.swift in Sources */,
 				C52E7444244F37D300E1DDA4 /* DAOCoreDataProtocolTests.swift in Sources */,
 				C5A4CD2C2451138500F190A5 /* MuseuZap.xcdatamodeld in Sources */,
+				C50385DA2458424700559CB4 /* CategoryServicesTests.swift in Sources */,
+				C50385D82458423B00559CB4 /* AudioServicesTests.swift in Sources */,
 				6473EDEC243B6D3E00A10F2C /* MuseuZapTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

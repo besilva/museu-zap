@@ -10,7 +10,7 @@ import CoreData
 import UIKit
 
 /// Data Access Object for Audio Entity
-class AudioDAO: DAOCoreData {
+class AudioDAO: DAOCoreData, AudioDAOProtocol {
     typealias Entity = Audio
     var container: NSPersistentContainer!
 
@@ -22,4 +22,15 @@ class AudioDAO: DAOCoreData {
     // Use the default container for production environment
         self.init(container: CoreDataManager.sharedInstance.persistentContainer)
     }
+}
+
+// MARK: - For test purpose
+
+protocol AudioDAOProtocol {
+    // CRUD Operations: Create, Read, Update, Delete
+    func create(_ objectToBeSaved: Audio) throws
+    func readAll() throws -> [Audio]
+    func updateContext() throws
+    func delete(_ objectToBeDeleted: Audio) throws
+    func deleteAll(_ objectToBeDeleted: Audio) throws
 }

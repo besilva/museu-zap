@@ -1,16 +1,14 @@
 //
-//  MuseuZapTests.swift
+//  DAOCoreDataProtocolTests
 //  MuseuZapTests
 //
-//  Created by Bernardo Silva on 06/04/20.
+//  Created by Ivo Dutra on 06/04/20.
 //  Copyright © 2020 Bernardo. All rights reserved.
 //
 
 import XCTest
 @testable import MuseuZap
 import CoreData
-
-// TODO: TEST from services
 
     // MARK: - CoreDataTestHelper
 
@@ -41,12 +39,14 @@ class CoreDataTestHelper {
         return container
     }()
 
-    func initStubs() {
+    func initStubs() -> MuseuZap.Category {
         // Contex is RAM Memory insted of the own App Database
         let context = mockPersistantContainer.viewContext
+        var collaborator: MuseuZap.Category = Category(container: mockPersistantContainer)
+
         // Get entity, then generatehow  an object from it
         guard let entity1 = NSEntityDescription.entity(forEntityName: "Audio", in: context),
-            let entity2 = NSEntityDescription.entity(forEntityName: "Category", in: context)
+              let entity2 = NSEntityDescription.entity(forEntityName: "Category", in: context)
         else {
             fatalError("Could not find entities")
         }
@@ -62,6 +62,8 @@ class CoreDataTestHelper {
             audio.isPrivate = true
 
             category.addToAudios(audio)
+
+            collaborator = category
         }
 
         do {
@@ -70,6 +72,7 @@ class CoreDataTestHelper {
             print("create fakes error \(error)")
         }
 
+        return collaborator
     }
 
     func flushData(from entity: String) {
@@ -92,12 +95,14 @@ class DAOTests: XCTestCase {
 
     var sut: AudioDAO!
     var coreDataHelper: CoreDataTestHelper!
+    /// A Category Entity Object used to help to test AudioDAO, already saved in context
+    var collaborator: MuseuZap.Category!
 
     override func setUp() {
         // This method is called before the invocation of each test method in the class.
         coreDataHelper = CoreDataTestHelper()
         sut = AudioDAO(container: coreDataHelper.mockPersistantContainer)
-        coreDataHelper.initStubs()
+        collaborator = coreDataHelper.initStubs()
     }
 
     override func tearDown() {
@@ -111,144 +116,140 @@ class DAOTests: XCTestCase {
 
     // MARK: - Create
 
-    /// Creates a new Element and asserts if error is nil
+    /// Creates a new Element (first without viewContext) and asserts if error is nil
     func testCreate() {
-//        let category = Category(container: coreDataHelper.mockPersistantContainer)
-//        let audio = Audio(container: coreDataHelper.mockPersistantContainer)
-//        var databaseError: Error?
-//
-//        category.categoryName = "Mock Category"
-//
-//        audio.audioName = "Mock create"
-//        audio.audioPath = "/Mocks/Path/"
-//        audio.isPrivate = false
-//        audio.belongsTo = category
-//
-//        category.has = NSSet.init(array: [audio])
-//
-//        do {
-//            try sut.create(audio)
-//        } catch {
-//            databaseError = error
-//            print(databaseError ?? "databaseError Create")
-//        }
-//
-//        XCTAssertNil(databaseError, "databaseError Create")
+        let audio = Audio(container: coreDataHelper.mockPersistantContainer)
+        var databaseError: Error?
+
+        audio.audioName = "Mock audio create"
+        audio.audioPath = "/Mocks/Path/"
+        audio.isPrivate = false
+
+        collaborator.addToAudios(audio)
+
+        do {
+            try sut.create(audio)
+        } catch {
+            databaseError = error
+            print(databaseError ?? "databaseError Create")
+        }
+
+        XCTAssertNil(databaseError, "databaseError Create")
     }
 
     // MARK: - Read
-//
-//    /// Read mocked database, count should be igual to 2
-//    func testReadAll() {
-//        var errorDatabase: Error?
-//        var array = [Teste]()
-//
-//        do {
-//            try array = sut.readAll()
-//        } catch {
-//            errorDatabase = error
-//            print(errorDatabase ?? "databaseError read")
-//        }
-//
-//        XCTAssertEqual(array.count, 2, "initStubs create only 2 item not \(array.count)!")
-//        XCTAssertNil(errorDatabase, "databaseError read")
-//    }
-//
-//    // MARK: - Update
-//
-//    /// Update saves the current context. Change the context and see if it was saved
-//    func testUpdate() {
-//        var errorDatabase: Error?
-//        var array = [Teste]()
-//        var element: Teste?
-//
-//        do {
-//            try array = sut.readAll()
-//            element = array[0]
-//        } catch {
-//            errorDatabase = error
-//            print(errorDatabase ?? "databaseError read")
-//        }
-//
-//        guard let item = element else { return }
-//
-//        do {
-//            item.titulo = "item updated"
-//            try sut.updateContext()
-//        } catch {
-//            errorDatabase = error
-//            print(errorDatabase ?? "databaseError update")
-//        }
-//
-//        XCTAssertEqual(item.titulo, "item updated", "Database was not updated")
-//        XCTAssertNil(errorDatabase, "databaseError update")
-//    }
-//
-//    // MARK: - Delete
-//
-//    /// Fetches the Elements, delete one and see if newArray count is one
-//    func testDelete() {
-//        var errorDatabase: Error?
-//        var array = [Teste]()
-//        var newArray = [Teste]()
-//
-//        do {
-//           try array = sut.readAll()
-//        } catch {
-//           errorDatabase = error
-//           print(errorDatabase ?? "databaseError1 read")
-//        }
-//
-//        let element = array[0]
-//
-//        do {
-//           try sut.delete(element)
-//        } catch {
-//           errorDatabase = error
-//           print(errorDatabase ?? "databaseError1 delete")
-//        }
-//
-//        do {
-//           try newArray = sut.readAll()
-//        } catch {
-//           errorDatabase = error
-//           print(errorDatabase ?? "databaseError2 read")
-//        }
-//
-//        XCTAssertEqual(newArray.count, 1, "Database should have only one record")
-//        XCTAssertNil(errorDatabase, "databaseError update")
-//    }
-//
-//    /// Fetches the Elements, delete all and see if newArray count is zero
-//    func testDeleteAll() {
-//        var errorDatabase: Error?
-//        var array = [Teste]()
-//        var newArray = [Teste]()
-//
-//        do {
-//           try array = sut.readAll()
-//        } catch {
-//           errorDatabase = error
-//           print(errorDatabase ?? "databaseError1 read")
-//        }
-//
-//        let element = array[0]
-//
-//        do {
-//           try sut.deleteAll(element)
-//        } catch {
-//           errorDatabase = error
-//           print(errorDatabase ?? "databaseError1 delete")
-//        }
-//
-//        do {
-//           try newArray = sut.readAll()
-//        } catch {
-//           errorDatabase = error
-//           print(errorDatabase ?? "databaseError2 read")
-//        }
-//
-//        XCTAssertEqual(newArray.count, 0, "Database should have no records")
-//        XCTAssertNil(errorDatabase, "databaseError update")
-//    }
+
+    /// Read mocked database, count should be igual to 3
+    func testReadAll() {
+        var databaseError: Error?
+        var array = [Audio]()
+
+        do {
+            try array = sut.readAll()
+        } catch {
+            databaseError = error
+            print(databaseError ?? "databaseError read")
+        }
+
+        XCTAssertEqual(array.count, 3, "initStubs create only 3 item not \(array.count)!")
+        XCTAssertNil(databaseError, "databaseError read")
+    }
+
+    // MARK: - Update
+
+    /// Update saves the current context. Change the context and see if it was saved
+    func testUpdate() {
+        var databaseError: Error?
+        var array = [Audio]()
+        var element: Audio?
+
+        do {
+            try array = sut.readAll()
+            element = array[0]
+        } catch {
+            databaseError = error
+            print(databaseError ?? "databaseError read")
+        }
+
+        guard let item = element else { return }
+
+        do {
+            item.audioName = "Mock Name updated"
+            try sut.updateContext()
+        } catch {
+            databaseError = error
+            print(databaseError ?? "databaseError update")
+        }
+
+        XCTAssertEqual(item.audioName, "Mock Name updated", "Database was not updated")
+        XCTAssertNil(databaseError, "databaseError update")
+    }
+
+    // MARK: - Delete
+
+    /// Fetches the Elements, delete one and see if newArray count is two
+    func testDelete() {
+        var databaseError: Error?
+        var array = [Audio]()
+        var newArray = [Audio]()
+
+        do {
+           try array = sut.readAll()
+        } catch {
+           databaseError = error
+           print(databaseError ?? "databaseError1 read")
+        }
+
+        let element = array[0]
+
+        do {
+           try sut.delete(element)
+        } catch {
+           databaseError = error
+           print(databaseError ?? "databaseError1 delete")
+        }
+
+        do {
+           try newArray = sut.readAll()
+        } catch {
+           databaseError = error
+           print(databaseError ?? "databaseError2 read")
+        }
+
+        XCTAssertEqual(newArray.count, 2, "Database should have only two records")
+        XCTAssertNil(databaseError, "databaseError update")
+    }
+
+    /// Fetches the Elements, delete all and see if newArray count is zero
+    func testDeleteAll() {
+        var databaseError: Error?
+        var array = [Audio]()
+        var newArray = [Audio]()
+
+        do {
+           try array = sut.readAll()
+        } catch {
+           databaseError = error
+           print(databaseError ?? "databaseError1 read")
+        }
+
+        let element = array[0]
+
+        do {
+           try sut.deleteAll(element)
+        } catch {
+           databaseError = error
+           print(databaseError ?? "databaseError1 delete")
+        }
+
+        do {
+           try newArray = sut.readAll()
+        } catch {
+           databaseError = error
+           print(databaseError ?? "databaseError2 read")
+        }
+
+        XCTAssertEqual(newArray.count, 0, "Database should have no records")
+        XCTAssertNil(databaseError, "databaseError update")
+    }
 }

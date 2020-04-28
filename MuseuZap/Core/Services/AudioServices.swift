@@ -13,6 +13,10 @@ import UIKit
 /// Error Handling + doing aditional treatment to data.
 class AudioServices {
 
+    required init(dao: AudioDAO) {
+        self.DAO = dao
+    }
+
     /// Used Data Access Object
     var DAO = AudioDAO()
 

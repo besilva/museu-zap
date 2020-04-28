@@ -29,7 +29,7 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
         super.viewDidLoad()
         self.title = "List"
         // Fake doing request
-        let audioServices = AudioServices()
+        let audioServices = AudioServices(dao: AudioDAO())
         let viewModel = ListViewModel(audioServices: audioServices)
         viewModel.navigationDelegate = self
         myView.viewModel = viewModel

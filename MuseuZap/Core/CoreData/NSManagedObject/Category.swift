@@ -29,7 +29,7 @@ public class Category: NSManagedObject {
         let entityDescription = NSEntityDescription.entity(forEntityName: "Category", in: managedObjectContext)
 
         // Call super
-        self.init(entity: entityDescription!, insertInto: nil)
+        self.init(entity: entityDescription!, insertInto: managedObjectContext)
     }
 }
 

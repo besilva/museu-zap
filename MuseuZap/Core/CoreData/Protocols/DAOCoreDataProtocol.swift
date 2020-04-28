@@ -13,7 +13,7 @@ import CoreData
 
 /// Core Data Data Access Object base class
 /// Protocol Oriented
-protocol DAOCoreData {
+protocol DAOCoreData: class {
 
     /// Adopted persistentContainer.
     /// The container uses models from MuseuZap.xcdatamodeld BUT can be stored in the device or RAM memory (for tests).
@@ -49,7 +49,7 @@ extension DAOCoreData {
             // Aersist changes at the context
             try container.viewContext.save()
         } catch {
-            throw DatabaseErrors.create
+            throw error // TODO: how to through the error message?
         }
     }
 
@@ -109,9 +109,11 @@ extension DAOCoreData {
     }
 
     func deleteAll(_ objectToBeDeleted: Entity) throws {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: "Teste")
+        // Creating fetch request
+        let request: NSFetchRequest<Entity> = fetchRequest()
+
         // swiftlint:disable force_try
-        let objs = try! container.viewContext.fetch(fetchRequest)
+        let objs = try! container.viewContext.fetch(request)
 
         for case let obj as NSManagedObject in objs {
             container.viewContext.delete(obj)

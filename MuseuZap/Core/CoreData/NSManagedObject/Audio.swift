@@ -28,7 +28,7 @@ public class Audio: NSManagedObject {
         let entityDescription = NSEntityDescription.entity(forEntityName: "Audio", in: managedObjectContext)
 
         // Call super
-        self.init(entity: entityDescription!, insertInto: nil)
+        self.init(entity: entityDescription!, insertInto: managedObjectContext)
     }
 }
 
