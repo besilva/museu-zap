@@ -12,49 +12,20 @@ import CoreData
 
 // TODO: como jogar o erro para cima usando os enums? Se faço cast como DatabaseErros, qnd dou print pego apenas o nome
 
-    // MARK: - AudioDAOMock
-
-class AudioDAOMock: AudioDAOProtocol {
-
-    // TODO: COMO alternar as funcoes do mock para produzirem erro???
-
-    var coreDataHelper = CoreDataTestHelper()
-
-    func create(_ objectToBeSaved: Audio) throws {
-    }
-
-    func readAll() throws -> [Audio] {
-        let audio = Audio(container: coreDataHelper.mockPersistantContainer)
-        return [audio]
-    }
-
-    func updateContext() throws {
-    }
-
-    func delete(_ objectToBeDeleted: Audio) throws {
-    }
-
-    func deleteAll(_ objectToBeDeleted: Audio) throws {
-    }
-
-    // MARK: - CRUD ERRORS
-
-    func readAllError() throws -> [Audio] {
-        throw DatabaseErrors.read
-    }
-
-}
-
     // MARK: - Audio Services
 
 class AudioServicesTests: XCTestCase {
 
     var sut: AudioServices!
+    /// Sistem under Test with Mocked DAO to produce errors
+    var sutErrors: AudioServices!
     var coreDataHelper: CoreDataTestHelper!
 
     override func setUp() {
         coreDataHelper = CoreDataTestHelper()
         sut = AudioServices(dao: AudioDAOMock())
+
+        sutErrors = AudioServices(dao: AudioDAOMockErrors())
     }
 
     override func tearDown() {
@@ -77,6 +48,15 @@ class AudioServicesTests: XCTestCase {
         }
     }
 
+    // SUT with Mocked DAO to produce errors
+    func testCreateError() {
+        let audio = Audio(container: coreDataHelper.mockPersistantContainer)
+
+        sutErrors.createAudio(audio: audio) { (error) in
+            XCTAssertEqual(error as? DatabaseErrors, DatabaseErrors.create)
+        }
+    }
+
     // MARK: - Read
 
     func testGetAllAudios() {
@@ -84,6 +64,14 @@ class AudioServicesTests: XCTestCase {
         sut.getAllAudios { (error, audioArray) in
             XCTAssertEqual(audioArray?.count, 1, "AudioDAO Mock create func creates only 1 item not \(audioArray?.count ?? 100)!")
             XCTAssertNil(error, "Services get error")
+        }
+    }
+
+    func testGetAllAudiosError() {
+
+        sutErrors.getAllAudios { (error, audioArray) in
+            XCTAssertEqual(error as? DatabaseErrors, DatabaseErrors.read)
+            XCTAssertNil(audioArray, "Array should be nil")
         }
     }
 
@@ -97,6 +85,14 @@ class AudioServicesTests: XCTestCase {
         }
     }
 
+    // SUT with Mocked DAO to produce errors
+    func testUpdateAllAudiosError() {
+
+        sut.updateAllAudios { (error) in
+            XCTAssertEqual(error as? DatabaseErrors, DatabaseErrors.update)
+        }
+    }
+
     // MARK: - Delete
     
     // Mock DAO does nothing, should not produce errors
@@ -107,14 +103,63 @@ class AudioServicesTests: XCTestCase {
             XCTAssertNil(error, "Services delete error")
         }
     }
-    // MARK: - FAIL TESTS
 
-//    func testGetAllAudiosError() {
-//
-//        XCTAssertThrowsError(try sut.getAllAudios({ (_, _) in
-//        })) { error in
-//            XCTAssertEqual(error as! DatabaseErrors, DatabaseErrors.read)
-//        }
-//    }
+    // SUT with Mocked DAO to produce errors
+    func testDeleteErrors() {
+        let audio = Audio(container: coreDataHelper.mockPersistantContainer)
+
+        sut.deleteAudio(audio: audio) { (error) in
+            XCTAssertEqual(error as? DatabaseErrors, DatabaseErrors.delete)
+        }
+    }
+
+}
+
+// MARK: - DAO mocks
+
+class AudioDAOMock: AudioDAOProtocol {
+
+    var coreDataHelper = CoreDataTestHelper()
+
+    func create(_ objectToBeSaved: Audio) throws {
+    }
+
+    func readAll() throws -> [Audio] {
+        let audio = Audio(container: coreDataHelper.mockPersistantContainer)
+        return [audio]
+    }
+
+    func updateContext() throws {
+    }
+
+    func delete(_ objectToBeDeleted: Audio) throws {
+    }
+
+    func deleteAll(_ objectToBeDeleted: Audio) throws {
+    }
+
+}
+
+/// Mocked DAO to throw DatabaseErrors
+class AudioDAOMockErrors: AudioDAOProtocol {
+    func create(_ objectToBeSaved: Audio) throws {
+        throw DatabaseErrors.create
+    }
+
+    func readAll() throws -> [Audio] {
+        throw DatabaseErrors.read
+    }
+
+    func updateContext() throws {
+        throw DatabaseErrors.update
+    }
+
+    func delete(_ objectToBeDeleted: Audio) throws {
+        throw DatabaseErrors.delete
+    }
+
+    func deleteAll(_ objectToBeDeleted: Audio) throws {
+        throw DatabaseErrors.delete
+    }
 
 }
