@@ -67,7 +67,7 @@ class AudioServicesTests: XCTestCase {
 
         // Audio Array should contain exactly one record
         sut.getAllAudios { (error, audioArray) in
-            XCTAssertEqual(audioArray?.count, 1, "AudioDAO Mock create func creates only 1 item not \(audioArray?.count ?? 100)!")
+            XCTAssertEqual(audioArray?.count, 1, "AudioDAO Mock readall func creates only 1 item not \(audioArray?.count ?? 100)!")
             XCTAssertNil(error, "Services get error")
         }
     }

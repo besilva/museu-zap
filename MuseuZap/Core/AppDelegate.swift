@@ -24,14 +24,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = tabController
         window?.makeKeyAndVisible()
 
-        addTestDataTesteEntity()
+        addTestData()
 
         return true
     }
 
     // TODO: Delete test method (not saved in the storage)
 
-    func addTestDataTesteEntity() {
+    func addTestData() {
         let context = CoreDataManager.sharedInstance.managedObjectContext
         // Get entity, then generatehow  an object from it
         guard let entity1 = NSEntityDescription.entity(forEntityName: "Audio", in: context),
@@ -49,8 +49,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             audio.audioName = "Gemidao do Zap v.\(i)"
             audio.audioPath = "/Documents/MuseuZap/Audio\(i)"
             audio.isPrivate = true
+            audio.duration = 5.44
 
             category.addToAudios(audio)
+            print("breakpoint")
         }
     }
 

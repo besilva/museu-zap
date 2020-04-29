@@ -44,6 +44,7 @@ class DAOTests: XCTestCase {
 
         audio.audioName = "Mock audio create"
         audio.audioPath = "/Mocks/Path/"
+        audio.duration = 5.44
         audio.isPrivate = false
 
         collaborator.addToAudios(audio)
@@ -241,23 +242,18 @@ class CoreDataTestHelper {
     func initStubs() -> MuseuZap.Category {
         // Contex is RAM Memory insted of the own App Database
         let context = mockPersistantContainer.viewContext
-        var collaborator: MuseuZap.Category = Category(intoContext: context)
+        var collaborator: MuseuZap.Category!
 
-        // Get entity, then generatehow  an object from it
-        guard let entity1 = NSEntityDescription.entity(forEntityName: "Audio", in: context),
-              let entity2 = NSEntityDescription.entity(forEntityName: "Category", in: context)
-        else {
-            fatalError("Could not find entities")
-        }
-
+        // For predicate method - public audios
         for i in 1...2 {
-            let audio = Audio(entity: entity1, insertInto: context)
-            let category = Category(entity: entity2, insertInto: context)
+            let audio = Audio(intoContext: mockPersistantContainer.viewContext)
+            let category: MuseuZap.Category = MuseuZap.Category(intoContext: mockPersistantContainer.viewContext)
 
             category.categoryName = "Category \(i)"
 
             audio.audioName = "Mock v.\(i)"
             audio.audioPath = "/Mocks/MuseuZap/Audio\(i)"
+            audio.duration = 5.44
             audio.isPrivate = false
 
             category.addToAudios(audio)
@@ -265,20 +261,25 @@ class CoreDataTestHelper {
             collaborator = category
         }
 
-        // For predicate method
-        let audio = Audio(entity: entity1, insertInto: context)
-        let category = Category(entity: entity2, insertInto: context)
+        // For predicate method - Private Audio
+        let audio = Audio(intoContext: context)
+        let category: MuseuZap.Category = MuseuZap.Category(intoContext: context)
+
         category.categoryName = "Category Private"
+        category.addToAudios(audio)
+
         audio.audioName = "Mock v. Private"
         audio.audioPath = "/Mocks/MuseuZap/Audio/private"
         audio.isPrivate = true
-        category.addToAudios(audio)
-        // For predicate method
+        audio.duration = 5.44
+
+        // Initialize collaborator
+        collaborator = category
 
         do {
             try mockPersistantContainer.viewContext.save()
         } catch {
-            print("create fakes error \(error)")
+            print("CREATE init Stubs ERROR \n \(error)")
         }
 
         return collaborator

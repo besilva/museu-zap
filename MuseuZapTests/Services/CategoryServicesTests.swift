@@ -41,6 +41,7 @@ class CategoryServicesTests: XCTestCase {
         categoryDAO.shouldThrowError = false
 
         let category = Category(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
+        category.categoryName = "create"
 
         sut.createCategory(category: category) { (error) in
             print("Services create error", error as Any)
@@ -53,6 +54,7 @@ class CategoryServicesTests: XCTestCase {
         categoryDAO.shouldThrowError = true
 
         let category = Category(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
+        category.categoryName = "createError"
 
         sut.createCategory(category: category) { (error) in
             // Closure only invoked if there was error
@@ -67,7 +69,7 @@ class CategoryServicesTests: XCTestCase {
 
         // Category Array should contain exactly one record
         sut.getAllCategories { (error, categoryArray) in
-            XCTAssertEqual(categoryArray?.count, 1, "AudioDAO Mock create func creates only 1 item not \(categoryArray?.count ?? 100)!")
+            XCTAssertEqual(categoryArray?.count, 1, "AudioDAO Mock read func creates only 1 item not \(categoryArray?.count ?? 100)!")
             XCTAssertNil(error, "Services get error")
         }
     }
@@ -109,6 +111,7 @@ class CategoryServicesTests: XCTestCase {
         categoryDAO.shouldThrowError = false
 
         let category = Category(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
+        category.categoryName = "deleteError"
 
         sut.deleteCategory(category: category) { (error) in
             print("Services update error", error as Any)
@@ -121,6 +124,7 @@ class CategoryServicesTests: XCTestCase {
         categoryDAO.shouldThrowError = true
 
         let category = Category(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
+        category.categoryName = "deleteError"
 
         sut.deleteCategory(category: category) { (error) in
             // Closure only invoked if there was error
@@ -149,6 +153,7 @@ class CategoryDAOMock: CategoryDAOProtocol {
             throw DatabaseErrors.read
         } else {
             let category = Category(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
+            category.categoryName = "readAll"
             return [category]
         }
     }

@@ -61,6 +61,6 @@ struct AudioProperties {
     var name: String
     var path: String
     var isPrivate: Bool
-    var duration: TimeInterval
+    var duration: TimeInterval = 0
     var category: String?
 }
