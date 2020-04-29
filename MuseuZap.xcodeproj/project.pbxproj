@@ -30,6 +30,7 @@
 		80E6C368244DF09700A42A4C /* AboutViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E6C367244DF09700A42A4C /* AboutViewTests.swift */; };
 		80F7235E245319DA00583137 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F7235D245319DA00583137 /* UILabel+Extension.swift */; };
 		80FAABD82451BFD6008B7DB8 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FAABD72451BFD6008B7DB8 /* UIColorExtension.swift */; };
+		C502A28B245A1E680014068E /* CoreDataTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C502A28A245A1E680014068E /* CoreDataTestHelper.swift */; };
 		C50385D82458423B00559CB4 /* AudioServicesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50385D72458423B00559CB4 /* AudioServicesTests.swift */; };
 		C50385DA2458424700559CB4 /* CategoryServicesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50385D92458424700559CB4 /* CategoryServicesTests.swift */; };
 		C50385DC24584AEC00559CB4 /* CategoryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50385DB24584AEC00559CB4 /* CategoryDAO.swift */; };
@@ -83,6 +84,7 @@
 		80E6C367244DF09700A42A4C /* AboutViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewTests.swift; sourceTree = "<group>"; };
 		80F7235D245319DA00583137 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		80FAABD72451BFD6008B7DB8 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		C502A28A245A1E680014068E /* CoreDataTestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTestHelper.swift; sourceTree = "<group>"; };
 		C50385D72458423B00559CB4 /* AudioServicesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioServicesTests.swift; sourceTree = "<group>"; };
 		C50385D92458424700559CB4 /* CategoryServicesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryServicesTests.swift; sourceTree = "<group>"; };
 		C50385DB24584AEC00559CB4 /* CategoryDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDAO.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				C52E7442244F37D300E1DDA4 /* DAOCoreDataProtocolTests.swift */,
+				C502A28A245A1E680014068E /* CoreDataTestHelper.swift */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				C52E7444244F37D300E1DDA4 /* DAOCoreDataProtocolTests.swift in Sources */,
 				C5A4CD2C2451138500F190A5 /* MuseuZap.xcdatamodeld in Sources */,
 				C50385DA2458424700559CB4 /* CategoryServicesTests.swift in Sources */,
+				C502A28B245A1E680014068E /* CoreDataTestHelper.swift in Sources */,
 				C50385D82458423B00559CB4 /* AudioServicesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
