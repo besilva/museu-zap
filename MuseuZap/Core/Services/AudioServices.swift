@@ -14,11 +14,11 @@ import UIKit
 class AudioServices {
 
     /// Used Data Access Object
-    var DAO: AudioDAOProtocol
+    var audioDAO: AudioDAOProtocol
 
     // Dependency Injection in order to make a testable class
     required init(dao: AudioDAOProtocol) {
-        self.DAO = dao
+        self.audioDAO = dao
     }
 
     // MARK: - Create
@@ -31,7 +31,7 @@ class AudioServices {
     func createAudio(audio: Audio, _ completion: ((_ error: Error?) -> Void)?) {
         do {
             // Save information
-            try DAO.create(audio)
+            try audioDAO.create(audio)
         } catch {
             if let closureError = completion {
                 closureError(error)
@@ -54,7 +54,7 @@ class AudioServices {
         var audios: [Audio]?
 
         do {
-            audios = try DAO.readAll()
+            audios = try audioDAO.readAll()
             completion(nil, audios)
         } catch let error as DatabaseErrors {
             // Vale a pena do ponto de vista do usuario
@@ -78,7 +78,7 @@ class AudioServices {
         var audios: [Audio]?
 
         do {
-            audios = try DAO.fetchAudiosWith(isPrivate: true)
+            audios = try audioDAO.fetchAudiosWith(isPrivate: true)
             completion(nil, audios)
         } catch let error as DatabaseErrors {
             raisedError = error
@@ -99,7 +99,7 @@ class AudioServices {
     func updateAllAudios(errorCompletion: ((_ error: Error?) -> Void)?) {
         do {
             // Save information
-            try DAO.updateContext()
+            try audioDAO.updateContext()
         } catch let error {
             if let closureError = errorCompletion {
                 closureError(error)
@@ -119,7 +119,7 @@ class AudioServices {
     func deleteAudio(audio: Audio, _ completion: ((_ error: Error?) -> Void)?) {
         do {
             // Save information
-            try DAO.delete(audio)
+            try audioDAO.delete(audio)
         } catch let error {
             if let closureError = completion {
                 closureError(error)

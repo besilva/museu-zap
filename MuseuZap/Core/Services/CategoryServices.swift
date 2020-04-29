@@ -14,11 +14,11 @@ import UIKit
 class CategoryServices {
 
     /// Used Data Access Object
-    var DAO: CategoryDAOProtocol
+    var categoryDAO: CategoryDAOProtocol
 
     // Dependency Injection in order to make a testable class
     required init(dao: CategoryDAOProtocol) {
-        self.DAO = dao
+        self.categoryDAO = dao
     }
 
     // MARK: - Create
@@ -31,7 +31,7 @@ class CategoryServices {
     func createCategory(category: Category, _ completion: ((_ error: Error?) -> Void)?) {
         do {
             // Save information
-            try DAO.create(category)
+            try categoryDAO.create(category)
         } catch let error {
             if let closureError = completion {
                 closureError(error)
@@ -55,7 +55,7 @@ class CategoryServices {
 
         do {
             // Save information
-            categories = try DAO.readAll()
+            categories = try categoryDAO.readAll()
             completion(nil, categories)
         } catch let error as DatabaseErrors {
             // Error here shall be treated properly
@@ -76,7 +76,7 @@ class CategoryServices {
     func updateAllCategories(errorCompletion: ((_ error: Error?) -> Void)?) {
         do {
             // Save information
-            try DAO.updateContext()
+            try categoryDAO.updateContext()
         } catch let error {
             if let closureError = errorCompletion {
                 closureError(error)
@@ -96,7 +96,7 @@ class CategoryServices {
     func deleteCategory(category: Category, _ completion: ((_ error: Error?) -> Void)?) {
         do {
             // Save information
-            try DAO.delete(category)
+            try categoryDAO.delete(category)
         } catch let error {
             if let closureError = completion {
                 closureError(error)

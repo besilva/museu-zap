@@ -13,7 +13,7 @@ import CoreData
 
 /// Core Data Data Access Object base class
 /// Protocol Oriented
-protocol DAOCoreData: class {
+protocol DAOCoreData {
 
     /// Adopted managedObjectContext from persistentContainer.
     /// The managedContext uses models from MuseuZap.xcdatamodeld BUT can be stored in the device or RAM memory (for tests).
