@@ -109,9 +109,10 @@ class AudioCellView: UIView, ViewCodable {
                                                       attribute: .bottom,
                                                       multiplier: 1,
                                                       constant: 0)
-            bottomConstraint.priority = UILayoutPriority(rawValue: 750)
+            bottomConstraint.priority = UILayoutPriority(rawValue: 999)
             bottomConstraint.isActive = true
             
+            durationLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 13).isActive = true
             durationLabel.leadingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor).isActive = true
         }
 
@@ -125,7 +126,7 @@ class AudioCellView: UIView, ViewCodable {
 //        Setup share icon constraints
         shareIcon.setupConstraints { (_) in
             shareIcon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
-            shareIcon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -9).isActive = true
+            shareIcon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
         }
     }
     
@@ -187,7 +188,8 @@ class AudioCellView: UIView, ViewCodable {
         paragraphStyle.lineHeightMultiple = 0.72
         
         let attributedText = NSMutableAttributedString(string: durationString,
-                                                       	attributes: [NSAttributedString.Key.kern: 0.07, NSAttributedString.Key.paragraphStyle: paragraphStyle])
+                                                       	attributes: [NSAttributedString.Key.kern: 0.07,
+                                                                        NSAttributedString.Key.paragraphStyle: paragraphStyle])
         durationLabel.attributedText = attributedText
         durationLabel.textAlignment = .left
         durationLabel.backgroundColor = .black
