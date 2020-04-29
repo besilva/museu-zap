@@ -129,8 +129,8 @@
 			isa = PBXGroup;
 			children = (
 				6473EDD3243B6D3700A10F2C /* MuseuZap */,
-				6473EDD2243B6D3700A10F2C /* Products */,
 				6473EDEA243B6D3E00A10F2C /* MuseuZapTests */,
+				6473EDD2243B6D3700A10F2C /* Products */,
 			);
 			sourceTree = "<group>";
 		};
