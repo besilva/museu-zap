@@ -62,6 +62,7 @@ class CategoryServices {
             raisedError = error
             completion(raisedError, nil)
         } catch {
+            completion(error, nil)
             print("Unexpected error: \(error).")
         }
     }
