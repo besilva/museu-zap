@@ -48,6 +48,7 @@ class AudioCellView: UIView, ViewCodable {
     
     func setupConstraints() {
         self.setContentCompressionResistancePriority(.required, for: .vertical)
+        self.setContentCompressionResistancePriority(.required, for: .horizontal)
         contentView.setupConstraints { (_) in
             contentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
             contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
@@ -79,7 +80,7 @@ class AudioCellView: UIView, ViewCodable {
                                                             constant: -16)
             bottomMarginConstraint.priority = UILayoutPriority(rawValue: 999)
             bottomMarginConstraint.isActive = true
-            audioDataContentView.trailingAnchor.constraint(equalTo: shareIcon.leadingAnchor, constant: -8).isActive = true
+            audioDataContentView.trailingAnchor.constraint(equalTo: shareIcon.leadingAnchor, constant: -24).isActive = true
         }
         
 //        Setup audio title constraints
@@ -101,7 +102,7 @@ class AudioCellView: UIView, ViewCodable {
                                                       attribute: .bottom,
                                                       multiplier: 1,
                                                       constant: 4)
-            topConstraint.priority = UILayoutPriority(rawValue: 999)
+            topConstraint.priority = UILayoutPriority.required
             topConstraint.isActive = true
             
             durationLabel.bottomAnchor.constraint(equalTo: audioDataContentView.bottomAnchor).isActive = true
@@ -120,13 +121,17 @@ class AudioCellView: UIView, ViewCodable {
         }
 
 //        Setup play icon constraints
+        playIcon.setContentCompressionResistancePriority(.required, for: .horizontal)
+        playIcon.setContentHuggingPriority(.required, for: .horizontal)
         playIcon.setupConstraints { (_) in
             playIcon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
-            playIcon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
+            playIcon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24).isActive = true
             playIcon.trailingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor, constant: -16).isActive = true
         }
 
 //        Setup share icon constraints
+        shareIcon.setContentCompressionResistancePriority(.required, for: .horizontal)
+        shareIcon.setContentHuggingPriority(.required, for: .horizontal)
         shareIcon.setupConstraints { (_) in
             shareIcon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
             shareIcon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
