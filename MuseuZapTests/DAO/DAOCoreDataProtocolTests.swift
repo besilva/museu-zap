@@ -287,14 +287,21 @@ class CoreDataTestHelper {
 
     func flushData(from entity: String) {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
-        // swiftlint:disable force_try
-        let objs = try! mockPersistantContainer.viewContext.fetch(fetchRequest)
 
-        for case let obj as NSManagedObject in objs {
-            mockPersistantContainer.viewContext.delete(obj)
+        do {
+            let objs = try mockPersistantContainer.viewContext.fetch(fetchRequest)
+
+            for case let obj as NSManagedObject in objs {
+                mockPersistantContainer.viewContext.delete(obj)
+            }
+        } catch {
+            print("FLUSH DATA init Stubs ERROR \n \(error)")
         }
 
-        try! mockPersistantContainer.viewContext.save()
-        // swiftlint:enable force_try
+        do {
+            try mockPersistantContainer.viewContext.save()
+        } catch {
+            print("FLUSH DATA init Stubs ERROR \n \(error)")
+        }
     }
 }
