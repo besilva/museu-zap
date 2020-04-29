@@ -113,15 +113,24 @@ extension DAOCoreData {
         // Creating fetch request
         let request: NSFetchRequest<Entity> = fetchRequest()
 
-        // swiftlint:disable force_try
-        let objs = try! managedContext.fetch(request)
+        do {
+            let objs = try managedContext.fetch(request)
 
-        for case let obj as NSManagedObject in objs {
-            managedContext.delete(obj)
+            for case let obj as NSManagedObject in objs {
+                managedContext.delete(obj)
+            }
+        } catch {
+            print("DATABASE ERROR DELETE \n", error)
+            throw DatabaseErrors.delete
         }
 
-        try! managedContext.save()
-        // swiftlint:enable force_try
+        do {
+            // Persist changes at the context
+            try managedContext.save()
+        } catch {
+            print("DATABASE ERROR UPDATE in delete \n", error)
+            throw DatabaseErrors.update
+        }
     }
 
     // MARK: - Helper
