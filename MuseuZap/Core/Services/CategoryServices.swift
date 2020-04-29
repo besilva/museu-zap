@@ -28,16 +28,15 @@ class CategoryServices {
     ///     - category: Category to be Saved
     ///     - completion: closure to be executed at the end of this method
     /// - throws: if an error occurs during saving an object into database (DatabaseErrors.create)
-    func createCategory(category: Category, _ completion: ((_ error: Error?) -> Void)?) {
+    func createCategory(category: Category, _ completion: (_ error: Error?) -> Void) {
         do {
             // Save information
             try categoryDAO.create(category)
-        } catch let error {
-            if let closureError = completion {
-                closureError(error)
-            } else {
-                print(error)
-            }
+        } catch let error as DatabaseErrors {
+            completion(error)
+        } catch {
+            completion(error)
+            print("Unexpected error: \(error).")
         }
     }
 
@@ -74,16 +73,16 @@ class CategoryServices {
     ///     - category: Category to be updated
     ///     - completion: closure to be executed at the end of this method
     /// - throws: if an error occurs during saving an object into database (DatabaseErrors.update)
-    func updateAllCategories(errorCompletion: ((_ error: Error?) -> Void)?) {
+    func updateAllCategories(_ completion: (_ error: Error?) -> Void) {
         do {
             // Save information
             try categoryDAO.updateContext()
-        } catch let error {
-            if let closureError = errorCompletion {
-                closureError(error)
-            } else {
-                print(error)
-            }
+            completion(nil)
+        } catch let error as DatabaseErrors {
+            completion(error)
+        } catch {
+            completion(error)
+            print("Unexpected error: \(error).")
         }
     }
 
@@ -94,16 +93,16 @@ class CategoryServices {
     ///     - category: category to be deleted
     ///     - completion: closure to be executed at the end of this method
     /// - throws: if an error occurs during saving an object into database (DatabaseErrors.delete)
-    func deleteCategory(category: Category, _ completion: ((_ error: Error?) -> Void)?) {
+    func deleteCategory(category: Category, _ completion: (_ error: Error?) -> Void) {
         do {
             // Save information
             try categoryDAO.delete(category)
-        } catch let error {
-            if let closureError = completion {
-                closureError(error)
-            } else {
-                print(error)
-            }
+            completion(nil)
+        } catch let error as DatabaseErrors {
+            completion(error)
+        } catch {
+            completion(error)
+            print("Unexpected error: \(error).")
         }
     }
 

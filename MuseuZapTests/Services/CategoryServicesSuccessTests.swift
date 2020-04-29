@@ -59,7 +59,7 @@ class CategoryServicesSuccessTests: XCTestCase {
         // Category Array should contain exactly one record
         sut.getAllCategories { (error, categoryArray) in
             XCTAssertEqual(categoryArray?.count, 1, "AudioDAO Mock read func creates only 1 item not \(categoryArray?.count ?? 100)!")
-            XCTAssertNil(error, "Services get error")
+            XCTAssertNil(error, "Services create error")
         }
     }
 
@@ -69,8 +69,7 @@ class CategoryServicesSuccessTests: XCTestCase {
     func testUpdateAllCategories() {
 
         sut.updateAllCategories { (error) in
-           print("Services update error", error as Any)
-           XCTFail("Closure should not be invoked")
+           XCTAssertNil(error, "Services update error")
         }
     }
 
@@ -82,8 +81,7 @@ class CategoryServicesSuccessTests: XCTestCase {
         category.categoryName = "deleteError"
 
         sut.deleteCategory(category: category) { (error) in
-            print("Services update error", error as Any)
-            XCTFail("Closure should not be invoked")
+            XCTAssertNil(error, "Services delete error")
         }
     }
 }

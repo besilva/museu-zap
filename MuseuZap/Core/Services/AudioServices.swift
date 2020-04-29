@@ -28,16 +28,16 @@ class AudioServices {
     ///     - audio: Audio to be Saved
     ///     - completion: closure to be executed at the end of this method
     /// - throws: if an error occurs during saving an object into database (DatabaseErrors.create)
-    func createAudio(audio: Audio, _ completion: ((_ error: Error?) -> Void)?) {
+    func createAudio(audio: Audio, _ completion: ((_ error: Error?) -> Void)) {
         do {
             // Save information
             try audioDAO.create(audio)
+            completion(nil)
+        } catch let error as DatabaseErrors {
+            completion(error)
         } catch {
-            if let closureError = completion {
-                closureError(error)
-            } else {
-                print("AUDIO SERVICES UNKNOWN ERROR", error)
-            }
+            completion(error)
+            print("Unexpected error: \(error).")
         }
     }
 
@@ -57,8 +57,6 @@ class AudioServices {
             audios = try audioDAO.readAll()
             completion(nil, audios)
         } catch let error as DatabaseErrors {
-            // Vale a pena do ponto de vista do usuario
-            // Tambem ter esse tratamento diferente na camada de cima.
             raisedError = error
             completion(raisedError, nil)
         } catch {
@@ -96,16 +94,16 @@ class AudioServices {
     ///     - audio: Audio to be updated
     ///     - completion: closure to be executed at the end of this method
     /// - throws: if an error occurs during saving an object into database (DatabaseErrors.update)
-    func updateAllAudios(errorCompletion: ((_ error: Error?) -> Void)?) {
+    func updateAllAudios(_ completion: (_ error: Error?) -> Void) {
         do {
             // Save information
             try audioDAO.updateContext()
-        } catch let error {
-            if let closureError = errorCompletion {
-                closureError(error)
-            } else {
-                print(error)
-            }
+            completion(nil)
+        } catch let error as DatabaseErrors {
+           completion(error)
+        } catch {
+           completion(error)
+           print("Unexpected error: \(error).")
         }
     }
 
@@ -116,16 +114,16 @@ class AudioServices {
     ///     - audio: audio to be deleted
     ///     - completion: closure to be executed at the end of this method
     /// - throws: if an error occurs during saving an object into database (DatabaseErrors.delete)
-    func deleteAudio(audio: Audio, _ completion: ((_ error: Error?) -> Void)?) {
+    func deleteAudio(audio: Audio, _ completion: (_ error: Error?) -> Void) {
         do {
             // Save information
             try audioDAO.delete(audio)
-        } catch let error {
-            if let closureError = completion {
-                closureError(error)
-            } else {
-                print(error)
-            }
+            completion(nil)
+        } catch let error as DatabaseErrors {
+           completion(error)
+        } catch {
+           completion(error)
+           print("Unexpected error: \(error).")
         }
     }
     

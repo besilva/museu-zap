@@ -47,8 +47,7 @@ class AudioServicesSuccessTests: XCTestCase {
         let audio = Audio(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
 
         sut.createAudio(audio: audio) { (error) in
-            print("Services create error", error as Any)
-            XCTFail("Closure should not be invoked")
+            XCTAssertNil(error, "Services create error")
         }
     }
 
@@ -68,8 +67,7 @@ class AudioServicesSuccessTests: XCTestCase {
     func testUpdateAllAudios() {
         
         sut.updateAllAudios { (error) in
-            print("Services update error", error as Any)
-            XCTFail("Closure should not be invoked")
+             XCTAssertNil(error, "Services update error")
         }
     }
 
@@ -80,8 +78,7 @@ class AudioServicesSuccessTests: XCTestCase {
         let audio = Audio(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
 
         sut.deleteAudio(audio: audio) { (error) in
-            print("Services update error", error as Any)
-            XCTFail("Closure should not be invoked")
+            XCTAssertNil(error, "Services delete error")
         }
     }
 }
