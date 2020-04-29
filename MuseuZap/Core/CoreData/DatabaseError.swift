@@ -16,6 +16,9 @@ public enum DatabaseErrors: Error {
     case read
     case update
     case delete
+    //    case validation
+    // TODO: Olhar a fundo as coisas defensivas do core data, validation..
+    // Pq teoricamente o update (DAO para salvar) pode dar errado de diversas formas..
 }
 
 // Sobre localização: Fazer um enum com as strings para usar um único identifier quando formos localizar o App.

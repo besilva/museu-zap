@@ -26,6 +26,15 @@ class AudioDAO: DAOCoreData, AudioDAOProtocol {
         // Use the default managedObjectContext for production environment
         self.init(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
     }
+
+    // MARK: - AUDIO only
+
+    func getAllPrivateAudios() throws {
+
+        if Audio.value(forKey: "privateCollection") != nil {
+
+        }
+    }
 }
 
 // MARK: - For test purpose

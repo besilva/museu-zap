@@ -38,7 +38,7 @@ extension Category {
         return NSFetchRequest<Category>(entityName: "Category")
     }
 
-    @NSManaged public var categoryName: String?
+    @NSManaged public var categoryName: String
     @NSManaged public var audios: Set<Audio>?
 
 }
@@ -66,7 +66,7 @@ extension Category {
 struct CategoryProperties {
 
     init(from category: Category) {
-        self.name = category.categoryName ?? " - "
+        self.name = category.categoryName
         
         if let audios = category.audios {
             for audio in audios {

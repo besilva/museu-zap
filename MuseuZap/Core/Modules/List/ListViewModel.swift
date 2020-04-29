@@ -51,8 +51,8 @@ class ListViewModel: ListViewModelProtocol {
                 // Assign teste Array
                 self.array = audios
             } else {
-                // Display error here because it was not possible to load season list
-                // TODO: Como tratar erros + enum?
+                // GetAll audios
+                // Display here some frendiler message based on Error Type (database error or not)
                 print(error ?? "Some default error value")
             }
         }

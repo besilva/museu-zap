@@ -57,7 +57,8 @@ class CategoryServices {
             // Save information
             categories = try DAO.readAll()
             completion(nil, categories)
-        } catch let error as DatabaseErrors { // TODO: vale a pena esse cast aqui?
+        } catch let error as DatabaseErrors {
+            // Error here shall be treated properly
             raisedError = error
             completion(raisedError, nil)
         } catch {
