@@ -16,6 +16,12 @@
 		64A60C3024489D62003B0F26 /* UIView+ConstraintsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A60C2F24489D62003B0F26 /* UIView+ConstraintsExtension.swift */; };
 		64A60C322448A78C003B0F26 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A60C312448A78C003B0F26 /* ListView.swift */; };
 		64A60C342448BD33003B0F26 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A60C332448BD33003B0F26 /* UIViewControllerExtension.swift */; };
+		64C7757D2457162700FDEA03 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C7757C2457162700FDEA03 /* ShareViewController.swift */; };
+		64C775802457162700FDEA03 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64C7757E2457162700FDEA03 /* MainInterface.storyboard */; };
+		64C775842457162700FDEA03 /* MuseuZapShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 64C7757A2457162700FDEA03 /* MuseuZapShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		64C7758924571EF100FDEA03 /* ViewCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A60C2D24489B9E003B0F26 /* ViewCodable.swift */; };
+		64C7758A24571EF900FDEA03 /* UIView+ConstraintsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A60C2F24489D62003B0F26 /* UIView+ConstraintsExtension.swift */; };
+		64C7758D2458739C00FDEA03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64C7758C2458739C00FDEA03 /* Assets.xcassets */; };
 		64DD6FE0243E07D000404321 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FDF243E07D000404321 /* AppCoordinator.swift */; };
 		64DD6FE4243E084100404321 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FE3243E084100404321 /* Coordinator.swift */; };
 		64DD6FE6243E0A4700404321 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FE5243E0A4700404321 /* Stack.swift */; };
@@ -40,7 +46,28 @@
 			remoteGlobalIDString = 6473EDD0243B6D3700A10F2C;
 			remoteInfo = MuseuZap;
 		};
+		64C775822457162700FDEA03 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6473EDC9243B6D3700A10F2C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 64C775792457162700FDEA03;
+			remoteInfo = MuseuZapShare;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		64C775882457162700FDEA03 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				64C775842457162700FDEA03 /* MuseuZapShare.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6473EDD1243B6D3700A10F2C /* MuseuZap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuseuZap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +83,12 @@
 		64A60C2F24489D62003B0F26 /* UIView+ConstraintsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ConstraintsExtension.swift"; sourceTree = "<group>"; };
 		64A60C312448A78C003B0F26 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		64A60C332448BD33003B0F26 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		64C77575245715E200FDEA03 /* MuseuZap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MuseuZap.entitlements; sourceTree = "<group>"; };
+		64C7757A2457162700FDEA03 /* MuseuZapShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MuseuZapShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		64C7757C2457162700FDEA03 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		64C7757F2457162700FDEA03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		64C775812457162700FDEA03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64C7758C2458739C00FDEA03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64DD6FDF243E07D000404321 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		64DD6FE3243E084100404321 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		64DD6FE5243E0A4700404321 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
@@ -87,6 +120,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		64C775772457162700FDEA03 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -95,6 +135,7 @@
 			children = (
 				6473EDD3243B6D3700A10F2C /* MuseuZap */,
 				6473EDEA243B6D3E00A10F2C /* MuseuZapTests */,
+				64C7757B2457162700FDEA03 /* MuseuZapShare */,
 				6473EDD2243B6D3700A10F2C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -104,6 +145,7 @@
 			children = (
 				6473EDD1243B6D3700A10F2C /* MuseuZap.app */,
 				6473EDE7243B6D3E00A10F2C /* MuseuZapTests.xctest */,
+				64C7757A2457162700FDEA03 /* MuseuZapShare.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -111,6 +153,7 @@
 		6473EDD3243B6D3700A10F2C /* MuseuZap */ = {
 			isa = PBXGroup;
 			children = (
+				64C77575245715E200FDEA03 /* MuseuZap.entitlements */,
 				64DD6FE1243E080800404321 /* Core */,
 				6473EDE2243B6D3E00A10F2C /* Info.plist */,
 			);
@@ -125,6 +168,17 @@
 				6473EDED243B6D3E00A10F2C /* Info.plist */,
 			);
 			path = MuseuZapTests;
+			sourceTree = "<group>";
+		};
+		64C7757B2457162700FDEA03 /* MuseuZapShare */ = {
+			isa = PBXGroup;
+			children = (
+				64C7757C2457162700FDEA03 /* ShareViewController.swift */,
+				64C7757E2457162700FDEA03 /* MainInterface.storyboard */,
+				64C775812457162700FDEA03 /* Info.plist */,
+				64C7758C2458739C00FDEA03 /* Assets.xcassets */,
+			);
+			path = MuseuZapShare;
 			sourceTree = "<group>";
 		};
 		64DD6FDE243E07BC00404321 /* Coordinators */ = {
@@ -222,10 +276,12 @@
 				6473EDCE243B6D3700A10F2C /* Frameworks */,
 				6473EDCF243B6D3700A10F2C /* Resources */,
 				C516949F243B6F100014C3AF /* SwiftLint */,
+				64C775882457162700FDEA03 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				64C775832457162700FDEA03 /* PBXTargetDependency */,
 			);
 			name = MuseuZap;
 			productName = MuseuZap;
@@ -250,6 +306,23 @@
 			productReference = 6473EDE7243B6D3E00A10F2C /* MuseuZapTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		64C775792457162700FDEA03 /* MuseuZapShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64C775852457162700FDEA03 /* Build configuration list for PBXNativeTarget "MuseuZapShare" */;
+			buildPhases = (
+				64C775762457162700FDEA03 /* Sources */,
+				64C775772457162700FDEA03 /* Frameworks */,
+				64C775782457162700FDEA03 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MuseuZapShare;
+			productName = MuseuZapShare;
+			productReference = 64C7757A2457162700FDEA03 /* MuseuZapShare.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -266,6 +339,9 @@
 					6473EDE6243B6D3E00A10F2C = {
 						CreatedOnToolsVersion = 11.4;
 						TestTargetID = 6473EDD0243B6D3700A10F2C;
+					};
+					64C775792457162700FDEA03 = {
+						CreatedOnToolsVersion = 11.4;
 					};
 				};
 			};
@@ -284,6 +360,7 @@
 			targets = (
 				6473EDD0243B6D3700A10F2C /* MuseuZap */,
 				6473EDE6243B6D3E00A10F2C /* MuseuZapTests */,
+				64C775792457162700FDEA03 /* MuseuZapShare */,
 			);
 		};
 /* End PBXProject section */
@@ -302,6 +379,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64C775782457162700FDEA03 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64C7758D2458739C00FDEA03 /* Assets.xcassets in Resources */,
+				64C775802457162700FDEA03 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +450,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		64C775762457162700FDEA03 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64C7757D2457162700FDEA03 /* ShareViewController.swift in Sources */,
+				64C7758924571EF100FDEA03 /* ViewCodable.swift in Sources */,
+				64C7758A24571EF900FDEA03 /* UIView+ConstraintsExtension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -371,6 +467,11 @@
 			isa = PBXTargetDependency;
 			target = 6473EDD0243B6D3700A10F2C /* MuseuZap */;
 			targetProxy = 6473EDE8243B6D3E00A10F2C /* PBXContainerItemProxy */;
+		};
+		64C775832457162700FDEA03 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 64C775792457162700FDEA03 /* MuseuZapShare */;
+			targetProxy = 64C775822457162700FDEA03 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -381,6 +482,14 @@
 				6473EDE0243B6D3E00A10F2C /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		64C7757E2457162700FDEA03 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				64C7757F2457162700FDEA03 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -503,10 +612,12 @@
 		6473EDF1243B6D3E00A10F2C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MuseuZap/MuseuZap.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B73YH55T95;
+				DEVELOPMENT_TEAM = P33TK2RVAJ;
 				INFOPLIST_FILE = MuseuZap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -523,10 +634,12 @@
 		6473EDF2243B6D3E00A10F2C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MuseuZap/MuseuZap.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B73YH55T95;
+				DEVELOPMENT_TEAM = P33TK2RVAJ;
 				INFOPLIST_FILE = MuseuZap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -546,7 +659,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B73YH55T95;
+				DEVELOPMENT_TEAM = P33TK2RVAJ;
 				INFOPLIST_FILE = MuseuZapTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -568,7 +681,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B73YH55T95;
+				DEVELOPMENT_TEAM = P33TK2RVAJ;
 				INFOPLIST_FILE = MuseuZapTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -581,6 +694,48 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MuseuZap.app/MuseuZap";
+			};
+			name = Release;
+		};
+		64C775862457162700FDEA03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				INFOPLIST_FILE = MuseuZapShare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.br.MuseuZap.MuseuZapShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		64C775872457162700FDEA03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				INFOPLIST_FILE = MuseuZapShare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.br.MuseuZap.MuseuZapShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -610,6 +765,15 @@
 			buildConfigurations = (
 				6473EDF4243B6D3E00A10F2C /* Debug */,
 				6473EDF5243B6D3E00A10F2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		64C775852457162700FDEA03 /* Build configuration list for PBXNativeTarget "MuseuZapShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64C775862457162700FDEA03 /* Debug */,
+				64C775872457162700FDEA03 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
