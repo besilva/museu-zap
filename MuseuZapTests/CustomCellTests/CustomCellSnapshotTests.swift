@@ -21,7 +21,7 @@ class CustomCellSnapshotTests: FBSnapshotTestCase {
         customCellView = AudioCellView(frame: CGRect(x: 0, y: 0, width: 374, height: 76))
         cellViewController.view.addSubview(customCellView)
         customCellView.setupConstraints { (_) in
-            customCellView.topAnchor.constraint(equalTo: cellViewController.view.topAnchor).isActive = true
+            customCellView.topAnchor.constraint(equalTo: cellViewController.view.topAnchor, constant: 24).isActive = true
             customCellView.centerXAnchor.constraint(equalTo: cellViewController.view.centerXAnchor).isActive = true
             customCellView.widthAnchor.constraint(equalToConstant: customCellView.frame.width).isActive = true
         }
@@ -51,6 +51,14 @@ class CustomCellSnapshotTests: FBSnapshotTestCase {
     
     func testSnapshotThreeLinesTitle() throws {
         let viewModel = PublicAudioCellViewModel(title: "Laboris cupidatat exercitation reprehenderit commodo qui proident",
+                                                 duration: 90,
+                                                 audioURL: "sampleURL")
+        customCellView?.viewModel = viewModel
+        FBSnapshotVerifyView(cellViewController.view)
+    }
+    
+    func testSnapshotFourLinesTitle() throws {
+        let viewModel = PublicAudioCellViewModel(title: "Laboris cupidatat exercitation reprehenderit commodo qui proident Laboris cupidatat exercitation",
                                                  duration: 90,
                                                  audioURL: "sampleURL")
         customCellView?.viewModel = viewModel

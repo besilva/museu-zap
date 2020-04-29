@@ -139,6 +139,8 @@ class AudioCellView: UIView, ViewCodable {
     }
     
     func render() {
+        contentView.layer.cornerRadius = 4
+        self.layer.cornerRadius = 4
         contentView.backgroundColor = UIColor.Default.background
 
         titleLabel.textColor = UIColor.Default.label
@@ -150,14 +152,6 @@ class AudioCellView: UIView, ViewCodable {
 
         shareIcon.tintColor = UIColor.Default.power
         playIcon.tintColor = UIColor.Default.power
-        
-        // Debug colors
-        contentView.backgroundColor = .systemRed
-        audioDataContentView.backgroundColor = .systemBlue
-        titleLabel.backgroundColor = .systemGray
-        durationLabel.backgroundColor = .systemTeal
-        shareIcon.backgroundColor = .white
-        playIcon.backgroundColor = .white
     }
     
     func updateView() {
@@ -181,7 +175,6 @@ class AudioCellView: UIView, ViewCodable {
                                                                     	NSAttributedString.Key.paragraphStyle: paragraphStyle])
         titleLabel.attributedText = attributedText
         titleLabel.textAlignment = .left
-        titleLabel.backgroundColor = .black
     }
     
     func setupDurationLabel() {
@@ -200,7 +193,6 @@ class AudioCellView: UIView, ViewCodable {
                                                                         NSAttributedString.Key.paragraphStyle: paragraphStyle])
         durationLabel.attributedText = attributedText
         durationLabel.textAlignment = .left
-        durationLabel.backgroundColor = .black
     }
 
     func setupPlayButton() {
