@@ -33,6 +33,7 @@ class DAOTests: XCTestCase {
         coreDataHelper.flushData(from: "Audio")
         coreDataHelper.flushData(from: "Category")
         coreDataHelper = nil
+        collaborator = nil
     }
 
     // MARK: - Create
