@@ -10,6 +10,30 @@
 import Foundation
 import CoreData
 
+    // MARK: - Properties Struct
+
+/// Used to reduce clutter for View
+struct CategoryProperties {
+
+    init(from category: Category) {
+        self.name = category.categoryName
+
+        if let audios = category.audios {
+            for audio in audios {
+                self.audios?.append(audio.audioName)
+            }
+        } else {
+            self.audios = nil
+        }
+
+    }
+
+    var name: String
+    var audios: [String]?
+}
+
+    // MARK: - Class
+
 /// NSManagedObject for Teste Entity.
 /// Properties can be accessed through object properties a class instead of "set value for..".
 /// Codegen set to manual
@@ -58,26 +82,4 @@ extension Category {
     @objc(removeAudios:)
     @NSManaged public func removeFromAudios(_ values: NSSet)
 
-}
-
-    // MARK: - Properties
-
-/// Used to reduce clutter for View
-struct CategoryProperties {
-
-    init(from category: Category) {
-        self.name = category.categoryName
-        
-        if let audios = category.audios {
-            for audio in audios {
-                self.audios?.append(audio.audioName)
-            }
-        } else {
-            self.audios = nil
-        }
-
-    }
-
-    var name: String
-    var audios: [String]?
 }

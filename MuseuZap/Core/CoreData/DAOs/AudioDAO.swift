@@ -9,9 +9,6 @@
 import CoreData
 import UIKit
 
-// TODO; return by id
-// todo return by private
-
 /// Data Access Object for Audio Entity
 class AudioDAO: DAOCoreData, AudioDAOProtocol {
 

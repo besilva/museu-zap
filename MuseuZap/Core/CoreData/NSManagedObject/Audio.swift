@@ -10,6 +10,28 @@
 import Foundation
 import CoreData
 
+// MARK: - Properties Struct
+
+/// Used to reduce clutter for View
+struct AudioProperties {
+
+    init(from audio: Audio) {
+        self.name = audio.audioName
+        self.path = audio.audioPath
+        self.category = audio.category.categoryName
+        self.duration = audio.duration
+        self.isPrivate = audio.isPrivate
+    }
+
+    var name: String
+    var path: String
+    var isPrivate: Bool
+    var duration: TimeInterval = 0
+    var category: String?
+}
+
+    // MARK: - Class
+
 /// NSManagedObject for Teste Entity.
 /// Properties can be accessed through object properties a class instead of "set value for..".
 /// Codegen set to manual
@@ -43,24 +65,4 @@ extension Audio {
     @NSManaged public var duration: Double
     @NSManaged public var category: Category
 
-}
-
-    // MARK: - Properties
-
-/// Used to reduce clutter for View
-struct AudioProperties {
-
-    init(from audio: Audio) {
-        self.name = audio.audioName
-        self.path = audio.audioPath
-        self.category = audio.category.categoryName
-        self.duration = audio.duration
-        self.isPrivate = audio.isPrivate
-    }
-
-    var name: String
-    var path: String
-    var isPrivate: Bool
-    var duration: TimeInterval = 0
-    var category: String?
 }
