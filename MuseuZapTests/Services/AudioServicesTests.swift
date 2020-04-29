@@ -40,7 +40,7 @@ class AudioServicesTests: XCTestCase {
     func testCreate() {
         audioDAO.shouldThrowError = false
 
-        let audio = Audio(container: coreDataHelper.mockPersistantContainer)
+        let audio = Audio(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
 
         sut.createAudio(audio: audio) { (error) in
             print("Services create error", error as Any)
@@ -52,7 +52,7 @@ class AudioServicesTests: XCTestCase {
     func testCreateError() {
         audioDAO.shouldThrowError = true
 
-        let audio = Audio(container: coreDataHelper.mockPersistantContainer)
+        let audio = Audio(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
 
         sut.createAudio(audio: audio) { (error) in
             // Closure only invoked if there was error
@@ -109,7 +109,7 @@ class AudioServicesTests: XCTestCase {
     func testDelete() {
         audioDAO.shouldThrowError = false
 
-        let audio = Audio(container: coreDataHelper.mockPersistantContainer)
+        let audio = Audio(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
 
         sut.deleteAudio(audio: audio) { (error) in
             print("Services update error", error as Any)
@@ -121,7 +121,7 @@ class AudioServicesTests: XCTestCase {
     func testDeleteErrors() {
         audioDAO.shouldThrowError = true
 
-        let audio = Audio(container: coreDataHelper.mockPersistantContainer)
+        let audio = Audio(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
 
         sut.deleteAudio(audio: audio) { (error) in
             // Closure only invoked if there was error
@@ -150,7 +150,7 @@ class AudioDAOMock: AudioDAOProtocol {
         if shouldThrowError {
             throw DatabaseErrors.read
         } else {
-            let audio = Audio(container: coreDataHelper.mockPersistantContainer)
+            let audio = Audio(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
             return [audio]
         }
     }

@@ -11,16 +11,17 @@ import UIKit
 
 /// Data Access Object for Audio Entity
 class CategoryDAO: DAOCoreData, CategoryDAOProtocol {
-    typealias Entity = Category
-    var container: NSPersistentContainer!
 
-    required init(container: NSPersistentContainer) {
-        self.container = container
+    typealias Entity = Category
+    var managedContext: NSManagedObjectContext!
+
+    required init(intoContext context: NSManagedObjectContext) {
+        self.managedContext = context
     }
 
     convenience init() {
-    // Use the default container for production environment
-        self.init(container: CoreDataManager.sharedInstance.persistentContainer)
+        // Use the default managedObjectContext for production environment
+        self.init(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
     }
 }
 

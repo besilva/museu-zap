@@ -15,21 +15,20 @@ import CoreData
 /// Codegen set to manual
 @objc(Category)
 public class Category: NSManagedObject {
-    convenience init(container: NSPersistentContainer? = nil) {
-        let managedObjectContext: NSManagedObjectContext
-        if let container = container {
-            managedObjectContext = container.viewContext
+    convenience init(intoContext managedContext: NSManagedObjectContext? = nil) {
+        // To test this entity, another managedObjectContext is passed to the Entity
+        let currentManagedObjectContext: NSManagedObjectContext
+        if let context = managedContext {
+            currentManagedObjectContext = context
         } else {
-            managedObjectContext = CoreDataManager.sharedInstance.persistentContainer.viewContext
+            currentManagedObjectContext = CoreDataManager.sharedInstance.managedObjectContext
         }
-        // Get context
-        // Self.objectID USAR COMO ID
 
         // Create entity description
-        let entityDescription = NSEntityDescription.entity(forEntityName: "Category", in: managedObjectContext)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Category", in: currentManagedObjectContext)
 
         // Call super
-        self.init(entity: entityDescription!, insertInto: managedObjectContext)
+        self.init(entity: entityDescription!, insertInto: currentManagedObjectContext)
     }
 }
 

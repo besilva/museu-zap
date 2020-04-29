@@ -40,7 +40,7 @@ class CategoryServicesTests: XCTestCase {
     func testCreate() {
         categoryDAO.shouldThrowError = false
 
-        let category = Category(container: coreDataHelper.mockPersistantContainer)
+        let category = Category(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
 
         sut.createCategory(category: category) { (error) in
             print("Services create error", error as Any)
@@ -52,7 +52,7 @@ class CategoryServicesTests: XCTestCase {
     func testCreateError() {
         categoryDAO.shouldThrowError = true
 
-        let category = Category(container: coreDataHelper.mockPersistantContainer)
+        let category = Category(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
 
         sut.createCategory(category: category) { (error) in
             // Closure only invoked if there was error
@@ -108,7 +108,7 @@ class CategoryServicesTests: XCTestCase {
     func testDelete() {
         categoryDAO.shouldThrowError = false
 
-        let category = Category(container: coreDataHelper.mockPersistantContainer)
+        let category = Category(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
 
         sut.deleteCategory(category: category) { (error) in
             print("Services update error", error as Any)
@@ -120,7 +120,7 @@ class CategoryServicesTests: XCTestCase {
     func testDeleteErrors() {
         categoryDAO.shouldThrowError = true
 
-        let category = Category(container: coreDataHelper.mockPersistantContainer)
+        let category = Category(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
 
         sut.deleteCategory(category: category) { (error) in
             // Closure only invoked if there was error
@@ -148,7 +148,7 @@ class CategoryDAOMock: CategoryDAOProtocol {
         if shouldThrowError {
             throw DatabaseErrors.read
         } else {
-            let category = Category(container: coreDataHelper.mockPersistantContainer)
+            let category = Category(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
             return [category]
         }
     }

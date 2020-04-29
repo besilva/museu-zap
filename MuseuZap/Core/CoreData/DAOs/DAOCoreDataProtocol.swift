@@ -15,10 +15,10 @@ import CoreData
 /// Protocol Oriented
 protocol DAOCoreData: class {
 
-    /// Adopted persistentContainer.
-    /// The container uses models from MuseuZap.xcdatamodeld BUT can be stored in the device or RAM memory (for tests).
-    var container: NSPersistentContainer! { get }
-    init(container: NSPersistentContainer)
+    /// Adopted managedObjectContext from persistentContainer.
+    /// The managedContext uses models from MuseuZap.xcdatamodeld BUT can be stored in the device or RAM memory (for tests).
+    var managedContext: NSManagedObjectContext! { get }
+    init(intoContext: NSManagedObjectContext)
 
     /// Entity Type for current DAO
     associatedtype Entity: NSManagedObject
@@ -44,10 +44,10 @@ extension DAOCoreData {
     func create(_ objectToBeSaved: Entity) throws {
         do {
             // Add object to be saved to the context
-            container.viewContext.insert(objectToBeSaved)
+            managedContext.insert(objectToBeSaved)
 
             // Aersist changes at the context
-            try container.viewContext.save()
+            try managedContext.save()
         } catch {
             print("DATABASE ERROR CREATE \n", error)
             throw DatabaseErrors.create
@@ -66,7 +66,7 @@ extension DAOCoreData {
             // Creating fetch request
             let request: NSFetchRequest<Entity> = fetchRequest()
             // Perform search
-            array = try container.viewContext.fetch(request)
+            array = try managedContext.fetch(request)
         } catch {
             print("DATABASE ERROR READ \n", error)
             throw DatabaseErrors.read
@@ -85,7 +85,7 @@ extension DAOCoreData {
     func updateContext() throws {
         do {
             // Persist changes at the context
-            try container.viewContext.save()
+            try managedContext.save()
         } catch {
             print("DATABASE ERROR UPDATE \n", error)
             throw DatabaseErrors.update
@@ -101,10 +101,10 @@ extension DAOCoreData {
     func delete(_ objectToBeDeleted: Entity) throws {
         do {
             // Delete element from context
-            container.viewContext.delete(objectToBeDeleted)
+            managedContext.delete(objectToBeDeleted)
 
             // Persist the operation
-            try container.viewContext.save()
+            try managedContext.save()
         } catch {
             print("DATABASE ERROR DELETE \n", error)
             throw DatabaseErrors.delete
@@ -116,13 +116,13 @@ extension DAOCoreData {
         let request: NSFetchRequest<Entity> = fetchRequest()
 
         // swiftlint:disable force_try
-        let objs = try! container.viewContext.fetch(request)
+        let objs = try! managedContext.fetch(request)
 
         for case let obj as NSManagedObject in objs {
-            container.viewContext.delete(obj)
+            managedContext.delete(obj)
         }
 
-        try! container.viewContext.save()
+        try! managedContext.save()
         // swiftlint:enable force_try
     }
 

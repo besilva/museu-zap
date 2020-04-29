@@ -14,19 +14,20 @@ import CoreData
 /// Properties can be accessed through object properties a class instead of "set value for..".
 /// Codegen set to manual
 public class Audio: NSManagedObject {
-    convenience init(container: NSPersistentContainer? = nil) {
-        let managedObjectContext: NSManagedObjectContext
-        if let container = container {
-            managedObjectContext = container.viewContext
+    convenience init(intoContext managedContext: NSManagedObjectContext? = nil) {
+        // To test this entity, another managedObjectContext is passed to the Entity
+        let currentManagedObjectContext: NSManagedObjectContext
+        if let context = managedContext {
+            currentManagedObjectContext = context
         } else {
-            managedObjectContext = CoreDataManager.sharedInstance.persistentContainer.viewContext
+            currentManagedObjectContext = CoreDataManager.sharedInstance.managedObjectContext
         }
 
         // Create entity description
-        let entityDescription = NSEntityDescription.entity(forEntityName: "Audio", in: managedObjectContext)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Audio", in: currentManagedObjectContext)
 
         // Call super
-        self.init(entity: entityDescription!, insertInto: managedObjectContext)
+        self.init(entity: entityDescription!, insertInto: currentManagedObjectContext)
     }
 }
 

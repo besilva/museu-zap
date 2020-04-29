@@ -10,85 +10,6 @@ import XCTest
 @testable import MuseuZap
 import CoreData
 
-    // MARK: - CoreDataTestHelper
-
-class CoreDataTestHelper {
-
-    lazy var managedObjectModel: NSManagedObjectModel = {
-            let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: type(of: self))] )!
-            return managedObjectModel
-    }()
-
-    lazy var mockPersistantContainer: NSPersistentContainer = {
-
-        let container = NSPersistentContainer(name: "MuseuZap", managedObjectModel: self.managedObjectModel)
-        let description = NSPersistentStoreDescription()
-        description.type = NSInMemoryStoreType
-        description.shouldAddStoreAsynchronously = false // Make it simpler in test env
-
-        container.persistentStoreDescriptions = [description]
-        container.loadPersistentStores { (description, error) in
-            // Check if the data store is in memory
-            precondition( description.type == NSInMemoryStoreType )
-
-            // Check if creating container wrong
-            if let error = error {
-                fatalError("Create an in-mem coordinator failed \(error)")
-            }
-        }
-        return container
-    }()
-
-    func initStubs() -> MuseuZap.Category {
-        // Contex is RAM Memory insted of the own App Database
-        let context = mockPersistantContainer.viewContext
-        var collaborator: MuseuZap.Category = Category(container: mockPersistantContainer)
-
-        // Get entity, then generatehow  an object from it
-        guard let entity1 = NSEntityDescription.entity(forEntityName: "Audio", in: context),
-              let entity2 = NSEntityDescription.entity(forEntityName: "Category", in: context)
-        else {
-            fatalError("Could not find entities")
-        }
-
-        for i in 1...3 {
-            let audio = Audio(entity: entity1, insertInto: context)
-            let category = Category(entity: entity2, insertInto: context)
-
-            category.categoryName = "Category \(i)"
-
-            audio.audioName = "Mock v.\(i)"
-            audio.audioPath = "/Mocks/MuseuZap/Audio\(i)"
-            audio.isPrivate = true
-
-            category.addToAudios(audio)
-
-            collaborator = category
-        }
-
-        do {
-            try mockPersistantContainer.viewContext.save()
-        } catch {
-            print("create fakes error \(error)")
-        }
-
-        return collaborator
-    }
-
-    func flushData(from entity: String) {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
-        // swiftlint:disable force_try
-        let objs = try! mockPersistantContainer.viewContext.fetch(fetchRequest)
-
-        for case let obj as NSManagedObject in objs {
-            mockPersistantContainer.viewContext.delete(obj)
-        }
-
-        try! mockPersistantContainer.viewContext.save()
-        // swiftlint:enable force_try
-    }
-}
-
     // MARK: - DAO
 
 class DAOTests: XCTestCase {
@@ -101,7 +22,7 @@ class DAOTests: XCTestCase {
     override func setUp() {
         // This method is called before the invocation of each test method in the class.
         coreDataHelper = CoreDataTestHelper()
-        sut = AudioDAO(container: coreDataHelper.mockPersistantContainer)
+        sut = AudioDAO(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
         collaborator = coreDataHelper.initStubs()
     }
 
@@ -118,7 +39,7 @@ class DAOTests: XCTestCase {
 
     /// Creates a new Element (first without viewContext) and asserts if error is nil
     func testCreate() {
-        let audio = Audio(container: coreDataHelper.mockPersistantContainer)
+        let audio = Audio(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
         var databaseError: Error?
 
         audio.audioName = "Mock audio create"
@@ -251,5 +172,84 @@ class DAOTests: XCTestCase {
 
         XCTAssertEqual(newArray.count, 0, "Database should have no records")
         XCTAssertNil(databaseError, "databaseError update")
+    }
+}
+
+    // MARK: - CoreDataTestHelper
+
+class CoreDataTestHelper {
+
+    lazy var managedObjectModel: NSManagedObjectModel = {
+            let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: type(of: self))] )!
+            return managedObjectModel
+    }()
+
+    lazy var mockPersistantContainer: NSPersistentContainer = {
+
+        let container = NSPersistentContainer(name: "MuseuZap", managedObjectModel: self.managedObjectModel)
+        let description = NSPersistentStoreDescription()
+        description.type = NSInMemoryStoreType
+        description.shouldAddStoreAsynchronously = false // Make it simpler in test env
+
+        container.persistentStoreDescriptions = [description]
+        container.loadPersistentStores { (description, error) in
+            // Check if the data store is in memory
+            precondition( description.type == NSInMemoryStoreType )
+
+            // Check if creating container wrong
+            if let error = error {
+                fatalError("Create an in-mem coordinator failed \(error)")
+            }
+        }
+        return container
+    }()
+
+    func initStubs() -> MuseuZap.Category {
+        // Contex is RAM Memory insted of the own App Database
+        let context = mockPersistantContainer.viewContext
+        var collaborator: MuseuZap.Category = Category(intoContext: context)
+
+        // Get entity, then generatehow  an object from it
+        guard let entity1 = NSEntityDescription.entity(forEntityName: "Audio", in: context),
+              let entity2 = NSEntityDescription.entity(forEntityName: "Category", in: context)
+        else {
+            fatalError("Could not find entities")
+        }
+
+        for i in 1...3 {
+            let audio = Audio(entity: entity1, insertInto: context)
+            let category = Category(entity: entity2, insertInto: context)
+
+            category.categoryName = "Category \(i)"
+
+            audio.audioName = "Mock v.\(i)"
+            audio.audioPath = "/Mocks/MuseuZap/Audio\(i)"
+            audio.isPrivate = true
+
+            category.addToAudios(audio)
+
+            collaborator = category
+        }
+
+        do {
+            try mockPersistantContainer.viewContext.save()
+        } catch {
+            print("create fakes error \(error)")
+        }
+
+        return collaborator
+    }
+
+    func flushData(from entity: String) {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        // swiftlint:disable force_try
+        let objs = try! mockPersistantContainer.viewContext.fetch(fetchRequest)
+
+        for case let obj as NSManagedObject in objs {
+            mockPersistantContainer.viewContext.delete(obj)
+        }
+
+        try! mockPersistantContainer.viewContext.save()
+        // swiftlint:enable force_try
     }
 }

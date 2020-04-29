@@ -29,8 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    // TODO: Delete test method (not saved in the storage)
+
     func addTestDataTesteEntity() {
-        let context = CoreDataManager.sharedInstance.persistentContainer.viewContext
+        let context = CoreDataManager.sharedInstance.managedObjectContext
         // Get entity, then generatehow  an object from it
         guard let entity1 = NSEntityDescription.entity(forEntityName: "Audio", in: context),
             let entity2 = NSEntityDescription.entity(forEntityName: "Category", in: context)

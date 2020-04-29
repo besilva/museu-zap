@@ -14,16 +14,17 @@ import UIKit
 
 /// Data Access Object for Audio Entity
 class AudioDAO: DAOCoreData, AudioDAOProtocol {
-    typealias Entity = Audio
-    var container: NSPersistentContainer!
 
-    required init(container: NSPersistentContainer) {
-        self.container = container
+    typealias Entity = Audio
+    var managedContext: NSManagedObjectContext!
+
+    required init(intoContext context: NSManagedObjectContext) {
+        self.managedContext = context
     }
 
     convenience init() {
-    // Use the default container for production environment
-        self.init(container: CoreDataManager.sharedInstance.persistentContainer)
+        // Use the default managedObjectContext for production environment
+        self.init(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
     }
 }
 
