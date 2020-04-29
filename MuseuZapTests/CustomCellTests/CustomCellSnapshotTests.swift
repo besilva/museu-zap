@@ -15,6 +15,7 @@ class CustomCellSnapshotTests: FBSnapshotTestCase {
     override func setUp() {
         super.setUp()
         customCellView = AudioCellView(frame: CGRect(x: 0, y: 0, width: 374, height: 76))
+        customCellView.autoresizingMask = [.flexibleHeight]
         recordMode = true
     }
 
