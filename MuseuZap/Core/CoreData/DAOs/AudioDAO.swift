@@ -9,6 +9,20 @@
 import CoreData
 import UIKit
 
+// MARK: - Protocol For test purpose
+
+protocol AudioDAOProtocol {
+    // CRUD Operations: Create, Read, Update, Delete
+    func create(_ objectToBeSaved: Audio) throws
+    func readAll() throws -> [Audio]
+    func fetchAudiosWith(isPrivate: Bool) throws -> [Audio]
+    func updateContext() throws
+    func delete(_ objectToBeDeleted: Audio) throws
+    func deleteAll(_ objectToBeDeleted: Audio) throws
+}
+
+// MARK: - Class
+
 /// Data Access Object for Audio Entity
 class AudioDAO: DAOCoreData, AudioDAOProtocol {
 
@@ -51,16 +65,4 @@ class AudioDAO: DAOCoreData, AudioDAOProtocol {
         }
         return audios
     }
-}
-
-// MARK: - For test purpose
-
-protocol AudioDAOProtocol {
-    // CRUD Operations: Create, Read, Update, Delete
-    func create(_ objectToBeSaved: Audio) throws
-    func readAll() throws -> [Audio]
-    func fetchAudiosWith(isPrivate: Bool) throws -> [Audio]
-    func updateContext() throws
-    func delete(_ objectToBeDeleted: Audio) throws
-    func deleteAll(_ objectToBeDeleted: Audio) throws
 }

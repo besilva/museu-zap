@@ -9,6 +9,19 @@
 import CoreData
 import UIKit
 
+// MARK: - Protocol For test purpose
+
+protocol CategoryDAOProtocol {
+    // CRUD Operations: Create, Read, Update, Delete
+    func create(_ objectToBeSaved: Category) throws
+    func readAll() throws -> [Category]
+    func updateContext() throws
+    func delete(_ objectToBeDeleted: Category) throws
+    func deleteAll(_ objectToBeDeleted: Category) throws
+}
+
+// MARK: - Class
+
 /// Data Access Object for Audio Entity
 class CategoryDAO: DAOCoreData, CategoryDAOProtocol {
 
@@ -23,15 +36,4 @@ class CategoryDAO: DAOCoreData, CategoryDAOProtocol {
         // Use the default managedObjectContext for production environment
         self.init(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
     }
-}
-
-// MARK: - For test purpose
-
-protocol CategoryDAOProtocol {
-    // CRUD Operations: Create, Read, Update, Delete
-    func create(_ objectToBeSaved: Category) throws
-    func readAll() throws -> [Category]
-    func updateContext() throws
-    func delete(_ objectToBeDeleted: Category) throws
-    func deleteAll(_ objectToBeDeleted: Category) throws
 }
