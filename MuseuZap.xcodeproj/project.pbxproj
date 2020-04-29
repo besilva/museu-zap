@@ -119,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				6473EDD3243B6D3700A10F2C /* MuseuZap */,
+				6473EDD2243B6D3700A10F2C /* Products */,
 				6473EDEA243B6D3E00A10F2C /* MuseuZapTests */,
 			);
 			sourceTree = "<group>";
@@ -130,7 +131,6 @@
 				6473EDE7243B6D3E00A10F2C /* MuseuZapTests.xctest */,
 			);
 			name = Products;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		6473EDD3243B6D3700A10F2C /* MuseuZap */ = {
@@ -149,7 +149,6 @@
 				C5E6FBF12457921C00C506B9 /* DAO */,
 				80E6C366244DF05500A42A4C /* AboutModuleTests */,
 				6473EDED243B6D3E00A10F2C /* Info.plist */,
-				6473EDD2243B6D3700A10F2C /* Products */,
 			);
 			path = MuseuZapTests;
 			sourceTree = "<group>";

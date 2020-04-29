@@ -40,6 +40,7 @@ extension Audio {
     @NSManaged public var audioName: String
     @NSManaged public var audioPath: String
     @NSManaged public var isPrivate: Bool
+    @NSManaged public var duration: Double
     @NSManaged public var category: Category
 
 }
@@ -53,11 +54,13 @@ struct AudioProperties {
         self.name = audio.audioName
         self.path = audio.audioPath
         self.category = audio.category.categoryName
+        self.duration = audio.duration
         self.isPrivate = audio.isPrivate
     }
 
     var name: String
     var path: String
     var isPrivate: Bool
+    var duration: TimeInterval
     var category: String?
 }
