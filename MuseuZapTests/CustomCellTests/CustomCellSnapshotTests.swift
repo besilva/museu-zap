@@ -19,7 +19,6 @@ class CustomCellSnapshotTests: FBSnapshotTestCase {
         recordMode = true
     }
 
-
     override func tearDown() {
         customCellView = nil
         super.tearDown()

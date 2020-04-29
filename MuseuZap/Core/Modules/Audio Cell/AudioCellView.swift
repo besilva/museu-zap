@@ -47,6 +47,7 @@ class AudioCellView: UIView, ViewCodable {
     }
     
     func setupConstraints() {
+        self.setContentCompressionResistancePriority(.required, for: .vertical)
         contentView.setupConstraints { (_) in
             contentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
             contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
@@ -55,6 +56,7 @@ class AudioCellView: UIView, ViewCodable {
         }
 
 //      Setup audio data content view constraints
+        audioDataContentView.setContentCompressionResistancePriority(.required, for: .vertical)
         audioDataContentView.setupConstraints { (_) in
             audioDataContentView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
             
@@ -82,6 +84,7 @@ class AudioCellView: UIView, ViewCodable {
         
 //        Setup audio title constraints
         titleLabel.sizeToFit()
+        titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
         titleLabel.setupConstraints { (_) in
             titleLabel.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .vertical)
             titleLabel.topAnchor.constraint(equalTo: audioDataContentView.topAnchor).isActive = true
@@ -128,9 +131,6 @@ class AudioCellView: UIView, ViewCodable {
             shareIcon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
             shareIcon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
         }
-        
-//        self.setNeedsLayout()
-//        self.layoutIfNeeded()
     }
     
     func render() {
