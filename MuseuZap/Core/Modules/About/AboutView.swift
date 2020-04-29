@@ -166,7 +166,7 @@ class AboutView: UIView, ViewCodable {
         copyLabel.font = UIFont.Default.regular?.withSize(14)
         copyLabel.dynamicFont = copyLabel.font
 
-        clipboardIcon.tintColor = UIColor(named: "primaryColor")
+        clipboardIcon.tintColor = UIColor.Default.power
     }
     
     func updateView() {

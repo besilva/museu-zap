@@ -11,8 +11,9 @@ import UIKit
 extension UIColor {
     struct Default {
         static let background = UIColor(named: "background")
-        static let lightBackground = UIColor(named: "lightBackground")
+        static let lightBackground = UIColor(named: "light-bg")
         static let label = UIColor(named: "label")
-        static let text = UIColor(named: "text")
+        static let text = UIColor(named: "light-label")
+        static let power = UIColor(named: "power")
     }
 }

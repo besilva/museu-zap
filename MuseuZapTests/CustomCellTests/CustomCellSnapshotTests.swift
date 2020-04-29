@@ -15,20 +15,23 @@ class CustomCellSnapshotTests: FBSnapshotTestCase {
     override func setUp() {
         super.setUp()
         customCellView = AudioCellView(frame: CGRect(x: 0, y: 0, width: 374, height: 76))
-        customCellView.backgroundColor = .red
-        customCellView.audioDataContentView.backgroundColor = .blue
-        customCellView.titleLabel.backgroundColor = .systemGray
-        customCellView.durationLabel.backgroundColor = .systemTeal
         recordMode = true
     }
+
 
     override func tearDown() {
         customCellView = nil
         super.tearDown()
     }
 
-    func testSnapshot() throws {
+    func testSnapshotOneLineTitle() throws {
         let viewModel = PublicAudioCellViewModel(title: "gemidao", duration: 90, audioURL: "sampleURL")
+        customCellView?.viewModel = viewModel
+        FBSnapshotVerifyView(customCellView!)
+    }
+    
+    func testSnapshotTwoLinesTitle() throws {
+        let viewModel = PublicAudioCellViewModel(title: "gemidao gemidao gemidao gemidao gemidao", duration: 90, audioURL: "sampleURL")
         customCellView?.viewModel = viewModel
         FBSnapshotVerifyView(customCellView!)
     }
