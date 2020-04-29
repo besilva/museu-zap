@@ -155,6 +155,15 @@ class AudioDAOMock: AudioDAOProtocol {
         }
     }
 
+    func fetchAudiosWith(isPrivate: Bool) throws -> [Audio] {
+        if shouldThrowError {
+            throw DatabaseErrors.publicAndPrivate
+        } else {
+            let audio = Audio(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
+            return [audio]
+        }
+    }
+
     func updateContext() throws {
         if shouldThrowError {
             throw DatabaseErrors.update

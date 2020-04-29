@@ -16,6 +16,7 @@ public enum DatabaseErrors: Error {
     case read
     case update
     case delete
+    case publicAndPrivate
     //  Case validation
     // TODO: Olhar a fundo as coisas defensivas do core data, validation..
     // Pq teoricamente o update (DAO para salvar) pode dar errado de diversas formas..
@@ -34,6 +35,8 @@ extension DatabaseErrors: LocalizedError {
             return NSLocalizedString("Database could not update the desired record", comment: "DatabaseErrors")
         case .delete:
             return NSLocalizedString("Database could not delete the desired record.", comment: "DatabaseErrors")
+        case .publicAndPrivate:
+            return NSLocalizedString("Database could not locate the desired record.", comment: "DatabaseErrors")
         }
     }
 }

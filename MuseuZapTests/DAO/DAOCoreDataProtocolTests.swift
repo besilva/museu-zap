@@ -183,7 +183,7 @@ class DAOTests: XCTestCase {
         var privateAudios = [Audio]()
 
         do {
-            try privateAudios = sut.getAllPrivateAudios()
+            try privateAudios = sut.fetchAudiosWith(isPrivate: true)
         } catch {
             databaseError = error
             print(databaseError ?? "databaseError read")
@@ -199,7 +199,7 @@ class DAOTests: XCTestCase {
         var publicAudios = [Audio]()
 
         do {
-            try publicAudios = sut.getPublicAudios()
+            try publicAudios = sut.fetchAudiosWith(isPrivate: false)
         } catch {
             databaseError = error
             print(databaseError ?? "databaseError read")

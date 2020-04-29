@@ -158,6 +158,15 @@ class CategoryDAOMock: CategoryDAOProtocol {
         }
     }
 
+    func fetchWithPredicate(predicate: NSPredicate) throws -> [MuseuZap.Category] {
+        if shouldThrowError {
+            throw DatabaseErrors.publicAndPrivate
+        } else {
+            let category = Category(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
+            return [category]
+        }
+    }
+
     func updateContext() throws {
         if shouldThrowError {
               throw DatabaseErrors.update

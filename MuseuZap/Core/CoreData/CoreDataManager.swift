@@ -10,8 +10,6 @@ import Foundation
 import UIKit
 import CoreData
 
-// TODO: muito iMPORTANTE VALIDAR todos os campos e não deixar o banco validar, pq da pau
-
 class CoreDataManager {
     /// Empty initializer to avoid external instantiation
     private init() {

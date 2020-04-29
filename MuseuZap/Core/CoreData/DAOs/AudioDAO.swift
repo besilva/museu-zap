@@ -27,48 +27,32 @@ class AudioDAO: DAOCoreData, AudioDAOProtocol {
         self.init(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
     }
 
-    // MARK: - AUDIO only
+    // MARK: - AUDIO ONLY
 
-    /// Method responsible for getting all Private Audios from CoreData
-    /// - returns: Array of private Audios
-    /// - throws: If an error occurs during getting an object from CoreData (DatabaseErrors.read)
-    func getAllPrivateAudios() throws -> [Entity] {
+    /// Method responsible for getting a custom set of Entities, returns private or public audios depending on argument
+    /// - returns: Result from the custom search from Entities, private (bool = true) and public (bool = false)
+    /// - throws: If an error occurs during getting an object from CoreData (DatabaseErrors.fetchPredicate)
+    func fetchAudiosWith(isPrivate: Bool) throws -> [Entity] {
         // Array of objects to be returned
-        var privateAudios: [Entity]
+        var audios: [Entity]
+
+        // Custom search predicate: depending on argument
+        // Returns all audios with isPrivate == true or all audios with isPrivate == false
+        let predicate: NSPredicate = isPrivate ? NSPredicate(format: "isPrivate == true") : NSPredicate(format: "isPrivate == false")
+
         do {
             // Creating fetch request
             let request: NSFetchRequest<Entity> = fetchRequest()
-            // Predicate for isPrivate property
-            // Fetch the ones that isPrivate property == true
-            request.predicate = NSPredicate(format: "isPrivate == true")
 
-            privateAudios = try managedContext.fetch(request)
+            // Fetch the ones according to the predicate
+            request.predicate = predicate
+
+            audios = try managedContext.fetch(request)
         } catch {
-            print("DATABASE ERROR READ \n", error)
-            throw DatabaseErrors.read
+            print("DATABASE ERROR PUBLIC PRIVATE \n", error)
+            throw DatabaseErrors.publicAndPrivate
         }
-        return privateAudios
-    }
-
-    /// Method responsible for getting all the public Audios from CoreData
-    /// - returns: Array of public Audios
-    /// - throws: If an error occurs during getting an object from CoreData (DatabaseErrors.read)
-    func getPublicAudios() throws -> [Entity] {
-        // Array of objects to be returned
-        var publicAudios: [Entity]
-        do {
-            // Creating fetch request
-            let request: NSFetchRequest<Entity> = fetchRequest()
-            // Predicate for isPrivate property
-            // Fetch the ones that isPrivate property == true
-            request.predicate = NSPredicate(format: "isPrivate == false")
-
-            publicAudios = try managedContext.fetch(request)
-        } catch {
-            print("DATABASE ERROR READ \n", error)
-            throw DatabaseErrors.read
-        }
-        return publicAudios
+        return audios
     }
 }
 
@@ -78,10 +62,8 @@ protocol AudioDAOProtocol {
     // CRUD Operations: Create, Read, Update, Delete
     func create(_ objectToBeSaved: Audio) throws
     func readAll() throws -> [Audio]
+    func fetchAudiosWith(isPrivate: Bool) throws -> [Audio]
     func updateContext() throws
     func delete(_ objectToBeDeleted: Audio) throws
     func deleteAll(_ objectToBeDeleted: Audio) throws
-
-    func getPublicAudios() throws -> [Audio]
-    func getAllPrivateAudios() throws -> [Audio]
 }

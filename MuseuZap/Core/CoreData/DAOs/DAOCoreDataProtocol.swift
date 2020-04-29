@@ -73,7 +73,7 @@ extension DAOCoreData {
         }
         return array
     }
-
+    
     // MARK: - Update
 
     /// Method responsible for updating an Entity into CoreData
