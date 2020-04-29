@@ -173,4 +173,11 @@ class AudioDAOMock: AudioDAOProtocol {
         }
     }
 
+    func getPublicAudios() throws -> [Audio] {
+        return [Audio()]
+    }
+
+    func getAllPrivateAudios() throws -> [Audio] {
+         return [Audio()]
+    }
 }

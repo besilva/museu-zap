@@ -29,11 +29,46 @@ class AudioDAO: DAOCoreData, AudioDAOProtocol {
 
     // MARK: - AUDIO only
 
-    func getAllPrivateAudios() throws {
+    /// Method responsible for getting all Private Audios from CoreData
+    /// - returns: Array of private Audios
+    /// - throws: If an error occurs during getting an object from CoreData (DatabaseErrors.read)
+    func getAllPrivateAudios() throws -> [Entity] {
+        // Array of objects to be returned
+        var privateAudios: [Entity]
+        do {
+            // Creating fetch request
+            let request: NSFetchRequest<Entity> = fetchRequest()
+            // Predicate for isPrivate property
+            // Fetch the ones that isPrivate property == true
+            request.predicate = NSPredicate(format: "isPrivate == true")
 
-        if Audio.value(forKey: "privateCollection") != nil {
-
+            privateAudios = try managedContext.fetch(request)
+        } catch {
+            print("DATABASE ERROR READ \n", error)
+            throw DatabaseErrors.read
         }
+        return privateAudios
+    }
+
+    /// Method responsible for getting all the public Audios from CoreData
+    /// - returns: Array of public Audios
+    /// - throws: If an error occurs during getting an object from CoreData (DatabaseErrors.read)
+    func getPublicAudios() throws -> [Entity] {
+        // Array of objects to be returned
+        var publicAudios: [Entity]
+        do {
+            // Creating fetch request
+            let request: NSFetchRequest<Entity> = fetchRequest()
+            // Predicate for isPrivate property
+            // Fetch the ones that isPrivate property == true
+            request.predicate = NSPredicate(format: "isPrivate == false")
+
+            publicAudios = try managedContext.fetch(request)
+        } catch {
+            print("DATABASE ERROR READ \n", error)
+            throw DatabaseErrors.read
+        }
+        return publicAudios
     }
 }
 
@@ -46,4 +81,7 @@ protocol AudioDAOProtocol {
     func updateContext() throws
     func delete(_ objectToBeDeleted: Audio) throws
     func deleteAll(_ objectToBeDeleted: Audio) throws
+
+    func getPublicAudios() throws -> [Audio]
+    func getAllPrivateAudios() throws -> [Audio]
 }

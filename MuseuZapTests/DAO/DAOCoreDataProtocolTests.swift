@@ -173,6 +173,40 @@ class DAOTests: XCTestCase {
         XCTAssertEqual(newArray.count, 0, "Database should have no records")
         XCTAssertNil(databaseError, "databaseError update")
     }
+
+    // MARK: - PREDICATE
+
+    // Test method with NSpredicate to fetch only isPrivate=true audios
+    func testPredicatePrivate() {
+        var databaseError: Error?
+        var privateAudios = [Audio]()
+
+        do {
+            try privateAudios = sut.getAllPrivateAudios()
+        } catch {
+            databaseError = error
+            print(databaseError ?? "databaseError read")
+        }
+
+        XCTAssertEqual(privateAudios.count, 1, "initStubs create only 1 private audio not \(privateAudios.count)!")
+        XCTAssertNil(databaseError, "databaseError read")
+    }
+
+    // Test method with NSpredicate to fetch only isPrivate=true audios
+    func testPredicatePublic() {
+        var databaseError: Error?
+        var publicAudios = [Audio]()
+
+        do {
+            try publicAudios = sut.getPublicAudios()
+        } catch {
+            databaseError = error
+            print(databaseError ?? "databaseError read")
+        }
+
+        XCTAssertEqual(publicAudios.count, 2, "initStubs create exactly 2 public audios not \(publicAudios.count)!")
+        XCTAssertNil(databaseError, "databaseError read")
+    }
 }
 
     // MARK: - CoreDataTestHelper
@@ -216,7 +250,7 @@ class CoreDataTestHelper {
             fatalError("Could not find entities")
         }
 
-        for i in 1...3 {
+        for i in 1...2 {
             let audio = Audio(entity: entity1, insertInto: context)
             let category = Category(entity: entity2, insertInto: context)
 
@@ -224,12 +258,22 @@ class CoreDataTestHelper {
 
             audio.audioName = "Mock v.\(i)"
             audio.audioPath = "/Mocks/MuseuZap/Audio\(i)"
-            audio.isPrivate = true
+            audio.isPrivate = false
 
             category.addToAudios(audio)
 
             collaborator = category
         }
+
+        // For predicate method
+        let audio = Audio(entity: entity1, insertInto: context)
+        let category = Category(entity: entity2, insertInto: context)
+        category.categoryName = "Category Private"
+        audio.audioName = "Mock v. Private"
+        audio.audioPath = "/Mocks/MuseuZap/Audio/private"
+        audio.isPrivate = true
+        category.addToAudios(audio)
+        // For predicate method
 
         do {
             try mockPersistantContainer.viewContext.save()

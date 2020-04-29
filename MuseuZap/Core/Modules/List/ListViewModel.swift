@@ -18,9 +18,7 @@ protocol ListViewModelProtocol {
     var navigationDelegate: NavigationDelegate? { get }
     var count: Int { get }
     var delegate: ListViewModelDelegate? { get set }
-//    func getAllAudios()
-//    func getAudio(at indexPath: IndexPath) -> (title: String, subtitle: String)
-    // TODO: faz sentido ter essa tupla gigante? SwiftLint ta com disable por enquanto
+//    Func getAllAudios()
     func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties
     func back()
     init(audioServices: AudioServices)

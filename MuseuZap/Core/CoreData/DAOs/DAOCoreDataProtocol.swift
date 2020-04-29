@@ -76,8 +76,6 @@ extension DAOCoreData {
 
     // MARK: - Update
 
-    // TODO: read about fetch request predicate
-
     /// Method responsible for updating an Entity into CoreData
     /// - parameters:
     ///     - objectToBeUpdated: Entity to be updated on CoreData

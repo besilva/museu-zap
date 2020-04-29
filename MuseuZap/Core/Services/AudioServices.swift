@@ -54,8 +54,55 @@ class AudioServices {
         var audios: [Audio]?
 
         do {
-            // Save information
             audios = try DAO.readAll()
+            completion(nil, audios)
+        } catch let error as DatabaseErrors {
+            // Vale a pena do ponto de vista do usuario
+            // Tambem ter esse tratamento diferente na camada de cima.
+            raisedError = error
+            completion(raisedError, nil)
+        } catch {
+            completion(error, nil)
+            print("Unexpected error: \(error).")
+        }
+    }
+
+    /// Function responsible for getting all Audios
+    /// - parameters:
+    ///     - completion: closure to be executed at the end of this method
+    /// - throws: if an error occurs during getting an object from database  (DatabaseErrors.read)
+    func getAllPrivateAudios(_ completion: @escaping (_ errorMessage: Error?,
+                                                      _ entity: [Audio]?) -> Void) {
+        // Error to be returned in case of failure
+        var raisedError: DatabaseErrors?
+        var audios: [Audio]?
+
+        do {
+            audios = try DAO.getAllPrivateAudios()
+            completion(nil, audios)
+        } catch let error as DatabaseErrors {
+            // Vale a pena do ponto de vista do usuario
+            // Tambem ter esse tratamento diferente na camada de cima.
+            raisedError = error
+            completion(raisedError, nil)
+        } catch {
+            completion(error, nil)
+            print("Unexpected error: \(error).")
+        }
+    }
+
+    /// Function responsible for getting all Audios
+    /// - parameters:
+    ///     - completion: closure to be executed at the end of this method
+    /// - throws: if an error occurs during getting an object from database  (DatabaseErrors.read)
+    func getPublicAudios(_ completion: @escaping (_ errorMessage: Error?,
+                                                  _ entity: [Audio]?) -> Void) {
+        // Error to be returned in case of failure
+        var raisedError: DatabaseErrors?
+        var audios: [Audio]?
+
+        do {
+            audios = try DAO.getPublicAudios()
             completion(nil, audios)
         } catch let error as DatabaseErrors {
             // Vale a pena do ponto de vista do usuario
