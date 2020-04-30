@@ -10,9 +10,8 @@ import Foundation
 import UIKit
 
 class TabBar: UITabBarController {
-    // player customization will be here someday
+    // Player customization will be here someday
 }
-
 
 extension UITabBarController {
     func addChild(_ controllers: UIViewController...) {
