@@ -22,6 +22,7 @@
 		64C7758924571EF100FDEA03 /* ViewCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A60C2D24489B9E003B0F26 /* ViewCodable.swift */; };
 		64C7758A24571EF900FDEA03 /* UIView+ConstraintsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A60C2F24489D62003B0F26 /* UIView+ConstraintsExtension.swift */; };
 		64C7758D2458739C00FDEA03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64C7758C2458739C00FDEA03 /* Assets.xcassets */; };
+		64C7758F245B128700FDEA03 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C7758E245B128700FDEA03 /* CategoryTableViewController.swift */; };
 		64DD6FE0243E07D000404321 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FDF243E07D000404321 /* AppCoordinator.swift */; };
 		64DD6FE4243E084100404321 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FE3243E084100404321 /* Coordinator.swift */; };
 		64DD6FE6243E0A4700404321 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FE5243E0A4700404321 /* Stack.swift */; };
@@ -89,6 +90,7 @@
 		64C7757F2457162700FDEA03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		64C775812457162700FDEA03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64C7758C2458739C00FDEA03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		64C7758E245B128700FDEA03 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		64DD6FDF243E07D000404321 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		64DD6FE3243E084100404321 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		64DD6FE5243E0A4700404321 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				64C7757C2457162700FDEA03 /* ShareViewController.swift */,
+				64C7758E245B128700FDEA03 /* CategoryTableViewController.swift */,
 				64C7757E2457162700FDEA03 /* MainInterface.storyboard */,
 				64C775812457162700FDEA03 /* Info.plist */,
 				64C7758C2458739C00FDEA03 /* Assets.xcassets */,
@@ -457,6 +460,7 @@
 				64C7757D2457162700FDEA03 /* ShareViewController.swift in Sources */,
 				64C7758924571EF100FDEA03 /* ViewCodable.swift in Sources */,
 				64C7758A24571EF900FDEA03 /* UIView+ConstraintsExtension.swift in Sources */,
+				64C7758F245B128700FDEA03 /* CategoryTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

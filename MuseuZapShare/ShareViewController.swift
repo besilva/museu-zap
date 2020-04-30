@@ -8,31 +8,42 @@
 
 import UIKit
 import Social
+import AVFoundation
 
 class ShareViewController: SLComposeServiceViewController {
     
     var extensionItem: NSExtensionItem?
-    var filePath: URL?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.title = "MuseuZap"
-        self.placeholder = "Dê um nome para o seu audio"
-        extensionItem?.attachments?[0].loadItem(forTypeIdentifier: "public.file-url", options: nil, completionHandler: { (urlItem, error) in
-            if let urlItem = urlItem{
-                 self.filePath = URL(string: "\(urlItem)")
-            }
-        })
+    var audio: AVPlayer?
+    var category: String = "Nenhuma" {
+        didSet {
+            item?.value = category
+        }
     }
+    let item = SLComposeSheetConfigurationItem()
+    
     override func loadView() {
         super.loadView()
         let context = self.extensionContext
         self.extensionItem = context?.inputItems[0] as? NSExtensionItem
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "MuseuZap"
+        self.placeholder = "Dê um nome para o seu audio"
+        extensionItem?.attachments?[0].loadItem(forTypeIdentifier: "public.file-url",
+                                                options: nil,
+                                                completionHandler: { (urlItem, error) in
+            if let urlItem = urlItem,
+                let url = URL(string: "\(urlItem)") {
+                self.audio = AVPlayer(url: url)
+            }
+        })
+    }
+    
     override func isContentValid() -> Bool {
         // Do validation of contentText and/or NSExtensionContext attachments here
-        return !contentText.isEmpty
+        return !contentText.isEmpty && audio != nil
     }
 
     override func didSelectPost() {
@@ -43,26 +54,39 @@ class ShareViewController: SLComposeServiceViewController {
     }
 
     override func configurationItems() -> [Any]! {
-        let item = SLComposeSheetConfigurationItem()
+       
         item?.title = "Categoria"
-        item?.value = "Nenhuma"
+        item?.value = category
         
         item?.tapHandler = {
-            // TODO - : navegação
-//            self.pushConfigurationViewController(<#T##viewController: UIViewController!##UIViewController!#>)
+            let controller = CategoryTableViewController()
+            controller.delegate = self
+            self.pushConfigurationViewController(controller)
         }
         // To add configuration options via table cells at the bottom of the sheet, return an array of SLComposeSheetConfigurationItem here.
         return [item!]
     }
     
+    let imageView = UIImageView()
     override func loadPreviewView() -> UIView! {
-        super.loadView()
-        let view = UIImageView()
-        let image = UIImage(named: "audio")
-        view.setupConstraints { (view) in
-            view.heightAnchor.constraint(equalToConstant: 70)
-            view.widthAnchor.constraint(equalToConstant: 70)
+//        super.loadView()
+       
+        let image = UIImage(named: "ShareIcon")
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = image
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.setupConstraints { (view) in
+            view.heightAnchor.constraint(equalToConstant: 100).isActive = true
+            view.widthAnchor.constraint(equalToConstant: 100).isActive = true
         }
-        return view
+        return imageView
+    }
+}
+
+extension ShareViewController: CategoryTableViewControllerDelegate {
+    func categorySelected(category: String) {
+        self.category = category
+        popConfigurationViewController()
     }
 }
