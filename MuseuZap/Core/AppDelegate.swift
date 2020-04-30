@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,39 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         coordinator?.startFlow()
         window?.rootViewController = tabController
         window?.makeKeyAndVisible()
-
-        addTestData()
-
         return true
     }
-
-    // TODO: Delete test method (not saved in the storage)
-
-    func addTestData() {
-        let context = CoreDataManager.sharedInstance.managedObjectContext
-        // Get entity, then generatehow  an object from it
-        guard let entity1 = NSEntityDescription.entity(forEntityName: "Audio", in: context),
-              let entity2 = NSEntityDescription.entity(forEntityName: "Category", in: context)
-        else {
-            fatalError("Could not find entities")
-        }
-
-        for i in 1...3 {
-            let audio = Audio(entity: entity1, insertInto: context)
-            let category = Category(entity: entity2, insertInto: context)
-
-            category.categoryName = "Categoria \(i)"
-
-            audio.audioName = "Gemidao do Zap v.\(i)"
-            audio.audioPath = "/Documents/MuseuZap/Audio\(i)"
-            audio.isPrivate = true
-            audio.duration = 5.44
-
-            category.addToAudios(audio)
-            print("breakpoint")
-        }
-    }
-
+    
     func applicationWillResignActive(_ application: UIApplication) {
            // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
            // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -77,4 +46,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        func applicationWillTerminate(_ application: UIApplication) {
            // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
        }
+    
 }

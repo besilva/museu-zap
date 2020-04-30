@@ -14,51 +14,37 @@ protocol ListViewModelDelegate: class {
 }
 
 protocol ListViewModelProtocol {
-    var array: [Audio] { get set }
     var navigationDelegate: NavigationDelegate? { get }
     var count: Int { get }
     var delegate: ListViewModelDelegate? { get set }
-//    Func getAllAudios()
-    func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties
+    func getAllAudios()
+    func getAudio(at indexPath: IndexPath) -> (title: String, subtitle: String)
     func back()
-    init(audioServices: AudioServices)
+    init(array: [(String, String)])
 }
 
 class ListViewModel: ListViewModelProtocol {
-    var audioServices: AudioServices
-    var array: [Audio] = []
+    var array = [("titulo", "subtitulo")]
     var count: Int { array.count }
     internal weak var delegate: ListViewModelDelegate?
     internal weak var navigationDelegate: NavigationDelegate?
     
-    required init(audioServices: AudioServices) {
-        self.audioServices = audioServices
-        getArray()
+    required init(array: [(String, String)]) {
+        self.array = array
+    }
+    
+    func getAllAudios() {
+        delegate?.reloadTableView()
+        delegate?.stopLoading()
+    }
+    
+    func getAudio(at indexPath: IndexPath) -> (title: String, subtitle: String) {
+        return array[indexPath.row]
     }
     
     func back() {
         // Handle back from navigation
         navigationDelegate?.handleNavigation(action: .back)
-    }
-
-    // MARK: - Core Data
-    func getArray() {
-
-        audioServices.getAllAudios { (error, audioArray) in
-            if let audios = audioArray {
-                // Assign teste Array
-                self.array = audios
-            } else {
-                // GetAll audios
-                // Display here some frendiler message based on Error Type (database error or not)
-                print(error ?? "Some default error value")
-            }
-        }
-    }
-
-    func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties {
-        let element = array[indexPath.row]
-        return AudioProperties(from: element)
     }
     
 }

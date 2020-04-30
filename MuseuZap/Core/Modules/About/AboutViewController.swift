@@ -11,11 +11,10 @@ import UIKit
 class AboutViewController: UIViewController, ViewController, NavigationDelegate {
     weak var delegate: NavigationDelegate?
     var viewModel: AboutViewModel?
-    // swiftlint:disable force_cast
+    
     private var myView: AboutView {
         return view as! AboutView
     }
-    // swiftlint:enable force_cast
     
     override func loadView() {
         let myView = AboutView()
@@ -25,10 +24,9 @@ class AboutViewController: UIViewController, ViewController, NavigationDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Info"
-        // swiftlint:disable line_length
+
         let aboutDescription1 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi elementum nunc, sollicitudin non pellentesque. In egestas adipiscing vestibulum varius "
         let aboutDescription2 = "urna sed ornare consectetur. Convallis in volutpat fermentum ipsum in condimentum ut. Odio ornare id ornare augue. Aliquam sit cras arcu amet erat maecenas mi, amet."
-        // swiftlint:enable line_length
         
         let viewModel = AboutViewModel(email: "sample@mail.com", description: aboutDescription1 + aboutDescription2)
         myView.viewModel = viewModel
