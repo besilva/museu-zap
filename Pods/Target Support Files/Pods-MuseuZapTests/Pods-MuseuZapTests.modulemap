@@ -1,4 +1,4 @@
-framework module Pods_MuseuZapTests {
+module Pods_MuseuZapTests {
   umbrella header "Pods-MuseuZapTests-umbrella.h"
 
   export *

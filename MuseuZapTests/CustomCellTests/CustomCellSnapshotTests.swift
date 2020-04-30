@@ -6,10 +6,11 @@
 //  Copyright © 2020 Bernardo. All rights reserved.
 //
 
-import FBSnapshotTestCase
+import SnapshotTesting
+import XCTest
 @testable import MuseuZap
 
-class CustomCellSnapshotTests: FBSnapshotTestCase {
+class CustomCellSnapshotTests: XCTestCase {
     var customCellView: AudioCellView!
     var cellViewController: UIViewController!
 
@@ -25,7 +26,6 @@ class CustomCellSnapshotTests: FBSnapshotTestCase {
             customCellView.centerXAnchor.constraint(equalTo: cellViewController.view.centerXAnchor).isActive = true
             customCellView.widthAnchor.constraint(equalToConstant: customCellView.frame.width).isActive = true
         }
-        recordMode = false
     }
 
     override func tearDown() {
@@ -38,7 +38,7 @@ class CustomCellSnapshotTests: FBSnapshotTestCase {
                                                  duration: 90,
                                                  audioURL: "sampleURL")
         customCellView?.viewModel = viewModel
-        FBSnapshotVerifyView(cellViewController.view)
+        assertSnapshot(matching: cellViewController, as: .image)
     }
     
     func testSnapshotTwoLinesTitle() throws {
@@ -46,7 +46,7 @@ class CustomCellSnapshotTests: FBSnapshotTestCase {
                                                  duration: 90,
                                                  audioURL: "sampleURL")
         customCellView?.viewModel = viewModel
-        FBSnapshotVerifyView(cellViewController.view)
+        assertSnapshot(matching: cellViewController, as: .image)
     }
     
     func testSnapshotThreeLinesTitle() throws {
@@ -54,14 +54,15 @@ class CustomCellSnapshotTests: FBSnapshotTestCase {
                                                  duration: 90,
                                                  audioURL: "sampleURL")
         customCellView?.viewModel = viewModel
-        FBSnapshotVerifyView(cellViewController.view)
+        assertSnapshot(matching: cellViewController, as: .image)
     }
     
     func testSnapshotFourLinesTitle() throws {
-        let viewModel = PublicAudioCellViewModel(title: "Laboris cupidatat exercitation reprehenderit commodo qui proident Laboris cupidatat exercitation",
+        let audioTitle = "Laboris cupidatat exercitation reprehenderit commodo qui proident Laboris cupidatat exercitation"
+        let viewModel = PublicAudioCellViewModel(title: audioTitle,
                                                  duration: 90,
                                                  audioURL: "sampleURL")
         customCellView?.viewModel = viewModel
-        FBSnapshotVerifyView(cellViewController.view)
+        assertSnapshot(matching: cellViewController, as: .image)
     }
 }

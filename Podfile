@@ -1,4 +1,3 @@
 target "MuseuZapTests" do
-    use_frameworks!
-    pod 'iOSSnapshotTestCase'
-  end
+  pod 'SnapshotTesting', '~> 1.7.2'
+end
