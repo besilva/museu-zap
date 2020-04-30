@@ -65,9 +65,11 @@ class AudioCellView: UIView, ViewCodable {
     }
     
     func render() {
+        self.layer.cornerRadius = 4
+        self.backgroundColor = UIColor.Default.background
+
 //        Sets content view appearance
         contentView.layer.cornerRadius = 4
-        self.layer.cornerRadius = 4
         contentView.backgroundColor = UIColor.Default.background
 
 //        Sets text attributes for title label
