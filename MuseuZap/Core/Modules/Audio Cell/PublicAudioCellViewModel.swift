@@ -9,15 +9,11 @@
 import UIKit
 
 class PublicAudioCellViewModel: AudioCellViewModelProtocol {
-    var navigationDelegate: NavigationDelegate?
+    weak var navigationDelegate: NavigationDelegate?
     var title: String
     var audioURL: String
     var duration: TimeInterval
-    var playing: Bool {
-        didSet {
-            // TODO: Change play icon on view
-        }
-    }
+    var playing: Bool
     
     required init(title: String, duration: TimeInterval, audioURL: String) {
         self.title = title

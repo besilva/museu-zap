@@ -9,7 +9,7 @@
 import UIKit
 extension UIFont {
     struct Default {
-        static let regular = UIFont(name: "Poppins-Regular", size: 15)
-        static let semibold = UIFont(name: "Poppins-SemiBold", size: 17)
+        static let regular = UIFont(name: "Poppins-Regular", size: 15)!
+        static let semibold = UIFont(name: "Poppins-SemiBold", size: 17)!
     }
 }

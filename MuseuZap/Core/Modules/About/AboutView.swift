@@ -144,26 +144,26 @@ class AboutView: UIView, ViewCodable {
         contentViewMailLabel.backgroundColor = UIColor.Default.lightBackground
 
         mailLabel.tintColor = UIColor.Default.label
-        mailLabel.font = UIFont.Default.regular?.withSize(14)
+        mailLabel.font = UIFont.Default.regular.withSize(14)
         mailLabel.dynamicFont = mailLabel.font
         
         submitLabel.textColor = UIColor.Default.label
-        submitLabel.font = UIFont.Default.semibold?.withSize(20)
+        submitLabel.font = UIFont.Default.semibold.withSize(20)
         submitLabel.dynamicFont = submitLabel.font
         
-        mailDescription.textColor = UIColor.Default.text
-        mailDescription.font = UIFont.Default.regular?.withSize(14)
+        mailDescription.textColor = UIColor.Default.lightLabel
+        mailDescription.font = UIFont.Default.regular.withSize(14)
         mailDescription.dynamicFont = mailDescription.font
         
         moreInfoTitle.textColor = UIColor.Default.label
-        moreInfoTitle.font = UIFont.Default.semibold?.withSize(20)
+        moreInfoTitle.font = UIFont.Default.semibold.withSize(20)
         moreInfoTitle.dynamicFont = moreInfoTitle.font
 
-        moreInfoDescription.textColor = UIColor.Default.text
-        moreInfoDescription.font = UIFont.Default.regular?.withSize(14)
+        moreInfoDescription.textColor = UIColor.Default.lightLabel
+        moreInfoDescription.font = UIFont.Default.regular.withSize(14)
         moreInfoDescription.dynamicFont = moreInfoDescription.font
 
-        copyLabel.font = UIFont.Default.regular?.withSize(14)
+        copyLabel.font = UIFont.Default.regular.withSize(14)
         copyLabel.dynamicFont = copyLabel.font
 
         clipboardIcon.tintColor = UIColor.Default.power
@@ -274,6 +274,6 @@ class AboutView: UIView, ViewCodable {
             throw AboutError.nilValue
         }
         UIPasteboard.general.string = viewModel.email
-        self.viewModel?.copy()
+        viewModel.copy()
     }
 }

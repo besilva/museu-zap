@@ -25,7 +25,7 @@ class CustomCellSnapshotTests: FBSnapshotTestCase {
             customCellView.centerXAnchor.constraint(equalTo: cellViewController.view.centerXAnchor).isActive = true
             customCellView.widthAnchor.constraint(equalToConstant: customCellView.frame.width).isActive = true
         }
-        recordMode = true
+        recordMode = false
     }
 
     override func tearDown() {

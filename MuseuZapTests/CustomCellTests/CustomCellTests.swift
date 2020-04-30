@@ -69,4 +69,9 @@ class CustomCellTests: XCTestCase {
         XCTAssertTrue(mockViewModel.playing)
         XCTAssertEqual(customCellView.playIcon.image, UIImage(named: "pause.fill"))
     }
+    
+    func testShare() throws {
+        customCellView?.shareAudio()
+        XCTAssertTrue(mockViewModel.shareTouch)
+    }
 }

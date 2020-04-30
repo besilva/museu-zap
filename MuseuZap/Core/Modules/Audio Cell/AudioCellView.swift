@@ -56,100 +56,32 @@ class AudioCellView: UIView, ViewCodable {
             contentView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         }
 
-//      Setup audio data content view constraints
-        audioDataContentView.setContentCompressionResistancePriority(.required, for: .vertical)
-        audioDataContentView.setupConstraints { (_) in
-            audioDataContentView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
-            
-            let bottomConstraint = NSLayoutConstraint(item: audioDataContentView,
-                                                      attribute: .bottom,
-                                                      relatedBy: .equal,
-                                                      toItem: contentView,
-                                                      attribute: .bottom,
-                                                      multiplier: 1,
-                                                      constant: -16)
-            bottomConstraint.priority = UILayoutPriority(rawValue: 750)
-            bottomConstraint.isActive = true
-            
-            let bottomMarginConstraint = NSLayoutConstraint(item: audioDataContentView,
-                                                            attribute: .bottom,
-                                                            relatedBy: .lessThanOrEqual,
-                                                            toItem: contentView,
-                                                            attribute: .bottom,
-                                                            multiplier: 1,
-                                                            constant: -16)
-            bottomMarginConstraint.priority = UILayoutPriority(rawValue: 999)
-            bottomMarginConstraint.isActive = true
-            audioDataContentView.trailingAnchor.constraint(equalTo: shareIcon.leadingAnchor, constant: -24).isActive = true
-        }
-        
-//        Setup audio title constraints
-        titleLabel.sizeToFit()
-        titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
-        titleLabel.setupConstraints { (_) in
-            titleLabel.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .vertical)
-            titleLabel.topAnchor.constraint(equalTo: audioDataContentView.topAnchor).isActive = true
-            titleLabel.leadingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor).isActive = true
-            titleLabel.trailingAnchor.constraint(equalTo: audioDataContentView.trailingAnchor).isActive = true
-        }
-        
-//        Setup audio duration constraints
-        durationLabel.setupConstraints { (_) in
-            let topConstraint = NSLayoutConstraint(item: durationLabel,
-                                                      attribute: .top,
-                                                      relatedBy: .equal,
-                                                      toItem: titleLabel,
-                                                      attribute: .bottom,
-                                                      multiplier: 1,
-                                                      constant: 4)
-            topConstraint.priority = UILayoutPriority.required
-            topConstraint.isActive = true
-            
-            durationLabel.bottomAnchor.constraint(equalTo: audioDataContentView.bottomAnchor).isActive = true
-            let bottomConstraint = NSLayoutConstraint(item: durationLabel,
-                                                      attribute: .bottom,
-                                                      relatedBy: .equal,
-                                                      toItem: audioDataContentView,
-                                                      attribute: .bottom,
-                                                      multiplier: 1,
-                                                      constant: 0)
-            bottomConstraint.priority = UILayoutPriority(rawValue: 999)
-            bottomConstraint.isActive = true
-            
-            durationLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 13).isActive = true
-            durationLabel.leadingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor).isActive = true
-        }
+        setAudioDataContentViewConstraints()
+        setAudioTitleConstraints()
+        setAudioDurationConstraints()
+        setPlayIconConstraints()
+        setShareIconConstraints()
 
-//        Setup play icon constraints
-        playIcon.setContentCompressionResistancePriority(.required, for: .horizontal)
-        playIcon.setContentHuggingPriority(.required, for: .horizontal)
-        playIcon.setupConstraints { (_) in
-            playIcon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
-            playIcon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24).isActive = true
-            playIcon.trailingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor, constant: -16).isActive = true
-        }
-
-//        Setup share icon constraints
-        shareIcon.setContentCompressionResistancePriority(.required, for: .horizontal)
-        shareIcon.setContentHuggingPriority(.required, for: .horizontal)
-        shareIcon.setupConstraints { (_) in
-            shareIcon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
-            shareIcon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
-        }
     }
     
     func render() {
+//        Sets content view appearance
         contentView.layer.cornerRadius = 4
         self.layer.cornerRadius = 4
         contentView.backgroundColor = UIColor.Default.background
 
+//        Sets text attributes for title label
         titleLabel.textColor = UIColor.Default.label
         titleLabel.font = UIFont.Default.semibold
         titleLabel.dynamicFont = titleLabel.font
 
-        durationLabel.textColor = UIColor.Default.label
-        durationLabel.font = UIFont.Default.regular?.withSize(12)
-
+//      Sets duration label visual attributes
+        durationLabel.textColor = UIColor.Default.lightLabel
+        let durationlabelFont = UIFont.Default.regular
+        durationLabel.font = durationlabelFont.withSize(12)
+        durationLabel.dynamicFont = durationlabelFont
+        
+//        Set icons colors
         shareIcon.tintColor = UIColor.Default.power
         playIcon.tintColor = UIColor.Default.power
     }
@@ -178,13 +110,11 @@ class AudioCellView: UIView, ViewCodable {
     }
     
     func setupDurationLabel() {
+//        Loads and formats content from viewModel
         guard let viewModel = viewModel else { return }
         let durationString = viewModel.duration.stringFromTimeInterval()
         
-        let durationlabelFont = UIFont.systemFont(ofSize: 11, weight: .regular)
-        durationLabel.font = durationlabelFont
-        durationLabel.dynamicFont = durationlabelFont
-        
+//        Sets text style attributes
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 0.72
         
@@ -224,5 +154,100 @@ class AudioCellView: UIView, ViewCodable {
         guard let viewModel = viewModel else { return }
         viewModel.changePlayStatus()
         playIcon.image = viewModel.playing ? UIImage(named: "pause.fill") : UIImage(named: "play.fill")
+    }
+}
+
+// Constraint setting methods
+extension AudioCellView {
+//      Setup audio data content view constraints
+    func setAudioDataContentViewConstraints() {
+        
+        audioDataContentView.setContentCompressionResistancePriority(.required, for: .vertical)
+        audioDataContentView.setupConstraints { (_) in
+            audioDataContentView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
+            
+            let bottomConstraint = NSLayoutConstraint(item: audioDataContentView,
+                                                      attribute: .bottom,
+                                                      relatedBy: .equal,
+                                                      toItem: contentView,
+                                                      attribute: .bottom,
+                                                      multiplier: 1,
+                                                      constant: -16)
+            bottomConstraint.priority = UILayoutPriority(rawValue: 750)
+            bottomConstraint.isActive = true
+            
+            let bottomMarginConstraint = NSLayoutConstraint(item: audioDataContentView,
+                                                            attribute: .bottom,
+                                                            relatedBy: .lessThanOrEqual,
+                                                            toItem: contentView,
+                                                            attribute: .bottom,
+                                                            multiplier: 1,
+                                                            constant: -16)
+            bottomMarginConstraint.priority = UILayoutPriority(rawValue: 999)
+            bottomMarginConstraint.isActive = true
+            audioDataContentView.trailingAnchor.constraint(equalTo: shareIcon.leadingAnchor, constant: -24).isActive = true
+        }
+    }
+
+//        Setup audio title constraints
+    func setAudioTitleConstraints() {
+        titleLabel.sizeToFit()
+        titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
+        titleLabel.setupConstraints { (_) in
+            titleLabel.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .vertical)
+            titleLabel.topAnchor.constraint(equalTo: audioDataContentView.topAnchor).isActive = true
+            titleLabel.leadingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor).isActive = true
+            titleLabel.trailingAnchor.constraint(equalTo: audioDataContentView.trailingAnchor).isActive = true
+        }
+    }
+    
+//        Setup audio duration constraints
+    func setAudioDurationConstraints() {
+        durationLabel.setupConstraints { (_) in
+            let topConstraint = NSLayoutConstraint(item: durationLabel,
+                                                      attribute: .top,
+                                                      relatedBy: .equal,
+                                                      toItem: titleLabel,
+                                                      attribute: .bottom,
+                                                      multiplier: 1,
+                                                      constant: 4)
+            topConstraint.priority = UILayoutPriority.required
+            topConstraint.isActive = true
+            
+            durationLabel.bottomAnchor.constraint(equalTo: audioDataContentView.bottomAnchor).isActive = true
+            let bottomConstraint = NSLayoutConstraint(item: durationLabel,
+                                                      attribute: .bottom,
+                                                      relatedBy: .equal,
+                                                      toItem: audioDataContentView,
+                                                      attribute: .bottom,
+                                                      multiplier: 1,
+                                                      constant: 0)
+            bottomConstraint.priority = UILayoutPriority(rawValue: 999)
+            bottomConstraint.isActive = true
+            
+            durationLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 13).isActive = true
+            durationLabel.leadingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor).isActive = true
+        }
+    }
+    
+//        Setup play icon constraints
+    func setPlayIconConstraints() {
+        playIcon.setContentCompressionResistancePriority(.required, for: .horizontal)
+        playIcon.setContentHuggingPriority(.required, for: .horizontal)
+        playIcon.setupConstraints { (_) in
+            playIcon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
+            playIcon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24).isActive = true
+            playIcon.trailingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor, constant: -16).isActive = true
+        }
+    }
+
+//        Setup share icon constraints
+    func setShareIconConstraints() {
+        shareIcon.setContentCompressionResistancePriority(.required, for: .horizontal)
+        shareIcon.setContentHuggingPriority(.required, for: .horizontal)
+        shareIcon.setupConstraints { (_) in
+            shareIcon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
+            shareIcon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
+        }
     }
 }
