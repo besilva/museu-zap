@@ -45,33 +45,44 @@ class AudioServicesErrorTests: XCTestCase {
     // SUT with Mocked DAO to produce errors
     func testCreateError() {
         let audio = Audio(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
+        let closureExpectation = XCTestExpectation(description: "Expect to call closure")
 
         sut.createAudio(audio: audio) { (error) in
             // Closure only invoked if there was error
             XCTAssertEqual(error as? DatabaseErrors, DatabaseErrors.create)
+            closureExpectation.fulfill()
         }
+
+        wait(for: [closureExpectation], timeout: 3.0)
     }
 
     // MARK: - Read
 
     func testGetAllAudiosError() {
-        audioDAO.shouldThrowError = true
+        let closureExpectation = XCTestExpectation(description: "Expect to call closure")
 
         sut.getAllAudios { (error, audioArray) in
             XCTAssertEqual(error as? DatabaseErrors, DatabaseErrors.read)
             XCTAssertNil(audioArray, "Array should be nil")
+            closureExpectation.fulfill()
         }
+
+        wait(for: [closureExpectation], timeout: 3.0)
     }
 
     // MARK: - Update
 
     // SUT with Mocked DAO to produce errors
     func testUpdateAllAudiosError() {
+        let closureExpectation = XCTestExpectation(description: "Expect to call closure")
 
         sut.updateAllAudios { (error) in
             // Closure only invoked if there was error
             XCTAssertEqual(error as? DatabaseErrors, DatabaseErrors.update)
+            closureExpectation.fulfill()
         }
+
+        wait(for: [closureExpectation], timeout: 3.0)
     }
 
     // MARK: - Delete
@@ -79,11 +90,14 @@ class AudioServicesErrorTests: XCTestCase {
     // SUT with Mocked DAO to produce errors
     func testDeleteErrors() {
         let audio = Audio(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
+        let closureExpectation = XCTestExpectation(description: "Expect to call closure")
 
         sut.deleteAudio(audio: audio) { (error) in
             // Closure only invoked if there was error
             XCTAssertEqual(error as? DatabaseErrors, DatabaseErrors.delete)
+            closureExpectation.fulfill()
         }
-    }
 
+        wait(for: [closureExpectation], timeout: 3.0)
+    }
 }

@@ -69,14 +69,14 @@ class AudioServices {
     /// - parameters:
     ///     - completion: closure to be executed at the end of this method
     /// - throws: if an error occurs during getting an object from database  (DatabaseErrors.publicAndPrivate)
-    func getAllAudiosWith(isPrivate: Bool, _ completion: @escaping (_ errorMessage: Error?,
-                                                                    _ entity: [Audio]?) -> Void) {
+    func getAllAudiosWith(isPrivate bool: Bool, _ completion: @escaping (_ errorMessage: Error?,
+                                                                         _ entity: [Audio]?) -> Void) {
         // Error to be returned in case of failure
         var raisedError: DatabaseErrors?
         var audios: [Audio]?
 
         do {
-            audios = try audioDAO.fetchAudiosWith(isPrivate: true)
+            audios = try audioDAO.fetchAudiosWith(isPrivate: bool)
             completion(nil, audios)
         } catch let error as DatabaseErrors {
             raisedError = error

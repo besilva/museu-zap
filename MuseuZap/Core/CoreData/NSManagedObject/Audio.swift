@@ -15,6 +15,16 @@ import CoreData
 /// Used to reduce clutter for View
 struct AudioProperties {
 
+    // MARK: - Properties
+
+    var name: String
+    var path: String
+    var isPrivate: Bool
+    var duration: TimeInterval = 0
+    var category: String?
+
+    // MARK: - Init
+
     init(from audio: Audio) {
         self.name = audio.audioName
         self.path = audio.audioPath
@@ -22,12 +32,6 @@ struct AudioProperties {
         self.duration = audio.duration
         self.isPrivate = audio.isPrivate
     }
-
-    var name: String
-    var path: String
-    var isPrivate: Bool
-    var duration: TimeInterval = 0
-    var category: String?
 }
 
     // MARK: - Class
@@ -64,5 +68,4 @@ extension Audio {
     @NSManaged public var isPrivate: Bool
     @NSManaged public var duration: Double
     @NSManaged public var category: Category
-
 }

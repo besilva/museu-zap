@@ -44,45 +44,63 @@ class CategoryServicesErrorTests: XCTestCase {
 
     // SUT with Mocked DAO to produce errors
     func testCreateError() {
+        let closureExpectation = XCTestExpectation(description: "Expect to call closure")
+
         let category = Category(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
         category.categoryName = "createError"
 
         sut.createCategory(category: category) { (error) in
             // Closure only invoked if there was error
             XCTAssertEqual(error as? DatabaseErrors, DatabaseErrors.create)
+            closureExpectation.fulfill()
         }
+
+        wait(for: [closureExpectation], timeout: 3.0)
     }
 
     // MARK: - Read
 
     func testGetAllCategoriesError() {
+        let closureExpectation = XCTestExpectation(description: "Expect to call closure")
 
         sut.getAllCategories({ (error, categoryArray) in
             XCTAssertEqual(error as? DatabaseErrors, DatabaseErrors.read)
             XCTAssertNil(categoryArray, "Array should be nil")
+            closureExpectation.fulfill()
         })
+
+        wait(for: [closureExpectation], timeout: 3.0)
     }
     // MARK: - Update
 
     // SUT with Mocked DAO to produce errors
     func testUpdateAllCategoriesError() {
+        let closureExpectation = XCTestExpectation(description: "Expect to call closure")
 
         sut.updateAllCategories { (error) in
            // Closure only invoked if there was error
             XCTAssertEqual(error as? DatabaseErrors, DatabaseErrors.update)
+            closureExpectation.fulfill()
         }
+
+        wait(for: [closureExpectation], timeout: 3.0)
     }
 
     // MARK: - Delete
 
     // SUT with Mocked DAO to produce errors
     func testDeleteErrors() {
+        let closureExpectation = XCTestExpectation(description: "Expect to call closure")
+
         let category = Category(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
         category.categoryName = "deleteError"
 
         sut.deleteCategory(category: category) { (error) in
             // Closure only invoked if there was error
             XCTAssertEqual(error as? DatabaseErrors, DatabaseErrors.delete)
+            closureExpectation.fulfill()
         }
+
+        wait(for: [closureExpectation], timeout: 3.0)
     }
 }

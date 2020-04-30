@@ -45,30 +45,42 @@ class AudioServicesSuccessTests: XCTestCase {
     // Mock DAO does nothing, should not produce errors
     func testCreate() {
         let audio = Audio(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
+        let closureExpectation = XCTestExpectation(description: "Expect to call closure")
 
         sut.createAudio(audio: audio) { (error) in
             XCTAssertNil(error, "Services create error")
+            closureExpectation.fulfill()
         }
+        
+        wait(for: [closureExpectation], timeout: 3.0)
     }
 
     // MARK: - Read
 
     func testGetAllAudios() {
+        let closureExpectation = XCTestExpectation(description: "Expect to call closure")
         // Audio Array should contain exactly one record
         sut.getAllAudios { (error, audioArray) in
             XCTAssertEqual(audioArray?.count, 1, "AudioDAO Mock readall func creates only 1 item not \(audioArray?.count ?? 100)!")
             XCTAssertNil(error, "Services get error")
+            closureExpectation.fulfill()
         }
+
+        wait(for: [closureExpectation], timeout: 3.0)
     }
 
     // MARK: - Update
 
     // Mock DAO does nothing, should not produce errors
     func testUpdateAllAudios() {
+        let closureExpectation = XCTestExpectation(description: "Expect to call closure")
         
         sut.updateAllAudios { (error) in
              XCTAssertNil(error, "Services update error")
+             closureExpectation.fulfill()
         }
+
+        wait(for: [closureExpectation], timeout: 3.0)
     }
 
     // MARK: - Delete
@@ -76,9 +88,13 @@ class AudioServicesSuccessTests: XCTestCase {
     // Mock DAO does nothing, should not produce errors
     func testDelete() {
         let audio = Audio(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
+        let closureExpectation = XCTestExpectation(description: "Expect to call closure")
 
         sut.deleteAudio(audio: audio) { (error) in
             XCTAssertNil(error, "Services delete error")
+            closureExpectation.fulfill()
         }
+
+        wait(for: [closureExpectation], timeout: 3.0)
     }
 }

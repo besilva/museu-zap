@@ -32,6 +32,7 @@ class CategoryServices {
         do {
             // Save information
             try categoryDAO.create(category)
+            completion(nil)
         } catch let error as DatabaseErrors {
             completion(error)
         } catch {

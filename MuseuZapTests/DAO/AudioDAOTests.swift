@@ -1,5 +1,5 @@
 //
-//  DAOCoreDataProtocolTests
+//  AudioDAOTests.swift
 //  MuseuZapTests
 //
 //  Created by Ivo Dutra on 06/04/20.
@@ -12,7 +12,7 @@ import CoreData
 
     // MARK: - DAO
 
-class DAOTests: XCTestCase {
+class AudioDAOTests: XCTestCase {
 
     var sut: AudioDAO!
     var coreDataHelper: CoreDataTestHelper!
@@ -41,7 +41,6 @@ class DAOTests: XCTestCase {
     /// Creates a new Element (first without viewContext) and asserts if error is nil
     func testCreate() {
         let audio = Audio(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
-        var databaseError: Error?
 
         audio.audioName = "Mock audio create"
         audio.audioPath = "/Mocks/Path/"
@@ -50,32 +49,28 @@ class DAOTests: XCTestCase {
 
         collaborator.addToAudios(audio)
 
-        do {
-            try sut.create(audio)
-        } catch let error {
-            databaseError = error
-            print(databaseError ?? "databaseError Create")
-        }
+        XCTAssertNoThrow(try sut.create(audio))
+    }
 
-        XCTAssertNil(databaseError, "databaseError Create")
+    /// Creates a new Element (first without viewContext) and asserts if error is databaseCreate
+    func testCreateError() {
+        let audio = Audio(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
+
+        collaborator.addToAudios(audio)
+
+        XCTAssertThrowsError(try sut.create(audio), "Empty properties should throw error") { (error) in
+           XCTAssertEqual(error as? DatabaseErrors, DatabaseErrors.create)
+        }
     }
 
     // MARK: - Read
 
     /// Read mocked database, count should be igual to 3
     func testReadAll() {
-        var databaseError: Error?
         var audioArray = [Audio]()
 
-        do {
-            try audioArray = sut.readAll()
-        } catch let error {
-            databaseError = error
-            print(databaseError ?? "databaseError read")
-        }
-
+        XCTAssertNoThrow(try audioArray = sut.readAll())
         XCTAssertEqual(audioArray.count, 3, "initStubs create only 3 item not \(audioArray.count)!")
-        XCTAssertNil(databaseError, "databaseError read")
     }
 
     // MARK: - Update
@@ -86,25 +81,26 @@ class DAOTests: XCTestCase {
         var audioArray = [Audio]()
         var element: Audio?
 
-        do {
-            try audioArray = sut.readAll()
-            element = audioArray[0]
-        } catch let error {
-            databaseError = error
-            print(databaseError ?? "databaseError read")
-        }
+        XCTAssertNoThrow(try audioArray = sut.readAll())
 
-        guard let item = element else { return }
+        element = audioArray[0]
+        XCTAssertNotNil(element)
 
         do {
-            item.audioName = "Mock Name updated"
+            element?.audioName = "Mock Name updated"
             try sut.updateContext()
+            audioArray = try sut.readAll()
         } catch let error {
             databaseError = error
             print(databaseError ?? "databaseError update")
         }
 
-        XCTAssertEqual(item.audioName, "Mock Name updated", "Database was not updated")
+        let audio = audioArray.first { (audio) -> Bool in
+            return audio.audioName == "Mock Name updated"
+        }
+
+        XCTAssertNotNil(audio)
+        XCTAssertEqual(audio?.audioName, "Mock Name updated", "Database was not updated")
         XCTAssertNil(databaseError, "databaseError update")
     }
 
@@ -112,101 +108,53 @@ class DAOTests: XCTestCase {
 
     /// Fetches the Elements, delete one and see if newArray count is two
     func testDelete() {
-        var databaseError: Error?
         var audioArray = [Audio]()
         var newArray = [Audio]()
 
-        do {
-           try audioArray = sut.readAll()
-        } catch let error {
-           databaseError = error
-           print(databaseError ?? "databaseError1 read")
-        }
+        XCTAssertNoThrow(try audioArray = sut.readAll())
 
         let element = audioArray[0]
 
-        do {
-           try sut.delete(element)
-        } catch let error {
-           databaseError = error
-           print(databaseError ?? "databaseError1 delete")
-        }
+        XCTAssertNoThrow(try sut.delete(element))
 
-        do {
-           try newArray = sut.readAll()
-        } catch let error {
-           databaseError = error
-           print(databaseError ?? "databaseError2 read")
-        }
+        XCTAssertNoThrow(try newArray = sut.readAll())
 
         XCTAssertEqual(newArray.count, 2, "Database should have only two records")
-        XCTAssertNil(databaseError, "databaseError update")
     }
 
     /// Fetches the Elements, delete all and see if newArray count is zero
     func testDeleteAll() {
-        var databaseError: Error?
         var array = [Audio]()
         var newArray = [Audio]()
 
-        do {
-           try array = sut.readAll()
-        } catch let error {
-           databaseError = error
-           print(databaseError ?? "databaseError1 read")
-        }
+        XCTAssertNoThrow(try array = sut.readAll())
 
         let element = array[0]
 
-        do {
-           try sut.deleteAll(element)
-        } catch let error {
-           databaseError = error
-           print(databaseError ?? "databaseError1 delete")
-        }
+        XCTAssertNoThrow(try sut.deleteAll(element))
 
-        do {
-           try newArray = sut.readAll()
-        } catch let error {
-           databaseError = error
-           print(databaseError ?? "databaseError2 read")
-        }
+        XCTAssertNoThrow(try newArray = sut.readAll())
 
         XCTAssertEqual(newArray.count, 0, "Database should have no records")
-        XCTAssertNil(databaseError, "databaseError update")
     }
 
     // MARK: - PREDICATE
 
     // Test method with NSpredicate to fetch only isPrivate=true audios
     func testPredicatePrivate() {
-        var databaseError: Error?
         var privateAudios = [Audio]()
 
-        do {
-            try privateAudios = sut.fetchAudiosWith(isPrivate: true)
-        } catch {
-            databaseError = error
-            print(databaseError ?? "databaseError read")
-        }
+        XCTAssertNoThrow(try privateAudios = sut.fetchAudiosWith(isPrivate: true))
 
         XCTAssertEqual(privateAudios.count, 1, "initStubs create only 1 private audio not \(privateAudios.count)!")
-        XCTAssertNil(databaseError, "databaseError read")
     }
 
     // Test method with NSpredicate to fetch only isPrivate=true audios
     func testPredicatePublic() {
-        var databaseError: Error?
         var publicAudios = [Audio]()
 
-        do {
-            try publicAudios = sut.fetchAudiosWith(isPrivate: false)
-        } catch {
-            databaseError = error
-            print(databaseError ?? "databaseError read")
-        }
+        XCTAssertNoThrow(try publicAudios = sut.fetchAudiosWith(isPrivate: false))
 
         XCTAssertEqual(publicAudios.count, 2, "initStubs create exactly 2 public audios not \(publicAudios.count)!")
-        XCTAssertNil(databaseError, "databaseError read")
     }
 }

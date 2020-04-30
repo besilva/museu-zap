@@ -48,40 +48,52 @@ class CategoryServicesSuccessTests: XCTestCase {
         category.categoryName = "create"
 
         sut.createCategory(category: category) { (error) in
-            print("Services create error", error as Any)
-            XCTFail("Closure should not be invoked")
+            XCTAssertNil(error, "Services create error")
         }
     }
 
     // MARK: - Read
 
     func testGetAllCategories() {
+        let closureExpectation = XCTestExpectation(description: "Expect to call closure")
         // Category Array should contain exactly one record
         sut.getAllCategories { (error, categoryArray) in
             XCTAssertEqual(categoryArray?.count, 1, "AudioDAO Mock read func creates only 1 item not \(categoryArray?.count ?? 100)!")
-            XCTAssertNil(error, "Services create error")
+            XCTAssertNil(error, "Services get error")
+            closureExpectation.fulfill()
         }
+
+        wait(for: [closureExpectation], timeout: 3.0)
     }
 
     // MARK: - Update
 
     // Mock DAO does nothing, should not produce errors
     func testUpdateAllCategories() {
+        let closureExpectation = XCTestExpectation(description: "Expect to call closure")
 
         sut.updateAllCategories { (error) in
-           XCTAssertNil(error, "Services update error")
+            XCTAssertNil(error, "Services update error")
+            closureExpectation.fulfill()
         }
+
+        wait(for: [closureExpectation], timeout: 3.0)
     }
 
     // MARK: - Delete
 
     // Mock DAO does nothing, should not produce errors
     func testDelete() {
+        let closureExpectation = XCTestExpectation(description: "Expect to call closure")
+
         let category = Category(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
         category.categoryName = "deleteError"
 
         sut.deleteCategory(category: category) { (error) in
             XCTAssertNil(error, "Services delete error")
+            closureExpectation.fulfill()
         }
+
+        wait(for: [closureExpectation], timeout: 3.0)
     }
 }

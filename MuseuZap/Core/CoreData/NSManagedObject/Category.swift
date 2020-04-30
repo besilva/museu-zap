@@ -15,6 +15,13 @@ import CoreData
 /// Used to reduce clutter for View
 struct CategoryProperties {
 
+    // MARK: - Properties
+
+    var name: String
+    var audios: [String]?
+
+    // MARK: - Init
+
     init(from category: Category) {
         self.name = category.categoryName
 
@@ -25,11 +32,7 @@ struct CategoryProperties {
         } else {
             self.audios = nil
         }
-
     }
-
-    var name: String
-    var audios: [String]?
 }
 
     // MARK: - Class

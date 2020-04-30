@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let context = CoreDataManager.sharedInstance.managedObjectContext
         // Get entity, then generatehow  an object from it
         guard let entity1 = NSEntityDescription.entity(forEntityName: "Audio", in: context),
-            let entity2 = NSEntityDescription.entity(forEntityName: "Category", in: context)
+              let entity2 = NSEntityDescription.entity(forEntityName: "Category", in: context)
         else {
             fatalError("Could not find entities")
         }
