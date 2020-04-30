@@ -23,7 +23,6 @@ class AppCoordinator: NSObject, Coordinator {
         let testCoordinator = TestCoordinator()
         testCoordinator.startFlow()
         
-        
         let aboutCoordinator = AboutCoordinator()
         aboutCoordinator.startFlow()
         
