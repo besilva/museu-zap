@@ -115,12 +115,8 @@ class AudioCellView: UIView, ViewCodable {
         let durationString = viewModel.duration.stringFromTimeInterval()
         
 //        Sets text style attributes
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineHeightMultiple = 0.72
-        
         let attributedText = NSMutableAttributedString(string: durationString,
-                                                       	attributes: [NSAttributedString.Key.kern: 0.07,
-                                                                        NSAttributedString.Key.paragraphStyle: paragraphStyle])
+                                                       	attributes: [NSAttributedString.Key.kern: 0.07])
         durationLabel.attributedText = attributedText
         durationLabel.textAlignment = .left
     }
@@ -210,7 +206,7 @@ extension AudioCellView {
                                                       toItem: titleLabel,
                                                       attribute: .bottom,
                                                       multiplier: 1,
-                                                      constant: 4)
+                                                      constant: -2)
             topConstraint.priority = UILayoutPriority.required
             topConstraint.isActive = true
             
