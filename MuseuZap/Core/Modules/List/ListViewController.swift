@@ -14,6 +14,7 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
     }
     
     weak var delegate: NavigationDelegate?
+
     private var myView: ListView {
         // swiftlint:disable force_cast
         return view as! ListView
@@ -28,8 +29,8 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
         super.viewDidLoad()
         self.title = "List"
         // Fake doing request
-        let array = [("titulo", "subtitulo")]
-        let viewModel = ListViewModel(array: array)
+        let audioServices = AudioServices(dao: AudioDAO())
+        let viewModel = ListViewModel(audioServices: audioServices)
         viewModel.navigationDelegate = self
         myView.viewModel = viewModel
     }
