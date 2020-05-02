@@ -39,7 +39,6 @@ class CustomCellSnapshotTests: XCTestCase {
                                                  duration: 90,
                                                  audioURL: "sampleURL")
         customCellView?.viewModel = viewModel
-        XCTAssertTrue(false, "color is \(customCellView.backgroundColor ?? UIColor.blue)")
         assertSnapshot(matching: cellViewController, as: .image)
     }
     
