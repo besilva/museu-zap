@@ -27,6 +27,8 @@ class CustomCellSnapshotTests: XCTestCase {
             customCellView.widthAnchor.constraint(equalToConstant: customCellView.frame.width).isActive = true
         }
         record = false
+        print("color: \(customCellView.backgroundColor)")
+        NSLog("color: \(customCellView.backgroundColor)")
     }
 
     override func tearDown() {
