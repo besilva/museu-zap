@@ -26,6 +26,7 @@ class CustomCellSnapshotTests: XCTestCase {
             customCellView.centerXAnchor.constraint(equalTo: cellViewController.view.centerXAnchor).isActive = true
             customCellView.widthAnchor.constraint(equalToConstant: customCellView.frame.width).isActive = true
         }
+        record = false
     }
 
     override func tearDown() {

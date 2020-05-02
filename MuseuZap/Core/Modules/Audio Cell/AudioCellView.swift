@@ -86,6 +86,8 @@ class AudioCellView: UIView, ViewCodable {
 //        Set icons colors
         shareIcon.tintColor = UIColor.Default.power
         playIcon.tintColor = UIColor.Default.power
+        
+        
     }
     
     func updateView() {
