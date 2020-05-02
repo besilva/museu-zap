@@ -27,8 +27,6 @@ class CustomCellSnapshotTests: XCTestCase {
             customCellView.widthAnchor.constraint(equalToConstant: customCellView.frame.width).isActive = true
         }
         record = false
-        print("color: \(customCellView.backgroundColor)")
-        NSLog("color: \(customCellView.backgroundColor)")
     }
 
     override func tearDown() {
@@ -41,6 +39,7 @@ class CustomCellSnapshotTests: XCTestCase {
                                                  duration: 90,
                                                  audioURL: "sampleURL")
         customCellView?.viewModel = viewModel
+        assert(false, "color is \(customCellView.backgroundColor ?? UIColor.blue)")
         assertSnapshot(matching: cellViewController, as: .image)
     }
     
