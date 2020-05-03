@@ -31,38 +31,30 @@ class CustomCellSnapshotTests: XCTestCase {
 
     override func tearDown() {
         customCellView = nil
+        cellViewController = nil
         super.tearDown()
     }
 
     func testSnapshotOneLineTitle() throws {
-        let viewModel = PublicAudioCellViewModel(title: "Laboris cupidatat",
-                                                 duration: 90,
-                                                 audioURL: "sampleURL")
+        let viewModel = PublicAudioCellViewModel.Helper.oneLine
         customCellView?.viewModel = viewModel
         assertSnapshot(matching: cellViewController, as: .image)
     }
     
     func testSnapshotTwoLinesTitle() throws {
-        let viewModel = PublicAudioCellViewModel(title: "Laboris cupidatat exercitation",
-                                                 duration: 90,
-                                                 audioURL: "sampleURL")
+        let viewModel = PublicAudioCellViewModel.Helper.twoLines
         customCellView?.viewModel = viewModel
         assertSnapshot(matching: cellViewController, as: .image)
     }
     
     func testSnapshotThreeLinesTitle() throws {
-        let viewModel = PublicAudioCellViewModel(title: "Laboris cupidatat exercitation reprehenderit commodo qui proident",
-                                                 duration: 90,
-                                                 audioURL: "sampleURL")
+        let viewModel = PublicAudioCellViewModel.Helper.threeLines
         customCellView?.viewModel = viewModel
         assertSnapshot(matching: cellViewController, as: .image)
     }
     
     func testSnapshotFourLinesTitle() throws {
-        let audioTitle = "Laboris cupidatat exercitation reprehenderit commodo qui proident Laboris cupidatat exercitation"
-        let viewModel = PublicAudioCellViewModel(title: audioTitle,
-                                                 duration: 90,
-                                                 audioURL: "sampleURL")
+        let viewModel = PublicAudioCellViewModel.Helper.fourLines
         customCellView?.viewModel = viewModel
         assertSnapshot(matching: cellViewController, as: .image)
     }
