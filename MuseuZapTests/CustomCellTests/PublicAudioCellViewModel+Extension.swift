@@ -7,6 +7,7 @@
 //
 
 import UIKit
+@testable import MuseuZap
 
 extension PublicAudioCellViewModel {
     struct Helper {
