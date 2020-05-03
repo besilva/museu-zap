@@ -27,35 +27,45 @@ class MockAboutViewModelDelegate: AboutViewModel {
 
 class AboutViewTests: XCTestCase {
     var aboutView: AboutView!
-    var aboutViewModel: MockAboutViewModel?
+    var aboutViewModel: MockAboutViewModel!
 
     override func setUpWithError() throws {
         aboutView = AboutView(frame: CGRect.zero)
         aboutViewModel = MockAboutViewModel()
-        aboutView!.viewModel = aboutViewModel
+        aboutView.viewModel = aboutViewModel
     }
 
     override func tearDownWithError() throws {
         aboutView = nil
         aboutViewModel = nil
+        UIPasteboard.general.string = ""
     }
 
     func testBackgroundColor() throws {
-        XCTAssertEqual(self.aboutView?.contentView.backgroundColor, UIColor.Default.background)
+        XCTAssertEqual(self.aboutView.contentView.backgroundColor, UIColor.Default.background)
     }
 
     func testLabelColor() throws {
-        XCTAssertEqual(self.aboutView?.mailLabel.tintColor, UIColor.Default.label)
+        XCTAssertEqual(self.aboutView.mailLabel.tintColor, UIColor.Default.label)
     }
     
     func testHandleTap() throws {
         XCTAssertNotNil(aboutView)
-        XCTAssertNotNil(aboutView)
-        XCTAssertNoThrow(try aboutView?.handleTap())
+        XCTAssertNoThrow(try aboutView.handleTap())
     }
     
     func testHandleTapFail() throws {
-        aboutView?.viewModel = nil
-        XCTAssertThrowsError(try aboutView?.handleTap())
+        aboutView.viewModel = nil
+        XCTAssertThrowsError(try aboutView.handleTap())
+    }
+    
+    func testCopy() throws {
+        XCTAssertNoThrow(try aboutView.addToClipboard())
+        XCTAssertEqual(aboutViewModel.email, UIPasteboard.general.string)
+    }
+    
+    func testCopyFail() throws {
+        aboutView.viewModel = nil
+        XCTAssertThrowsError(try aboutView.addToClipboard())
     }
 }
