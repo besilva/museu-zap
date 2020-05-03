@@ -22,7 +22,7 @@ class CategoryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Call to service
+        //  TODO: Call to service
         categories = ["Teste", "Teste2"]
     }
     
