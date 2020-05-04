@@ -14,9 +14,15 @@ class ShareViewController: SLComposeServiceViewController {
     
     var extensionItem: NSExtensionItem?
     var audio: AVPlayer?
-    var category: String = "Nenhuma" {
+    var category: Category? {
         didSet {
-            item?.value = category
+            guard let name = category?.categoryName else { return }
+            categoryText = name
+        }
+    }
+    var categoryText =  "Selecionar categoria" {
+        didSet {
+            item?.value = category?.categoryName
         }
     }
     let item = SLComposeSheetConfigurationItem()
@@ -24,20 +30,21 @@ class ShareViewController: SLComposeServiceViewController {
     override func loadView() {
         super.loadView()
         let context = self.extensionContext
-        self.extensionItem = context?.inputItems[0] as? NSExtensionItem
+        extensionItem = context?.inputItems[0] as? NSExtensionItem
+        setupNavigation()
+        textView.font = UIFont.Default.regular
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "MuseuZap"
         self.placeholder = "Dê um nome para o seu audio"
         extensionItem?.attachments?[0].loadItem(forTypeIdentifier: "public.file-url",
                                                 options: nil,
                                                 completionHandler: { (urlItem, error) in
-            if let urlItem = urlItem,
-                let url = URL(string: "\(urlItem)") {
-                self.audio = AVPlayer(url: url)
-            }
+                                                    if let urlItem = urlItem,
+                                                        let url = URL(string: "\(urlItem)") {
+                                                        self.audio = AVPlayer(url: url)
+                                                    }
         })
     }
     
@@ -45,18 +52,18 @@ class ShareViewController: SLComposeServiceViewController {
         // Do validation of contentText and/or NSExtensionContext attachments here
         return !contentText.isEmpty && audio != nil
     }
-
+    
     override func didSelectPost() {
         // This is called after the user selects Post. Do the upload of contentText and/or NSExtensionContext attachments.
-    
+        
         // Inform the host that we're done, so it un-blocks its UI. Note: Alternatively you could call super's -didSelectPost, which will similarly complete the extension context.
         self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
     }
-
+    
     override func configurationItems() -> [Any]! {
-       
+        
         item?.title = "Categoria"
-        item?.value = category
+        item?.value = categoryText
         
         item?.tapHandler = {
             let controller = CategoryTableViewController()
@@ -69,8 +76,8 @@ class ShareViewController: SLComposeServiceViewController {
     
     let imageView = UIImageView()
     override func loadPreviewView() -> UIView! {
-//        super.loadView()
-       
+        //        super.loadView()
+        
         let image = UIImage(named: "ShareIcon")
         imageView.contentMode = .scaleAspectFit
         imageView.image = image
@@ -82,10 +89,27 @@ class ShareViewController: SLComposeServiceViewController {
         }
         return imageView
     }
+    
+    func setupNavigation() {
+        self.title = "Blin/Pleen"
+        if let navBar = self.navigationController?.navigationBar {
+            navBar.topItem?.leftBarButtonItem?.title = "Cancelar"
+            navBar.topItem?.rightBarButtonItem?.title = "Salvar"
+            navBar.tintColor = UIColor.Default.power
+            navBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.Default.semibold]
+            UIBarButtonItem.appearance()
+                .setTitleTextAttributes([NSAttributedString.Key.font: UIFont.Default.semibold],
+                                        for: UIControl.State.normal)
+            let regular = UIFont.Default.semibold
+            UIBarButtonItem.appearance()
+                .setTitleTextAttributes([NSAttributedString.Key.font: regular.withSize(17)],
+                                        for: UIControl.State.disabled)
+        }
+    }
 }
 
 extension ShareViewController: CategoryTableViewControllerDelegate {
-    func categorySelected(category: String) {
+    func categorySelected(category: Category) {
         self.category = category
         popConfigurationViewController()
     }

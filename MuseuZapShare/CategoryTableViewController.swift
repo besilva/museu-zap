@@ -9,26 +9,33 @@
 import UIKit
 
 protocol CategoryTableViewControllerDelegate: class {
-    func categorySelected(category: String)
+    func categorySelected(category: Category)
 }
 
 class CategoryTableViewController: UITableViewController {
     weak var delegate: CategoryTableViewControllerDelegate?
-    var categories: [String] = [] {
+    var categories: [Category] = [] {
         didSet {
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
+    let categoryService = CategoryServices(dao: CategoryDAO())
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //  TODO: Call to service
-        categories = ["Teste", "Teste2"]
+            
+         categoryService.getAllCategories({ (error, categories) in
+            if let categories = categories {
+                self.categories = categories
+            }
+        })
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        cell.textLabel?.text = categories[indexPath.row]
+        cell.textLabel?.text = categories[indexPath.row].categoryName
         return cell
     }
     

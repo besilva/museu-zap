@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
 
         addTestData()
+        print(try! CategoryDAO().readAll())
 
         return true
     }
@@ -52,7 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             audio.duration = 5.44
 
             category.addToAudios(audio)
-            print("breakpoint")
         }
     }
 

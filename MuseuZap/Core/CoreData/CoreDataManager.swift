@@ -37,7 +37,7 @@ class CoreDataManager {
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
 
         // Documents Directory + name from module. Url is created on clean launch from the app
-        let persistentStoreURL = self.applicationDocumentsDirectory.appendingPathComponent("\(moduleName).sqlite")
+        let persistentStoreURL = FileManager.sharedContainerURL().appendingPathComponent("\(moduleName).sqlite")
 
         do {
             // Options enable light weight migration (case relations change)
@@ -78,7 +78,8 @@ class CoreDataManager {
     lazy var managedObjectContext: NSManagedObjectContext = {
         let managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = self.persistentStoreCoordinator
-
+        print("stores")
+        print(self.persistentStoreCoordinator.persistentStores)
         return managedObjectContext
     }()
 }

@@ -22,8 +22,24 @@
 		64C775842457162700FDEA03 /* MuseuZapShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 64C7757A2457162700FDEA03 /* MuseuZapShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		64C7758924571EF100FDEA03 /* ViewCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A60C2D24489B9E003B0F26 /* ViewCodable.swift */; };
 		64C7758A24571EF900FDEA03 /* UIView+ConstraintsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A60C2F24489D62003B0F26 /* UIView+ConstraintsExtension.swift */; };
-		64C7758D2458739C00FDEA03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64C7758C2458739C00FDEA03 /* Assets.xcassets */; };
 		64C7758F245B128700FDEA03 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C7758E245B128700FDEA03 /* CategoryTableViewController.swift */; };
+		64C77590245F7E0200FDEA03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6473EDDD243B6D3E00A10F2C /* Assets.xcassets */; };
+		64C77591245F7F1100FDEA03 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FAABD72451BFD6008B7DB8 /* UIColorExtension.swift */; };
+		64C77592245F7F1800FDEA03 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C274D0245872980051A1E6 /* UIFont+Extension.swift */; };
+		64C77593245FB46F00FDEA03 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80C274CA2458721C0051A1E6 /* Poppins-Regular.ttf */; };
+		64C77594245FB47100FDEA03 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80C274CB2458721C0051A1E6 /* Poppins-SemiBold.ttf */; };
+		64C77597245FBB6100FDEA03 /* FileManager+AppGroupExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C77596245FBB6100FDEA03 /* FileManager+AppGroupExtension.swift */; };
+		64C77598245FBB7500FDEA03 /* FileManager+AppGroupExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C77596245FBB6100FDEA03 /* FileManager+AppGroupExtension.swift */; };
+		64C77599245FBC7A00FDEA03 /* DAOCoreDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A341C5244C03A1006F1D0D /* DAOCoreDataProtocol.swift */; };
+		64C7759A245FBC7C00FDEA03 /* AudioDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C558EC7224575E3500A0B32C /* AudioDAO.swift */; };
+		64C7759B245FBC7E00FDEA03 /* CategoryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50385DB24584AEC00559CB4 /* CategoryDAO.swift */; };
+		64C7759C245FBC8300FDEA03 /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = C558EC6E24575C6500A0B32C /* Audio.swift */; };
+		64C7759D245FBC8600FDEA03 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = C558EC8D24576EEF00A0B32C /* Category.swift */; };
+		64C7759E245FBC8800FDEA03 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64796F092451C10A00104448 /* CoreDataManager.swift */; };
+		64C7759F245FBC8A00FDEA03 /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A341CF244C0523006F1D0D /* DatabaseError.swift */; };
+		64C775A1245FBCBE00FDEA03 /* AudioServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C558EC7424575F4400A0B32C /* AudioServices.swift */; };
+		64C775A2245FBCC100FDEA03 /* CategoryServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54170D52458816F004BCC73 /* CategoryServices.swift */; };
+		64C775A3245FC1DE00FDEA03 /* MuseuZap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5A341B7244C0274006F1D0D /* MuseuZap.xcdatamodeld */; };
 		64DD6FE0243E07D000404321 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FDF243E07D000404321 /* AppCoordinator.swift */; };
 		64DD6FE4243E084100404321 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FE3243E084100404321 /* Coordinator.swift */; };
 		64DD6FE6243E0A4700404321 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FE5243E0A4700404321 /* Stack.swift */; };
@@ -125,6 +141,8 @@
 		64C775812457162700FDEA03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64C7758C2458739C00FDEA03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64C7758E245B128700FDEA03 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
+		64C77595245FBA7D00FDEA03 /* MuseuZapShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MuseuZapShare.entitlements; sourceTree = "<group>"; };
+		64C77596245FBB6100FDEA03 /* FileManager+AppGroupExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+AppGroupExtension.swift"; sourceTree = "<group>"; };
 		64DD6FDF243E07D000404321 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		64DD6FE3243E084100404321 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		64DD6FE5243E0A4700404321 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
@@ -252,6 +270,7 @@
 		64C7757B2457162700FDEA03 /* MuseuZapShare */ = {
 			isa = PBXGroup;
 			children = (
+				64C77595245FBA7D00FDEA03 /* MuseuZapShare.entitlements */,
 				64C7757C2457162700FDEA03 /* ShareViewController.swift */,
 				64C7758E245B128700FDEA03 /* CategoryTableViewController.swift */,
 				64C7757E2457162700FDEA03 /* MainInterface.storyboard */,
@@ -298,6 +317,7 @@
 				80F7235D245319DA00583137 /* UILabel+Extension.swift */,
 				80ABB7B62457230C0020CF42 /* TimeInterval+Extension.swift */,
 				80C274D0245872980051A1E6 /* UIFont+Extension.swift */,
+				64C77596245FBB6100FDEA03 /* FileManager+AppGroupExtension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -586,7 +606,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64C7758D2458739C00FDEA03 /* Assets.xcassets in Resources */,
+				64C77593245FB46F00FDEA03 /* Poppins-Regular.ttf in Resources */,
+				64C77594245FB47100FDEA03 /* Poppins-SemiBold.ttf in Resources */,
+				64C77590245F7E0200FDEA03 /* Assets.xcassets in Resources */,
 				64C775802457162700FDEA03 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -660,6 +682,7 @@
 				80C274D1245872980051A1E6 /* UIFont+Extension.swift in Sources */,
 				80D80EF02447365C00915F1C /* AboutCoordinator.swift in Sources */,
 				C558EC7024575C6500A0B32C /* Audio.swift in Sources */,
+				64C77597245FBB6100FDEA03 /* FileManager+AppGroupExtension.swift in Sources */,
 				80ABB7B72457230C0020CF42 /* TimeInterval+Extension.swift in Sources */,
 				80ABB7B324571C460020CF42 /* MyLibAudioCellViewModel.swift in Sources */,
 				80F7235E245319DA00583137 /* UILabel+Extension.swift in Sources */,
@@ -704,10 +727,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64C7759A245FBC7C00FDEA03 /* AudioDAO.swift in Sources */,
+				64C77598245FBB7500FDEA03 /* FileManager+AppGroupExtension.swift in Sources */,
+				64C7759C245FBC8300FDEA03 /* Audio.swift in Sources */,
+				64C77592245F7F1800FDEA03 /* UIFont+Extension.swift in Sources */,
+				64C775A1245FBCBE00FDEA03 /* AudioServices.swift in Sources */,
 				64C7757D2457162700FDEA03 /* ShareViewController.swift in Sources */,
 				64C7758924571EF100FDEA03 /* ViewCodable.swift in Sources */,
+				64C77591245F7F1100FDEA03 /* UIColorExtension.swift in Sources */,
+				64C7759F245FBC8A00FDEA03 /* DatabaseError.swift in Sources */,
+				64C7759E245FBC8800FDEA03 /* CoreDataManager.swift in Sources */,
+				64C7759B245FBC7E00FDEA03 /* CategoryDAO.swift in Sources */,
+				64C77599245FBC7A00FDEA03 /* DAOCoreDataProtocol.swift in Sources */,
+				64C775A2245FBCC100FDEA03 /* CategoryServices.swift in Sources */,
 				64C7758A24571EF900FDEA03 /* UIView+ConstraintsExtension.swift in Sources */,
 				64C7758F245B128700FDEA03 /* CategoryTableViewController.swift in Sources */,
+				64C7759D245FBC8600FDEA03 /* Category.swift in Sources */,
+				64C775A3245FC1DE00FDEA03 /* MuseuZap.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -955,6 +991,7 @@
 		64C775862457162700FDEA03 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MuseuZapShare/MuseuZapShare.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P33TK2RVAJ;
@@ -976,6 +1013,7 @@
 		64C775872457162700FDEA03 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MuseuZapShare/MuseuZapShare.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P33TK2RVAJ;
