@@ -50,7 +50,7 @@ class ShareViewController: SLComposeServiceViewController {
     
     override func isContentValid() -> Bool {
         // Do validation of contentText and/or NSExtensionContext attachments here
-        return !contentText.isEmpty && audio != nil & category != nil
+        return !contentText.isEmpty && audio != nil && category != nil
     }
     
     override func didSelectPost() {
