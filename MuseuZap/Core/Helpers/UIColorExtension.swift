@@ -10,7 +10,7 @@ import UIKit
 
 extension UIColor {
     struct Default {
-        static let background = UIColor(named: "background")
+        static let background = UIColor(named: "backgroundColor")
         static let lightBackground = UIColor(named: "light-bg")
         static let lightGray = UIColor(named: "light-gray")
         static let label = UIColor(named: "label")
