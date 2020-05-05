@@ -9,6 +9,7 @@
 import UIKit
 import Social
 import AVFoundation
+import CoreData
 
 class ShareViewController: SLComposeServiceViewController {
     

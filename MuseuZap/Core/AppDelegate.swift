@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
 
         addTestData()
-        print(try! CategoryDAO().readAll())
 
         return true
     }
