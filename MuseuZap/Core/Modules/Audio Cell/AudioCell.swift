@@ -48,7 +48,7 @@ class AudioCell: UITableViewCell, ViewCodable {
         self.setContentCompressionResistancePriority(.required, for: .vertical)
         self.setContentCompressionResistancePriority(.required, for: .horizontal)
         container.setupConstraints { (_) in
-            container.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+            container.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8).isActive = true
             container.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
             container.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
             container.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
@@ -64,7 +64,6 @@ class AudioCell: UITableViewCell, ViewCodable {
     
     func render() {
         self.layer.cornerRadius = 4
-        self.backgroundColor = UIColor.Default.background
 
 //        Sets content view appearance
         container.layer.cornerRadius = 4
@@ -85,7 +84,6 @@ class AudioCell: UITableViewCell, ViewCodable {
         shareIcon.tintColor = UIColor.Default.power
         playIcon.tintColor = UIColor.Default.power
         
-        backgroundColor = UIColor.Default.background
     }
     
     func updateView() {

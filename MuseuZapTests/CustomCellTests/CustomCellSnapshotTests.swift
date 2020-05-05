@@ -11,7 +11,7 @@ import XCTest
 @testable import MuseuZap
 
 class CustomCellSnapshotTests: XCTestCase {
-    var customCellView: AudioCellView!
+    var customCellView: AudioCell!
     var cellViewController: UIViewController!
 
     override func setUp() {
@@ -19,7 +19,7 @@ class CustomCellSnapshotTests: XCTestCase {
         
         cellViewController = UIViewController()
         cellViewController.view.backgroundColor = .lightGray
-        customCellView = AudioCellView(frame: CGRect(x: 0, y: 0, width: 374, height: 76))
+        customCellView = AudioCell(frame: CGRect(x: 0, y: 0, width: 374, height: 76))
         cellViewController.view.addSubview(customCellView)
         customCellView.setupConstraints { (_) in
             customCellView.topAnchor.constraint(equalTo: cellViewController.view.topAnchor, constant: 24).isActive = true

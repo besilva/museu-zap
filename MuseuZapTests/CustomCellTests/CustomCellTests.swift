@@ -49,12 +49,12 @@ class AudioCellViewModelMock: AudioCellViewModelProtocol {
 }
 
 class CustomCellTests: XCTestCase {
-    var customCellView: AudioCellView!
+    var customCellView: AudioCell!
     var mockViewModel: AudioCellViewModelMock!
     
     override func setUpWithError() throws {
         super.setUp()
-        customCellView = AudioCellView()
+        customCellView = AudioCell()
         mockViewModel = AudioCellViewModelMock(title: "gemidao", duration: 90, audioURL: "sampleURL")
         customCellView?.viewModel = mockViewModel
     }
