@@ -30,17 +30,13 @@ class PublicAudioCellViewModel: AudioCellViewModelProtocol {
         self.duration = 60
     }
     
-    func back() {
-        navigationDelegate?.handleNavigation(action: .back)
-    }
-    
     func changePlayStatus() {
         playing = !playing
 //        TODO: Call media manager singleton to change play status
     }
     
     func share() {
-        // TODO: Call to navigation delegate to share action
+//          TODO: Call to navigation delegate to share action
         return
     }
 }
