@@ -21,7 +21,7 @@ protocol ListViewModelProtocol {
 //    Func getAllAudios()
     func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties
     func back()
-    init(audioServices: AudioServices)
+    init(audioServices: AudioServices, delegate: ListViewModelDelegate)
 }
 
 class ListViewModel: ListViewModelProtocol {
@@ -31,8 +31,9 @@ class ListViewModel: ListViewModelProtocol {
     internal weak var delegate: ListViewModelDelegate?
     internal weak var navigationDelegate: NavigationDelegate?
     
-    required init(audioServices: AudioServices) {
+    required init(audioServices: AudioServices, delegate: ListViewModelDelegate) {
         self.audioServices = audioServices
+        self.delegate = delegate
         getArray()
     }
     
@@ -48,6 +49,7 @@ class ListViewModel: ListViewModelProtocol {
             if let audios = audioArray {
                 // Assign teste Array
                 self.array = audios
+                self.delegate?.stopLoading()
             } else {
                 // GetAll audios
                 // Display here some frendiler message based on Error Type (database error or not)
