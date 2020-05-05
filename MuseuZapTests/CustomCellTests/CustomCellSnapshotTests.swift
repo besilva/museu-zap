@@ -16,7 +16,7 @@ class CustomCellSnapshotTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        
+        // TODO: go ignacio go
         cellViewController = UIViewController()
         cellViewController.view.backgroundColor = .lightGray
         customCellView = AudioCell(frame: CGRect(x: 0, y: 0, width: 374, height: 76))
