@@ -8,9 +8,8 @@
 
 import UIKit
 
-class AudioCellView: UIView, ViewCodable {
-    var contentView: UIView = UIView()
-    
+class AudioCell: UITableViewCell, ViewCodable {
+    var container: UIView = UIView()
     var audioDataContentView: UIView = UIView()
     var titleLabel: UILabel = UILabel()
     var durationLabel: UILabel = UILabel()
@@ -23,9 +22,8 @@ class AudioCellView: UIView, ViewCodable {
             updateView()
         }
     }
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
     }
     
@@ -42,18 +40,18 @@ class AudioCellView: UIView, ViewCodable {
     
     func setupHierarchy() {
         audioDataContentView.addSubviews(titleLabel, durationLabel)
-        contentView.addSubviews(audioDataContentView, playIcon, shareIcon)
-        addSubview(contentView)
+        container.addSubviews(audioDataContentView, playIcon, shareIcon)
+        contentView.addSubview(container)
     }
     
     func setupConstraints() {
         self.setContentCompressionResistancePriority(.required, for: .vertical)
         self.setContentCompressionResistancePriority(.required, for: .horizontal)
-        contentView.setupConstraints { (_) in
-            contentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-            contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-            contentView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-            contentView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        container.setupConstraints { (_) in
+            container.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8).isActive = true
+            container.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+            container.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+            container.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         }
 
         setAudioDataContentViewConstraints()
@@ -61,16 +59,15 @@ class AudioCellView: UIView, ViewCodable {
         setAudioDurationConstraints()
         setPlayIconConstraints()
         setShareIconConstraints()
-
+        
     }
     
     func render() {
         self.layer.cornerRadius = 4
-        self.backgroundColor = UIColor.Default.background
 
 //        Sets content view appearance
-        contentView.layer.cornerRadius = 4
-        contentView.backgroundColor = UIColor.Default.background
+        container.layer.cornerRadius = 4
+        container.backgroundColor = UIColor.Default.background
 
 //        Sets text attributes for title label
         titleLabel.textColor = UIColor.Default.label
@@ -87,7 +84,6 @@ class AudioCellView: UIView, ViewCodable {
         shareIcon.tintColor = UIColor.Default.power
         playIcon.tintColor = UIColor.Default.power
         
-        backgroundColor = UIColor.Default.background
     }
     
     func updateView() {
@@ -158,7 +154,7 @@ class AudioCellView: UIView, ViewCodable {
 }
 
 // Constraint setting methods
-extension AudioCellView {
+extension AudioCell {
 //      Setup audio data content view constraints
     func setAudioDataContentViewConstraints() {
         
