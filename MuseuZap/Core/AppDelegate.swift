@@ -46,13 +46,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             category.categoryName = "Categoria \(i)"
 
-            audio.audioName = "Gemidao do Zap v.\(i)"
+            audio.audioName = "Audio v.\(i)"
             audio.audioPath = "/Documents/MuseuZap/Audio\(i)"
             audio.isPrivate = true
             audio.duration = 5.44
 
             category.addToAudios(audio)
-            print("breakpoint")
+//            print("breakpoint")
         }
     }
 
