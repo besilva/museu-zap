@@ -20,6 +20,7 @@ class AppCoordinator: NSObject, Coordinator {
     }
     
     internal func startFlow() {
+        UITabBar.appearance().tintColor = UIColor.Default.power
         let testCoordinator = TestCoordinator()
         testCoordinator.startFlow()
         

@@ -21,6 +21,19 @@ class AboutViewController: UIViewController, ViewController, NavigationDelegate 
         let myView = AboutView()
         view = myView
     }
+    
+    convenience init() {
+        self.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +64,9 @@ class AboutViewController: UIViewController, ViewController, NavigationDelegate 
         default:
             delegate?.handleNavigation(action: action)
         }
-                
+    }
+    
+    func setup() {
+          tabBarItem = UITabBarItem(title: "Sobre", image: UIImage(named: "about-outline"), selectedImage: UIImage(named: "about-filled"))
     }
 }
