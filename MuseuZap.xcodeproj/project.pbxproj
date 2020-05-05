@@ -42,6 +42,7 @@
 		80D80EF02447365C00915F1C /* AboutCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D80EEF2447365C00915F1C /* AboutCoordinator.swift */; };
 		80D80EF32447377200915F1C /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D80EF22447377200915F1C /* AboutViewController.swift */; };
 		80D80EF62447378A00915F1C /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D80EF52447378A00915F1C /* AboutViewModel.swift */; };
+		80DEF93D2461C05400FF3B1D /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DEF93C2461C05400FF3B1D /* TestViewController.swift */; };
 		80E6C368244DF09700A42A4C /* AboutViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E6C367244DF09700A42A4C /* AboutViewTests.swift */; };
 		80F7235E245319DA00583137 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F7235D245319DA00583137 /* UILabel+Extension.swift */; };
 		80FAABD82451BFD6008B7DB8 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FAABD72451BFD6008B7DB8 /* UIColorExtension.swift */; };
@@ -113,6 +114,7 @@
 		80D80EEF2447365C00915F1C /* AboutCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCoordinator.swift; sourceTree = "<group>"; };
 		80D80EF22447377200915F1C /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		80D80EF52447378A00915F1C /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
+		80DEF93C2461C05400FF3B1D /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		80E6C367244DF09700A42A4C /* AboutViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewTests.swift; sourceTree = "<group>"; };
 		80F7235D245319DA00583137 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		80FAABD72451BFD6008B7DB8 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 		64DD6FE8243E0B1600404321 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				80DEF93B2461C03E00FF3B1D /* Test */,
 				80ABB7AD245717F40020CF42 /* Audio Cell */,
 				80D80EF12447374400915F1C /* About */,
 				64DD6FEA243E0BB800404321 /* List */,
@@ -314,6 +317,14 @@
 				8024DA2C2449F19000093D37 /* AboutView.swift */,
 			);
 			path = About;
+			sourceTree = "<group>";
+		};
+		80DEF93B2461C03E00FF3B1D /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				80DEF93C2461C05400FF3B1D /* TestViewController.swift */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 		80E6C366244DF05500A42A4C /* AboutModuleTests */ = {
@@ -586,6 +597,7 @@
 				C5A341D0244C0523006F1D0D /* DatabaseError.swift in Sources */,
 				C558EC7524575F4400A0B32C /* AudioServices.swift in Sources */,
 				6473EDD5243B6D3700A10F2C /* AppDelegate.swift in Sources */,
+				80DEF93D2461C05400FF3B1D /* TestViewController.swift in Sources */,
 				64A60C3024489D62003B0F26 /* UIView+ConstraintsExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

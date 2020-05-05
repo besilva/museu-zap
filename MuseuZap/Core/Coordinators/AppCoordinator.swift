@@ -26,10 +26,11 @@ class AppCoordinator: NSObject, Coordinator {
         
         let aboutCoordinator = AboutCoordinator()
         aboutCoordinator.startFlow()
-        
-        rootViewController.addChild(testCoordinator.rootViewController,
-                                    aboutCoordinator.rootViewController)
-        coordinators.push(testCoordinator, aboutCoordinator)
+        let testController = TestViewController()
+        rootViewController.addChild(testController)
+//        rootViewController.addChild(testCoordinator.rootViewController,
+//                                    aboutCoordinator.rootViewController)
+//        coordinators.push(testCoordinator, aboutCoordinator)
 
     }
 

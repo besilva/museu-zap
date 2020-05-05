@@ -63,11 +63,11 @@ class AudioCell: UITableViewCell, ViewCodable {
     }
     
     func render() {
-        self.layer.cornerRadius = 4
+//        self.layer.cornerRadius = 4
 
 //        Sets content view appearance
         container.layer.cornerRadius = 4
-        container.backgroundColor = UIColor.Default.background
+        container.backgroundColor = UIColor.Default.lightBackground
 
 //        Sets text attributes for title label
         titleLabel.textColor = UIColor.Default.label
@@ -91,7 +91,7 @@ class AudioCell: UITableViewCell, ViewCodable {
     }
     
     func setupAudioDataContentView() {
-        audioDataContentView.backgroundColor = UIColor.Default.background
+        audioDataContentView.backgroundColor = UIColor.Default.lightBackground
     }
 
     func setupTitleLabel() {
