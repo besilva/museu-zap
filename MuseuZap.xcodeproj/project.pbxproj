@@ -1068,13 +1068,13 @@
 				CODE_SIGN_ENTITLEMENTS = MuseuZap/MuseuZap.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				DEVELOPMENT_TEAM = 8C3NFSJWVT;
 				INFOPLIST_FILE = MuseuZap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.br.MuseuZap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.br.MuseuZapIvo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1090,13 +1090,13 @@
 				CODE_SIGN_ENTITLEMENTS = MuseuZap/MuseuZap.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				DEVELOPMENT_TEAM = 8C3NFSJWVT;
 				INFOPLIST_FILE = MuseuZap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.br.MuseuZap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.br.MuseuZapIvo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1112,7 +1112,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				DEVELOPMENT_TEAM = 8C3NFSJWVT;
 				INFOPLIST_FILE = MuseuZapTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1136,7 +1136,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				DEVELOPMENT_TEAM = 8C3NFSJWVT;
 				INFOPLIST_FILE = MuseuZapTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1158,7 +1158,7 @@
 				CODE_SIGN_ENTITLEMENTS = MuseuZapShare/MuseuZapShare.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				DEVELOPMENT_TEAM = 8C3NFSJWVT;
 				INFOPLIST_FILE = MuseuZapShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1166,7 +1166,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.br.MuseuZap.MuseuZapShare;
+				PRODUCT_BUNDLE_IDENTIFIER = com.br.MuseuZapIvo.MuseuZapShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1180,7 +1180,7 @@
 				CODE_SIGN_ENTITLEMENTS = MuseuZapShare/MuseuZapShare.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				DEVELOPMENT_TEAM = 8C3NFSJWVT;
 				INFOPLIST_FILE = MuseuZapShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1188,7 +1188,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.br.MuseuZap.MuseuZapShare;
+				PRODUCT_BUNDLE_IDENTIFIER = com.br.MuseuZapIvo.MuseuZapShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;

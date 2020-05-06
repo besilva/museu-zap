@@ -11,7 +11,7 @@ import Foundation
 extension FileManager {
   static func sharedContainerURL() -> URL {
     return FileManager.default.containerURL(
-      forSecurityApplicationGroupIdentifier: "group.museuzap-share"
+      forSecurityApplicationGroupIdentifier: "group.museuGroup"
     )!
   }
 }
