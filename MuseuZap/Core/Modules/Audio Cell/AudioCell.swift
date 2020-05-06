@@ -84,6 +84,11 @@ class AudioCell: UITableViewCell, ViewCodable {
         shareIcon.tintColor = UIColor.Default.power
         playIcon.tintColor = UIColor.Default.power
         
+//        Adds shadow
+        self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.05).cgColor
+        self.layer.shadowOpacity = 1
+        self.layer.shadowRadius = 20
+        self.layer.shadowOffset = CGSize(width: 0, height: 4)
     }
     
     func updateView() {
@@ -165,7 +170,7 @@ extension AudioCell {
             let bottomConstraint = NSLayoutConstraint(item: audioDataContentView,
                                                       attribute: .bottom,
                                                       relatedBy: .equal,
-                                                      toItem: contentView,
+                                                      toItem: container,
                                                       attribute: .bottom,
                                                       multiplier: 1,
                                                       constant: -16)
@@ -175,7 +180,7 @@ extension AudioCell {
             let bottomMarginConstraint = NSLayoutConstraint(item: audioDataContentView,
                                                             attribute: .bottom,
                                                             relatedBy: .lessThanOrEqual,
-                                                            toItem: contentView,
+                                                            toItem: container,
                                                             attribute: .bottom,
                                                             multiplier: 1,
                                                             constant: -16)
@@ -231,8 +236,8 @@ extension AudioCell {
         playIcon.setContentCompressionResistancePriority(.required, for: .horizontal)
         playIcon.setContentHuggingPriority(.required, for: .horizontal)
         playIcon.setupConstraints { (_) in
-            playIcon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
-            playIcon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24).isActive = true
+            playIcon.topAnchor.constraint(equalTo: container.topAnchor, constant: 16).isActive = true
+            playIcon.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 24).isActive = true
             playIcon.trailingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor, constant: -16).isActive = true
         }
     }
@@ -242,8 +247,8 @@ extension AudioCell {
         shareIcon.setContentCompressionResistancePriority(.required, for: .horizontal)
         shareIcon.setContentHuggingPriority(.required, for: .horizontal)
         shareIcon.setupConstraints { (_) in
-            shareIcon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
-            shareIcon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
+            shareIcon.topAnchor.constraint(equalTo: container.topAnchor, constant: 16).isActive = true
+            shareIcon.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -16).isActive = true
         }
     }
 }

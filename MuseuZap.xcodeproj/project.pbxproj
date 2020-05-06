@@ -45,6 +45,10 @@
 		80DEF93D2461C05400FF3B1D /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DEF93C2461C05400FF3B1D /* TestViewController.swift */; };
 		80E6C368244DF09700A42A4C /* AboutViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E6C367244DF09700A42A4C /* AboutViewTests.swift */; };
 		80F7235E245319DA00583137 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F7235D245319DA00583137 /* UILabel+Extension.swift */; };
+		80FA89292462F217006B2B61 /* SnapshotContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FA89282462F217006B2B61 /* SnapshotContainer.swift */; };
+		80FA892B2462F241006B2B61 /* AboutViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FA892A2462F241006B2B61 /* AboutViewSnapshotTests.swift */; };
+		80FA892D2462F529006B2B61 /* IPhoneWidthsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FA892C2462F529006B2B61 /* IPhoneWidthsEnum.swift */; };
+		80FA892F2462FA97006B2B61 /* TableViewCellSnapshotContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FA892E2462FA97006B2B61 /* TableViewCellSnapshotContainer.swift */; };
 		80FAABD82451BFD6008B7DB8 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FAABD72451BFD6008B7DB8 /* UIColorExtension.swift */; };
 		C502A28B245A1E680014068E /* CoreDataTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C502A28A245A1E680014068E /* CoreDataTestHelper.swift */; };
 		C502A28F245A207F0014068E /* AudioServicesErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C502A28E245A207F0014068E /* AudioServicesErrorTests.swift */; };
@@ -117,6 +121,10 @@
 		80DEF93C2461C05400FF3B1D /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		80E6C367244DF09700A42A4C /* AboutViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewTests.swift; sourceTree = "<group>"; };
 		80F7235D245319DA00583137 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		80FA89282462F217006B2B61 /* SnapshotContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotContainer.swift; sourceTree = "<group>"; };
+		80FA892A2462F241006B2B61 /* AboutViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewSnapshotTests.swift; sourceTree = "<group>"; };
+		80FA892C2462F529006B2B61 /* IPhoneWidthsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPhoneWidthsEnum.swift; sourceTree = "<group>"; };
+		80FA892E2462FA97006B2B61 /* TableViewCellSnapshotContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellSnapshotContainer.swift; sourceTree = "<group>"; };
 		80FAABD72451BFD6008B7DB8 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		C502A28A245A1E680014068E /* CoreDataTestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTestHelper.swift; sourceTree = "<group>"; };
 		C502A28E245A207F0014068E /* AudioServicesErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioServicesErrorTests.swift; sourceTree = "<group>"; };
@@ -197,6 +205,7 @@
 		6473EDEA243B6D3E00A10F2C /* MuseuZapTests */ = {
 			isa = PBXGroup;
 			children = (
+				80FA89272462F1F4006B2B61 /* Helpers */,
 				C5E6FBF22457922C00C506B9 /* Services */,
 				C5E6FBF12457921C00C506B9 /* DAO */,
 				80C274C424585BBA0051A1E6 /* CustomCellTests */,
@@ -331,8 +340,19 @@
 			isa = PBXGroup;
 			children = (
 				80E6C367244DF09700A42A4C /* AboutViewTests.swift */,
+				80FA892A2462F241006B2B61 /* AboutViewSnapshotTests.swift */,
 			);
 			path = AboutModuleTests;
+			sourceTree = "<group>";
+		};
+		80FA89272462F1F4006B2B61 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				80FA89282462F217006B2B61 /* SnapshotContainer.swift */,
+				80FA892C2462F529006B2B61 /* IPhoneWidthsEnum.swift */,
+				80FA892E2462FA97006B2B61 /* TableViewCellSnapshotContainer.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		90AE29BC86C0A35139859DF1 /* Pods */ = {
@@ -606,12 +626,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80FA892B2462F241006B2B61 /* AboutViewSnapshotTests.swift in Sources */,
 				808C9E30245F283900FF4FEB /* PublicAudioCellViewModel+Extension.swift in Sources */,
+				80FA89292462F217006B2B61 /* SnapshotContainer.swift in Sources */,
 				80E6C368244DF09700A42A4C /* AboutViewTests.swift in Sources */,
+				80FA892D2462F529006B2B61 /* IPhoneWidthsEnum.swift in Sources */,
 				C52E7444244F37D300E1DDA4 /* AudioDAOTests.swift in Sources */,
 				C5A4CD2C2451138500F190A5 /* MuseuZap.xcdatamodeld in Sources */,
 				C50385DA2458424700559CB4 /* CategoryServicesSuccessTests.swift in Sources */,
 				C502A292245A20E00014068E /* CategoryDAOMock.swift in Sources */,
+				80FA892F2462FA97006B2B61 /* TableViewCellSnapshotContainer.swift in Sources */,
 				C502A28B245A1E680014068E /* CoreDataTestHelper.swift in Sources */,
 				C502A294245A21110014068E /* AudioDAOMock.swift in Sources */,
 				C502A28F245A207F0014068E /* AudioServicesErrorTests.swift in Sources */,
