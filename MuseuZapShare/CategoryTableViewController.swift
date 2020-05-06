@@ -7,25 +7,25 @@
 //
 
 import UIKit
+import Database
 
 protocol CategoryTableViewControllerDelegate: class {
-    func categorySelected(category: Category)
+    func categorySelected(category: AudioCategory)
 }
 
 class CategoryTableViewController: UITableViewController {
     weak var delegate: CategoryTableViewControllerDelegate?
-    var categories: [Category] = [] {
+    var categories: [AudioCategory] = [] {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
     }
-    let categoryService = CategoryServices(dao: CategoryDAO())
+    let categoryService = AudioCategoryServices()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            
          categoryService.getAllCategories({ (error, categories) in
             if let categories = categories {
                 self.categories = categories

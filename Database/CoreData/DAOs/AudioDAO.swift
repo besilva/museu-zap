@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - Protocol For test purpose
 
-protocol AudioDAOProtocol {
+public protocol AudioDAOProtocol {
     // CRUD Operations: Create, Read, Update, Delete
     func create(_ objectToBeSaved: Audio) throws
     func readAll() throws -> [Audio]
@@ -24,16 +24,16 @@ protocol AudioDAOProtocol {
 // MARK: - Class
 
 /// Data Access Object for Audio Entity
-class AudioDAO: DAOCoreData, AudioDAOProtocol {
+public class AudioDAO: DAOCoreData, AudioDAOProtocol {
 
-    typealias Entity = Audio
-    var managedContext: NSManagedObjectContext!
+    public typealias Entity = Audio
+    public var managedContext: NSManagedObjectContext!
 
-    required init(intoContext context: NSManagedObjectContext) {
+    required public init(intoContext context: NSManagedObjectContext) {
         self.managedContext = context
     }
 
-    convenience init() {
+    public convenience init() {
         // Use the default managedObjectContext for production environment
         self.init(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
     }
@@ -43,7 +43,7 @@ class AudioDAO: DAOCoreData, AudioDAOProtocol {
     /// Method responsible for getting a custom set of Entities, returns private or public audios depending on argument
     /// - returns: Result from the custom search from Entities, private (bool = true) and public (bool = false)
     /// - throws: If an error occurs during getting an object from CoreData (DatabaseErrors.fetchPredicate)
-    func fetchAudiosWith(isPrivate: Bool) throws -> [Entity] {
+    public func fetchAudiosWith(isPrivate: Bool) throws -> [Entity] {
         // Array of objects to be returned
         var audios: [Entity]
 

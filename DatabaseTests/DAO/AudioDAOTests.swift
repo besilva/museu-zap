@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import MuseuZap
+@testable import Database
 import CoreData
 
     // MARK: - DAO
@@ -17,7 +17,7 @@ class AudioDAOTests: XCTestCase {
     var sut: AudioDAO!
     var coreDataHelper: CoreDataTestHelper!
     /// A Category Entity Object used to help to test AudioDAO, already saved in context
-    var collaborator: MuseuZap.Category!
+    var collaborator: Database.AudioCategory!
 
     override func setUp() {
         // This method is called before the invocation of each test method in the class.

@@ -11,13 +11,13 @@ import UIKit
 /// Services Layer for Audio Entity.
 /// Independent from adopted database.
 /// Error Handling + doing aditional treatment to data.
-class AudioServices {
+public class AudioServices {
 
     /// Used Data Access Object
     var audioDAO: AudioDAOProtocol
 
     // Dependency Injection in order to make a testable class
-    required init(dao: AudioDAOProtocol) {
+    required public init(dao: AudioDAOProtocol) {
         self.audioDAO = dao
     }
 
@@ -28,7 +28,7 @@ class AudioServices {
     ///     - audio: Audio to be Saved
     ///     - completion: closure to be executed at the end of this method
     /// - throws: if an error occurs during saving an object into database (DatabaseErrors.create)
-    func createAudio(audio: Audio, _ completion: ((_ error: Error?) -> Void)) {
+    public func createAudio(audio: Audio, _ completion: ((_ error: Error?) -> Void)) {
         do {
             // Save information
             try audioDAO.create(audio)
@@ -47,7 +47,7 @@ class AudioServices {
     /// - parameters:
     ///     - completion: closure to be executed at the end of this method
     /// - throws: if an error occurs during getting an object from database  (DatabaseErrors.read)
-    func getAllAudios(_ completion: @escaping (_ errorMessage: Error?,
+    public func getAllAudios(_ completion: @escaping (_ errorMessage: Error?,
                                                _ entity: [Audio]?) -> Void) {
         // Error to be returned in case of failure
         var raisedError: DatabaseErrors?

@@ -7,14 +7,14 @@
 //
 
 import XCTest
-@testable import MuseuZap
+@testable import Database
 import CoreData
 
     // MARK: - Category Services
 
 class CategoryServicesSuccessTests: XCTestCase {
 
-    var sut: CategoryServices!
+    var sut: AudioCategoryServices!
     /// In order to create Category Entities
     var coreDataHelper: CoreDataTestHelper!
     /// Mocked Audio DAO to throw DatabaseErrors, case shouldThrowError. Else, do nothing.
@@ -23,7 +23,7 @@ class CategoryServicesSuccessTests: XCTestCase {
     override func setUp() {
         coreDataHelper = CoreDataTestHelper()
         categoryDAO = CategoryDAOMock()
-        sut = CategoryServices(dao: categoryDAO)
+        sut = AudioCategoryServices(dao: categoryDAO)
 
         // Category Services Success, therefore
         categoryDAO.shouldThrowError = false
@@ -44,7 +44,7 @@ class CategoryServicesSuccessTests: XCTestCase {
 
     // Mock DAO does nothing, should not produce errors
     func testCreate() {
-        let category = Category(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
+        let category = AudioCategory(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
         category.categoryName = "create"
 
         sut.createCategory(category: category) { (error) in
@@ -86,7 +86,7 @@ class CategoryServicesSuccessTests: XCTestCase {
     func testDelete() {
         let closureExpectation = XCTestExpectation(description: "Expect to call closure")
 
-        let category = Category(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
+        let category = AudioCategory(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
         category.categoryName = "deleteError"
 
         sut.deleteCategory(category: category) { (error) in

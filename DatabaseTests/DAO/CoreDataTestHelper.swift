@@ -7,7 +7,7 @@
 //
 
 import CoreData
-@testable import MuseuZap
+@testable import Database
 
     // MARK: - CoreDataTestHelper
 
@@ -40,15 +40,15 @@ class CoreDataTestHelper {
         return container
     }()
 
-    func initStubs() -> MuseuZap.Category {
+    func initStubs() -> Database.AudioCategory {
         // Contex is RAM Memory insted of the own App Database
         let context = mockPersistantContainer.viewContext
-        var collaborator: MuseuZap.Category!
+        var collaborator: Database.AudioCategory!
 
         // For predicate method - public audios
         for i in 1...2 {
             let audio = Audio(intoContext: mockPersistantContainer.viewContext)
-            let category: MuseuZap.Category = MuseuZap.Category(intoContext: mockPersistantContainer.viewContext)
+            let category: Database.AudioCategory = Database.AudioCategory(intoContext: mockPersistantContainer.viewContext)
 
             category.categoryName = "Category \(i)"
 
@@ -64,7 +64,7 @@ class CoreDataTestHelper {
 
         // For predicate method - Private Audio
         let audio = Audio(intoContext: context)
-        let category: MuseuZap.Category = MuseuZap.Category(intoContext: context)
+        let category: Database.AudioCategory = Database.AudioCategory(intoContext: context)
 
         category.categoryName = "Category Private"
         category.addToAudios(audio)

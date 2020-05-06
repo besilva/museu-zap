@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import MuseuZap
+@testable import Database
 import CoreData
 
     // MARK: - Category Services

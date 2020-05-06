@@ -5,37 +5,37 @@
 //  Created by Ivo Dutra on 29/04/20.
 //  Copyright © 2020 Bernardo. All rights reserved.
 
-@testable import MuseuZap
+@testable import Database
 import CoreData
 
 /// Mocked Category DAO to throw DatabaseErrors, case shouldThrowError. Else, do nothing.
-class CategoryDAOMock: CategoryDAOProtocol {
-
+class CategoryDAOMock: AudioCategoryDAOProtocol {
+    
     var shouldThrowError: Bool = false
 
     var coreDataHelper = CoreDataTestHelper()
 
-    func create(_ objectToBeSaved: MuseuZap.Category) throws {
+    func create(_ objectToBeSaved: Database.AudioCategory) throws {
         if shouldThrowError {
             throw DatabaseErrors.create
         }
     }
 
-    func readAll() throws -> [MuseuZap.Category] {
+    func readAll() throws -> [Database.AudioCategory] {
         if shouldThrowError {
             throw DatabaseErrors.read
         } else {
-            let category = Category(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
+            let category = AudioCategory(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
             category.categoryName = "readAll"
             return [category]
         }
     }
 
-    func fetchWithPredicate(predicate: NSPredicate) throws -> [MuseuZap.Category] {
+    func fetchWithPredicate(predicate: NSPredicate) throws -> [Database.AudioCategory] {
         if shouldThrowError {
             throw DatabaseErrors.publicAndPrivate
         } else {
-            let category = Category(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
+            let category = AudioCategory(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
             return [category]
         }
     }
@@ -46,13 +46,13 @@ class CategoryDAOMock: CategoryDAOProtocol {
         }
     }
 
-    func delete(_ objectToBeDeleted: MuseuZap.Category) throws {
+    func delete(_ objectToBeDeleted: Database.AudioCategory) throws {
         if shouldThrowError {
             throw DatabaseErrors.delete
         }
     }
 
-    func deleteAll(_ objectToBeDeleted: MuseuZap.Category) throws {
+    func deleteAll(_ objectToBeDeleted: Database.AudioCategory) throws {
         if shouldThrowError {
             throw DatabaseErrors.delete
         }

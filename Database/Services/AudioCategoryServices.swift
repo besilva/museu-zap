@@ -11,14 +11,18 @@ import UIKit
 /// Services Layer for Category Entity.
 /// Independent from adopted database.
 /// Error Handling + doing aditional treatment to data.
-class CategoryServices {
+public class AudioCategoryServices {
 
     /// Used Data Access Object
-    var categoryDAO: CategoryDAOProtocol
+    var categoryDAO: AudioCategoryDAOProtocol
 
     // Dependency Injection in order to make a testable class
-    required init(dao: CategoryDAOProtocol) {
+    required public init(dao: AudioCategoryDAOProtocol) {
         self.categoryDAO = dao
+    }
+    
+    public convenience init () {
+        self.init(dao: AudioCategoryDAO())
     }
 
     // MARK: - Create
@@ -28,7 +32,7 @@ class CategoryServices {
     ///     - category: Category to be Saved
     ///     - completion: closure to be executed at the end of this method
     /// - throws: if an error occurs during saving an object into database (DatabaseErrors.create)
-    func createCategory(category: Category, _ completion: (_ error: Error?) -> Void) {
+    public func createCategory(category: AudioCategory, _ completion: (_ error: Error?) -> Void) {
         do {
             // Save information
             try categoryDAO.create(category)
@@ -47,11 +51,11 @@ class CategoryServices {
     /// - parameters:
     ///     - completion: closure to be executed at the end of this method
     /// - throws: if an error occurs during getting an object from database  (DatabaseErrors.read)
-    func getAllCategories(_ completion: @escaping (_ errorMessage: Error?,
-                                                   _ entity: [Category]?) -> Void) {
+    public func getAllCategories(_ completion: @escaping (_ errorMessage: Error?,
+                                                   _ entity: [AudioCategory]?) -> Void) {
         // Error to be returned in case of failure
         var raisedError: DatabaseErrors?
-        var categories: [Category]?
+        var categories: [AudioCategory]?
 
         do {
             // Save information
@@ -74,7 +78,7 @@ class CategoryServices {
     ///     - category: Category to be updated
     ///     - completion: closure to be executed at the end of this method
     /// - throws: if an error occurs during saving an object into database (DatabaseErrors.update)
-    func updateAllCategories(_ completion: (_ error: Error?) -> Void) {
+    public func updateAllCategories(_ completion: (_ error: Error?) -> Void) {
         do {
             // Save information
             try categoryDAO.updateContext()
@@ -94,7 +98,7 @@ class CategoryServices {
     ///     - category: category to be deleted
     ///     - completion: closure to be executed at the end of this method
     /// - throws: if an error occurs during saving an object into database (DatabaseErrors.delete)
-    func deleteCategory(category: Category, _ completion: (_ error: Error?) -> Void) {
+    public func deleteCategory(category: AudioCategory, _ completion: (_ error: Error?) -> Void) {
         do {
             // Save information
             try categoryDAO.delete(category)

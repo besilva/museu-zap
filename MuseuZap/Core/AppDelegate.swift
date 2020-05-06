@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Database
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,25 +25,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = tabController
         window?.makeKeyAndVisible()
 
-        addTestData()
-
+//        addTestData()
         return true
     }
-
-    // TODO: Delete test method (not saved in the storage)
-
-    func addTestData() {
+    
+    private func addTestData() {
         let context = CoreDataManager.sharedInstance.managedObjectContext
         // Get entity, then generatehow  an object from it
         guard let entity1 = NSEntityDescription.entity(forEntityName: "Audio", in: context),
-              let entity2 = NSEntityDescription.entity(forEntityName: "Category", in: context)
+              let entity2 = NSEntityDescription.entity(forEntityName: "AudioCategory", in: context)
         else {
             fatalError("Could not find entities")
         }
 
         for i in 1...3 {
             let audio = Audio(entity: entity1, insertInto: context)
-            let category = Category(entity: entity2, insertInto: context)
+            let category = AudioCategory(entity: entity2, insertInto: context)
 
             category.categoryName = "Categoria \(i)"
 
@@ -52,6 +50,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             audio.duration = 5.44
 
             category.addToAudios(audio)
+            AudioCategoryServices().createCategory(category: category) { (error) in
+                print(error)
+            }
         }
     }
 

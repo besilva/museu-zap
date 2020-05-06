@@ -13,19 +13,19 @@ import CoreData
 // MARK: - Properties Struct
 
 /// Used to reduce clutter for View
-struct AudioProperties {
+public struct AudioProperties {
 
     // MARK: - Properties
 
-    var name: String
-    var path: String
-    var isPrivate: Bool
-    var duration: TimeInterval = 0
-    var category: String?
+    public var name: String
+    public var path: String
+    public var isPrivate: Bool
+    public var duration: TimeInterval = 0
+    public var category: String?
 
     // MARK: - Init
 
-    init(from audio: Audio) {
+    public init(from audio: Audio) {
         self.name = audio.audioName
         self.path = audio.audioPath
         self.category = audio.category.categoryName
@@ -40,7 +40,7 @@ struct AudioProperties {
 /// Properties can be accessed through object properties a class instead of "set value for..".
 /// Codegen set to manual
 public class Audio: NSManagedObject {
-    convenience init(intoContext managedContext: NSManagedObjectContext? = nil) {
+    public convenience init(intoContext managedContext: NSManagedObjectContext? = nil) {
         // To test this entity, another managedObjectContext is passed to the Entity
         let currentManagedObjectContext: NSManagedObjectContext
         if let context = managedContext {
@@ -67,5 +67,5 @@ extension Audio {
     @NSManaged public var audioPath: String
     @NSManaged public var isPrivate: Bool
     @NSManaged public var duration: Double
-    @NSManaged public var category: Category
+    @NSManaged public var category: AudioCategory
 }

@@ -13,7 +13,7 @@ import CoreData
 
 /// Core Data Data Access Object base class
 /// Protocol Oriented
-protocol DAOCoreData {
+public protocol DAOCoreData {
 
     /// Adopted managedObjectContext from persistentContainer.
     /// The managedContext uses models from MuseuZap.xcdatamodeld BUT can be stored in the device or RAM memory (for tests).
@@ -41,7 +41,7 @@ extension DAOCoreData {
     /// - parameters:
     ///     - objectToBeSaved: Entity to be saved on database
     /// - throws: If an error occurs during saving an object into database (DatabaseErrors.create)
-    func create(_ objectToBeSaved: Entity) throws {
+    public func create(_ objectToBeSaved: Entity) throws {
         do {
             // Add object to be saved to the context
             managedContext.insert(objectToBeSaved)
@@ -59,7 +59,7 @@ extension DAOCoreData {
     /// Method responsible for getting all Entities from CoreData
     /// - returns: Array of Enity from database
     /// - throws: If an error occurs during getting an object from CoreData (DatabaseErrors.read)
-    func readAll() throws -> [Entity] {
+    public func readAll() throws -> [Entity] {
         // Array of objects to be returned
         var array: [Entity]
         do {
@@ -80,7 +80,7 @@ extension DAOCoreData {
     /// - parameters:
     ///     - objectToBeUpdated: Entity to be updated on CoreData
     /// - throws: If an error occurs during updating an object into CoreData (DatabaseErrors.update)
-    func updateContext() throws {
+    public func updateContext() throws {
         do {
             // Persist changes at the context
             try managedContext.save()
@@ -96,7 +96,7 @@ extension DAOCoreData {
     /// - parameters:
     ///     - objectToBeSaved: Entity to be saved on CoreData
     /// - throws: If an error occurs during deleting an object into CoreData (DatabaseErrors.delete)
-    func delete(_ objectToBeDeleted: Entity) throws {
+    public func delete(_ objectToBeDeleted: Entity) throws {
         do {
             // Delete element from context
             managedContext.delete(objectToBeDeleted)
@@ -109,7 +109,7 @@ extension DAOCoreData {
         }
     }
 
-    func deleteAll(_ objectToBeDeleted: Entity) throws {
+    public func deleteAll(_ objectToBeDeleted: Entity) throws {
         // Creating fetch request
         let request: NSFetchRequest<Entity> = fetchRequest()
 
@@ -138,7 +138,7 @@ extension DAOCoreData {
     /// Helper method to build a NSFetchRequest
     /// Entity argument matches the Entity Name of the resulting class name
     /// - Returns: Fetch Request of Result Type, is the class that represents the Request.entity
-    func fetchRequest() -> NSFetchRequest<Entity> {
+    public func fetchRequest() -> NSFetchRequest<Entity> {
         let entityName = String(describing: Entity.self)
         let request: NSFetchRequest = NSFetchRequest<Entity>(entityName: entityName)
         return request

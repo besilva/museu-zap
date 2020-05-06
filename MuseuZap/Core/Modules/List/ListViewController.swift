@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreData
+import Database
 
 class ListViewController: UIViewController, ViewController, NavigationDelegate {
     func handleNavigation(action: Action) {
@@ -34,5 +36,7 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
         viewModel.navigationDelegate = self
         myView.viewModel = viewModel
     }
+    
+    
     
 }

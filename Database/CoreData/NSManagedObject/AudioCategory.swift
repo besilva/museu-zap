@@ -13,7 +13,7 @@ import CoreData
     // MARK: - Properties Struct
 
 /// Used to reduce clutter for View
-struct CategoryProperties {
+public struct CategoryProperties {
 
     // MARK: - Properties
 
@@ -22,7 +22,7 @@ struct CategoryProperties {
 
     // MARK: - Init
 
-    init(from category: Category) {
+    init(from category: AudioCategory) {
         self.name = category.categoryName
 
         if let audios = category.audios {
@@ -40,9 +40,9 @@ struct CategoryProperties {
 /// NSManagedObject for Teste Entity.
 /// Properties can be accessed through object properties a class instead of "set value for..".
 /// Codegen set to manual
-@objc(Category)
-public class Category: NSManagedObject {
-    convenience init(intoContext managedContext: NSManagedObjectContext? = nil) {
+@objc(AudioCategory)
+public class AudioCategory: NSManagedObject {
+    public convenience init(intoContext managedContext: NSManagedObjectContext? = nil) {
         // To test this entity, another managedObjectContext is passed to the Entity
         let currentManagedObjectContext: NSManagedObjectContext
         if let context = managedContext {
@@ -52,17 +52,17 @@ public class Category: NSManagedObject {
         }
 
         // Create entity description
-        let entityDescription = NSEntityDescription.entity(forEntityName: "Category", in: currentManagedObjectContext)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "AudioCategory", in: currentManagedObjectContext)
 
         // Call super
         self.init(entity: entityDescription!, insertInto: currentManagedObjectContext)
     }
 }
 
-extension Category {
+extension AudioCategory {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Category> {
-        return NSFetchRequest<Category>(entityName: "Category")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<AudioCategory> {
+        return NSFetchRequest<AudioCategory>(entityName: "AudioCategory")
     }
 
     @NSManaged public var categoryName: String
@@ -71,7 +71,7 @@ extension Category {
 }
 
 // MARK: Generated accessors for audios
-extension Category {
+extension AudioCategory {
 
     @objc(addAudiosObject:)
     @NSManaged public func addToAudios(_ value: Audio)
