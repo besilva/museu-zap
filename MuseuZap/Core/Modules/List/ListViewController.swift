@@ -37,6 +37,4 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
         myView.viewModel = viewModel
     }
     
-    
-    
 }

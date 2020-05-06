@@ -41,7 +41,7 @@ class ShareViewController: SLComposeServiceViewController {
         self.placeholder = "Dê um nome para o seu audio"
         extensionItem?.attachments?[0].loadItem(forTypeIdentifier: "public.file-url",
                                                 options: nil,
-                                                completionHandler: { (urlItem, error) in
+                                                completionHandler: { (urlItem, _) in // urlItem, error
                                                     if let urlItem = urlItem,
                                                         let url = URL(string: "\(urlItem)") {
                                                         self.audioFile = AVPlayer(url: url)
@@ -80,7 +80,7 @@ class ShareViewController: SLComposeServiceViewController {
     
     let imageView = UIImageView()
     override func loadPreviewView() -> UIView! {
-        //        super.loadView()
+        //        Super.loadView()
         
         let image = UIImage(named: "ShareIcon")
         imageView.contentMode = .scaleAspectFit

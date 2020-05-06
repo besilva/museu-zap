@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             category.addToAudios(audio)
             AudioCategoryServices().createCategory(category: category) { (error) in
-                print(error)
+                print(error as Any)
             }
         }
     }

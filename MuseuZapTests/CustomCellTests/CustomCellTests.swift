@@ -10,7 +10,7 @@ import XCTest
 @testable import MuseuZap
 
 class AudioCellViewModelMock: AudioCellViewModelProtocol {
-    var navigationDelegate: NavigationDelegate?
+    weak var navigationDelegate: NavigationDelegate?
     
     var title: String
     

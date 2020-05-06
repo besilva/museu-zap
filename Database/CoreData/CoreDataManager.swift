@@ -39,7 +39,7 @@ public class CoreDataManager {
         let storeURL = FileManager.sharedContainerURL().appendingPathComponent("\(moduleName).sqlite")
         let storeDescription = NSPersistentStoreDescription(url: storeURL)
         container.persistentStoreDescriptions = [storeDescription]
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: { (_, error) in // storeDescription, error
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // FatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.

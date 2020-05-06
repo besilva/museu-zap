@@ -26,7 +26,7 @@ class CategoryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         categoryService.getAllCategories({ (error, categories) in
+         categoryService.getAllCategories({ (_, categories) in // error, categories
             if let categories = categories {
                 self.categories = categories
             }
