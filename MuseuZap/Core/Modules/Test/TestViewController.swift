@@ -12,16 +12,16 @@ class TestViewController: UITableViewController {
     var audioCells = [AudioCell]()
     let cellIdentifier = "audioCell"
     
-    let viewModelArray = [PublicAudioCellViewModel(title: "Laboris cupidatat",
+    let viewModelArray = [AudioCellViewModel(title: "Laboris cupidatat",
                                                            duration: 90,
                                                            audioURL: "sampleURL"),
-    PublicAudioCellViewModel(title: "Laboris cupidatat exercitation",
+    AudioCellViewModel(title: "Laboris cupidatat exercitation",
                                                            duration: 90,
                                                            audioURL: "sampleURL"),
-    PublicAudioCellViewModel(title: "Laboris cupidatat exercitation reprehenderit commodo qui proident",
+    AudioCellViewModel(title: "Laboris cupidatat exercitation reprehenderit commodo qui proident",
                                                            duration: 90,
                                                            audioURL: "sampleURL"),
-    PublicAudioCellViewModel(title: "Laboris cupidatat exercitation reprehenderit commodo qui proident Laboris cupidatat exercitation",
+    AudioCellViewModel(title: "Laboris cupidatat exercitation reprehenderit commodo qui proident Laboris cupidatat exercitation",
                                                            duration: 90,
                                                            audioURL: "sampleURL")]
 

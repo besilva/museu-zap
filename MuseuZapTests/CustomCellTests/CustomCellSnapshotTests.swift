@@ -23,7 +23,7 @@ class CustomCellSnapshotTests: XCTestCase {
     func testSnapshotOneLineTitle() throws {
         let container = TableViewCellSnapshotContainer<AudioCell>(width: IPhoneWidths.regular.rawValue,
                                                                   configureCell: { cell in
-            let viewModel = PublicAudioCellViewModel.Helper.oneLine
+            let viewModel = AudioCellViewModel.Helper.oneLine
             cell.viewModel = viewModel
         })
         assertSnapshot(matching: container, as: .image)
@@ -32,7 +32,7 @@ class CustomCellSnapshotTests: XCTestCase {
     func testSnapshotTwoLinesTitle() throws {
         let container = TableViewCellSnapshotContainer<AudioCell>(width: IPhoneWidths.regular.rawValue,
                                                                   configureCell: { cell in
-            let viewModel = PublicAudioCellViewModel.Helper.twoLines
+            let viewModel = AudioCellViewModel.Helper.twoLines
             cell.viewModel = viewModel
         })
         assertSnapshot(matching: container, as: .image)
@@ -41,7 +41,7 @@ class CustomCellSnapshotTests: XCTestCase {
     func testSnapshotThreeLinesTitle() throws {
         let container = TableViewCellSnapshotContainer<AudioCell>(width: IPhoneWidths.regular.rawValue,
                                                                   configureCell: { cell in
-            let viewModel = PublicAudioCellViewModel.Helper.threeLines
+            let viewModel = AudioCellViewModel.Helper.threeLines
             cell.viewModel = viewModel
         })
         assertSnapshot(matching: container, as: .image)
@@ -50,7 +50,7 @@ class CustomCellSnapshotTests: XCTestCase {
     func testSnapshotFourLinesTitle() throws {
         let container = TableViewCellSnapshotContainer<AudioCell>(width: IPhoneWidths.regular.rawValue,
                                                                   configureCell: { cell in
-            let viewModel = PublicAudioCellViewModel.Helper.fourLines
+            let viewModel = AudioCellViewModel.Helper.fourLines
             cell.viewModel = viewModel
         })
         assertSnapshot(matching: container, as: .image)
