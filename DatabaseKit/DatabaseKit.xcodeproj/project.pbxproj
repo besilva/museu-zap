@@ -142,8 +142,8 @@
 				646181C924644B15003BC3AB /* AudioServicesErrorTests.swift */,
 				646181CA24644B15003BC3AB /* AudioServicesSuccessTests.swift */,
 				646181CB24644B15003BC3AB /* CategoryServicesSuccessTests.swift */,
-				646181CC24644B15003BC3AB /* DAO Mocks */,
 				646181CF24644B15003BC3AB /* CategoryServicesErrorTests.swift */,
+				646181CC24644B15003BC3AB /* DAO Mocks */,
 			);
 			path = Services;
 			sourceTree = "<group>";

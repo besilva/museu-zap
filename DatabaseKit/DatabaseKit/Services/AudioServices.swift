@@ -21,6 +21,10 @@ public class AudioServices {
         self.audioDAO = dao
     }
 
+    public convenience init () {
+        self.init(dao: AudioDAO())
+    }
+
     // MARK: - Create
 
     /// Function responsible for storing an Audio

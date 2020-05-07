@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setNavigationBarColor()
 
 //        addTestData()
+        addCategory()
 
         // Print appGroup contents
         print(FileExchanger().listAllFilesInApplicationGroupFolder())
@@ -41,6 +42,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().backgroundColor = UIColor.Default.navBar
         UINavigationBar.appearance().barTintColor = UIColor.Default.navBar
         UINavigationBar.appearance().isTranslucent = false
+    }
+
+    private func addCategory() {
+        let category = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category.categoryName = "Debuggando"
+
+        AudioCategoryServices().createCategory(category: category) { (error) in
+            if let err = error {
+                print(err as Any)
+            }
+        }
     }
     
     private func addTestData() {

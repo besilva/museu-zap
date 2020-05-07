@@ -74,9 +74,31 @@ class ShareViewController: SLComposeServiceViewController {
 
         // Inform the host that we're done, so it un-blocks its UI. Note: Alternatively you could call super's -didSelectPost, which will similarly complete the extension context.
 
-        // TODO: criar entidade audio e salvar NO CORE DATA
+        // First tries to copy file to folder. If succeeded, create entities
+        do {
+            try copyAudio()
 
-        copyAudio()
+            // Create Entities
+            let category = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+            category.categoryName = categoryText
+
+            let audio = Audio(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+            audio.audioName = contentText
+            audio.audioPath = audioFileURL.path
+            audio.isPrivate = true
+            audio.category = category
+            // TODO: Singleton de AUDIO pegar a duracao do arquivo! OU TRATAR DEPOIS tb nao sei
+            audio.duration = 0
+
+            AudioServices().createAudio(audio: audio) { (error) in
+                if let err = error {
+                    print(err)
+                }
+            }
+        } catch {
+            print("COULD NOT COPY AUDIO TO GROUP FOLDER")
+            print(error)
+        }
 
         self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
     }
@@ -144,7 +166,7 @@ extension ShareViewController: CategoryTableViewControllerDelegate {
 extension ShareViewController {
 
     /// Method that copies an AudioFile from this external application into Application Group folder
-    func copyAudio() {
+    func copyAudio() throws {
 
         if let audioSource = audioFileURL {
             // Create the audio name with extension
@@ -156,6 +178,7 @@ extension ShareViewController {
                                                            destinationName: audioName)
             } catch {
                 print(error)
+                throw error
             }
         }
     }
