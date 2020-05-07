@@ -16,5 +16,6 @@ extension UIColor {
         static let label = UIColor(named: "label")
         static let lightLabel = UIColor(named: "light-label")
         static let power = UIColor(named: "power")
+        static let navBar = UIColor(named: "navBarColor")
     }
 }

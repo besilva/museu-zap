@@ -8,9 +8,8 @@
 
 import UIKit
 
-class AudioCellView: UIView, ViewCodable {
-    var contentView: UIView = UIView()
-    
+class AudioCell: UITableViewCell, ViewCodable {
+    var container: UIView = UIView()
     var audioDataContentView: UIView = UIView()
     var titleLabel: UILabel = UILabel()
     var durationLabel: UILabel = UILabel()
@@ -23,9 +22,8 @@ class AudioCellView: UIView, ViewCodable {
             updateView()
         }
     }
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
     }
     
@@ -42,18 +40,18 @@ class AudioCellView: UIView, ViewCodable {
     
     func setupHierarchy() {
         audioDataContentView.addSubviews(titleLabel, durationLabel)
-        contentView.addSubviews(audioDataContentView, playIcon, shareIcon)
-        addSubview(contentView)
+        container.addSubviews(audioDataContentView, playIcon, shareIcon)
+        contentView.addSubview(container)
     }
     
     func setupConstraints() {
         self.setContentCompressionResistancePriority(.required, for: .vertical)
         self.setContentCompressionResistancePriority(.required, for: .horizontal)
-        contentView.setupConstraints { (_) in
-            contentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-            contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-            contentView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-            contentView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        container.setupConstraints { (_) in
+            container.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8).isActive = true
+            container.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+            container.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+            container.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         }
 
         setAudioDataContentViewConstraints()
@@ -61,16 +59,15 @@ class AudioCellView: UIView, ViewCodable {
         setAudioDurationConstraints()
         setPlayIconConstraints()
         setShareIconConstraints()
-
+        
     }
     
     func render() {
-        self.layer.cornerRadius = 4
-        self.backgroundColor = UIColor.Default.background
+//        self.layer.cornerRadius = 4
 
 //        Sets content view appearance
-        contentView.layer.cornerRadius = 4
-        contentView.backgroundColor = UIColor.Default.background
+        container.layer.cornerRadius = 4
+        container.backgroundColor = UIColor.Default.lightBackground
 
 //        Sets text attributes for title label
         titleLabel.textColor = UIColor.Default.label
@@ -87,7 +84,11 @@ class AudioCellView: UIView, ViewCodable {
         shareIcon.tintColor = UIColor.Default.power
         playIcon.tintColor = UIColor.Default.power
         
-        backgroundColor = UIColor.Default.background
+//        Adds shadow
+        self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.05).cgColor
+        self.layer.shadowOpacity = 1
+        self.layer.shadowRadius = 20
+        self.layer.shadowOffset = CGSize(width: 0, height: 4)
     }
     
     func updateView() {
@@ -95,7 +96,7 @@ class AudioCellView: UIView, ViewCodable {
     }
     
     func setupAudioDataContentView() {
-        audioDataContentView.backgroundColor = UIColor.Default.background
+        audioDataContentView.backgroundColor = UIColor.Default.lightBackground
     }
 
     func setupTitleLabel() {
@@ -158,7 +159,7 @@ class AudioCellView: UIView, ViewCodable {
 }
 
 // Constraint setting methods
-extension AudioCellView {
+extension AudioCell {
 //      Setup audio data content view constraints
     func setAudioDataContentViewConstraints() {
         
@@ -169,7 +170,7 @@ extension AudioCellView {
             let bottomConstraint = NSLayoutConstraint(item: audioDataContentView,
                                                       attribute: .bottom,
                                                       relatedBy: .equal,
-                                                      toItem: contentView,
+                                                      toItem: container,
                                                       attribute: .bottom,
                                                       multiplier: 1,
                                                       constant: -16)
@@ -179,7 +180,7 @@ extension AudioCellView {
             let bottomMarginConstraint = NSLayoutConstraint(item: audioDataContentView,
                                                             attribute: .bottom,
                                                             relatedBy: .lessThanOrEqual,
-                                                            toItem: contentView,
+                                                            toItem: container,
                                                             attribute: .bottom,
                                                             multiplier: 1,
                                                             constant: -16)
@@ -235,8 +236,8 @@ extension AudioCellView {
         playIcon.setContentCompressionResistancePriority(.required, for: .horizontal)
         playIcon.setContentHuggingPriority(.required, for: .horizontal)
         playIcon.setupConstraints { (_) in
-            playIcon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
-            playIcon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24).isActive = true
+            playIcon.topAnchor.constraint(equalTo: container.topAnchor, constant: 16).isActive = true
+            playIcon.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 24).isActive = true
             playIcon.trailingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor, constant: -16).isActive = true
         }
     }
@@ -246,8 +247,8 @@ extension AudioCellView {
         shareIcon.setContentCompressionResistancePriority(.required, for: .horizontal)
         shareIcon.setContentHuggingPriority(.required, for: .horizontal)
         shareIcon.setupConstraints { (_) in
-            shareIcon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
-            shareIcon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
+            shareIcon.topAnchor.constraint(equalTo: container.topAnchor, constant: 16).isActive = true
+            shareIcon.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -16).isActive = true
         }
     }
 }

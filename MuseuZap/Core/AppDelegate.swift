@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
 
         addTestData()
-
+        setNavigationBarColor()
         return true
     }
 
@@ -46,14 +46,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             category.categoryName = "Categoria \(i)"
 
-            audio.audioName = "Gemidao do Zap v.\(i)"
+            audio.audioName = "Audio v.\(i)"
             audio.audioPath = "/Documents/MuseuZap/Audio\(i)"
             audio.isPrivate = true
             audio.duration = 5.44
 
             category.addToAudios(audio)
-            print("breakpoint")
+//            print("breakpoint")
         }
+    }
+    
+    func setNavigationBarColor() {
+        UINavigationBar.appearance().backgroundColor = UIColor.Default.navBar
+        UINavigationBar.appearance().barTintColor = UIColor.Default.navBar
+        UINavigationBar.appearance().isTranslucent = false
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
