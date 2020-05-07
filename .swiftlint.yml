@@ -1,5 +1,6 @@
 disabled_rules: # rule identifiers to exclude from running
   - identifier_name
+  - implicit_getter
   #- redundant_string_enum_value
   #- multiple_closures_with_trailing_closure
   #- function_parameter_count
