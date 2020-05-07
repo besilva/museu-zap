@@ -62,6 +62,8 @@
 		80F7235E245319DA00583137 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F7235D245319DA00583137 /* UILabel+Extension.swift */; };
 		80FA892B2462F241006B2B61 /* AboutViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FA892A2462F241006B2B61 /* AboutViewSnapshotTests.swift */; };
 		80FAABD82451BFD6008B7DB8 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FAABD72451BFD6008B7DB8 /* UIColorExtension.swift */; };
+		C59A6B2D2464887C0011828D /* FileExchanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59A6B2C2464887C0011828D /* FileExchanger.swift */; };
+		C59A6B2E2464887C0011828D /* FileExchanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59A6B2C2464887C0011828D /* FileExchanger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +173,7 @@
 		80F7235D245319DA00583137 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		80FA892A2462F241006B2B61 /* AboutViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewSnapshotTests.swift; sourceTree = "<group>"; };
 		80FAABD72451BFD6008B7DB8 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		C59A6B2C2464887C0011828D /* FileExchanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExchanger.swift; sourceTree = "<group>"; };
 		CC2334E5C2D616ABBE0AB72C /* libPods-MuseuZapTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MuseuZapTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -314,6 +317,7 @@
 				80F7235D245319DA00583137 /* UILabel+Extension.swift */,
 				80ABB7B62457230C0020CF42 /* TimeInterval+Extension.swift */,
 				80C274D0245872980051A1E6 /* UIFont+Extension.swift */,
+				C59A6B2C2464887C0011828D /* FileExchanger.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -610,6 +614,7 @@
 				64DD6FF9243E10E400404321 /* TestCoordinator.swift in Sources */,
 				64A60C342448BD33003B0F26 /* UIViewControllerExtension.swift in Sources */,
 				64DD6FE6243E0A4700404321 /* Stack.swift in Sources */,
+				C59A6B2D2464887C0011828D /* FileExchanger.swift in Sources */,
 				64DD6FF7243E0DB700404321 /* ListViewModel.swift in Sources */,
 				64DD6FE0243E07D000404321 /* AppCoordinator.swift in Sources */,
 				64DD6FF5243E0BB800404321 /* ListViewController.swift in Sources */,
@@ -641,6 +646,7 @@
 				64C77592245F7F1800FDEA03 /* UIFont+Extension.swift in Sources */,
 				64C7757D2457162700FDEA03 /* ShareViewController.swift in Sources */,
 				64C7758924571EF100FDEA03 /* ViewCodable.swift in Sources */,
+				C59A6B2E2464887C0011828D /* FileExchanger.swift in Sources */,
 				64C77591245F7F1100FDEA03 /* UIColorExtension.swift in Sources */,
 				64C7758A24571EF900FDEA03 /* UIView+ConstraintsExtension.swift in Sources */,
 				64C7758F245B128700FDEA03 /* CategoryTableViewController.swift in Sources */,

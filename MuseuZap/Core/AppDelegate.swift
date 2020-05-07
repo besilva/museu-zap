@@ -25,9 +25,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = tabController
         window?.makeKeyAndVisible()
 
-        addTestData()
         setNavigationBarColor()
+
+//        addTestData()
+
+        // Print appGroup contents
+        print(FileExchanger().listAllFilesInApplicationGroupFolder())
+
         return true
+    }
+
+    // MARK: - SET UP
+
+    func setNavigationBarColor() {
+        UINavigationBar.appearance().backgroundColor = UIColor.Default.navBar
+        UINavigationBar.appearance().barTintColor = UIColor.Default.navBar
+        UINavigationBar.appearance().isTranslucent = false
     }
     
     private func addTestData() {
@@ -52,17 +65,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             category.addToAudios(audio)
             AudioCategoryServices().createCategory(category: category) { (error) in
-                print(error as Any)
+                if let err = error {
+                    print(err as Any)
+                }
             }
-
         }
+
+        // Save context once
+//        do {
+//            try CoreDataManager.sharedInstance.managedObjectContext.save()
+//        } catch {
+//            print("COULD NOT SAVE CONTEXT")
+//        }
     }
-    
-    func setNavigationBarColor() {
-        UINavigationBar.appearance().backgroundColor = UIColor.Default.navBar
-        UINavigationBar.appearance().barTintColor = UIColor.Default.navBar
-        UINavigationBar.appearance().isTranslucent = false
-    }
+
+    // MARK: - Default App Delegate
 
     func applicationWillResignActive(_ application: UIApplication) {
            // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

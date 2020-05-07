@@ -12,22 +12,26 @@ import AVFoundation
 import DatabaseKit
 
 class ShareViewController: SLComposeServiceViewController {
-    
+
+    // MARK: - Properties
+
     var extensionItem: NSExtensionItem?
-    var audioFile: AVPlayer?
+    var audioFileURL: URL!
     var category: AudioCategory? {
-        didSet {
-            guard let name = category?.categoryName else { return }
-            categoryText = name
-        }
+       didSet {
+           guard let name = category?.categoryName else { return }
+           categoryText = name
+       }
     }
     var categoryText =  "Selecionar categoria" {
-        didSet {
-            item?.value = category?.categoryName
-        }
+       didSet {
+           item?.value = category?.categoryName
+       }
     }
     let item = SLComposeSheetConfigurationItem()
-    
+
+    // MARK: - Life Cycle
+
     override func loadView() {
         super.loadView()
         let context = self.extensionContext
@@ -35,40 +39,53 @@ class ShareViewController: SLComposeServiceViewController {
         setupNavigation()
         textView.font = UIFont.Default.regular
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.placeholder = "Dê um nome para o seu audio"
         extensionItem?.attachments?[0].loadItem(forTypeIdentifier: "public.file-url",
                                                 options: nil,
-                                                completionHandler: { (urlItem, _) in // urlItem, error
-                                                    if let urlItem = urlItem,
-                                                        let url = URL(string: "\(urlItem)") {
-                                                        self.audioFile = AVPlayer(url: url)
+                                                completionHandler: { (urlItem, error) in
+                                                    guard let item = urlItem,
+                                                          let url = URL(string: "\(item)") else { return }
+                                                    // Guarantees that audioFileURL not nil
+                                                    self.audioFileURL = url
+
+                                                    if let err = error {
+                                                        print(err)
                                                     }
         })
+
     }
-    
+
+    override func presentationAnimationDidFinish() {
+        // Called after Share view is loaded
+    }
+
+    // MARK: - Share Functions
+
     override func isContentValid() -> Bool {
         // Do validation of contentText and/or NSExtensionContext attachments here
-        return !contentText.isEmpty && audioFile != nil && category != nil
+        return !contentText.isEmpty && audioFileURL != nil && category != nil
     }
-    
+
     override func didSelectPost() {
         // This is called after the user selects Post. Do the upload of contentText and/or NSExtensionContext attachments.
-        
+
         // Inform the host that we're done, so it un-blocks its UI. Note: Alternatively you could call super's -didSelectPost, which will similarly complete the extension context.
-//        let newAudio = Audio(context: CoreDataManager.sharedInstance.managedObjectContext)
-//        newAudio.path = FileManager.save(audio: audio, title: title)
-//        AudioServices(dao: AudioDAO()).createAudio(audio: audio, <#T##completion: ((Error?) -> Void)##((Error?) -> Void)##(Error?) -> Void#>)
+
+        // TODO: criar entidade audio e salvar NO CORE DATA
+
+        copyAudio()
+
         self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
     }
-    
+
     override func configurationItems() -> [Any]! {
-        
+
         item?.title = "Categoria"
         item?.value = categoryText
-        
+
         item?.tapHandler = {
             let controller = CategoryTableViewController()
             controller.delegate = self
@@ -77,11 +94,11 @@ class ShareViewController: SLComposeServiceViewController {
         // To add configuration options via table cells at the bottom of the sheet, return an array of SLComposeSheetConfigurationItem here.
         return [item!]
     }
-    
+
     let imageView = UIImageView()
     override func loadPreviewView() -> UIView! {
         //        Super.loadView()
-        
+
         let image = UIImage(named: "ShareIcon")
         imageView.contentMode = .scaleAspectFit
         imageView.image = image
@@ -93,7 +110,7 @@ class ShareViewController: SLComposeServiceViewController {
         }
         return imageView
     }
-    
+
     func setupNavigation() {
         self.title = "Blin/Pleen"
         if let navBar = self.navigationController?.navigationBar {
@@ -116,5 +133,30 @@ extension ShareViewController: CategoryTableViewControllerDelegate {
     func categorySelected(category: AudioCategory) {
         self.category = category
         popConfigurationViewController()
+        // TODO: prineiro coloco nome, depois seleciono categoria, quando volto botao save nao esta habilitado
+        _ = isContentValid()
+    }
+
+}
+
+// MARK: - File Exchanger
+
+extension ShareViewController {
+
+    /// Method that copies an AudioFile from this external application into Application Group folder
+    func copyAudio() {
+
+        if let audioSource = audioFileURL {
+            // Create the audio name with extension
+            let audioExtension = audioSource.pathExtension
+            let audioName = contentText + ".\(audioExtension)"
+
+            do {
+                try FileExchanger().copyAudioToGroupFolder(sourceURL: audioSource,
+                                                           destinationName: audioName)
+            } catch {
+                print(error)
+            }
+        }
     }
 }
