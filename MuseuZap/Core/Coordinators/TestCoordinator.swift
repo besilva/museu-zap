@@ -27,6 +27,11 @@ class TestCoordinator: BaseCoordinator {
         switch action {
         case .back:
             self.rootViewController.dismiss(animated: true)
+        case .share(let audio):
+            print("sharing!")
+            let items = [audio]
+            let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+            self.rootViewController.present(ac, animated: true)
         default:
             break
         }
