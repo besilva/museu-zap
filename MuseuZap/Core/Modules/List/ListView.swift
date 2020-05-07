@@ -69,12 +69,7 @@ class ListView: UIView, ViewCodable {
     
     func render() {
         createLoader()
-        if #available(iOS 13.0, *) {
-            self.backgroundColor = UIColor.systemBackground
-        } else {
-            // Fallback on earlier versions
-            self.backgroundColor = UIColor.white
-        }
+        self.backgroundColor = UIColor.Default.background
     }
     
     func updateView() {

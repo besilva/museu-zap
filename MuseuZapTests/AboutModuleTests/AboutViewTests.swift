@@ -11,7 +11,11 @@ import XCTest
 
 class MockAboutViewModel: AboutViewModel {
     init() {
-        super.init(email: "mock@email.com", description: "mocked description")
+        // swiftlint:disable line_length
+        let aboutDescription1 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi elementum nunc, sollicitudin non pellentesque. In egestas adipiscing vestibulum varius "
+        let aboutDescription2 = "urna sed ornare consectetur. Convallis in volutpat fermentum ipsum in condimentum ut. Odio ornare id ornare augue. Aliquam sit cras arcu amet erat maecenas mi, amet."
+        // swiftlint:enable line_length
+        super.init(email: "mock@email.com", description: aboutDescription1 + aboutDescription2)
     }
     
     required init(email: String, description: String) {

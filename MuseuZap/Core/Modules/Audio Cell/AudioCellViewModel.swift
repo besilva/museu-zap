@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyLibAudioCellViewModel: AudioCellViewModelProtocol {
+class AudioCellViewModel: AudioCellViewModelProtocol {
     weak var navigationDelegate: NavigationDelegate?
     var title: String
     var audioURL: String

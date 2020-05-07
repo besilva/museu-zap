@@ -9,6 +9,7 @@
 import UIKit
 
 class AboutCoordinator: BaseCoordinator {
+
     typealias T = UINavigationController
     var rootViewController: UINavigationController
     

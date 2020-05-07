@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
 
         addTestData()
-
+        setNavigationBarColor()
         return true
     }
 
@@ -54,6 +54,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             category.addToAudios(audio)
 //            print("breakpoint")
         }
+    }
+    
+    func setNavigationBarColor() {
+        UINavigationBar.appearance().backgroundColor = UIColor.Default.navBar
+        UINavigationBar.appearance().barTintColor = UIColor.Default.navBar
+        UINavigationBar.appearance().isTranslucent = false
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

@@ -27,8 +27,7 @@
 		808C9E30245F283900FF4FEB /* PublicAudioCellViewModel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808C9E2E245F17D600FF4FEB /* PublicAudioCellViewModel+Extension.swift */; };
 		80ABB7AF2457181F0020CF42 /* AudioCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ABB7AE2457181F0020CF42 /* AudioCellViewModelProtocol.swift */; };
 		80ABB7B1245718300020CF42 /* AudioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ABB7B0245718300020CF42 /* AudioCell.swift */; };
-		80ABB7B324571C460020CF42 /* MyLibAudioCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ABB7B224571C460020CF42 /* MyLibAudioCellViewModel.swift */; };
-		80ABB7B524571C780020CF42 /* PublicAudioCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ABB7B424571C780020CF42 /* PublicAudioCellViewModel.swift */; };
+		80ABB7B324571C460020CF42 /* AudioCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ABB7B224571C460020CF42 /* AudioCellViewModel.swift */; };
 		80ABB7B72457230C0020CF42 /* TimeInterval+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ABB7B62457230C0020CF42 /* TimeInterval+Extension.swift */; };
 		80C274C624585BEA0051A1E6 /* CustomCellSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C274C524585BEA0051A1E6 /* CustomCellSnapshotTests.swift */; };
 		80C274C8245861FD0051A1E6 /* CustomCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C274C7245861FD0051A1E6 /* CustomCellTests.swift */; };
@@ -44,6 +43,10 @@
 		80D80EF62447378A00915F1C /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D80EF52447378A00915F1C /* AboutViewModel.swift */; };
 		80E6C368244DF09700A42A4C /* AboutViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E6C367244DF09700A42A4C /* AboutViewTests.swift */; };
 		80F7235E245319DA00583137 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F7235D245319DA00583137 /* UILabel+Extension.swift */; };
+		80FA89292462F217006B2B61 /* SnapshotContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FA89282462F217006B2B61 /* SnapshotContainer.swift */; };
+		80FA892B2462F241006B2B61 /* AboutViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FA892A2462F241006B2B61 /* AboutViewSnapshotTests.swift */; };
+		80FA892D2462F529006B2B61 /* IPhoneWidthsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FA892C2462F529006B2B61 /* IPhoneWidthsEnum.swift */; };
+		80FA892F2462FA97006B2B61 /* TableViewCellSnapshotContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FA892E2462FA97006B2B61 /* TableViewCellSnapshotContainer.swift */; };
 		80FAABD82451BFD6008B7DB8 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FAABD72451BFD6008B7DB8 /* UIColorExtension.swift */; };
 		C502A28B245A1E680014068E /* CoreDataTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C502A28A245A1E680014068E /* CoreDataTestHelper.swift */; };
 		C502A28F245A207F0014068E /* AudioServicesErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C502A28E245A207F0014068E /* AudioServicesErrorTests.swift */; };
@@ -101,8 +104,7 @@
 		808C9E2E245F17D600FF4FEB /* PublicAudioCellViewModel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PublicAudioCellViewModel+Extension.swift"; sourceTree = "<group>"; };
 		80ABB7AE2457181F0020CF42 /* AudioCellViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCellViewModelProtocol.swift; sourceTree = "<group>"; };
 		80ABB7B0245718300020CF42 /* AudioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCell.swift; sourceTree = "<group>"; };
-		80ABB7B224571C460020CF42 /* MyLibAudioCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibAudioCellViewModel.swift; sourceTree = "<group>"; };
-		80ABB7B424571C780020CF42 /* PublicAudioCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicAudioCellViewModel.swift; sourceTree = "<group>"; };
+		80ABB7B224571C460020CF42 /* AudioCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCellViewModel.swift; sourceTree = "<group>"; };
 		80ABB7B62457230C0020CF42 /* TimeInterval+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extension.swift"; sourceTree = "<group>"; };
 		80C274C524585BEA0051A1E6 /* CustomCellSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellSnapshotTests.swift; sourceTree = "<group>"; };
 		80C274C7245861FD0051A1E6 /* CustomCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellTests.swift; sourceTree = "<group>"; };
@@ -115,6 +117,10 @@
 		80D80EF52447378A00915F1C /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
 		80E6C367244DF09700A42A4C /* AboutViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewTests.swift; sourceTree = "<group>"; };
 		80F7235D245319DA00583137 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		80FA89282462F217006B2B61 /* SnapshotContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotContainer.swift; sourceTree = "<group>"; };
+		80FA892A2462F241006B2B61 /* AboutViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewSnapshotTests.swift; sourceTree = "<group>"; };
+		80FA892C2462F529006B2B61 /* IPhoneWidthsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPhoneWidthsEnum.swift; sourceTree = "<group>"; };
+		80FA892E2462FA97006B2B61 /* TableViewCellSnapshotContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellSnapshotContainer.swift; sourceTree = "<group>"; };
 		80FAABD72451BFD6008B7DB8 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		C502A28A245A1E680014068E /* CoreDataTestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTestHelper.swift; sourceTree = "<group>"; };
 		C502A28E245A207F0014068E /* AudioServicesErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioServicesErrorTests.swift; sourceTree = "<group>"; };
@@ -195,6 +201,7 @@
 		6473EDEA243B6D3E00A10F2C /* MuseuZapTests */ = {
 			isa = PBXGroup;
 			children = (
+				80FA89272462F1F4006B2B61 /* Helpers */,
 				C5E6FBF22457922C00C506B9 /* Services */,
 				C5E6FBF12457921C00C506B9 /* DAO */,
 				80C274C424585BBA0051A1E6 /* CustomCellTests */,
@@ -279,8 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				80ABB7AE2457181F0020CF42 /* AudioCellViewModelProtocol.swift */,
-				80ABB7B224571C460020CF42 /* MyLibAudioCellViewModel.swift */,
-				80ABB7B424571C780020CF42 /* PublicAudioCellViewModel.swift */,
+				80ABB7B224571C460020CF42 /* AudioCellViewModel.swift */,
 				80ABB7B0245718300020CF42 /* AudioCell.swift */,
 			);
 			path = "Audio Cell";
@@ -320,8 +326,19 @@
 			isa = PBXGroup;
 			children = (
 				80E6C367244DF09700A42A4C /* AboutViewTests.swift */,
+				80FA892A2462F241006B2B61 /* AboutViewSnapshotTests.swift */,
 			);
 			path = AboutModuleTests;
+			sourceTree = "<group>";
+		};
+		80FA89272462F1F4006B2B61 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				80FA89282462F217006B2B61 /* SnapshotContainer.swift */,
+				80FA892C2462F529006B2B61 /* IPhoneWidthsEnum.swift */,
+				80FA892E2462FA97006B2B61 /* TableViewCellSnapshotContainer.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		90AE29BC86C0A35139859DF1 /* Pods */ = {
@@ -565,14 +582,13 @@
 				C54170D62458816F004BCC73 /* CategoryServices.swift in Sources */,
 				64DD6FE4243E084100404321 /* Coordinator.swift in Sources */,
 				80C3D4CC24508EDA0001879C /* AboutError.swift in Sources */,
-				80ABB7B524571C780020CF42 /* PublicAudioCellViewModel.swift in Sources */,
 				C50385DC24584AEC00559CB4 /* CategoryDAO.swift in Sources */,
 				8024DA2D2449F19000093D37 /* AboutView.swift in Sources */,
 				80C274D1245872980051A1E6 /* UIFont+Extension.swift in Sources */,
 				80D80EF02447365C00915F1C /* AboutCoordinator.swift in Sources */,
 				C558EC7024575C6500A0B32C /* Audio.swift in Sources */,
 				80ABB7B72457230C0020CF42 /* TimeInterval+Extension.swift in Sources */,
-				80ABB7B324571C460020CF42 /* MyLibAudioCellViewModel.swift in Sources */,
+				80ABB7B324571C460020CF42 /* AudioCellViewModel.swift in Sources */,
 				80F7235E245319DA00583137 /* UILabel+Extension.swift in Sources */,
 				80ABB7AF2457181F0020CF42 /* AudioCellViewModelProtocol.swift in Sources */,
 				80D80EF62447378A00915F1C /* AboutViewModel.swift in Sources */,
@@ -594,12 +610,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80FA892B2462F241006B2B61 /* AboutViewSnapshotTests.swift in Sources */,
 				808C9E30245F283900FF4FEB /* PublicAudioCellViewModel+Extension.swift in Sources */,
+				80FA89292462F217006B2B61 /* SnapshotContainer.swift in Sources */,
 				80E6C368244DF09700A42A4C /* AboutViewTests.swift in Sources */,
+				80FA892D2462F529006B2B61 /* IPhoneWidthsEnum.swift in Sources */,
 				C52E7444244F37D300E1DDA4 /* AudioDAOTests.swift in Sources */,
 				C5A4CD2C2451138500F190A5 /* MuseuZap.xcdatamodeld in Sources */,
 				C50385DA2458424700559CB4 /* CategoryServicesSuccessTests.swift in Sources */,
 				C502A292245A20E00014068E /* CategoryDAOMock.swift in Sources */,
+				80FA892F2462FA97006B2B61 /* TableViewCellSnapshotContainer.swift in Sources */,
 				C502A28B245A1E680014068E /* CoreDataTestHelper.swift in Sources */,
 				C502A294245A21110014068E /* AudioDAOMock.swift in Sources */,
 				C502A28F245A207F0014068E /* AudioServicesErrorTests.swift in Sources */,
@@ -753,7 +773,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				DEVELOPMENT_TEAM = B73YH55T95;
 				INFOPLIST_FILE = MuseuZap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -773,7 +793,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				DEVELOPMENT_TEAM = B73YH55T95;
 				INFOPLIST_FILE = MuseuZap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -795,7 +815,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				DEVELOPMENT_TEAM = B73YH55T95;
 				INFOPLIST_FILE = MuseuZapTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -819,7 +839,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				DEVELOPMENT_TEAM = B73YH55T95;
 				INFOPLIST_FILE = MuseuZapTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
