@@ -16,6 +16,19 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
     }
     
     weak var delegate: NavigationDelegate?
+    
+    convenience init() {
+        self.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
+    }
 
     private var myView: ListView {
         // swiftlint:disable force_cast
@@ -29,12 +42,15 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "List"
         // Fake doing request
         let audioServices = AudioServices(dao: AudioDAO())
-        let viewModel = ListViewModel(audioServices: audioServices)
+        let viewModel = ListViewModel(audioServices: audioServices, delegate: myView)
         viewModel.navigationDelegate = self
         myView.viewModel = viewModel
+    }
+    
+    func setup() {
+        tabBarItem = UITabBarItem(title: "Explorar", image: UIImage(named: "explore-outline"), selectedImage: UIImage(named: "explore-filled"))
     }
     
 }

@@ -9,19 +9,18 @@
 import UIKit
 @testable import MuseuZap
 
-// swiftlint:disable line_length
-extension PublicAudioCellViewModel {
+extension AudioCellViewModel {
     struct Helper {
-        static let oneLine = PublicAudioCellViewModel(title: "Laboris cupidatat",
+        static let oneLine = AudioCellViewModel(title: "Laboris cupidatat",
                                                         duration: 90,
                                                         audioURL: "sampleURL")
-        static let twoLines = PublicAudioCellViewModel(title: "Laboris cupidatat exercitation",
+        static let twoLines = AudioCellViewModel(title: "Laboris cupidatat exercitation",
                                                         duration: 90,
                                                         audioURL: "sampleURL")
-        static let threeLines = PublicAudioCellViewModel(title: "Laboris cupidatat exercitation reprehenderit commodo qui proident",
+        static let threeLines = AudioCellViewModel(title: "Laboris cupidatat exercitation reprehenderit commodo qui proident",
                                                         duration: 90,
                                                         audioURL: "sampleURL")
-        static let fourLines = PublicAudioCellViewModel(title: "Laboris cupidatat exercitation reprehenderit commodo qui proident Laboris cupidatat exercitation",
+        static let fourLines = AudioCellViewModel(title: "Laboris cupidatat exercitation reprehenderit commodo qui proident Laboris cupidatat exercitation",
                                                         duration: 90,
                                                         audioURL: "sampleURL")
     }
