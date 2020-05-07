@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-import Database
+import DatabaseKit
 
 class ListViewController: UIViewController, ViewController, NavigationDelegate {
     func handleNavigation(action: Action) {

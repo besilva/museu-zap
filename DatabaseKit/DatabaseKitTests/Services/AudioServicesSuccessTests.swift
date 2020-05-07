@@ -1,5 +1,5 @@
 //
-//  AudioServicesErrorTests.swift
+//  AudioServicesSuccessTests.swift
 //  MuseuZapTests
 //
 //  Created by Ivo Dutra on 06/04/20.
@@ -7,12 +7,12 @@
 //
 
 import XCTest
-@testable import Database
+@testable import DatabaseKit
 import CoreData
 
     // MARK: - Audio Services
 
-class AudioServicesErrorTests: XCTestCase {
+class AudioServicesSuccessTests: XCTestCase {
 
     var sut: AudioServices!
     /// In order to create Audio Entities
@@ -25,8 +25,8 @@ class AudioServicesErrorTests: XCTestCase {
         audioDAO = AudioDAOMock()
         sut = AudioServices(dao: audioDAO)
 
-        // Audio Services Error, therefore
-        audioDAO.shouldThrowError = true
+        // Audio Services Success, therefore
+        audioDAO.shouldThrowError = false
     }
 
     override func tearDown() {
@@ -34,36 +34,35 @@ class AudioServicesErrorTests: XCTestCase {
         sut = nil
         // Audio should be flushed first because category cannot be nil
         coreDataHelper.flushData(from: "Audio")
-        coreDataHelper.flushData(from: "Category")
+        coreDataHelper.flushData(from: "AudioCategory")
         coreDataHelper = nil
-
+        
         audioDAO = nil
     }
 
     // MARK: - Create
 
-    // SUT with Mocked DAO to produce errors
-    func testCreateError() {
+    // Mock DAO does nothing, should not produce errors
+    func testCreate() {
         let audio = Audio(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
         let closureExpectation = XCTestExpectation(description: "Expect to call closure")
 
         sut.createAudio(audio: audio) { (error) in
-            // Closure only invoked if there was error
-            XCTAssertEqual(error as? DatabaseErrors, DatabaseErrors.create)
+            XCTAssertNil(error, "Services create error")
             closureExpectation.fulfill()
         }
-
+        
         wait(for: [closureExpectation], timeout: 3.0)
     }
 
     // MARK: - Read
 
-    func testGetAllAudiosError() {
+    func testGetAllAudios() {
         let closureExpectation = XCTestExpectation(description: "Expect to call closure")
-
+        // Audio Array should contain exactly one record
         sut.getAllAudios { (error, audioArray) in
-            XCTAssertEqual(error as? DatabaseErrors, DatabaseErrors.read)
-            XCTAssertNil(audioArray, "Array should be nil")
+            XCTAssertEqual(audioArray?.count, 1, "AudioDAO Mock readall func creates only 1 item not \(audioArray?.count ?? 100)!")
+            XCTAssertNil(error, "Services get error")
             closureExpectation.fulfill()
         }
 
@@ -72,29 +71,27 @@ class AudioServicesErrorTests: XCTestCase {
 
     // MARK: - Update
 
-    // SUT with Mocked DAO to produce errors
-    func testUpdateAllAudiosError() {
+    // Mock DAO does nothing, should not produce errors
+    func testUpdateAllAudios() {
         let closureExpectation = XCTestExpectation(description: "Expect to call closure")
-
+        
         sut.updateAllAudios { (error) in
-            // Closure only invoked if there was error
-            XCTAssertEqual(error as? DatabaseErrors, DatabaseErrors.update)
-            closureExpectation.fulfill()
+             XCTAssertNil(error, "Services update error")
+             closureExpectation.fulfill()
         }
 
         wait(for: [closureExpectation], timeout: 3.0)
     }
 
     // MARK: - Delete
-
-    // SUT with Mocked DAO to produce errors
-    func testDeleteErrors() {
+    
+    // Mock DAO does nothing, should not produce errors
+    func testDelete() {
         let audio = Audio(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
         let closureExpectation = XCTestExpectation(description: "Expect to call closure")
 
         sut.deleteAudio(audio: audio) { (error) in
-            // Closure only invoked if there was error
-            XCTAssertEqual(error as? DatabaseErrors, DatabaseErrors.delete)
+            XCTAssertNil(error, "Services delete error")
             closureExpectation.fulfill()
         }
 

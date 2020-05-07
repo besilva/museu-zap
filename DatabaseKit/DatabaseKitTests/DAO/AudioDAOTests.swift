@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Database
+@testable import DatabaseKit
 import CoreData
 
     // MARK: - DAO
@@ -17,7 +17,7 @@ class AudioDAOTests: XCTestCase {
     var sut: AudioDAO!
     var coreDataHelper: CoreDataTestHelper!
     /// A Category Entity Object used to help to test AudioDAO, already saved in context
-    var collaborator: Database.AudioCategory!
+    var collaborator: DatabaseKit.AudioCategory!
 
     override func setUp() {
         // This method is called before the invocation of each test method in the class.
@@ -31,7 +31,7 @@ class AudioDAOTests: XCTestCase {
         sut = nil
         // Audio should be flushed first because category cannot be nil
         coreDataHelper.flushData(from: "Audio")
-        coreDataHelper.flushData(from: "Category")
+        coreDataHelper.flushData(from: "AudioCategory")
         coreDataHelper = nil
         collaborator = nil
     }

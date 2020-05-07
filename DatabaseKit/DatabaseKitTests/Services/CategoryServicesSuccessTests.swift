@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Database
+@testable import DatabaseKit
 import CoreData
 
     // MARK: - Category Services
@@ -34,7 +34,7 @@ class CategoryServicesSuccessTests: XCTestCase {
         sut = nil
         // Audio should be flushed first because category cannot be nil
         coreDataHelper.flushData(from: "Audio")
-        coreDataHelper.flushData(from: "Category")
+        coreDataHelper.flushData(from: "AudioCategory")
         coreDataHelper = nil
         
         categoryDAO = nil

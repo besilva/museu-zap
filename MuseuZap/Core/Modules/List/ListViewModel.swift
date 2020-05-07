@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Database
+import DatabaseKit
 
 protocol ListViewModelDelegate: class {
     func stopLoading()

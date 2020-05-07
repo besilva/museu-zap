@@ -6,7 +6,7 @@
 //  Copyright © 2020 Bernardo. All rights reserved.
 //
 
-@testable import Database
+@testable import DatabaseKit
 import CoreData
 
 /// Mocked Audio DAO to throw DatabaseErrors, case shouldThrowError. Else, do nothing.

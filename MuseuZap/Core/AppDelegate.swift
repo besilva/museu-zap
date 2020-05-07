@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-import Database
+import DatabaseKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -9,7 +9,7 @@
 import UIKit
 import Social
 import AVFoundation
-import Database
+import DatabaseKit
 
 class ShareViewController: SLComposeServiceViewController {
     

@@ -5,7 +5,7 @@
 //  Created by Ivo Dutra on 29/04/20.
 //  Copyright © 2020 Bernardo. All rights reserved.
 
-@testable import Database
+@testable import DatabaseKit
 import CoreData
 
 /// Mocked Category DAO to throw DatabaseErrors, case shouldThrowError. Else, do nothing.
@@ -15,13 +15,13 @@ class CategoryDAOMock: AudioCategoryDAOProtocol {
 
     var coreDataHelper = CoreDataTestHelper()
 
-    func create(_ objectToBeSaved: Database.AudioCategory) throws {
+    func create(_ objectToBeSaved: AudioCategory) throws {
         if shouldThrowError {
             throw DatabaseErrors.create
         }
     }
 
-    func readAll() throws -> [Database.AudioCategory] {
+    func readAll() throws -> [AudioCategory] {
         if shouldThrowError {
             throw DatabaseErrors.read
         } else {
@@ -31,7 +31,7 @@ class CategoryDAOMock: AudioCategoryDAOProtocol {
         }
     }
 
-    func fetchWithPredicate(predicate: NSPredicate) throws -> [Database.AudioCategory] {
+    func fetchWithPredicate(predicate: NSPredicate) throws -> [AudioCategory] {
         if shouldThrowError {
             throw DatabaseErrors.publicAndPrivate
         } else {
@@ -46,13 +46,13 @@ class CategoryDAOMock: AudioCategoryDAOProtocol {
         }
     }
 
-    func delete(_ objectToBeDeleted: Database.AudioCategory) throws {
+    func delete(_ objectToBeDeleted: AudioCategory) throws {
         if shouldThrowError {
             throw DatabaseErrors.delete
         }
     }
 
-    func deleteAll(_ objectToBeDeleted: Database.AudioCategory) throws {
+    func deleteAll(_ objectToBeDeleted: AudioCategory) throws {
         if shouldThrowError {
             throw DatabaseErrors.delete
         }

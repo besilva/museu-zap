@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Database
+import DatabaseKit
 
 protocol CategoryTableViewControllerDelegate: class {
     func categorySelected(category: AudioCategory)

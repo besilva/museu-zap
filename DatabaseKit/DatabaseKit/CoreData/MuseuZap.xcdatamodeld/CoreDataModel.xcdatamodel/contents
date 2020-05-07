@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Audio" representedClassName="Database.Audio" syncable="YES">
+    <entity name="Audio" representedClassName="DatabaseKit.Audio" syncable="YES">
         <attribute name="audioName" attributeType="String" minValueString="1"/>
         <attribute name="audioPath" attributeType="String"/>
         <attribute name="duration" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="isPrivate" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="category" maxCount="1" deletionRule="Nullify" destinationEntity="AudioCategory" inverseName="audios" inverseEntity="AudioCategory"/>
     </entity>
-    <entity name="AudioCategory" representedClassName="Database.AudioCategory" syncable="YES">
+    <entity name="AudioCategory" representedClassName="DatabaseKit.AudioCategory" syncable="YES">
         <attribute name="categoryName" attributeType="String" minValueString="1"/>
         <relationship name="audios" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Audio" inverseName="category" inverseEntity="Audio"/>
     </entity>

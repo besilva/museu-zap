@@ -7,14 +7,14 @@
 //
 
 import XCTest
-@testable import Database
+@testable import DatabaseKit
 import CoreData
 
     // MARK: - Category Services
 
 class CategoryServicesErrorTests: XCTestCase {
 
-    var sut: CategoryServices!
+    var sut: AudioCategoryServices!
     /// In order to create Category Entities
     var coreDataHelper: CoreDataTestHelper!
     /// Mocked Audio DAO to throw DatabaseErrors, case shouldThrowError. Else, do nothing.
@@ -23,7 +23,7 @@ class CategoryServicesErrorTests: XCTestCase {
     override func setUp() {
         coreDataHelper = CoreDataTestHelper()
         categoryDAO = CategoryDAOMock()
-        sut = CategoryServices(dao: categoryDAO)
+        sut = AudioCategoryServices(dao: categoryDAO)
 
         // Category Services Error, therefore
         categoryDAO.shouldThrowError = true
@@ -34,7 +34,7 @@ class CategoryServicesErrorTests: XCTestCase {
         sut = nil
         // Audio should be flushed first because category cannot be nil
         coreDataHelper.flushData(from: "Audio")
-        coreDataHelper.flushData(from: "Category")
+        coreDataHelper.flushData(from: "AudioCategory")
         coreDataHelper = nil
 
         categoryDAO = nil
@@ -46,7 +46,7 @@ class CategoryServicesErrorTests: XCTestCase {
     func testCreateError() {
         let closureExpectation = XCTestExpectation(description: "Expect to call closure")
 
-        let category = Category(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
+        let category = AudioCategory(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
         category.categoryName = "createError"
 
         sut.createCategory(category: category) { (error) in
@@ -92,7 +92,7 @@ class CategoryServicesErrorTests: XCTestCase {
     func testDeleteErrors() {
         let closureExpectation = XCTestExpectation(description: "Expect to call closure")
 
-        let category = Category(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
+        let category = AudioCategory(intoContext: coreDataHelper.mockPersistantContainer.viewContext)
         category.categoryName = "deleteError"
 
         sut.deleteCategory(category: category) { (error) in
