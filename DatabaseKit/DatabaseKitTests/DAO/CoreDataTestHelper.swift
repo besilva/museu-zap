@@ -15,6 +15,8 @@ import CoreData
 /// Contex is RAM Memory insted of the own App Database
 class CoreDataTestHelper {
 
+    let moduleName = "MuseuZap"
+
     lazy var managedObjectModel: NSManagedObjectModel = {
             let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: type(of: self))] )!
             return managedObjectModel
@@ -22,7 +24,7 @@ class CoreDataTestHelper {
 
     lazy var mockPersistantContainer: NSPersistentContainer = {
 
-        let container = NSPersistentContainer(name: "MuseuZap", managedObjectModel: self.managedObjectModel)
+        let container = NSPersistentContainer(name: moduleName, managedObjectModel: self.managedObjectModel)
         let description = NSPersistentStoreDescription()
         description.type = NSInMemoryStoreType
         description.shouldAddStoreAsynchronously = false // Make it simpler in test env

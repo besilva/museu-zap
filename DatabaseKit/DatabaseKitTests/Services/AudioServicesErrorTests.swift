@@ -33,8 +33,8 @@ class AudioServicesErrorTests: XCTestCase {
         // This method is called after the invocation of each test method in the class.
         sut = nil
         // Audio should be flushed first because category cannot be nil
-        coreDataHelper.flushData(from: "Audio")
-        coreDataHelper.flushData(from: "AudioCategory")
+        coreDataHelper.flushData(from: Entities.audio.rawValue)
+        coreDataHelper.flushData(from: Entities.audioCategory.rawValue)
         coreDataHelper = nil
 
         audioDAO = nil
