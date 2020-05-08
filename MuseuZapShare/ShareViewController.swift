@@ -57,11 +57,7 @@ class ShareViewController: SLComposeServiceViewController {
         })
 
     }
-
-    override func presentationAnimationDidFinish() {
-        // Called after Share view is loaded
-    }
-
+    
     // MARK: - Share Functions
 
     override func isContentValid() -> Bool {

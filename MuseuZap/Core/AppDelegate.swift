@@ -27,11 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         setNavigationBarColor()
 
-//        addTestData()
+        // Descomentar o save context UMA VEZ para poder utilizar a share extension
         addCategory()
-
-        // Print appGroup contents
-//        print(FileExchanger().listAllFilesInApplicationGroupFolder())
 
         return true
     }
@@ -51,35 +48,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AudioCategoryServices().createCategory(category: category) { (error) in
             if let err = error {
                 print(err as Any)
-            }
-        }
-    }
-    
-    private func addTestData() {
-        let context = CoreDataManager.sharedInstance.managedObjectContext
-        // Get entity, then generatehow  an object from it
-        guard let entity1 = NSEntityDescription.entity(forEntityName: Entities.audio.rawValue, in: context),
-              let entity2 = NSEntityDescription.entity(forEntityName: Entities.audioCategory.rawValue, in: context)
-        else {
-            fatalError("Could not find entities")
-        }
-
-        for i in 1...3 {
-            let audio = Audio(entity: entity1, insertInto: context)
-            let category = AudioCategory(entity: entity2, insertInto: context)
-
-            category.categoryName = "Categoria \(i)"
-
-            audio.audioName = "Audio v.\(i)"
-            audio.audioPath = "/Documents/MuseuZap/Audio\(i)"
-            audio.isPrivate = true
-            audio.duration = 5.44
-
-            category.addToAudios(audio)
-            AudioCategoryServices().createCategory(category: category) { (error) in
-                if let err = error {
-                    print(err as Any)
-                }
             }
         }
 
