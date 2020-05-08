@@ -29,18 +29,18 @@ platform :ios do
     # Providing the xcodeproj is optional
     increment_build_number(xcodeproj: "MuseuZap.xcodeproj")
 
-    # Commit the version bump
-    commit_version_bump(xcodeproj: "MuseuZap.xcodeproj", no_verify: true)
-
     # Add a git tag for this build. This will automatically
     # use an appropriate git tag name
-    add_git_tag
-
-    # Push the new commit and tag back to your git remote
-    push_to_git_remote    
+    add_git_tag 
 
     build_app(workspace: "MuseuZap.xcworkspace", scheme: "MuseuZap")
 
     upload_to_testflight(skip_waiting_for_build_processing: true)
+
+    clean_build_artifacts 
+    # Commit the version bump
+    commit_version_bump(xcodeproj: "MuseuZap.xcodeproj", no_verify: true)
+    # Push the new commit and tag back to your git remote
+    push_to_git_remote   
   end
 end
