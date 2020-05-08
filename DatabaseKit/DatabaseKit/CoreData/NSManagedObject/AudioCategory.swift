@@ -52,7 +52,7 @@ public class AudioCategory: NSManagedObject {
         }
 
         // Create entity description
-        let entityDescription = NSEntityDescription.entity(forEntityName: "AudioCategory", in: currentManagedObjectContext)
+        let entityDescription = NSEntityDescription.entity(forEntityName: Entities.audioCategory.rawValue, in: currentManagedObjectContext)
 
         // Call super
         self.init(entity: entityDescription!, insertInto: currentManagedObjectContext)
@@ -62,7 +62,7 @@ public class AudioCategory: NSManagedObject {
 extension AudioCategory {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<AudioCategory> {
-        return NSFetchRequest<AudioCategory>(entityName: "AudioCategory")
+        return NSFetchRequest<AudioCategory>(entityName: Entities.audioCategory.rawValue)
     }
 
     @NSManaged public var categoryName: String

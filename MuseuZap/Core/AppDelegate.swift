@@ -58,8 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func addTestData() {
         let context = CoreDataManager.sharedInstance.managedObjectContext
         // Get entity, then generatehow  an object from it
-        guard let entity1 = NSEntityDescription.entity(forEntityName: "Audio", in: context),
-              let entity2 = NSEntityDescription.entity(forEntityName: "AudioCategory", in: context)
+        guard let entity1 = NSEntityDescription.entity(forEntityName: Entities.audio.rawValue, in: context),
+              let entity2 = NSEntityDescription.entity(forEntityName: Entities.audioCategory.rawValue, in: context)
         else {
             fatalError("Could not find entities")
         }
