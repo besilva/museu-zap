@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class TestCoordinator: BaseCoordinator {
     
@@ -27,13 +28,20 @@ class TestCoordinator: BaseCoordinator {
         switch action {
         case .back:
             self.rootViewController.dismiss(animated: true)
-        case .share(let audio):
+        case .share(let audioPath):
             print("sharing!")
-            let items = [audio]
-            let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
-            self.rootViewController.present(ac, animated: true)
+            let audioURL = URL(fileURLWithPath: audioPath)        
+            do {
+                let audioFile = try AVAudioFile(forReading: audioURL)
+                let ac = UIActivityViewController(activityItems: [audioFile], applicationActivities: nil)
+                self.rootViewController.present(ac, animated: true)
+            } catch {
+                print("Error loading audio file: \(audioURL.path)")
+                print(error)
+            }
         default:
             break
         }
     }
 }
+	

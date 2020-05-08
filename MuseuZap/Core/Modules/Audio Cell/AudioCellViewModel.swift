@@ -40,9 +40,7 @@ class AudioCellViewModel: AudioCellViewModelProtocol {
     
     func share() {
         print(self.title)
-//        TODO: Retrieve audio content (go ivo go)
-        let audio = Audio() // Store retrieved audio here
-        actionHandler(.share(audio))
+        actionHandler(.share(audioPath))
         return
     }
 }

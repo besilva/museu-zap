@@ -11,9 +11,25 @@ import UIKit
 
 extension AudioCellViewModel {
     struct Helper {
-        static let oneLine = AudioCellViewModel(title: "Laboris cupidatat",duration: 90,audioPath: "sampleURL")
-        static let twoLines = AudioCellViewModel(title: "Laboris cupidatat exercitation", duration: 90, audioPath: "sampleURL")
-        static let threeLines = AudioCellViewModel(title: "Laboris cupidatat exercitation reprehenderit commodo qui proident",duration: 90,audioPath: "sampleURL")
-        static let fourLines = AudioCellViewModel(title: "Laboris cupidatat exercitation reprehenderit commodo qui proident Laboris cupidatat exercitation",duration: 90, audioPath: "sampleURL")
+        static let oneLine = AudioCellViewModel(title: "Laboris cupidatat",
+                                                duration: 90,
+                                                audioPath: "sampleURL") { _ in
+            return
+        }
+        static let twoLines = AudioCellViewModel(title: "Laboris cupidatat exercitation",
+                                                 duration: 90,
+                                                 audioPath: "sampleURL") { _ in
+            return
+        }
+        static let threeLines = AudioCellViewModel(title: "Laboris cupidatat exercitation reprehenderit commodo qui proident",
+                                                   duration: 90,
+                                                   audioPath: "sampleURL") { _ in
+            return
+        }
+        static let fourLines = AudioCellViewModel(title: "Laboris cupidatat exercitation reprehenderit commodo qui proident Laboris cupidatat exercitation",
+                                                  duration: 90,
+                                                  audioPath: "sampleURL") { _ in
+            return
+        }
     }
 }
