@@ -24,7 +24,7 @@ platform :ios do
 	      workspace: "MuseuZap.xcworkspace",
               devices: ["iPhone 8 Plus"])
     # Ensure that your git status is not dirty
-    ensure_git_status_clean
+    #ensure_git_status_clean
 
     # Increment the build number (not the version number)
     # Providing the xcodeproj is optional
