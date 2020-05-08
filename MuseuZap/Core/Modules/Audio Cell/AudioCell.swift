@@ -153,8 +153,13 @@ class AudioCell: UITableViewCell, ViewCodable {
     
     @objc func changePlayStatus() {
         guard let viewModel = viewModel else { return }
-        viewModel.changePlayStatus()
-        playIcon.image = viewModel.playing ? UIImage(named: "pause.fill") : UIImage(named: "play.fill")
+        viewModel.changePlayStatus { error in
+//            If play status was changed successfully, updates icon
+            if error == nil {
+                guard let viewModel = self.viewModel else { return }
+                self.playIcon.image = viewModel.playing ? UIImage(named: "pause.fill") : UIImage(named: "play.fill")
+            }
+        }
     }
 }
 

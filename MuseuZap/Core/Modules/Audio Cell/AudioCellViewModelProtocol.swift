@@ -15,7 +15,7 @@ protocol AudioCellViewModelProtocol {
     var duration: TimeInterval { get set }
     var playing: Bool { get set }
     var actionHandler: (Action) -> Void { get set }
-    func changePlayStatus()
+    func changePlayStatus(completion: ((Error?) -> Void)?)
     func share()
     
     init(title: String, duration: TimeInterval, audioPath: String, audioHandler: @escaping (Action) -> Void)

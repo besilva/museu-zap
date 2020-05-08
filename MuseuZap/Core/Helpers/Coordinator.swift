@@ -16,6 +16,7 @@ enum Action {
     case back
     case presentAlert(String?, String?, Double?, UIAlertController.Style)
     case share(String)
+    case play(String, ((Error?) -> Void))
 }
 protocol NavigationDelegate: class {
     func handleNavigation(action: Action)

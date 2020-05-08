@@ -33,9 +33,24 @@ class AudioCellViewModel: AudioCellViewModelProtocol {
         actionHandler = audioHandler
     }
     
-    func changePlayStatus() {
-        playing = !playing
-//        TODO: Call media manager singleton to change play status
+    func changePlayStatus(completion: ((Error?) -> Void)?) {
+//        Sends handler a play action, containing current audio path
+        actionHandler(.play(audioPath, { error in
+//            If play action occurred successfully, changes play status and
+//            calls completion with no errors
+            if error == nil {
+                self.playing = !self.playing
+                if let completion = completion {
+                    completion(nil)
+                }
+            } else {
+//                Calls completion with an error otherwise
+                if let completion = completion {
+                    completion(error)
+                }
+            }
+            
+        }))
     }
     
     func share() {

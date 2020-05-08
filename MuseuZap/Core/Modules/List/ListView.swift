@@ -91,6 +91,7 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as? AudioCell {
             
             let viewModel = AudioCellViewModel(title: audio.name, duration: audio.duration, audioPath: audio.path) { (action) in
+//                Makes List View handle actions performed by the audio cell view model
                 if let audioHandler = self.audioHandler {
                     audioHandler(action)
                 }  
