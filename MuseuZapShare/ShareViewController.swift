@@ -178,7 +178,7 @@ extension ShareViewController {
                                                            destinationName: audioName)
             } catch {
                 print(error)
-                throw error
+                throw FileErrors.copy
             }
         }
     }

@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         addCategory()
 
         // Print appGroup contents
-        print(FileExchanger().listAllFilesInApplicationGroupFolder())
+//        print(FileExchanger().listAllFilesInApplicationGroupFolder())
 
         return true
     }

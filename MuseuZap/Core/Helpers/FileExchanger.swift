@@ -8,7 +8,7 @@
 
 import Foundation
 
-// TODO: create file exchanger errors
+// TODO: FileExchanger deveria estar em MuseuZap? Só esta sendo utulziada pela shareExtension, mas a shareExtension no momento não tem tests
 
 /// Helper Class to exchange files between ShareExtension and out AppGroup using FileManager
 public class FileExchanger {
@@ -17,7 +17,7 @@ public class FileExchanger {
 
     /// A shared Folder between the Share Extension and this current Application.
     /// Share Extension can grab the audio at an external application, but it does not have access to this current Application, only to groupFolder
-    let appGroupFolderURL = FileManager.sharedContainerURL()
+    var appGroupFolderURL = FileManager.sharedContainerURL()
 
     // MARK: - Methods
 
@@ -30,49 +30,26 @@ public class FileExchanger {
         do {
             try FileManager.default.copyItem(at: sourceURL, to: destinationURL)
         } catch {
-            print("NAO COPIOU")
-            throw error
+            print("DID NOT COPIED", error)
+            throw FileErrors.copy
         }
     }
 
     /// Method to list all Files in Application Group, a shared Folder between the Share Extension and this Application
-    func listAllFilesInApplicationGroupFolder() -> [URL] {
+    func listAllFilesInApplicationGroupFolder() throws -> [URL] {
         var list = [URL]()
 
         do {
             list = try FileManager.default.contentsOfDirectory(at: appGroupFolderURL,
                                                                includingPropertiesForKeys: nil)
         } catch {
-            print("COULD NOT CREATE URL for FOLDER FOR SOME REASON \n", error)
+            print("COULD NOT LIST ITEMS in GROUP FOLDER FOR SOME REASON \n", error)
+            throw FileErrors.listContents
         }
 
         return list
     }
 
-    /// Method to list all Files in the givin Folder.
-    /// Case empty, treat retuned value with .isEmpty
-    func listAllFilesFrom(folder: URL) -> [URL] {
-        var list = [URL]()
-        var isDir: Bool = false
-
-        do {
-            isDir = try folder.resourceValues(forKeys: [.isDirectoryKey]).isDirectory!
-        } catch {
-        }
-
-        if isDir {
-            do {
-                list = try FileManager.default.contentsOfDirectory(at: folder,
-                                                                   includingPropertiesForKeys: nil)
-            } catch {
-                print("COULD NOT CREATE URL for FOLDER FOR SOME REASON \n", error)
-            }
-        } else {
-            print("URL IS NOT A FOLDER")
-        }
-
-        return list
-    }
 }
 
 // MARK: - Methods to use to create items in Document Folder (find through iPhone Files App)
