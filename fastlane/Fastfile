@@ -18,20 +18,20 @@ default_platform(:ios)
 platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
-    cocoapods
+    cocoapods(use_bundle_exec: false)
     build_app(workspace: "MuseuZap.xcworkspace", scheme: "MuseuZap")
-    run_tests(scheme: "MuseuZapTests",
+    run_tests(scheme: "MuseuZap",
 	      workspace: "MuseuZap.xcworkspace",
-              devices: ["iPhone 8 Plus])
+              devices: ["iPhone 8 Plus"])
     # Ensure that your git status is not dirty
     ensure_git_status_clean
 
     # Increment the build number (not the version number)
     # Providing the xcodeproj is optional
-    increment_build_number(xcodeproj: "Example.xcodeproj")
+    increment_build_number(xcodeproj: "MuseuZap.xcodeproj")
 
     # Commit the version bump
-    commit_version_bump(xcodeproj: "Example.xcodeproj")
+    commit_version_bump(xcodeproj: "MuseuZap.xcodeproj")
 
     # Add a git tag for this build. This will automatically
     # use an appropriate git tag name
