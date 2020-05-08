@@ -19,7 +19,6 @@ platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
     cocoapods(use_bundle_exec: false)
-    build_app(workspace: "MuseuZap.xcworkspace", scheme: "MuseuZap")
     run_tests(scheme: "MuseuZap",
 	      workspace: "MuseuZap.xcworkspace",
               devices: ["iPhone 8 Plus"])
@@ -40,9 +39,7 @@ platform :ios do
     # Push the new commit and tag back to your git remote
     push_to_git_remote    
 
-
-
-
+    build_app(workspace: "MuseuZap.xcworkspace", scheme: "MuseuZap")
 
     upload_to_testflight(skip_waiting_for_build_processing: true)
   end
