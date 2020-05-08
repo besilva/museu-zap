@@ -39,7 +39,7 @@ platform :ios do
 
     clean_build_artifacts 
     # Commit the version bump
-    commit_version_bump(xcodeproj: "MuseuZap.xcodeproj", no_verify: true)
+    commit_version_bump(xcodeproj: "MuseuZap.xcodeproj", include: ["Gemfile.lock", "Podfile.lock" ,".bundle/config."])
     # Push the new commit and tag back to your git remote
     push_to_git_remote   
   end
