@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension TimeInterval{
+extension TimeInterval {
 
     func stringFromTimeInterval() -> String {
 
@@ -18,7 +18,7 @@ extension TimeInterval{
         let minutes = (time / 60) % 60
         let hours = (time / 3600)
         
-        if (hours > 0) {
+        if hours > 0 {
             return String(format: "%0.2d:%0.2d:%0.2d", hours, minutes, seconds)
         } else {
             return String(format: "%0.2d:%0.2d", minutes, seconds)
