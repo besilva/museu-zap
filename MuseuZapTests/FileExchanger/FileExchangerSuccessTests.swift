@@ -82,7 +82,7 @@ class FileExchangerSuccessTests: XCTestCase {
         let newFile = "CopiedFile.txt"
 
         do {
-            try sut.copyAudioToGroupFolder(sourceURL: fileURL, destinationName: newFile)
+            _ = try sut.copyAudioToGroupFolder(sourceURL: fileURL, destinationName: newFile)
         } catch {
             XCTFail("No errors should be Produced when copying")
         }
