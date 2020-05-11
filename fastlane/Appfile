@@ -1,5 +1,5 @@
 app_identifier("com.br.MuseuZap") # The bundle identifier of your app
-apple_id("silva98.bernardo@gmail.com") # Your Apple email address
+apple_id("museuzap.ci@gmail.com") # Your Apple email address
 
 itc_team_id("120091915") # App Store Connect Team ID
 team_id("P33TK2RVAJ") # Developer Portal Team ID

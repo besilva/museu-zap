@@ -2,7 +2,7 @@ fastlane documentation
 ================
 # Installation
 
-Make sure you have the latest version of the Xcode command line tools installed: 
+Make sure you have the latest version of the Xcode command line tools installed:
 
 ```
 xcode-select --install
@@ -21,6 +21,11 @@ or alternatively using `brew cask install fastlane`
 fastlane ios beta
 ```
 Push a new beta build to TestFlight
+### ios tes
+```
+fastlane ios tes
+```
+
 
 ----
 

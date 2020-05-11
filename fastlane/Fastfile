@@ -43,4 +43,8 @@ platform :ios do
     # Push the new commit and tag back to your git remote
     push_to_git_remote   
   end
+  
+  lane :tes do
+    build_app(workspace: "MuseuZap.xcworkspace", scheme: "MuseuZap")
+  end
 end
