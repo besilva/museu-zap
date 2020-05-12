@@ -23,12 +23,12 @@ platform :ios do
 	      workspace: "MuseuZap.xcworkspace",
               devices: ["iPhone 8 Plus"])
 
-    build_app(workspace: "MuseuZap.xcworkspace", scheme: "MuseuZap")
+    build_app(workspace: "MuseuZap.xcworkspace", scheme: "MuseuZap", include_bitcode: true)
 
     build_number = get_build_number(xcodeproj: "MuseuZap.xcodeproj")
     version = get_version_number(xcodeproj: "MuseuZap.xcodeproj", target: "MuseuZap")
     upload_to_testflight(skip_waiting_for_build_processing: true)
-    create_pull_request(# optional, defaults to ENV["GITHUB_API_TOKEN"]
+    create_pull_request(
       repo: "besilva/museu-zap",
       title: "Version " + version + "(" + build_number+")",
       base: "master", # optional, defaults to "master"
