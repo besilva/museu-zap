@@ -22,29 +22,25 @@ platform :ios do
     run_tests(scheme: "MuseuZap",
 	      workspace: "MuseuZap.xcworkspace",
               devices: ["iPhone 8 Plus"])
-    # Ensure that your git status is not dirty
-    #ensure_git_status_clean
-
-    # Increment the build number (not the version number)
-    # Providing the xcodeproj is optional
-    increment_build_number(xcodeproj: "MuseuZap.xcodeproj")
-
-    # Add a git tag for this build. This will automatically
-    # use an appropriate git tag name
-    add_git_tag 
 
     build_app(workspace: "MuseuZap.xcworkspace", scheme: "MuseuZap")
 
     upload_to_testflight(skip_waiting_for_build_processing: true)
 
-    clean_build_artifacts 
+  end
+
+  desc "Generates a version on the remote to start CI"
+  lane :version do
+    # Increment the build number (not the version number)
+    # Providing the xcodeproj is optional
+    build_number = increment_build_number(xcodeproj: "MuseuZap.xcodeproj")
+    version = get_version_number(xcodeproj: "MuseuZap.xcodeproj")
+    # Add a git tag for this build. This will automatically
+    # use an appropriate git tag name
+    add_git_tag(tag: version + "(" + build_number+")")
     # Commit the version bump
-    commit_version_bump(xcodeproj: "MuseuZap.xcodeproj", include: ["Gemfile.lock", "Podfile.lock" ,".bundle/config."])
+    commit_version_bump(xcodeproj: "MuseuZap.xcodeproj")
     # Push the new commit and tag back to your git remote
     push_to_git_remote   
-  end
-  
-  lane :tes do
-    build_app(workspace: "MuseuZap.xcworkspace", scheme: "MuseuZap")
   end
 end
