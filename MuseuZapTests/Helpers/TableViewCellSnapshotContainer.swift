@@ -56,11 +56,13 @@ final class TableViewCellSnapshotContainer<Cell: UITableViewCell>: UIView, UITab
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! Cell
         
         configureCell(cell)
         
         return cell
+        // swiftlint:enable force_cast
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
