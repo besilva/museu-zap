@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import DatabaseKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,44 +25,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = tabController
         window?.makeKeyAndVisible()
 
-        addTestData()
         setNavigationBarColor()
+
+        // Descomentar o save context UMA VEZ para poder utilizar a share extension
+//        addCategory() 
+
         return true
     }
 
-    // TODO: Delete test method (not saved in the storage)
+    // MARK: - SET UP
 
-    func addTestData() {
-        let context = CoreDataManager.sharedInstance.managedObjectContext
-        // Get entity, then generatehow  an object from it
-        guard let entity1 = NSEntityDescription.entity(forEntityName: "Audio", in: context),
-              let entity2 = NSEntityDescription.entity(forEntityName: "Category", in: context)
-        else {
-            fatalError("Could not find entities")
-        }
-
-        for i in 1...3 {
-            let audio = Audio(entity: entity1, insertInto: context)
-            let category = Category(entity: entity2, insertInto: context)
-
-            category.categoryName = "Categoria \(i)"
-
-            audio.audioName = "Audio v.\(i)"
-            audio.audioPath = "/Documents/MuseuZap/Audio\(i)"
-            audio.isPrivate = true
-            audio.duration = 5.44
-
-            category.addToAudios(audio)
-//            print("breakpoint")
-        }
-    }
-    
     func setNavigationBarColor() {
         UINavigationBar.appearance().backgroundColor = UIColor.Default.navBar
         UINavigationBar.appearance().barTintColor = UIColor.Default.navBar
         UINavigationBar.appearance().isTranslucent = false
     }
-	
+
+    private func addCategory() {
+        let category = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category.categoryName = "Debuggando"
+
+        AudioCategoryServices().createCategory(category: category) { (error) in
+            if let err = error {
+                print(err as Any)
+            }
+        }
+
+        // Save context once
+        do {
+            try CoreDataManager.sharedInstance.managedObjectContext.save()
+        } catch {
+            print("COULD NOT SAVE CONTEXT")
+        }
+    }
+
+    // MARK: - Default App Delegate
+
     func applicationWillResignActive(_ application: UIApplication) {
            // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
            // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

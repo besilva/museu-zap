@@ -8,7 +8,7 @@
 
 import UIKit
 @testable import MuseuZap
-
+// swiftlint:disable line_length
 extension AudioCellViewModel {
     struct Helper {
         static let oneLine = AudioCellViewModel(title: "Laboris cupidatat",
@@ -33,3 +33,4 @@ extension AudioCellViewModel {
         }
     }
 }
+// swiftlint:enable line_length
