@@ -14,4 +14,6 @@ public enum FileErrors: Error {
     case notAFolder
     case copy
     case listContents
+    case appSharedURL
+    case externalAudioURL
 }
