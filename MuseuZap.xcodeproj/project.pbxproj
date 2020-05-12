@@ -41,7 +41,9 @@
 		64DD6FF7243E0DB700404321 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FF6243E0DB700404321 /* ListViewModel.swift */; };
 		64DD6FF9243E10E400404321 /* TestCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FF8243E10E400404321 /* TestCoordinator.swift */; };
 		8024DA2D2449F19000093D37 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8024DA2C2449F19000093D37 /* AboutView.swift */; };
+		804F1DE3246AECD900AE29D3 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A5301E246AEC1900A123CD /* AudioManager.swift */; };
 		808C9E30245F283900FF4FEB /* PublicAudioCellViewModel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808C9E2E245F17D600FF4FEB /* PublicAudioCellViewModel+Extension.swift */; };
+		80A5301F246AEC1900A123CD /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A5301E246AEC1900A123CD /* AudioManager.swift */; };
 		80ABB7AF2457181F0020CF42 /* AudioCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ABB7AE2457181F0020CF42 /* AudioCellViewModelProtocol.swift */; };
 		80ABB7B1245718300020CF42 /* AudioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ABB7B0245718300020CF42 /* AudioCell.swift */; };
 		80ABB7B324571C460020CF42 /* AudioCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ABB7B224571C460020CF42 /* AudioCellViewModel.swift */; };
@@ -160,6 +162,7 @@
 		6DE2544ADC54F877280C5239 /* Pods-MuseuZapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseuZapTests.debug.xcconfig"; path = "Target Support Files/Pods-MuseuZapTests/Pods-MuseuZapTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8024DA2C2449F19000093D37 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		808C9E2E245F17D600FF4FEB /* PublicAudioCellViewModel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PublicAudioCellViewModel+Extension.swift"; sourceTree = "<group>"; };
+		80A5301E246AEC1900A123CD /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		80ABB7AE2457181F0020CF42 /* AudioCellViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCellViewModelProtocol.swift; sourceTree = "<group>"; };
 		80ABB7B0245718300020CF42 /* AudioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCell.swift; sourceTree = "<group>"; };
 		80ABB7B224571C460020CF42 /* AudioCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCellViewModel.swift; sourceTree = "<group>"; };
@@ -315,6 +318,7 @@
 		64DD6FE2243E081E00404321 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				80A5301E246AEC1900A123CD /* AudioManager.swift */,
 				64DD6FE5243E0A4700404321 /* Stack.swift */,
 				64DD6FE3243E084100404321 /* Coordinator.swift */,
 				64A60C2D24489B9E003B0F26 /* ViewCodable.swift */,
@@ -637,6 +641,7 @@
 				64DD6FF7243E0DB700404321 /* ListViewModel.swift in Sources */,
 				64DD6FE0243E07D000404321 /* AppCoordinator.swift in Sources */,
 				64DD6FF5243E0BB800404321 /* ListViewController.swift in Sources */,
+				80A5301F246AEC1900A123CD /* AudioManager.swift in Sources */,
 				6473EDD5243B6D3700A10F2C /* AppDelegate.swift in Sources */,
 				64A60C3024489D62003B0F26 /* UIView+ConstraintsExtension.swift in Sources */,
 			);
@@ -670,6 +675,7 @@
 				64C7758924571EF100FDEA03 /* ViewCodable.swift in Sources */,
 				C59A6B2E2464887C0011828D /* FileExchanger.swift in Sources */,
 				64C77591245F7F1100FDEA03 /* UIColorExtension.swift in Sources */,
+				804F1DE3246AECD900AE29D3 /* AudioManager.swift in Sources */,
 				64C7758A24571EF900FDEA03 /* UIView+ConstraintsExtension.swift in Sources */,
 				64C7758F245B128700FDEA03 /* CategoryTableViewController.swift in Sources */,
 			);
