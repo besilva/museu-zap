@@ -91,3 +91,4 @@ iOSInjectionProject/
 
 #removing ds_store
 *.DS_Store
+codesigndoc_exports/
