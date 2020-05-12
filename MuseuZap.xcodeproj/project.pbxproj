@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		5BEE3737D0136F81E6BD9BAE /* libPods-MuseuZapTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CC2334E5C2D616ABBE0AB72C /* libPods-MuseuZapTests.a */; };
 		646181FE24644DD3003BC3AB /* DatabaseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 646181FB24644D8F003BC3AB /* DatabaseKit.framework */; };
-		646181FF24644DD3003BC3AB /* DatabaseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 646181FB24644D8F003BC3AB /* DatabaseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6461820224644DEE003BC3AB /* DatabaseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6461820124644DEE003BC3AB /* DatabaseKit.framework */; };
-		6461820324644DEE003BC3AB /* DatabaseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6461820124644DEE003BC3AB /* DatabaseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6461820A24645363003BC3AB /* SnapshotContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6461820724645363003BC3AB /* SnapshotContainer.swift */; };
 		6461820B24645363003BC3AB /* TableViewCellSnapshotContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6461820824645363003BC3AB /* TableViewCellSnapshotContainer.swift */; };
 		6461820C24645363003BC3AB /* IPhoneWidthsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6461820924645363003BC3AB /* IPhoneWidthsEnum.swift */; };
@@ -88,28 +86,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		6461820024644DD3003BC3AB /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				646181FF24644DD3003BC3AB /* DatabaseKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6461820424644DEE003BC3AB /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				6461820324644DEE003BC3AB /* DatabaseKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		64C775882457162700FDEA03 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -440,7 +416,6 @@
 				6473EDCF243B6D3700A10F2C /* Resources */,
 				C516949F243B6F100014C3AF /* SwiftLint */,
 				64C775882457162700FDEA03 /* Embed App Extensions */,
-				6461820024644DD3003BC3AB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -478,7 +453,6 @@
 				64C775762457162700FDEA03 /* Sources */,
 				64C775772457162700FDEA03 /* Frameworks */,
 				64C775782457162700FDEA03 /* Resources */,
-				6461820424644DEE003BC3AB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
