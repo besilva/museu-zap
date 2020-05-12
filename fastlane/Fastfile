@@ -25,8 +25,8 @@ platform :ios do
 
     build_app(workspace: "MuseuZap.xcworkspace", scheme: "MuseuZap")
 
-    build_number = increment_build_number(xcodeproj: "MuseuZap.xcodeproj")
-    version = get_version_number(xcodeproj: "MuseuZap.xcodeproj")
+    build_number = get_build_number(xcodeproj: "MuseuZap.xcodeproj")
+    version = get_version_number(xcodeproj: "MuseuZap.xcodeproj", target: "MuseuZap")
     upload_to_testflight(skip_waiting_for_build_processing: true)
     create_pull_request(# optional, defaults to ENV["GITHUB_API_TOKEN"]
       repo: "besilva/museu-zap",
@@ -40,8 +40,9 @@ platform :ios do
   lane :version do
     # Increment the build number (not the version number)
     # Providing the xcodeproj is optional
-    build_number = increment_build_number(xcodeproj: "MuseuZap.xcodeproj")
-    version = get_version_number(xcodeproj: "MuseuZap.xcodeproj")
+    increment_build_number(xcodeproj: "MuseuZap.xcodeproj")
+    build_number = get_build_number(xcodeproj: "MuseuZap.xcodeproj")
+    version = get_version_number(xcodeproj: "MuseuZap.xcodeproj", target: "MuseuZap")
     # Add a git tag for this build. This will automatically
     # use an appropriate git tag name
     add_git_tag(tag: version + "(" + build_number+")")

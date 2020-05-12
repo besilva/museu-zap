@@ -21,11 +21,11 @@ or alternatively using `brew cask install fastlane`
 fastlane ios beta
 ```
 Push a new beta build to TestFlight
-### ios tes
+### ios version
 ```
-fastlane ios tes
+fastlane ios version
 ```
-
+Generates a version on the remote to start CI
 
 ----
 
