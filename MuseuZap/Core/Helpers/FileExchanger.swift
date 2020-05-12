@@ -21,8 +21,13 @@ public class FileExchanger {
 
     // MARK: - Methods
 
-    /// Method that copies an AudioFile from an external application into Application Group folder
-    func copyAudioToGroupFolder(sourceURL: URL, destinationName: String) throws {
+    /// Method that copies an AudioFile from an external application into Application Group folder.
+    /// - Parameters:
+    ///   - sourceURL: External Audio File URL
+    ///   - destinationName: Contains the new Audio name given by the user + extension
+    /// - Throws: FileErrors.copy
+    /// - Returns: The correct URL from the Audio File that the application can use ( Audio entity - audio.audioPath )
+    func copyAudioToGroupFolder(sourceURL: URL, destinationName: String) throws -> URL? {
 
         let destinationURL = appGroupFolderURL.appendingPathComponent(destinationName,
                                                                       isDirectory: false)
@@ -33,6 +38,8 @@ public class FileExchanger {
             print("DID NOT COPIED", error)
             throw FileErrors.copy
         }
+
+        return destinationURL
     }
 
     /// Method to list all Files in Application Group, a shared Folder between the Share Extension and this Application

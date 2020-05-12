@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setNavigationBarColor()
 
         // Descomentar o save context UMA VEZ para poder utilizar a share extension
-        addCategory()
+//        addCategory()
 
         return true
     }
