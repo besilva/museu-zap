@@ -29,7 +29,6 @@ class TestCoordinator: BaseCoordinator {
         case .back:
             self.rootViewController.dismiss(animated: true)
         case .share(let audioPath):
-            print("sharing!")
             let audioURL = URL(fileURLWithPath: audioPath)
 
             if !audioURL.isFileURL {

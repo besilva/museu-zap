@@ -58,7 +58,6 @@ class ShareViewController: SLComposeServiceViewController {
                                                         print(err)
                                                     }
         })
-
     }
     
     // MARK: - Share Functions
@@ -193,4 +192,9 @@ extension ShareViewController {
             }
         }
     }
+    
+    override func textViewDidChange(_ textView: UITextView) {
+        print("a")
+    }
+    
 }
