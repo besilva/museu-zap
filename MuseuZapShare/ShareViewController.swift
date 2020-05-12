@@ -185,8 +185,7 @@ extension ShareViewController {
         // All imported audios are private
         audio.isPrivate = true
         audio.category = category
-        // TODO: Singleton de AUDIO pegar a duracao do arquivo! OU TRATAR DEPOIS tb nao sei
-        audio.duration = 0
+        audio.duration = AudioManager().getDurationFrom(file: appAudioFileURL)
 
         AudioServices().createAudio(audio: audio) { (error) in
             if let err = error {
