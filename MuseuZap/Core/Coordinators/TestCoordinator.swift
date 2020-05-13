@@ -42,13 +42,10 @@ class TestCoordinator: BaseCoordinator {
         case .play(let audioPath, let completion):
             let audioURL = URL(fileURLWithPath: audioPath)
             do {
-                let audioFile = try AVAudioFile(forReading: audioURL)
-//                TODO: send audioFile to media singleton
-                print(audioFile)
-//                Calls completion if audio was played successfully
+                try AudioManager.shared.changePlayerStatus(for: audioURL)
+                // Calls completion if audio was played successfully
                 completion(nil)
             } catch {
-                print("Error loading audio file: \(audioURL.path)")
                 print(error)
                 completion(error)
             }

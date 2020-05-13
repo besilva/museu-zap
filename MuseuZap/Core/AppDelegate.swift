@@ -27,6 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         setNavigationBarColor()
 
+        // Audio Controls
+        AudioManager.shared.configureAVAudioSession()
+        AudioManager.shared.setupRemoteTransportControls()
+        application.beginReceivingRemoteControlEvents()
+
         // Descomentar o save context UMA VEZ para poder utilizar a share extension
 //        addCategory()
 
@@ -52,11 +57,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         // Save context once
-//        do {
-//            try CoreDataManager.sharedInstance.managedObjectContext.save()
-//        } catch {
-//            print("COULD NOT SAVE CONTEXT")
-//        }
+        do {
+            try CoreDataManager.sharedInstance.managedObjectContext.save()
+        } catch {
+            print("COULD NOT SAVE CONTEXT")
+        }
     }
 
     // MARK: - Default App Delegate
