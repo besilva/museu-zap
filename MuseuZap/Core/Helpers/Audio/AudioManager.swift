@@ -70,12 +70,8 @@ class AudioManager: NSObject {
             setupNowPlaying()
         }
 
-        guard let audioPath = audioAsset?.url.path else {
-            print("AUDIO URL NIL!")
-            throw AudioErrors.noPlayer
-        }
-
-        guard let audioPlayer = player else {
+        guard let audioPath = audioAsset?.url.path,
+              let audioPlayer = player else {
             print("PLAYER COULD NOT BE INITIALIZED")
             throw AudioErrors.noPlayer
         }
@@ -248,3 +244,8 @@ extension Notification.Name {
             return .init(rawValue: "AudioManager.playbackStopped")
     }
 }
+
+// FAZER O PROTOCOLO NOTIFICATION E AI METODO POST
+
+// FAZER EXTENTIOOS DO NOTIFICATION COMO NOTIFICATION E IMPLEMENTAR O DEFAULT DE postNotification!! recebendo os parametros
+// FAZER O  MOCK pensar em como faxzer isso.

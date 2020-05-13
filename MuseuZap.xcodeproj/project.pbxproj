@@ -74,6 +74,7 @@
 		C5904C6A246AEED4004B9921 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904C68246AEED4004B9921 /* AudioManager.swift */; };
 		C59A6B2D2464887C0011828D /* FileExchanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59A6B2C2464887C0011828D /* FileExchanger.swift */; };
 		C59A6B2E2464887C0011828D /* FileExchanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59A6B2C2464887C0011828D /* FileExchanger.swift */; };
+		C5B87714246C4B5E0027A586 /* AudioManagerTest.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C5B87713246C4B5E0027A586 /* AudioManagerTest.m4a */; };
 		C5CD5EB5246BFDBB0054C4EB /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD5EB4246BFDBB0054C4EB /* AsyncOperation.swift */; };
 		C5CD5EB7246BFDD00054C4EB /* XCTestCase+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD5EB6246BFDD00054C4EB /* XCTestCase+Extension.swift */; };
 /* End PBXBuildFile section */
@@ -193,6 +194,7 @@
 		C586E2C62465AA2400B1930B /* FileExchangerErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExchangerErrorTests.swift; sourceTree = "<group>"; };
 		C5904C68246AEED4004B9921 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		C59A6B2C2464887C0011828D /* FileExchanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExchanger.swift; sourceTree = "<group>"; };
+		C5B87713246C4B5E0027A586 /* AudioManagerTest.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = AudioManagerTest.m4a; sourceTree = "<group>"; };
 		C5CD5EB4246BFDBB0054C4EB /* AsyncOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		C5CD5EB6246BFDD00054C4EB /* XCTestCase+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extension.swift"; sourceTree = "<group>"; };
 		CC2334E5C2D616ABBE0AB72C /* libPods-MuseuZapTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MuseuZapTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -450,6 +452,7 @@
 		C527F28B246C22E000714778 /* AudioManager */ = {
 			isa = PBXGroup;
 			children = (
+				C5B87713246C4B5E0027A586 /* AudioManagerTest.m4a */,
 				C527F28C246C22F800714778 /* AudioManagerTests.swift */,
 			);
 			path = AudioManager;
@@ -585,6 +588,7 @@
 			files = (
 				80C274CD2458721C0051A1E6 /* Poppins-Regular.ttf in Resources */,
 				80C274CF2458721C0051A1E6 /* Poppins-SemiBold.ttf in Resources */,
+				C5B87714246C4B5E0027A586 /* AudioManagerTest.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,19 +12,27 @@ import XCTest
 class AudioManagerTests: XCTestCase {
 
     var sut: AudioManager!
-    var fileName: String!
-    var fileURL: URL!
 
     override func setUp() {
-        sut = AudioManger.shared
+//        sut = AudioManager(notificationCenter: <#T##NotificationCenter#>)
+
     }
 
     override func tearDown() {
+        // Since singleton will be used, just set all the properties back to nil
+        sut.remoteCommandCenter = nil
+
+        sut.audioAsset = nil
+        sut.currentAudio = nil
 
     }
 
     // MARK: - List
 
     // MARK: - Copy
+
+}
+
+class MockedNotificationCenter: NotificationCenter {
 
 }
