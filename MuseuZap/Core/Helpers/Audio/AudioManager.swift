@@ -8,6 +8,7 @@
 
 import AVFoundation
 import MediaPlayer
+import DatabaseKit
 
 /// Class used to play Audio Files
 class AudioManager: NSObject {
@@ -16,10 +17,15 @@ class AudioManager: NSObject {
 
     /// Singleton
     static let shared = AudioManager()
-    /// Remote Commnad Center
+    /// Remote Command Center
     var remoteCommandCenter: MPRemoteCommandCenter?
+    /// Notification Center, default
+    private let notificationCenter: NotificationCenter
 
     // Audio File
+    /// Audio Entity, generated from URL
+    // TODO: state passa audioPath ou propria entidade audio?
+    var currentAudio: Audio?
     /// Model timed audiovisual media such as videos and sounds.
     /// For Play/Pause command, a check in the URL is performed to see if a new player should be created
     var audioAsset: AVURLAsset?
@@ -28,6 +34,24 @@ class AudioManager: NSObject {
     var playerItem: AVPlayerItem?
     /// Provide the player item to an AVPlayer object to play an instance of AVAsset
     var player: AVPlayer?
+
+    /// Used to create observers
+    enum State {
+        case idle
+        case playing(String)
+        case paused(String)
+    }
+
+    private var state = State.idle {
+        // We add a property observer on 'state', which lets us run a function on each value change.
+        didSet { stateDidChange() }
+    }
+
+    // MARK: - Init
+
+    init(notificationCenter: NotificationCenter = .default) {
+        self.notificationCenter = notificationCenter
+    }
 
     // MARK: - Change Status
 
@@ -40,7 +64,15 @@ class AudioManager: NSObject {
             // If no player was created, there is no problem to pause a nil object
             // And if a new audio was clicked, stop currect audio.
             player?.pause()
+            state = .idle
             createPlayerFrom(file: file)
+            // Update remote controllers info
+            setupNowPlaying()
+        }
+
+        guard let audioPath = audioAsset?.url.path else {
+            print("AUDIO URL NIL!")
+            throw AudioErrors.noPlayer
         }
 
         guard let audioPlayer = player else {
@@ -52,8 +84,10 @@ class AudioManager: NSObject {
         switch audioPlayer.timeControlStatus {
         case .paused:
             audioPlayer.play()
+            state = .playing(audioPath)
         case .playing:
             audioPlayer.pause()
+            state = .paused(audioPath)
         default:
             print("UNKNOWN CHANGE STATUS \n")
         }
@@ -69,9 +103,6 @@ class AudioManager: NSObject {
             "duration"
         ]
 
-        // Ensures that old observer is removed
-//        player?.removeObserver(self, forKeyPath: #keyPath(AVPlayer.timeControlStatus))
-
         // Create a new AVPlayerItem with the asset and an
         // Array of asset keys to be automatically loaded
         playerItem = AVPlayerItem(asset: audioAsset!,
@@ -79,116 +110,99 @@ class AudioManager: NSObject {
 
         // Associate the player item with the player
         player = AVPlayer(playerItem: playerItem)
-
-        // Register as an observer of the player "is Playing" status
-//        player?.addObserver(self,
-//                            forKeyPath: #keyPath(AVPlayer.timeControlStatus),
-//                            options: [.old, .new],
-//                            context: nil)
     }
 
-//    override func observeValue(forKeyPath keyPath: String?,
-//                               of object: Any?,
-//                               change: [NSKeyValueChangeKey : Any]?,
-//                               context: UnsafeMutableRawPointer?) {
-//
-//        if keyPath == #keyPath(AVPlayer.timeControlStatus) {
-//            let status: AVPlayer.TimeControlStatus
-//
-//            // Get the status change from the change dictionary
-//            if let statusNumber = change?[.newKey] as? NSNumber {
-//                status = AVPlayer.TimeControlStatus(rawValue: statusNumber.intValue)!
-//            } else {
-//                // If could not cast, let it fall into default case
-//                status = .waitingToPlayAtSpecifiedRate
-//            }
-//
-//            // Switch over the status
-//            switch status {
-//            case .paused:
-//                print("MUDEI PRO paused \n")
-//            case .playing:
-//                print("MUDEI PRO PLAY \n")
-//            default:
-//                print("UNKNOWN CHANGE STATUS OBSERVER \n")
-//            }
-//        }
-//    }
+    // MARK: - AVAudioSession SetUp
 
-        // MARK: - AVAudioSession SetUp
+    /// Configure the AVAudioSession. Called in AppDelegate
+    /// Together with  Background Mode Capability, Playback category lets the audio play when the App goes to background, or screenLock
+    func configureAVAudioSession() {
+        let audioSession = AVAudioSession.sharedInstance()
 
-        /// Configure the AVAudioSession. Called in AppDelegate
-        /// Together with  Background Mode Capability, Playback category lets the audio play when the App goes to background, or screenLock
-        func configureAVAudioSession() {
-            let audioSession = AVAudioSession.sharedInstance()
+        do {
+            // Set the audio session category, mode and options.
+            try audioSession.setCategory(.playback,
+                                         mode: .default,
+                                         options: [])
+            try audioSession.setActive(true)
+        } catch {
+            print("COULD NOT CONFIGURE AVSESSION", error)
+        }
+    }
 
-            do {
-                // Set the audio session category, mode and options.
-                try audioSession.setCategory(.playback,
-                                             mode: .default,
-                                             options: [])
-                try audioSession.setActive(true)
-            } catch {
-                print("COULD NOT CONFIGURE AVSESSION", error)
+    // MARK: - Control center & iOS Lock Screen
+
+    /// Allow audio to be controlled from Control Center and iOS Lock screen.
+    func setupRemoteTransportControls() {
+        // Get the shared MPRemoteCommandCenter
+        remoteCommandCenter = MPRemoteCommandCenter.shared()
+
+        // Add handler for Play Command, passes audioPath when state changed
+        remoteCommandCenter?.playCommand.addTarget { [unowned self] _ in // Event
+
+            guard let audioPath = self.audioAsset?.url.path else {
+                print("AUDIO URL NIL!")
+                return .commandFailed
+            }
+
+            switch self.player?.timeControlStatus {
+            case .paused:
+               self.player?.play()
+               self.state = .playing(audioPath)
+               return .success
+            default:
+                return .commandFailed
             }
         }
 
-        // MARK: - Control center & iOS Lock Screen
+        // Add handler for Pause Command, passes audioPath when state changed
+        remoteCommandCenter?.pauseCommand.addTarget { [unowned self] _ in // Event
 
-         /// Allow audio to be controlled from Control Center and iOS Lock screen.
-         func setupRemoteTransportControls() {
-            // Get the shared MPRemoteCommandCenter
-            remoteCommandCenter = MPRemoteCommandCenter.shared()
-
-            // Add handler for Play Command
-            remoteCommandCenter?.playCommand.addTarget { [unowned self] _ in // Event
-                switch self.player?.timeControlStatus {
-                case .paused:
-                   self.player?.play()
-                   return .success
-                default:
-                    return .commandFailed
-                }
+            guard let audioPath = self.audioAsset?.url.path else {
+                print("AUDIO URL NIL!")
+                return .commandFailed
             }
 
-            // Add handler for Pause Command
-            remoteCommandCenter?.pauseCommand.addTarget { [unowned self] _ in // Event
-                switch self.player?.timeControlStatus {
-                case .playing:
-                    self.player?.pause()
-                    return .success
-                default:
-                    return .commandFailed
-                }
+            switch self.player?.timeControlStatus {
+            case .playing:
+                self.player?.pause()
+                self.state = .paused(audioPath)
+                return .success
+            default:
+                return .commandFailed
             }
-
-            remoteCommandCenter?.playCommand.isEnabled = true
-            remoteCommandCenter?.pauseCommand.isEnabled = true
-
-            setupNowPlaying()
-         }
-
-        func setupNowPlaying() {
-            // Define Now Playing Info
-            var nowPlayingInfo = [String: Any]()
-            // TODO: colocar titulo da propriedade aqui
-            nowPlayingInfo[MPMediaItemPropertyTitle] = "Movie Title NEW"
-            nowPlayingInfo[MPMediaItemPropertyArtist] = "Artist Name NEW"
-
-            if let image = UIImage(named: "ShareIcon") {
-                nowPlayingInfo[MPMediaItemPropertyArtwork] =
-                    MPMediaItemArtwork(boundsSize: image.size) { _ in // Size
-                        return image
-                }
-            }
-
-            nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = self.playerItem?.currentTime().seconds
-            nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = self.playerItem?.asset.duration.seconds
-            nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = self.player?.rate
-
-            // Set the metadata
-            MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
         }
+
+        remoteCommandCenter?.playCommand.isEnabled = true
+        remoteCommandCenter?.pauseCommand.isEnabled = true
+    }
+
+    /// Update Remote properties, indicating which is the current audio playing
+    func setupNowPlaying() {
+        // Retrieve Current audio name
+        guard let currentPlaying = audioAsset?.url.deletingPathExtension().lastPathComponent else {
+            print("AUDIO URL NIL!")
+            return
+        }
+
+        // Define Now Playing Info
+        var nowPlayingInfo = [String: Any]()
+        nowPlayingInfo[MPMediaItemPropertyTitle] = currentPlaying
+
+        if let image = UIImage(named: "ShareIcon") {
+            nowPlayingInfo[MPMediaItemPropertyArtwork] =
+                MPMediaItemArtwork(boundsSize: image.size) { _ in // Size
+                    return image
+            }
+        }
+
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = self.playerItem?.currentTime().seconds
+        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = self.playerItem?.asset.duration.seconds
+        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = self.player?.rate
+
+        // Set the metadata
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+    }
 
     // MARK: - Helper
 
@@ -198,5 +212,39 @@ class AudioManager: NSObject {
     func getDurationFrom(file: URL) -> TimeInterval {
        let asset = AVAsset(url: file)
        return CMTimeGetSeconds(asset.duration)
+    }
+}
+
+    // MARK: - NOTIFICATION CENTER
+
+extension AudioManager {
+    func stateDidChange() {
+        switch state {
+        case .playing(let audio):
+            notificationCenter.post(name: .playbackStarted, object: audio)
+        case .paused(let audio):
+            notificationCenter.post(name: .playbackPaused, object: audio)
+        case .idle:
+            notificationCenter.post(name: .playbackStopped, object: nil)
+        }
+    }
+}
+
+// This extension should be placed here because state is private
+extension Notification.Name {
+
+    /// Playing
+    static var playbackStarted: Notification.Name {
+        return .init(rawValue: "AudioManager.playbackStarted")
+    }
+
+    /// Pause
+    static var playbackPaused: Notification.Name {
+        return .init(rawValue: "AudioManager.playbackPaused")
+    }
+
+    /// Idle
+    static var playbackStopped: Notification.Name {
+            return .init(rawValue: "AudioManager.playbackStopped")
     }
 }
