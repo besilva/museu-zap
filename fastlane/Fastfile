@@ -1,0 +1,54 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Push a new beta build to TestFlight"
+  lane :beta do
+    cocoapods(use_bundle_exec: false)
+    run_tests(scheme: "MuseuZap",
+	      workspace: "MuseuZap.xcworkspace",
+              devices: ["iPhone 8 Plus"])
+
+    build_app(workspace: "MuseuZap.xcworkspace", scheme: "MuseuZap", include_bitcode: false, include_symbols: true)
+
+    build_number = get_build_number(xcodeproj: "MuseuZap.xcodeproj")
+    version = get_version_number(xcodeproj: "MuseuZap.xcodeproj", target: "MuseuZap")
+    upload_to_testflight(skip_waiting_for_build_processing: true)
+    create_pull_request(
+      repo: "besilva/museu-zap",
+      title: "Version " + version + "(" + build_number+")",
+      base: "master", # optional, defaults to "master"
+      body: "Bitrise did it again"    # optional
+    )
+  end
+
+  desc "Generates a version on the remote to start CI"
+  lane :version do
+    # Increment the build number (not the version number)
+    # Providing the xcodeproj is optional
+    increment_build_number(xcodeproj: "MuseuZap.xcodeproj")
+    build_number = get_build_number(xcodeproj: "MuseuZap.xcodeproj")
+    version = get_version_number(xcodeproj: "MuseuZap.xcodeproj", target: "MuseuZap")
+    # Add a git tag for this build. This will automatically
+    # use an appropriate git tag name
+    add_git_tag(tag: version + "(" + build_number+")")
+    # Commit the version bump
+    commit_version_bump(xcodeproj: "MuseuZap.xcodeproj")
+    # Push the new commit and tag back to your git remote
+    push_to_git_remote   
+  end
+end
