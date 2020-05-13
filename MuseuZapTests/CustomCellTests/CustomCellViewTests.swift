@@ -99,12 +99,12 @@ class CustomCellViewTests: XCTestCase {
         customCellView = nil
     }
 
-    func testPlayAudioIcon() throws {
-        
-        let operation = AsyncOperation { self.customCellView.changePlayStatus() }
-        try await(operation.perform)
-        XCTAssertEqual(self.customCellView.playIcon.image, UIImage(named: "pause.fill"), "Output image does not match")
-    }
+//    func testPlayAudioIcon() throws {
+//        
+//        let operation = AsyncOperation { self.customCellView.changePlayStatus() }
+//        try await(operation.perform)
+//        XCTAssertEqual(self.customCellView.playIcon.image, UIImage(named: "pause.fill"), "Output image does not match")
+//    }
     
 //    func testPlayAudioIconWithDelay() throws {
 //        mockViewModel.delayTime = 1.0
