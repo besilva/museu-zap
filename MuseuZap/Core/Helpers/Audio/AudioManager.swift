@@ -8,6 +8,7 @@
 
 import AVFoundation
 import MediaPlayer
+import DatabaseKit
 
 /// Class used to play Audio Files
 class AudioManager: NSObject {
@@ -16,10 +17,15 @@ class AudioManager: NSObject {
 
     /// Singleton
     static let shared = AudioManager()
-    /// Remote Commnad Center
+    /// Remote Command Center
     var remoteCommandCenter: MPRemoteCommandCenter?
+    /// Notification Center, default
+    private let notificationCenter: NotificationCenter
 
     // Audio File
+    /// Audio Entity, generated from URL
+    // TODO: state passa audioPath ou propria entidade audio?
+    var currentAudio: Audio?
     /// Model timed audiovisual media such as videos and sounds.
     /// For Play/Pause command, a check in the URL is performed to see if a new player should be created
     var audioAsset: AVURLAsset?
@@ -28,6 +34,24 @@ class AudioManager: NSObject {
     var playerItem: AVPlayerItem?
     /// Provide the player item to an AVPlayer object to play an instance of AVAsset
     var player: AVPlayer?
+
+    /// Used to create observers
+    enum State {
+        case idle
+        case playing(String)
+        case paused(String)
+    }
+
+    private var state = State.idle {
+        // We add a property observer on 'state', which lets us run a function on each value change.
+        didSet { stateDidChange() }
+    }
+
+    // MARK: - Init
+
+    init(notificationCenter: NotificationCenter = .default) {
+        self.notificationCenter = notificationCenter
+    }
 
     // MARK: - Change Status
 
@@ -40,9 +64,15 @@ class AudioManager: NSObject {
             // If no player was created, there is no problem to pause a nil object
             // And if a new audio was clicked, stop currect audio.
             player?.pause()
+            state = .idle
             createPlayerFrom(file: file)
             // Update remote controllers info
             setupNowPlaying()
+        }
+
+        guard let audioPath = audioAsset?.url.path else {
+            print("AUDIO URL NIL!")
+            throw AudioErrors.noPlayer
         }
 
         guard let audioPlayer = player else {
@@ -54,8 +84,10 @@ class AudioManager: NSObject {
         switch audioPlayer.timeControlStatus {
         case .paused:
             audioPlayer.play()
+            state = .playing(audioPath)
         case .playing:
             audioPlayer.pause()
+            state = .paused(audioPath)
         default:
             print("UNKNOWN CHANGE STATUS \n")
         }
@@ -105,23 +137,36 @@ class AudioManager: NSObject {
         // Get the shared MPRemoteCommandCenter
         remoteCommandCenter = MPRemoteCommandCenter.shared()
 
-        // Add handler for Play Command
+        // Add handler for Play Command, passes audioPath when state changed
         remoteCommandCenter?.playCommand.addTarget { [unowned self] _ in // Event
+
+            guard let audioPath = self.audioAsset?.url.path else {
+                print("AUDIO URL NIL!")
+                return .commandFailed
+            }
+
             switch self.player?.timeControlStatus {
             case .paused:
                self.player?.play()
-
+               self.state = .playing(audioPath)
                return .success
             default:
                 return .commandFailed
             }
         }
 
-        // Add handler for Pause Command
+        // Add handler for Pause Command, passes audioPath when state changed
         remoteCommandCenter?.pauseCommand.addTarget { [unowned self] _ in // Event
+
+            guard let audioPath = self.audioAsset?.url.path else {
+                print("AUDIO URL NIL!")
+                return .commandFailed
+            }
+
             switch self.player?.timeControlStatus {
             case .playing:
                 self.player?.pause()
+                self.state = .paused(audioPath)
                 return .success
             default:
                 return .commandFailed
@@ -167,5 +212,39 @@ class AudioManager: NSObject {
     func getDurationFrom(file: URL) -> TimeInterval {
        let asset = AVAsset(url: file)
        return CMTimeGetSeconds(asset.duration)
+    }
+}
+
+    // MARK: - NOTIFICATION CENTER
+
+extension AudioManager {
+    func stateDidChange() {
+        switch state {
+        case .playing(let audio):
+            notificationCenter.post(name: .playbackStarted, object: audio)
+        case .paused(let audio):
+            notificationCenter.post(name: .playbackPaused, object: audio)
+        case .idle:
+            notificationCenter.post(name: .playbackStopped, object: nil)
+        }
+    }
+}
+
+// This extension should be placed here because state is private
+extension Notification.Name {
+
+    /// Playing
+    static var playbackStarted: Notification.Name {
+        return .init(rawValue: "AudioManager.playbackStarted")
+    }
+
+    /// Pause
+    static var playbackPaused: Notification.Name {
+        return .init(rawValue: "AudioManager.playbackPaused")
+    }
+
+    /// Idle
+    static var playbackStopped: Notification.Name {
+            return .init(rawValue: "AudioManager.playbackStopped")
     }
 }
