@@ -23,7 +23,7 @@ platform :ios do
 	      workspace: "MuseuZap.xcworkspace",
               devices: ["iPhone 8 Plus"])
 
-    build_app(workspace: "MuseuZap.xcworkspace", scheme: "MuseuZap", include_bitcode: true)
+    build_app(workspace: "MuseuZap.xcworkspace", scheme: "MuseuZap", include_bitcode: false, include_symbols: true)
 
     build_number = get_build_number(xcodeproj: "MuseuZap.xcodeproj")
     version = get_version_number(xcodeproj: "MuseuZap.xcodeproj", target: "MuseuZap")
