@@ -12,7 +12,7 @@ import XCTest
 class AudioCellViewModelMock: AudioCellViewModelProtocol {
     var actionHandler: (Action) -> Void
     
-    var navigationDelegate: NavigationDelegate?
+    weak var navigationDelegate: NavigationDelegate?
     
     var title: String
     

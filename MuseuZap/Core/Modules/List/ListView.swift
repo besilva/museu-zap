@@ -13,7 +13,7 @@ class ListView: UIView, ViewCodable {
     private var loader: UIActivityIndicatorView!
     private var tableView: UITableView = UITableView()
     private var cellIdentifier: String = "cell"
-    var audioHandler: ((Action) -> ())?
+    var audioHandler: ((Action) -> Void)?
     var viewModel: ListViewModelProtocol? {
         didSet {
             updateView()

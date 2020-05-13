@@ -11,11 +11,11 @@ import Foundation
 public extension FileManager {
     static func sharedContainerURL() -> URL {
     return FileManager.default.containerURL(
-            forSecurityApplicationGroupIdentifier: "group.museuIgnacioGroup")!
+            forSecurityApplicationGroupIdentifier: "group.museuGroup")!
     }
 
     // TODO: seria legal listallfiles tb dar throw, pq existem diferentes tipos de erro que ela pode dar
-    // mas por hora FileErrors pertence só no museu zap? Pq não consigo usar ele aqui?
+    // Mas por hora FileErrors pertence só no museu zap? Pq não consigo usar ele aqui?
 
     /// Method to list all Files in the givin Folder.
     /// Case empty, treat retuned value with .isEmpty

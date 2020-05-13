@@ -135,10 +135,8 @@ class ShareViewController: SLComposeServiceViewController {
 extension ShareViewController: CategoryTableViewControllerDelegate {
     func categorySelected(category: AudioCategory) {
         self.category = category
-        _ = isContentValid()
         self.textViewDidChange(self.textView)
         popConfigurationViewController()
-        // TODO: bug ao salvar: prineiro coloco nome, depois seleciono categoria, quando volto botao save nao esta habilitado
     }
 
 }
@@ -192,11 +190,6 @@ extension ShareViewController {
                 print(err)
             }
         }
-    }
-    
-    override func textViewDidChange(_ textView: UITextView) {
-        super.textViewDidChange(textView)
-//        _ = isContentValid()
     }
     
 }
