@@ -20,7 +20,7 @@ class AudioManager: NSObject {
     /// Remote Command Center
     var remoteCommandCenter: MPRemoteCommandCenter?
     /// Notification Center, default
-    private let notificationCenter: NotificationCenter
+    private let notificationCenter: Notify
 
     // Audio File
     /// Audio Entity, generated from URL
@@ -49,7 +49,7 @@ class AudioManager: NSObject {
 
     // MARK: - Init
 
-    init(notificationCenter: NotificationCenter = .default) {
+    init(notificationCenter: Notify = NotificationCenter.default as! Notify) {
         self.notificationCenter = notificationCenter
     }
 
@@ -72,7 +72,7 @@ class AudioManager: NSObject {
 
         guard let audioPath = audioAsset?.url.path,
               let audioPlayer = player else {
-            print("PLAYER COULD NOT BE INITIALIZED")
+            print("PLAYER COULD NOT BE INITIALIZED\n")
             throw AudioErrors.noPlayer
         }
 
@@ -85,7 +85,8 @@ class AudioManager: NSObject {
             audioPlayer.pause()
             state = .paused(audioPath)
         default:
-            print("UNKNOWN CHANGE STATUS \n")
+            print("UNKNOWN CHANGE STATUS\n")
+            throw AudioErrors.unknownCase
         }
     }
 
@@ -217,11 +218,11 @@ extension AudioManager {
     func stateDidChange() {
         switch state {
         case .playing(let audio):
-            notificationCenter.post(name: .playbackStarted, object: audio)
+            notificationCenter.postNotification(name: .playbackStarted, object: audio)
         case .paused(let audio):
-            notificationCenter.post(name: .playbackPaused, object: audio)
+            notificationCenter.postNotification(name: .playbackPaused, object: audio)
         case .idle:
-            notificationCenter.post(name: .playbackStopped, object: nil)
+            notificationCenter.postNotification(name: .playbackStopped, object: nil)
         }
     }
 }

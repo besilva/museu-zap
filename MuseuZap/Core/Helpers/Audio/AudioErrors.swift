@@ -12,4 +12,5 @@ import Foundation
 public enum AudioErrors: Error {
 
     case noPlayer
+    case unknownCase
 }
