@@ -15,6 +15,7 @@ protocol Coordinator {
 enum Action {
     case back
     case presentAlert(String?, String?, Double?, UIAlertController.Style)
+    case share(String)
 }
 protocol NavigationDelegate: class {
     func handleNavigation(action: Action)

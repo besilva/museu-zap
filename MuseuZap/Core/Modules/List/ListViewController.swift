@@ -37,6 +37,9 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
  
     override func loadView() {
         let myView = ListView()
+        myView.audioHandler = { (action) in
+            self.delegate?.handleNavigation(action: action)
+        }
         view = myView
     }
     
@@ -52,5 +55,4 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
     func setup() {
         tabBarItem = UITabBarItem(title: "Explorar", image: UIImage(named: "explore-outline"), selectedImage: UIImage(named: "explore-filled"))
     }
-    
 }

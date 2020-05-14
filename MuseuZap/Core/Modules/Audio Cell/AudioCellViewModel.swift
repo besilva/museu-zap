@@ -11,23 +11,26 @@ import UIKit
 class AudioCellViewModel: AudioCellViewModelProtocol {
     weak var navigationDelegate: NavigationDelegate?
     var title: String
-    var audioURL: String
+    var audioPath: String
     var duration: TimeInterval
     var playing: Bool
+    var actionHandler: (Action) -> Void
     
-    required init(title: String, duration: TimeInterval, audioURL: String) {
+    required init(title: String, duration: TimeInterval, audioPath: String, audioHandler: @escaping (Action) -> Void) {
         self.title = title
         self.duration = duration
-        self.audioURL = audioURL
+        self.audioPath = audioPath
         self.playing = false
+        actionHandler = audioHandler
     }
     
-    required init(audioURL: String) {
-        self.audioURL = audioURL
+    required init(audioPath: String, audioHandler: @escaping (Action) -> Void) {
+        self.audioPath = audioPath
         self.playing = false
         // TODO: Call to API function to retrieve audio data
         self.title = "Lorem Ipsum"
         self.duration = 90
+        actionHandler = audioHandler
     }
     
     func changePlayStatus() {
@@ -36,7 +39,8 @@ class AudioCellViewModel: AudioCellViewModelProtocol {
     }
     
     func share() {
-        // TODO: Call to navigation delegate to share action
+        print(self.title)
+        actionHandler(.share(audioPath))
         return
     }
 }

@@ -13,13 +13,13 @@ class ListView: UIView, ViewCodable {
     private var loader: UIActivityIndicatorView!
     private var tableView: UITableView = UITableView()
     private var cellIdentifier: String = "cell"
-
+    var audioHandler: ((Action) -> Void)?
     var viewModel: ListViewModelProtocol? {
         didSet {
             updateView()
         }
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         loader = UIActivityIndicatorView(style: .gray)
@@ -89,9 +89,14 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
 
         let audio = viewModel.getAudioItemProperties(at: indexPath)
         if let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as? AudioCell {
-            cell.titleLabel.text = audio.name
-            cell.durationLabel.text = audio.duration.stringFromTimeInterval()
             
+            let viewModel = AudioCellViewModel(title: audio.name, duration: audio.duration, audioPath: audio.path) { (action) in
+                if let audioHandler = self.audioHandler {
+                    audioHandler(action)
+                }  
+            }
+
+            cell.viewModel = viewModel           
             return cell
             
         }

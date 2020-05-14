@@ -16,4 +16,5 @@ public enum FileErrors: Error {
     case listContents
     case appSharedURL
     case externalAudioURL
+    case invalidURL
 }

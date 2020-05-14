@@ -11,12 +11,13 @@ import UIKit
 protocol AudioCellViewModelProtocol {
     var navigationDelegate: NavigationDelegate? { get }
     var title: String { get set }
-    var audioURL: String { get set }
+    var audioPath: String { get set }
     var duration: TimeInterval { get set }
     var playing: Bool { get set }
+    var actionHandler: (Action) -> Void { get set }
     func changePlayStatus()
     func share()
     
-    init(title: String, duration: TimeInterval, audioURL: String)
-    init(audioURL: String)
+    init(title: String, duration: TimeInterval, audioPath: String, audioHandler: @escaping (Action) -> Void)
+    init(audioPath: String, audioHandler: @escaping (Action) -> Void)
 }

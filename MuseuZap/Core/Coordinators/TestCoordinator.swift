@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class TestCoordinator: BaseCoordinator {
     
@@ -27,6 +28,15 @@ class TestCoordinator: BaseCoordinator {
         switch action {
         case .back:
             self.rootViewController.dismiss(animated: true)
+        case .share(let audioPath):
+            let audioURL = URL(fileURLWithPath: audioPath)
+
+            if !audioURL.isFileURL {
+                print(FileErrors.invalidURL)
+            } else {
+                let ac = UIActivityViewController(activityItems: [audioURL], applicationActivities: nil)
+                self.rootViewController.present(ac, animated: true)
+            }
         default:
             break
         }

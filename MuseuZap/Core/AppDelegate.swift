@@ -52,11 +52,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         // Save context once
-//        do {
-//            try CoreDataManager.sharedInstance.managedObjectContext.save()
-//        } catch {
-//            print("COULD NOT SAVE CONTEXT")
-//        }
+        do {
+            try CoreDataManager.sharedInstance.managedObjectContext.save()
+        } catch {
+            print("COULD NOT SAVE CONTEXT")
+        }
     }
 
     // MARK: - Default App Delegate
