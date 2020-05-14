@@ -8,7 +8,6 @@
 
 import AVFoundation
 import MediaPlayer
-import DatabaseKit
 
 /// Class used to play Audio Files
 class AudioManager: NSObject {
@@ -23,9 +22,11 @@ class AudioManager: NSObject {
     private let notificationCenter: Notify
 
     // Audio File
-    /// Audio Entity, generated from URL
-    // TODO: state passa audioPath ou propria entidade audio?
-    var currentAudio: Audio?
+    /// PossibleAudioExtensions
+    let possibleExtensions = [
+        "m4a",
+        "mp3"
+    ]
     /// Model timed audiovisual media such as videos and sounds.
     /// For Play/Pause command, a check in the URL is performed to see if a new player should be created
     var audioAsset: AVURLAsset?
@@ -59,10 +60,16 @@ class AudioManager: NSObject {
     /// - Parameter file: Wanted audio to be played
     func changePlayerStatus(for file: URL) throws {
 
-        // First, ensure that there is a player
+        // First verify if file is a Audio
+        do {
+            try verifyIfURLIsAudioFile(url: file)
+        } catch {
+            throw AudioErrors.noAudioFile
+        }
+
         if file != audioAsset?.url {
             // If no player was created, there is no problem to pause a nil object
-            // And if a new audio was clicked, stop currect audio.
+            // And if a new audio was clicked, stop current audio.
             player?.pause()
             state = .idle
             createPlayerFrom(file: file)
@@ -127,8 +134,69 @@ class AudioManager: NSObject {
         }
     }
 
+    // MARK: - Helper
+
+    /// Creates a AVAsset from file in order to get its duration in Seconds
+    /// - Parameter file: URL from desired File
+    /// - Returns: File duration in seconds. Returns 0 case file is no Media File
+    func getDurationFrom(file: URL) -> TimeInterval {
+       let asset = AVAsset(url: file)
+       return CMTimeGetSeconds(asset.duration)
+    }
+
+    /// Ensures that URL file is a file, and that it is a AudioFile
+    func verifyIfURLIsAudioFile(url: URL) throws {
+
+        // Case URL is broken, throw error
+        if !FileManager.default.fileExists(atPath: url.path) {
+            throw FileErrors.notAFile
+        }
+
+        // Verify if file is a AudioFile
+        if !self.possibleExtensions.contains(url.pathExtension) {
+            throw AudioErrors.noAudioFile
+        }
+    }
+
+}
+
+    // MARK: - Notification Center
+
+extension AudioManager {
+    func stateDidChange() {
+        switch state {
+        case .playing(let audio):
+            notificationCenter.postNotification(name: .playbackStarted, object: audio)
+        case .paused(let audio):
+            notificationCenter.postNotification(name: .playbackPaused, object: audio)
+        case .idle:
+            notificationCenter.postNotification(name: .playbackStopped, object: nil)
+        }
+    }
+}
+
+// This extension should be placed here because state is private
+extension Notification.Name {
+
+    /// Playing
+    static var playbackStarted: Notification.Name {
+        return .init(rawValue: "AudioManager.playbackStarted")
+    }
+
+    /// Pause
+    static var playbackPaused: Notification.Name {
+        return .init(rawValue: "AudioManager.playbackPaused")
+    }
+
+    /// Idle
+    static var playbackStopped: Notification.Name {
+            return .init(rawValue: "AudioManager.playbackStopped")
+    }
+}
+
     // MARK: - Control center & iOS Lock Screen
 
+extension AudioManager {
     /// Allow audio to be controlled from Control Center and iOS Lock screen.
     func setupRemoteTransportControls() {
         // Get the shared MPRemoteCommandCenter
@@ -200,53 +268,4 @@ class AudioManager: NSObject {
         // Set the metadata
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
     }
-
-    // MARK: - Helper
-
-    /// Creates a AVAsset from file in order to get its duration in Seconds
-    /// - Parameter file: URL from desired File
-    /// - Returns: File duration in seconds. Returns 0 case file is no Media File
-    func getDurationFrom(file: URL) -> TimeInterval {
-       let asset = AVAsset(url: file)
-       return CMTimeGetSeconds(asset.duration)
-    }
 }
-
-    // MARK: - NOTIFICATION CENTER
-
-extension AudioManager {
-    func stateDidChange() {
-        switch state {
-        case .playing(let audio):
-            notificationCenter.postNotification(name: .playbackStarted, object: audio)
-        case .paused(let audio):
-            notificationCenter.postNotification(name: .playbackPaused, object: audio)
-        case .idle:
-            notificationCenter.postNotification(name: .playbackStopped, object: nil)
-        }
-    }
-}
-
-// This extension should be placed here because state is private
-extension Notification.Name {
-
-    /// Playing
-    static var playbackStarted: Notification.Name {
-        return .init(rawValue: "AudioManager.playbackStarted")
-    }
-
-    /// Pause
-    static var playbackPaused: Notification.Name {
-        return .init(rawValue: "AudioManager.playbackPaused")
-    }
-
-    /// Idle
-    static var playbackStopped: Notification.Name {
-            return .init(rawValue: "AudioManager.playbackStopped")
-    }
-}
-
-// FAZER O PROTOCOLO NOTIFICATION E AI METODO POST
-
-// FAZER EXTENTIOOS DO NOTIFICATION COMO NOTIFICATION E IMPLEMENTAR O DEFAULT DE postNotification!! recebendo os parametros
-// FAZER O  MOCK pensar em como faxzer isso.

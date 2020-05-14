@@ -45,18 +45,21 @@ class FileExchangerSuccessTests: XCTestCase {
     }
 
     func deleteFilesAtTempDir() {
-        let list = FileManager.listAllFilesFrom(folder: sut.appGroupFolderURL)
+        do {
+            let list = try FileManager.listAllFilesFrom(folder: sut.appGroupFolderURL)
 
-        if !list.isEmpty {
-            for file in list {
-                do {
-                    try FileManager.default.removeItem(at: file)
-                } catch {
-                    print(error)
+            if !list.isEmpty {
+                for file in list {
+                    do {
+                        try FileManager.default.removeItem(at: file)
+                    } catch {
+                        print(error)
+                    }
                 }
+            } else {
+                print("LIST SHOULD NOT BE EMPTY")
             }
-        } else {
-            print("LIST SHOULD NOT BE EMPTY")
+        } catch {
         }
 
     }

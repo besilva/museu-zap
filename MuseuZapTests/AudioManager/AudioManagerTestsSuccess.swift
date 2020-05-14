@@ -9,7 +9,7 @@
 import XCTest
 @testable import MuseuZap
 
-class AudioManagerTests: XCTestCase {
+class AudioManagerTestsSuccess: XCTestCase {
 
     var sut: AudioManager!
     var sampleAudio: URL!
@@ -51,44 +51,10 @@ class AudioManagerTests: XCTestCase {
         }
     }
 
-//    func testChangePlayerStatusError() {
-//        let fileName = "NonExistingFolder"
-//        let url = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
-//
-//        do {
-//            try sut.changePlayerStatus(for: url)
-//        } catch {
-//            XCTFail("Should not produce errors")
-//        }
-//    }
-
     // MARK: - Duration
 
     func testGetDurationFrom() {
         let duration = sut.getDurationFrom(file: sampleAudio)
         XCTAssertEqual(duration, 3.456, "Sample audio has precisely 3.456s")
-    }
-
-}
-
-class MockedNotificationCenter: Notify {
-    // Sample Audio has to be target to main Application
-    let path = Bundle.main.path(forResource: "AudioManagerTest", ofType: "m4a")!
-    let sampleAudio: URL!
-
-    init() {
-        sampleAudio = URL(fileURLWithPath: path, isDirectory: false)
-    }
-
-    // Since we cannot test private properties, we test if the argument was correct
-    func postNotification(name: NSNotification.Name, object: Any?) {
-        switch name {
-        case .playbackPaused, .playbackStarted:
-            XCTAssertEqual(sampleAudio.path, object as? String)
-        case .playbackStopped:
-            XCTAssertNil(object)
-        default:
-            break
-        }
     }
 }
