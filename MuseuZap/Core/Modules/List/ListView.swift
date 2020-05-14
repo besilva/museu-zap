@@ -9,10 +9,11 @@
 import UIKit
 
 class ListView: UIView, ViewCodable {
-    
+
     private var loader: UIActivityIndicatorView!
     private var tableView: UITableView = UITableView()
     private var cellIdentifier: String = "cell"
+
     var audioHandler: ((Action) -> ())?
     var viewModel: ListViewModelProtocol? {
         didSet {
@@ -121,4 +122,20 @@ extension ListView: ListViewModelDelegate {
         }
     }
     
+}
+
+extension ListView {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let audioCell = cell as? AudioCell else {
+            return
+        }
+        CellIconManager.shared.updateCellStatus(visible: true, cell: audioCell)
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let audioCell = cell as? AudioCell else {
+            return
+        }
+        CellIconManager.shared.updateCellStatus(visible: false, cell: audioCell)
+    }
 }

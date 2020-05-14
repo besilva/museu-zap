@@ -39,16 +39,6 @@ class TestCoordinator: BaseCoordinator {
                 print("Error loading audio file: \(audioURL.path)")
                 print(error)
             }
-        case .play(let audioPath, let completion):
-            let audioURL = URL(fileURLWithPath: audioPath)
-            do {
-                try AudioManager.shared.changePlayerStatus(for: audioURL)
-                // Calls completion if audio was played successfully
-                completion(nil)
-            } catch {
-                print(error)
-                completion(error)
-            }
         default:
             break
         }

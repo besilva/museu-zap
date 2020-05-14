@@ -10,6 +10,13 @@ import AVFoundation
 import MediaPlayer
 import DatabaseKit
 
+/// Used to create observers
+enum State {
+    case idle
+    case playing(_ url: String? = nil)
+    case paused(_ url: String? = nil)
+}
+
 /// Class used to play Audio Files
 class AudioManager: NSObject {
 
@@ -20,7 +27,7 @@ class AudioManager: NSObject {
     /// Remote Command Center
     var remoteCommandCenter: MPRemoteCommandCenter?
     /// Notification Center, default
-    private let notificationCenter: NotificationCenter
+    let notificationCenter: NotificationCenter
 
     // Audio File
     /// Audio Entity, generated from URL
@@ -34,13 +41,6 @@ class AudioManager: NSObject {
     var playerItem: AVPlayerItem?
     /// Provide the player item to an AVPlayer object to play an instance of AVAsset
     var player: AVPlayer?
-
-    /// Used to create observers
-    enum State {
-        case idle
-        case playing(String)
-        case paused(String)
-    }
 
     private var state = State.idle {
         // We add a property observer on 'state', which lets us run a function on each value change.
