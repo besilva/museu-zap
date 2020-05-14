@@ -182,6 +182,8 @@ extension AudioManager {
             notificationCenter.post(name: .playbackStopped, object: nil)
         }
     }
+
+    // TODO: add a observer to Notification.Name.AVPlayerItemDidPlayToEndTime
 }
 
 // This extension should be placed here because state is private
@@ -222,7 +224,7 @@ extension AudioManager {
             switch self.player?.timeControlStatus {
             case .paused:
                self.player?.play()
-               self.state = .playing(audioPath)
+               self.changeState(state: .playing(audioPath))
                return .success
             default:
                 return .commandFailed
@@ -240,7 +242,7 @@ extension AudioManager {
             switch self.player?.timeControlStatus {
             case .playing:
                 self.player?.pause()
-                self.state = .paused(audioPath)
+                self.changeState(state: .paused(audioPath))
                 return .success
             default:
                 return .commandFailed
