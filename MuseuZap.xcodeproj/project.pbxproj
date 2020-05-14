@@ -39,6 +39,7 @@
 		64F50821246C368900625878 /* DatabaseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64F5081D246C306C00625878 /* DatabaseKit.framework */; };
 		64F50824246C38E500625878 /* DatabaseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64F5081D246C306C00625878 /* DatabaseKit.framework */; };
 		64F50825246C38E500625878 /* DatabaseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 64F5081D246C306C00625878 /* DatabaseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		64F50828246CE8F800625878 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64F50827246CE8F800625878 /* GoogleService-Info.plist */; };
 		8024DA2D2449F19000093D37 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8024DA2C2449F19000093D37 /* AboutView.swift */; };
 		804F1DE3246AECD900AE29D3 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A5301E246AEC1900A123CD /* AudioManager.swift */; };
 		808C9E30245F283900FF4FEB /* PublicAudioCellViewModel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808C9E2E245F17D600FF4FEB /* PublicAudioCellViewModel+Extension.swift */; };
@@ -69,6 +70,7 @@
 		C586E2C82465B6E200B1930B /* FileErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C586E2C42465A27D00B1930B /* FileErrors.swift */; };
 		C59A6B2D2464887C0011828D /* FileExchanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59A6B2C2464887C0011828D /* FileExchanger.swift */; };
 		C59A6B2E2464887C0011828D /* FileExchanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59A6B2C2464887C0011828D /* FileExchanger.swift */; };
+		FF20C1B7B17806464C195440 /* libPods-MuseuZap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 667B0CB63653E2D892DF64BD /* libPods-MuseuZap.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +116,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A6029E4F4A6CAFBB228741A /* Pods-MuseuZap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseuZap.release.xcconfig"; path = "Target Support Files/Pods-MuseuZap/Pods-MuseuZap.release.xcconfig"; sourceTree = "<group>"; };
 		2DE1787F22D7FD189AF7E317 /* Pods-MuseuZapTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseuZapTests.release.xcconfig"; path = "Target Support Files/Pods-MuseuZapTests/Pods-MuseuZapTests.release.xcconfig"; sourceTree = "<group>"; };
 		646181FB24644D8F003BC3AB /* DatabaseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DatabaseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6461820124644DEE003BC3AB /* DatabaseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DatabaseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +151,8 @@
 		64DD6FF6243E0DB700404321 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		64DD6FF8243E10E400404321 /* TestCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoordinator.swift; sourceTree = "<group>"; };
 		64F5081D246C306C00625878 /* DatabaseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DatabaseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		64F50827246CE8F800625878 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		667B0CB63653E2D892DF64BD /* libPods-MuseuZap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MuseuZap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DE2544ADC54F877280C5239 /* Pods-MuseuZapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseuZapTests.debug.xcconfig"; path = "Target Support Files/Pods-MuseuZapTests/Pods-MuseuZapTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8024DA2C2449F19000093D37 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		808C9E2E245F17D600FF4FEB /* PublicAudioCellViewModel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PublicAudioCellViewModel+Extension.swift"; sourceTree = "<group>"; };
@@ -169,6 +174,7 @@
 		80F7235D245319DA00583137 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		80FA892A2462F241006B2B61 /* AboutViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewSnapshotTests.swift; sourceTree = "<group>"; };
 		80FAABD72451BFD6008B7DB8 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		B19663EDDC6DF81EA036A246 /* Pods-MuseuZap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseuZap.debug.xcconfig"; path = "Target Support Files/Pods-MuseuZap/Pods-MuseuZap.debug.xcconfig"; sourceTree = "<group>"; };
 		C53F4CAA246598C2001AAD57 /* FileExchangerSuccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExchangerSuccessTests.swift; sourceTree = "<group>"; };
 		C586E2C42465A27D00B1930B /* FileErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileErrors.swift; sourceTree = "<group>"; };
 		C586E2C62465AA2400B1930B /* FileExchangerErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExchangerErrorTests.swift; sourceTree = "<group>"; };
@@ -182,6 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64F50824246C38E500625878 /* DatabaseKit.framework in Frameworks */,
+				FF20C1B7B17806464C195440 /* libPods-MuseuZap.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +219,7 @@
 				646181FB24644D8F003BC3AB /* DatabaseKit.framework */,
 				64C7760E246317BE00FDEA03 /* XCTest.framework */,
 				CC2334E5C2D616ABBE0AB72C /* libPods-MuseuZapTests.a */,
+				667B0CB63653E2D892DF64BD /* libPods-MuseuZap.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -254,6 +262,7 @@
 				64C77575245715E200FDEA03 /* MuseuZap.entitlements */,
 				64DD6FE1243E080800404321 /* Core */,
 				6473EDE2243B6D3E00A10F2C /* Info.plist */,
+				64F50827246CE8F800625878 /* GoogleService-Info.plist */,
 			);
 			path = MuseuZap;
 			sourceTree = "<group>";
@@ -409,6 +418,8 @@
 			children = (
 				6DE2544ADC54F877280C5239 /* Pods-MuseuZapTests.debug.xcconfig */,
 				2DE1787F22D7FD189AF7E317 /* Pods-MuseuZapTests.release.xcconfig */,
+				B19663EDDC6DF81EA036A246 /* Pods-MuseuZap.debug.xcconfig */,
+				1A6029E4F4A6CAFBB228741A /* Pods-MuseuZap.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -429,6 +440,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6473EDF0243B6D3E00A10F2C /* Build configuration list for PBXNativeTarget "MuseuZap" */;
 			buildPhases = (
+				4E5B16120201EE42FDE6EE87 /* [CP] Check Pods Manifest.lock */,
 				6473EDCD243B6D3700A10F2C /* Sources */,
 				6473EDCE243B6D3700A10F2C /* Frameworks */,
 				6473EDCF243B6D3700A10F2C /* Resources */,
@@ -532,6 +544,7 @@
 				80C274CC2458721C0051A1E6 /* Poppins-Regular.ttf in Resources */,
 				80C274CE2458721C0051A1E6 /* Poppins-SemiBold.ttf in Resources */,
 				6473EDE1243B6D3E00A10F2C /* LaunchScreen.storyboard in Resources */,
+				64F50828246CE8F800625878 /* GoogleService-Info.plist in Resources */,
 				6473EDDE243B6D3E00A10F2C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -559,6 +572,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4E5B16120201EE42FDE6EE87 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MuseuZap-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7A5FE199C2DFBE2B4CBB1662 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -821,6 +856,7 @@
 		};
 		6473EDF1243B6D3E00A10F2C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B19663EDDC6DF81EA036A246 /* Pods-MuseuZap.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -846,6 +882,7 @@
 		};
 		6473EDF2243B6D3E00A10F2C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A6029E4F4A6CAFBB228741A /* Pods-MuseuZap.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

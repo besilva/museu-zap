@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import DatabaseKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
 
         setNavigationBarColor()
-
+        FirebaseApp.configure()
         // Descomentar o save context UMA VEZ para poder utilizar a share extension
 //        addCategory()
 
