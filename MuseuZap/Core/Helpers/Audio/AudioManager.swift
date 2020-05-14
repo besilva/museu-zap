@@ -18,8 +18,10 @@ class AudioManager: NSObject {
     static let shared = AudioManager()
     /// Remote Command Center
     var remoteCommandCenter: MPRemoteCommandCenter?
+    /// MPNowPlayingInfoCenter
+    var nowPlayingInfoCenter: MPNowPlayingInfoCenter?
     /// Notification Center, default
-    private let notificationCenter: Notify
+    private let notificationCenter: NotificationCenter
 
     // Audio File
     /// PossibleAudioExtensions
@@ -37,21 +39,23 @@ class AudioManager: NSObject {
     var player: AVPlayer?
 
     /// Used to create observers
-    enum State {
+    enum State: Equatable {
         case idle
         case playing(String)
         case paused(String)
     }
 
-    private var state = State.idle {
+    public private(set) var state = State.idle {
         // We add a property observer on 'state', which lets us run a function on each value change.
         didSet { stateDidChange() }
     }
 
     // MARK: - Init
 
-    init(notificationCenter: Notify = NotificationCenter.default as! Notify) {
+    init(notificationCenter: NotificationCenter = NotificationCenter.default,
+         nowPlayingInfoCenter: MPNowPlayingInfoCenter? = MPNowPlayingInfoCenter.default()) {
         self.notificationCenter = notificationCenter
+        self.nowPlayingInfoCenter = nowPlayingInfoCenter
     }
 
     // MARK: - Change Status
@@ -71,10 +75,11 @@ class AudioManager: NSObject {
             // If no player was created, there is no problem to pause a nil object
             // And if a new audio was clicked, stop current audio.
             player?.pause()
+            // Change state when performing an action!
             state = .idle
             createPlayerFrom(file: file)
             // Update remote controllers info
-            setupNowPlaying()
+            self.nowPlayingInfoCenter?.nowPlayingInfo = setupNowPlaying()
         }
 
         guard let audioPath = audioAsset?.url.path,
@@ -87,14 +92,18 @@ class AudioManager: NSObject {
         switch audioPlayer.timeControlStatus {
         case .paused:
             audioPlayer.play()
-            state = .playing(audioPath)
+            changeState(state: .playing(audioPath))
         case .playing:
             audioPlayer.pause()
-            state = .paused(audioPath)
+            changeState(state: .paused(audioPath))
         default:
             print("UNKNOWN CHANGE STATUS\n")
             throw AudioErrors.unknownCase
         }
+    }
+    
+    func changeState( state: State) {
+        self.state = state
     }
 
     // MARK: - SetUp
@@ -152,7 +161,7 @@ class AudioManager: NSObject {
             throw FileErrors.notAFile
         }
 
-        // Verify if file is a AudioFile
+        // Verify if file is a AudioFile possible extension
         if !self.possibleExtensions.contains(url.pathExtension) {
             throw AudioErrors.noAudioFile
         }
@@ -166,11 +175,11 @@ extension AudioManager {
     func stateDidChange() {
         switch state {
         case .playing(let audio):
-            notificationCenter.postNotification(name: .playbackStarted, object: audio)
+            notificationCenter.post(name: .playbackStarted, object: audio)
         case .paused(let audio):
-            notificationCenter.postNotification(name: .playbackPaused, object: audio)
+            notificationCenter.post(name: .playbackPaused, object: audio)
         case .idle:
-            notificationCenter.postNotification(name: .playbackStopped, object: nil)
+            notificationCenter.post(name: .playbackStopped, object: nil)
         }
     }
 }
@@ -243,17 +252,19 @@ extension AudioManager {
     }
 
     /// Update Remote properties, indicating which is the current audio playing
-    func setupNowPlaying() {
+    func setupNowPlaying() -> [String: Any] {
         // Retrieve Current audio name
         guard let currentPlaying = audioAsset?.url.deletingPathExtension().lastPathComponent else {
             print("AUDIO URL NIL!")
-            return
+            return [:]
         }
 
         // Define Now Playing Info
         var nowPlayingInfo = [String: Any]()
         nowPlayingInfo[MPMediaItemPropertyTitle] = currentPlaying
-
+        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = self.playerItem?.asset.duration.seconds
+        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = self.player?.rate
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = self.playerItem?.currentTime().seconds
         if let image = UIImage(named: "ShareIcon") {
             nowPlayingInfo[MPMediaItemPropertyArtwork] =
                 MPMediaItemArtwork(boundsSize: image.size) { _ in // Size
@@ -261,11 +272,7 @@ extension AudioManager {
             }
         }
 
-        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = self.playerItem?.currentTime().seconds
-        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = self.playerItem?.asset.duration.seconds
-        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = self.player?.rate
-
-        // Set the metadata
-        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+        // Return the metadata
+        return nowPlayingInfo
     }
 }

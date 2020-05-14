@@ -7,25 +7,37 @@
 //
 
 import XCTest
+import MediaPlayer
 @testable import MuseuZap
 
 class AudioManagerTestsSuccess: XCTestCase {
 
     var sut: AudioManager!
     var sampleAudio: URL!
+    var nowPlayingInfos: [String: Any]?
 
     override func setUp() {
-        sut = AudioManager(notificationCenter: MockedNotificationCenter())
+        sut = AudioManager(notificationCenter: MockedNotificationCenter(), nowPlayingInfoCenter: nil)
 
         // Sample Audio has to be target to main Application
         let path = Bundle.main.path(forResource: "AudioManagerTest", ofType: "m4a")!
         sampleAudio = URL(fileURLWithPath: path, isDirectory: false)
+
+        // Artwork cannot be equal, so it will not be compared.
+        // Sample Audio Infos
+        nowPlayingInfos = [
+            MPMediaItemPropertyTitle: "AudioManagerTest",
+            MPMediaItemPropertyPlaybackDuration: 3.456,
+            MPNowPlayingInfoPropertyPlaybackRate: Float(0.0),
+            MPNowPlayingInfoPropertyElapsedPlaybackTime: 0.0
+        ]
     }
 
     override func tearDown() {
         // Since singleton will be used, just set all the properties back to nil
         sut = AudioManager()
         sampleAudio = nil
+        nowPlayingInfos = nil
     }
 
     // MARK: - CreatePlayer
@@ -48,6 +60,68 @@ class AudioManagerTestsSuccess: XCTestCase {
             try sut.changePlayerStatus(for: sampleAudio)
         } catch {
             XCTFail("Should not produce errors")
+        }
+    }
+
+    func testChangeStatus() {
+        sut.changeState(state: AudioManager.State.idle)
+        XCTAssertEqual(AudioManager.State.idle, sut.state)
+
+        sut.changeState(state: AudioManager.State.playing(sampleAudio.path))
+        XCTAssertEqual(AudioManager.State.playing(sampleAudio.path), sut.state)
+
+        sut.changeState(state: AudioManager.State.paused(sampleAudio.path))
+        XCTAssertEqual(AudioManager.State.paused(sampleAudio.path), sut.state)
+    }
+
+    // MARK: - Set Up Now Playing
+
+    // 2 Functions were created so swiftLint does not warn for Cyclomatic Complexity Violation
+
+    func testSetupNowPlaying1() {
+        sut.createPlayerFrom(file: sampleAudio)
+        let infos = sut.setupNowPlaying()
+
+        for item in infos {
+            switch item.key {
+            case MPMediaItemPropertyTitle:
+                if let value = item.value as? String,
+                    let compare = nowPlayingInfos![MPMediaItemPropertyTitle] as? String {
+                    XCTAssertEqual(value, compare, "Sample audio has title = AudioManagerTest")
+                }
+            case MPMediaItemPropertyPlaybackDuration:
+                if let value = item.value as? Double,
+                    let compare = nowPlayingInfos![MPMediaItemPropertyPlaybackDuration] as? Double {
+                    XCTAssertEqual(value, compare, "Sample audio has precisely 3.456s")
+                }
+            case MPNowPlayingInfoPropertyPlaybackRate:
+                if let value = item.value as? Float,
+                    let compare = nowPlayingInfos![MPNowPlayingInfoPropertyPlaybackRate] as? Float {
+                    XCTAssertEqual(value, compare, "Sample audio has rate = 0")
+                }
+            default:
+                break
+            }
+        }
+    }
+
+    func testSetupNowPlaying2() {
+        sut.createPlayerFrom(file: sampleAudio)
+        let infos = sut.setupNowPlaying()
+
+        for item in infos {
+            switch item.key {
+            case MPNowPlayingInfoPropertyElapsedPlaybackTime:
+            if let value = item.value as? Double,
+                let compare = nowPlayingInfos![MPNowPlayingInfoPropertyElapsedPlaybackTime] as? Double {
+                XCTAssertEqual(value, compare, "Sample audio has ElapsedPlaybackTime = 0")
+            }
+            case MPMediaItemPropertyArtwork:
+                // Test if object is MPMediaItemArtwork
+                XCTAssert(item.value is MPMediaItemArtwork)
+            default:
+                break
+            }
         }
     }
 

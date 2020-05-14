@@ -16,7 +16,7 @@ class AudioManagerTestsError: XCTestCase {
     var nonExistingFile: URL!
 
     override func setUp() {
-        sut = AudioManager(notificationCenter: MockedNotificationCenter())
+        sut = AudioManager(notificationCenter: MockedNotificationCenter(), nowPlayingInfoCenter: nil)
 
         // NoAudioFile has to be target to main Application, is a file with the wrong extension
         let path = Bundle.main.path(forResource: "wrongExtension", ofType: "txt")!
@@ -34,6 +34,15 @@ class AudioManagerTestsError: XCTestCase {
         nonExistingFile = nil
     }
 
+    // MARK: - Change Player Status
+
+    func testChangePlayerStatusError() {
+
+        XCTAssertThrowsError(try sut.changePlayerStatus(for: noAudioFile)) { error in
+            XCTAssertEqual(error as? AudioErrors, AudioErrors.noAudioFile)
+        }
+    }
+
     // MARK: - Verify If URL Is Audio File
 
     func testVerifyIfURLIsAudioFileError1() {
@@ -49,17 +58,6 @@ class AudioManagerTestsError: XCTestCase {
             XCTAssertEqual(error as? AudioErrors, AudioErrors.noAudioFile)
         }
     }
-
-//    func testChangePlayerStatusError() {
-//        let fileName = "NonExistingFolder"
-//        let url = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
-//
-//        do {
-//            try sut.changePlayerStatus(for: url)
-//        } catch {
-//            XCTFail("Should not produce errors")
-//        }
-//    }
 
     // MARK: - Duration
 
