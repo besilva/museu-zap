@@ -82,46 +82,9 @@ class AudioManagerTestsSuccess: XCTestCase {
         sut.createPlayerFrom(file: sampleAudio)
         let infos = sut.setupNowPlaying()
 
-        for item in infos {
-            switch item.key {
-            case MPMediaItemPropertyTitle:
-                if let value = item.value as? String,
-                    let compare = nowPlayingInfos![MPMediaItemPropertyTitle] as? String {
-                    XCTAssertEqual(value, compare, "Sample audio has title = AudioManagerTest")
-                }
-            case MPMediaItemPropertyPlaybackDuration:
-                if let value = item.value as? Double,
-                    let compare = nowPlayingInfos![MPMediaItemPropertyPlaybackDuration] as? Double {
-                    XCTAssertEqual(value, compare, "Sample audio has precisely 3.456s")
-                }
-            case MPNowPlayingInfoPropertyPlaybackRate:
-                if let value = item.value as? Float,
-                    let compare = nowPlayingInfos![MPNowPlayingInfoPropertyPlaybackRate] as? Float {
-                    XCTAssertEqual(value, compare, "Sample audio has rate = 0")
-                }
-            default:
-                break
-            }
-        }
-    }
-
-    func testSetupNowPlaying2() {
-        sut.createPlayerFrom(file: sampleAudio)
-        let infos = sut.setupNowPlaying()
-
-        for item in infos {
-            switch item.key {
-            case MPNowPlayingInfoPropertyElapsedPlaybackTime:
-            if let value = item.value as? Double,
-                let compare = nowPlayingInfos![MPNowPlayingInfoPropertyElapsedPlaybackTime] as? Double {
-                XCTAssertEqual(value, compare, "Sample audio has ElapsedPlaybackTime = 0")
-            }
-            case MPMediaItemPropertyArtwork:
-                // Test if object is MPMediaItemArtwork
-                XCTAssert(item.value is MPMediaItemArtwork)
-            default:
-                break
-            }
+        for element in infos {
+            let item = (element.key, element.value)
+            self.checkItem(item: item)
         }
     }
 
@@ -130,5 +93,38 @@ class AudioManagerTestsSuccess: XCTestCase {
     func testGetDurationFrom() {
         let duration = sut.getDurationFrom(file: sampleAudio)
         XCTAssertEqual(duration, 3.456, "Sample audio has precisely 3.456s")
+    }
+}
+
+extension AudioManagerTestsSuccess {
+
+    func checkItem(item: (key: String, value: Any)) {
+        switch item.key {
+        case MPMediaItemPropertyTitle:
+            if let value = item.value as? String,
+                let compare = nowPlayingInfos![MPMediaItemPropertyTitle] as? String {
+                XCTAssertEqual(value, compare, "Sample audio has title = AudioManagerTest")
+            }
+        case MPMediaItemPropertyPlaybackDuration:
+            if let value = item.value as? Double,
+                let compare = nowPlayingInfos![MPMediaItemPropertyPlaybackDuration] as? Double {
+                XCTAssertEqual(value, compare, "Sample audio has precisely 3.456s")
+            }
+        case MPNowPlayingInfoPropertyPlaybackRate:
+            if let value = item.value as? Float,
+                let compare = nowPlayingInfos![MPNowPlayingInfoPropertyPlaybackRate] as? Float {
+                XCTAssertEqual(value, compare, "Sample audio has rate = 0")
+            }
+        case MPNowPlayingInfoPropertyElapsedPlaybackTime:
+        if let value = item.value as? Double,
+            let compare = nowPlayingInfos![MPNowPlayingInfoPropertyElapsedPlaybackTime] as? Double {
+            XCTAssertEqual(value, compare, "Sample audio has ElapsedPlaybackTime = 0")
+        }
+        case MPMediaItemPropertyArtwork:
+            // Test if object is MPMediaItemArtwork
+            XCTAssert(item.value is MPMediaItemArtwork)
+        default:
+            break
+        }
     }
 }

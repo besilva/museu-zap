@@ -81,6 +81,7 @@ class FileExchangerSuccessTests: XCTestCase {
     // MARK: - Copy
 
     // Copies the "FileExchangerTests.txt" to the same folder with another name. Checks count and name
+    // If snapshot tests fail, this test will too
     func testCopyAudioToGroupFolder() {
         let newFile = "CopiedFile.txt"
 
