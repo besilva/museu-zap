@@ -10,21 +10,19 @@ import UIKit
 import Firebase
 
 protocol ViewController: UIViewController, NavigationDelegate {
+
     var delegate: NavigationDelegate? {get set}
     var screenName: String { get }
     func setScreenName()
     /// Setup navigation and call Analytics
     func setup()
+
 }
 
 extension ViewController {
+
     func setScreenName() {
         Analytics.setScreenName(self.screenName, screenClass: NSStringFromClass(Self.self))
     }
-    func test() {
-        Analytics.logEvent(AnalyticsEventShare, parameters: [
-        AnalyticsParameterContentType: contentType!,
-        AnalyticsParameterItemID: itemId!
-        ])
-    }
+
 }
