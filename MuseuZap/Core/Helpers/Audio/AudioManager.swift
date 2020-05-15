@@ -8,7 +8,6 @@
 
 import AVFoundation
 import MediaPlayer
-import DatabaseKit
 
 /// Used to create observers
 enum State {
@@ -26,13 +25,17 @@ class AudioManager: NSObject {
     static let shared = AudioManager()
     /// Remote Command Center
     var remoteCommandCenter: MPRemoteCommandCenter?
+    /// MPNowPlayingInfoCenter
+    var nowPlayingInfoCenter: MPNowPlayingInfoCenter?
     /// Notification Center, default
     let notificationCenter: NotificationCenter
 
     // Audio File
-    /// Audio Entity, generated from URL
-    // TODO: state passa audioPath ou propria entidade audio?
-    var currentAudio: Audio?
+    /// PossibleAudioExtensions
+    let possibleExtensions = [
+        "m4a",
+        "mp3"
+    ]
     /// Model timed audiovisual media such as videos and sounds.
     /// For Play/Pause command, a check in the URL is performed to see if a new player should be created
     var audioAsset: AVURLAsset?
@@ -42,15 +45,24 @@ class AudioManager: NSObject {
     /// Provide the player item to an AVPlayer object to play an instance of AVAsset
     var player: AVPlayer?
 
-    private var state = State.idle {
+    /// Used to create observers
+    enum State: Equatable {
+        case idle
+        case playing(String)
+        case paused(String)
+    }
+
+    public private(set) var state = State.idle {
         // We add a property observer on 'state', which lets us run a function on each value change.
         didSet { stateDidChange() }
     }
 
     // MARK: - Init
 
-    init(notificationCenter: NotificationCenter = .default) {
+    init(notificationCenter: NotificationCenter = NotificationCenter.default,
+         nowPlayingInfoCenter: MPNowPlayingInfoCenter? = MPNowPlayingInfoCenter.default()) {
         self.notificationCenter = notificationCenter
+        self.nowPlayingInfoCenter = nowPlayingInfoCenter
     }
 
     // MARK: - Change Status
@@ -59,24 +71,27 @@ class AudioManager: NSObject {
     /// - Parameter file: Wanted audio to be played
     func changePlayerStatus(for file: URL) throws {
 
-        // First, ensure that there is a player
+        // First verify if file is a Audio
+        do {
+            try verifyIfURLIsAudioFile(url: file)
+        } catch {
+            throw AudioErrors.noAudioFile
+        }
+
         if file != audioAsset?.url {
             // If no player was created, there is no problem to pause a nil object
-            // And if a new audio was clicked, stop currect audio.
+            // And if a new audio was clicked, stop current audio.
             player?.pause()
+            // Change state when performing an action!
             state = .idle
             createPlayerFrom(file: file)
             // Update remote controllers info
-            setupNowPlaying()
+            self.nowPlayingInfoCenter?.nowPlayingInfo = setupNowPlaying()
         }
 
-        guard let audioPath = audioAsset?.url.path else {
-            print("AUDIO URL NIL!")
-            throw AudioErrors.noPlayer
-        }
-
-        guard let audioPlayer = player else {
-            print("PLAYER COULD NOT BE INITIALIZED")
+        guard let audioPath = audioAsset?.url.path,
+              let audioPlayer = player else {
+            print("PLAYER COULD NOT BE INITIALIZED\n")
             throw AudioErrors.noPlayer
         }
 
@@ -84,13 +99,18 @@ class AudioManager: NSObject {
         switch audioPlayer.timeControlStatus {
         case .paused:
             audioPlayer.play()
-            state = .playing(audioPath)
+            changeState(state: .playing(audioPath))
         case .playing:
             audioPlayer.pause()
-            state = .paused(audioPath)
+            changeState(state: .paused(audioPath))
         default:
-            print("UNKNOWN CHANGE STATUS \n")
+            print("UNKNOWN CHANGE STATUS\n")
+            throw AudioErrors.unknownCase
         }
+    }
+    
+    func changeState( state: State) {
+        self.state = state
     }
 
     // MARK: - SetUp
@@ -130,80 +150,6 @@ class AudioManager: NSObject {
         }
     }
 
-    // MARK: - Control center & iOS Lock Screen
-
-    /// Allow audio to be controlled from Control Center and iOS Lock screen.
-    func setupRemoteTransportControls() {
-        // Get the shared MPRemoteCommandCenter
-        remoteCommandCenter = MPRemoteCommandCenter.shared()
-
-        // Add handler for Play Command, passes audioPath when state changed
-        remoteCommandCenter?.playCommand.addTarget { [unowned self] _ in // Event
-
-            guard let audioPath = self.audioAsset?.url.path else {
-                print("AUDIO URL NIL!")
-                return .commandFailed
-            }
-
-            switch self.player?.timeControlStatus {
-            case .paused:
-               self.player?.play()
-               self.state = .playing(audioPath)
-               return .success
-            default:
-                return .commandFailed
-            }
-        }
-
-        // Add handler for Pause Command, passes audioPath when state changed
-        remoteCommandCenter?.pauseCommand.addTarget { [unowned self] _ in // Event
-
-            guard let audioPath = self.audioAsset?.url.path else {
-                print("AUDIO URL NIL!")
-                return .commandFailed
-            }
-
-            switch self.player?.timeControlStatus {
-            case .playing:
-                self.player?.pause()
-                self.state = .paused(audioPath)
-                return .success
-            default:
-                return .commandFailed
-            }
-        }
-
-        remoteCommandCenter?.playCommand.isEnabled = true
-        remoteCommandCenter?.pauseCommand.isEnabled = true
-    }
-
-    /// Update Remote properties, indicating which is the current audio playing
-    func setupNowPlaying() {
-        // Retrieve Current audio name
-        guard let currentPlaying = audioAsset?.url.deletingPathExtension().lastPathComponent else {
-            print("AUDIO URL NIL!")
-            return
-        }
-
-        // Define Now Playing Info
-        var nowPlayingInfo = [String: Any]()
-        nowPlayingInfo[MPMediaItemPropertyTitle] = currentPlaying
-
-        if let image = UIImage(named: "ShareIcon") {
-            nowPlayingInfo[MPMediaItemPropertyArtwork] =
-                MPMediaItemArtwork(boundsSize: image.size) { _ in // Size
-                    return image
-            }
-        }
-
-        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = self.playerItem?.currentTime().seconds
-        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = self.playerItem?.asset.duration.seconds
-        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = self.player?.rate
-
-        // Set the metadata
-        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
-    }
-
     // MARK: - Helper
 
     /// Creates a AVAsset from file in order to get its duration in Seconds
@@ -213,9 +159,24 @@ class AudioManager: NSObject {
        let asset = AVAsset(url: file)
        return CMTimeGetSeconds(asset.duration)
     }
+
+    /// Ensures that URL file is a file, and that it is a AudioFile
+    func verifyIfURLIsAudioFile(url: URL) throws {
+
+        // Case URL is broken, throw error
+        if !FileManager.default.fileExists(atPath: url.path) {
+            throw FileErrors.notAFile
+        }
+
+        // Verify if file is a AudioFile possible extension
+        if !self.possibleExtensions.contains(url.pathExtension) {
+            throw AudioErrors.noAudioFile
+        }
+    }
+
 }
 
-    // MARK: - NOTIFICATION CENTER
+    // MARK: - Notification Center
 
 extension AudioManager {
     func stateDidChange() {
@@ -228,6 +189,8 @@ extension AudioManager {
             notificationCenter.post(name: .playbackStopped, object: nil)
         }
     }
+
+    // TODO: add a observer to Notification.Name.AVPlayerItemDidPlayToEndTime
 }
 
 // This extension should be placed here because state is private
@@ -246,5 +209,79 @@ extension Notification.Name {
     /// Idle
     static var playbackStopped: Notification.Name {
             return .init(rawValue: "AudioManager.playbackStopped")
+    }
+}
+
+    // MARK: - Control center & iOS Lock Screen
+
+extension AudioManager {
+    /// Allow audio to be controlled from Control Center and iOS Lock screen.
+    func setupRemoteTransportControls() {
+        // Get the shared MPRemoteCommandCenter
+        remoteCommandCenter = MPRemoteCommandCenter.shared()
+
+        // Add handler for Play Command, passes audioPath when state changed
+        remoteCommandCenter?.playCommand.addTarget { [unowned self] _ in // Event
+
+            guard let audioPath = self.audioAsset?.url.path else {
+                print("AUDIO URL NIL!")
+                return .commandFailed
+            }
+
+            switch self.player?.timeControlStatus {
+            case .paused:
+               self.player?.play()
+               self.changeState(state: .playing(audioPath))
+               return .success
+            default:
+                return .commandFailed
+            }
+        }
+
+        // Add handler for Pause Command, passes audioPath when state changed
+        remoteCommandCenter?.pauseCommand.addTarget { [unowned self] _ in // Event
+
+            guard let audioPath = self.audioAsset?.url.path else {
+                print("AUDIO URL NIL!")
+                return .commandFailed
+            }
+
+            switch self.player?.timeControlStatus {
+            case .playing:
+                self.player?.pause()
+                self.changeState(state: .paused(audioPath))
+                return .success
+            default:
+                return .commandFailed
+            }
+        }
+
+        remoteCommandCenter?.playCommand.isEnabled = true
+        remoteCommandCenter?.pauseCommand.isEnabled = true
+    }
+
+    /// Update Remote properties, indicating which is the current audio playing
+    func setupNowPlaying() -> [String: Any] {
+        // Retrieve Current audio name
+        guard let currentPlaying = audioAsset?.url.deletingPathExtension().lastPathComponent else {
+            print("AUDIO URL NIL!")
+            return [:]
+        }
+
+        // Define Now Playing Info
+        var nowPlayingInfo = [String: Any]()
+        nowPlayingInfo[MPMediaItemPropertyTitle] = currentPlaying
+        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = self.playerItem?.asset.duration.seconds
+        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = self.player?.rate
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = self.playerItem?.currentTime().seconds
+        if let image = UIImage(named: "ShareIcon") {
+            nowPlayingInfo[MPMediaItemPropertyArtwork] =
+                MPMediaItemArtwork(boundsSize: image.size) { _ in // Size
+                    return image
+            }
+        }
+
+        // Return the metadata
+        return nowPlayingInfo
     }
 }
