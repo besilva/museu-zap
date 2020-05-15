@@ -10,10 +10,10 @@ import AVFoundation
 import MediaPlayer
 
 /// Used to create observers
-enum State {
+enum State: Equatable {
     case idle
-    case playing(_ url: String? = nil)
-    case paused(_ url: String? = nil)
+    case playing(String)
+    case paused(String)
 }
 
 /// Class used to play Audio Files
@@ -45,12 +45,7 @@ class AudioManager: NSObject {
     /// Provide the player item to an AVPlayer object to play an instance of AVAsset
     var player: AVPlayer?
 
-    /// Used to create observers
-    enum State: Equatable {
-        case idle
-        case playing(String)
-        case paused(String)
-    }
+
 
     public private(set) var state = State.idle {
         // We add a property observer on 'state', which lets us run a function on each value change.

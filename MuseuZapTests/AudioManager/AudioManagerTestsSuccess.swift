@@ -64,14 +64,14 @@ class AudioManagerTestsSuccess: XCTestCase {
     }
 
     func testChangeStatus() {
-        sut.changeState(state: AudioManager.State.idle)
-        XCTAssertEqual(AudioManager.State.idle, sut.state)
+        sut.changeState(state: State.idle)
+        XCTAssertEqual(State.idle, sut.state)
 
-        sut.changeState(state: AudioManager.State.playing(sampleAudio.path))
-        XCTAssertEqual(AudioManager.State.playing(sampleAudio.path), sut.state)
+        sut.changeState(state: State.playing(sampleAudio.path))
+        XCTAssertEqual(State.playing(sampleAudio.path), sut.state)
 
-        sut.changeState(state: AudioManager.State.paused(sampleAudio.path))
-        XCTAssertEqual(AudioManager.State.paused(sampleAudio.path), sut.state)
+        sut.changeState(state: State.paused(sampleAudio.path))
+        XCTAssertEqual(State.paused(sampleAudio.path), sut.state)
     }
 
     // MARK: - Set Up Now Playing
