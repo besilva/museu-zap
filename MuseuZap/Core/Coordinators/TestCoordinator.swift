@@ -29,19 +29,16 @@ class TestCoordinator: BaseCoordinator {
         case .back:
             self.rootViewController.dismiss(animated: true)
         case .share(let audioPath):
-            print("sharing!")
-            let audioURL = URL(fileURLWithPath: audioPath)        
-            do {
-                let audioFile = try AVAudioFile(forReading: audioURL)
-                let ac = UIActivityViewController(activityItems: [audioFile], applicationActivities: nil)
+            let audioURL = URL(fileURLWithPath: audioPath)
+
+            if !audioURL.isFileURL {
+                print(FileErrors.invalidURL)
+            } else {
+                let ac = UIActivityViewController(activityItems: [audioURL], applicationActivities: nil)
                 self.rootViewController.present(ac, animated: true)
-            } catch {
-                print("Error loading audio file: \(audioURL.path)")
-                print(error)
             }
         default:
             break
         }
     }
 }
-	

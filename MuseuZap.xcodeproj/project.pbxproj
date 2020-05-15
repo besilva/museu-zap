@@ -8,10 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5BEE3737D0136F81E6BD9BAE /* libPods-MuseuZapTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CC2334E5C2D616ABBE0AB72C /* libPods-MuseuZapTests.a */; };
-		646181FE24644DD3003BC3AB /* DatabaseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 646181FB24644D8F003BC3AB /* DatabaseKit.framework */; };
-		646181FF24644DD3003BC3AB /* DatabaseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 646181FB24644D8F003BC3AB /* DatabaseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6461820224644DEE003BC3AB /* DatabaseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6461820124644DEE003BC3AB /* DatabaseKit.framework */; };
-		6461820324644DEE003BC3AB /* DatabaseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6461820124644DEE003BC3AB /* DatabaseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6461820A24645363003BC3AB /* SnapshotContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6461820724645363003BC3AB /* SnapshotContainer.swift */; };
 		6461820B24645363003BC3AB /* TableViewCellSnapshotContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6461820824645363003BC3AB /* TableViewCellSnapshotContainer.swift */; };
 		6461820C24645363003BC3AB /* IPhoneWidthsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6461820924645363003BC3AB /* IPhoneWidthsEnum.swift */; };
@@ -40,7 +36,11 @@
 		64DD6FF5243E0BB800404321 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FF0243E0BB800404321 /* ListViewController.swift */; };
 		64DD6FF7243E0DB700404321 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FF6243E0DB700404321 /* ListViewModel.swift */; };
 		64DD6FF9243E10E400404321 /* TestCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD6FF8243E10E400404321 /* TestCoordinator.swift */; };
+		64F50821246C368900625878 /* DatabaseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64F5081D246C306C00625878 /* DatabaseKit.framework */; };
+		64F50824246C38E500625878 /* DatabaseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64F5081D246C306C00625878 /* DatabaseKit.framework */; };
+		64F50825246C38E500625878 /* DatabaseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 64F5081D246C306C00625878 /* DatabaseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8024DA2D2449F19000093D37 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8024DA2C2449F19000093D37 /* AboutView.swift */; };
+		804F1DE3246AECD900AE29D3 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A5301E246AEC1900A123CD /* AudioManager.swift */; };
 		808C9E30245F283900FF4FEB /* PublicAudioCellViewModel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808C9E2E245F17D600FF4FEB /* PublicAudioCellViewModel+Extension.swift */; };
 		80A7E965246EDB8D00E7EAA2 /* CellIconManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A7E964246EDB8D00E7EAA2 /* CellIconManagerTests.swift */; };
 		80ABB7AF2457181F0020CF42 /* AudioCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ABB7AE2457181F0020CF42 /* AudioCellViewModelProtocol.swift */; };
@@ -70,7 +70,6 @@
 		C500AF70246B8AC700F5AC0A /* AudioErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500AF6E246B8A1A00F5AC0A /* AudioErrors.swift */; };
 		C527F28D246C22F800714778 /* AudioManagerTestsSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = C527F28C246C22F800714778 /* AudioManagerTestsSuccess.swift */; };
 		C52F15D4246C7D8B00FBDA98 /* AudioManagerTest.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C5B87713246C4B5E0027A586 /* AudioManagerTest.m4a */; };
-		C5379F04246C73E20040B4DB /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904C68246AEED4004B9921 /* AudioManager.swift */; };
 		C53F4CAB246598C2001AAD57 /* FileExchangerSuccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53F4CAA246598C2001AAD57 /* FileExchangerSuccessTests.swift */; };
 		C586E2C52465A27D00B1930B /* FileErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C586E2C42465A27D00B1930B /* FileErrors.swift */; };
 		C586E2C72465AA2400B1930B /* FileExchangerErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C586E2C62465AA2400B1930B /* FileExchangerErrorTests.swift */; };
@@ -105,28 +104,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		6461820024644DD3003BC3AB /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				646181FF24644DD3003BC3AB /* DatabaseKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6461820424644DEE003BC3AB /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				6461820324644DEE003BC3AB /* DatabaseKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		64C775882457162700FDEA03 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -136,6 +113,17 @@
 				64C775842457162700FDEA03 /* MuseuZapShare.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64F50826246C38E500625878 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				64F50825246C38E500625878 /* DatabaseKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -174,9 +162,11 @@
 		64DD6FF0243E0BB800404321 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		64DD6FF6243E0DB700404321 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		64DD6FF8243E10E400404321 /* TestCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoordinator.swift; sourceTree = "<group>"; };
+		64F5081D246C306C00625878 /* DatabaseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DatabaseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DE2544ADC54F877280C5239 /* Pods-MuseuZapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseuZapTests.debug.xcconfig"; path = "Target Support Files/Pods-MuseuZapTests/Pods-MuseuZapTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8024DA2C2449F19000093D37 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		808C9E2E245F17D600FF4FEB /* PublicAudioCellViewModel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PublicAudioCellViewModel+Extension.swift"; sourceTree = "<group>"; };
+		80A5301E246AEC1900A123CD /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		80A7E964246EDB8D00E7EAA2 /* CellIconManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellIconManagerTests.swift; sourceTree = "<group>"; };
 		80ABB7AE2457181F0020CF42 /* AudioCellViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCellViewModelProtocol.swift; sourceTree = "<group>"; };
 		80ABB7B0245718300020CF42 /* AudioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCell.swift; sourceTree = "<group>"; };
@@ -220,7 +210,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				646181FE24644DD3003BC3AB /* DatabaseKit.framework in Frameworks */,
+				64F50824246C38E500625878 /* DatabaseKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,7 +226,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6461820224644DEE003BC3AB /* DatabaseKit.framework in Frameworks */,
+				64F50821246C368900625878 /* DatabaseKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +236,7 @@
 		3FD4E8346B0C3243F96DD246 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				64F5081D246C306C00625878 /* DatabaseKit.framework */,
 				6461820124644DEE003BC3AB /* DatabaseKit.framework */,
 				646181FB24644D8F003BC3AB /* DatabaseKit.framework */,
 				64C7760E246317BE00FDEA03 /* XCTest.framework */,
@@ -349,6 +340,7 @@
 		64DD6FE2243E081E00404321 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				80A5301E246AEC1900A123CD /* AudioManager.swift */,
 				C5AFABE5246D811200E7AF31 /* Files */,
 				C500AF6D246B8A0200F5AC0A /* Audio */,
 				64DD6FE5243E0A4700404321 /* Stack.swift */,
@@ -509,7 +501,7 @@
 				6473EDCF243B6D3700A10F2C /* Resources */,
 				C516949F243B6F100014C3AF /* SwiftLint */,
 				64C775882457162700FDEA03 /* Embed App Extensions */,
-				6461820024644DD3003BC3AB /* Embed Frameworks */,
+				64F50826246C38E500625878 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -547,7 +539,6 @@
 				64C775762457162700FDEA03 /* Sources */,
 				64C775772457162700FDEA03 /* Frameworks */,
 				64C775782457162700FDEA03 /* Resources */,
-				6461820424644DEE003BC3AB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -755,8 +746,8 @@
 				C5AFABE8246D86E000E7AF31 /* FileManager+Extension.swift in Sources */,
 				C59A6B2E2464887C0011828D /* FileExchanger.swift in Sources */,
 				64C77591245F7F1100FDEA03 /* UIColorExtension.swift in Sources */,
+				804F1DE3246AECD900AE29D3 /* AudioManager.swift in Sources */,
 				64C7758A24571EF900FDEA03 /* UIView+ConstraintsExtension.swift in Sources */,
-				C5379F04246C73E20040B4DB /* AudioManager.swift in Sources */,
 				64C7758F245B128700FDEA03 /* CategoryTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -918,17 +909,20 @@
 				CODE_SIGN_ENTITLEMENTS = MuseuZap/MuseuZap.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = B73YH55T95;
 				INFOPLIST_FILE = MuseuZap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.br.MuseuZapIgnacio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -940,17 +934,20 @@
 				CODE_SIGN_ENTITLEMENTS = MuseuZap/MuseuZap.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = B73YH55T95;
 				INFOPLIST_FILE = MuseuZap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.br.MuseuZapIgnacio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -1008,6 +1005,7 @@
 				CODE_SIGN_ENTITLEMENTS = MuseuZapShare/MuseuZapShare.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = B73YH55T95;
 				INFOPLIST_FILE = MuseuZapShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -1018,6 +1016,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.br.MuseuZapIgnacio.MuseuZapShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1030,6 +1029,7 @@
 				CODE_SIGN_ENTITLEMENTS = MuseuZapShare/MuseuZapShare.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = B73YH55T95;
 				INFOPLIST_FILE = MuseuZapShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -1040,6 +1040,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.br.MuseuZapIgnacio.MuseuZapShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
