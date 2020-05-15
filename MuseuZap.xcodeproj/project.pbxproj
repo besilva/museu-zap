@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5BEE3737D0136F81E6BD9BAE /* libPods-MuseuZapTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CC2334E5C2D616ABBE0AB72C /* libPods-MuseuZapTests.a */; };
+		642C63A4246EC7CE0059FBDC /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C63A3246EC7CE0059FBDC /* AnalyticsManager.swift */; };
 		6461820A24645363003BC3AB /* SnapshotContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6461820724645363003BC3AB /* SnapshotContainer.swift */; };
 		6461820B24645363003BC3AB /* TableViewCellSnapshotContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6461820824645363003BC3AB /* TableViewCellSnapshotContainer.swift */; };
 		6461820C24645363003BC3AB /* IPhoneWidthsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6461820924645363003BC3AB /* IPhoneWidthsEnum.swift */; };
@@ -118,6 +119,7 @@
 /* Begin PBXFileReference section */
 		1A6029E4F4A6CAFBB228741A /* Pods-MuseuZap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseuZap.release.xcconfig"; path = "Target Support Files/Pods-MuseuZap/Pods-MuseuZap.release.xcconfig"; sourceTree = "<group>"; };
 		2DE1787F22D7FD189AF7E317 /* Pods-MuseuZapTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseuZapTests.release.xcconfig"; path = "Target Support Files/Pods-MuseuZapTests/Pods-MuseuZapTests.release.xcconfig"; sourceTree = "<group>"; };
+		642C63A3246EC7CE0059FBDC /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		646181FB24644D8F003BC3AB /* DatabaseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DatabaseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6461820124644DEE003BC3AB /* DatabaseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DatabaseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6461820724645363003BC3AB /* SnapshotContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotContainer.swift; sourceTree = "<group>"; };
@@ -318,18 +320,19 @@
 			isa = PBXGroup;
 			children = (
 				80A5301E246AEC1900A123CD /* AudioManager.swift */,
-				64DD6FE5243E0A4700404321 /* Stack.swift */,
 				64DD6FE3243E084100404321 /* Coordinator.swift */,
-				64A60C2D24489B9E003B0F26 /* ViewCodable.swift */,
+				C586E2C42465A27D00B1930B /* FileErrors.swift */,
+				C59A6B2C2464887C0011828D /* FileExchanger.swift */,
+				64DD6FE5243E0A4700404321 /* Stack.swift */,
+				64796F0B2453152800104448 /* TabBarController.swift */,
+				80ABB7B62457230C0020CF42 /* TimeInterval+Extension.swift */,
+				80FAABD72451BFD6008B7DB8 /* UIColorExtension.swift */,
+				80C274D0245872980051A1E6 /* UIFont+Extension.swift */,
+				80F7235D245319DA00583137 /* UILabel+Extension.swift */,
 				64A60C2F24489D62003B0F26 /* UIView+ConstraintsExtension.swift */,
 				64A60C332448BD33003B0F26 /* UIViewControllerExtension.swift */,
-				80FAABD72451BFD6008B7DB8 /* UIColorExtension.swift */,
-				64796F0B2453152800104448 /* TabBarController.swift */,
-				80F7235D245319DA00583137 /* UILabel+Extension.swift */,
-				80ABB7B62457230C0020CF42 /* TimeInterval+Extension.swift */,
-				80C274D0245872980051A1E6 /* UIFont+Extension.swift */,
-				C59A6B2C2464887C0011828D /* FileExchanger.swift */,
-				C586E2C42465A27D00B1930B /* FileErrors.swift */,
+				64A60C2D24489B9E003B0F26 /* ViewCodable.swift */,
+				642C63A3246EC7CE0059FBDC /* AnalyticsManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -649,6 +652,7 @@
 				80D80EF32447377200915F1C /* AboutViewController.swift in Sources */,
 				64DD6FE4243E084100404321 /* Coordinator.swift in Sources */,
 				80C3D4CC24508EDA0001879C /* AboutError.swift in Sources */,
+				642C63A4246EC7CE0059FBDC /* AnalyticsManager.swift in Sources */,
 				8024DA2D2449F19000093D37 /* AboutView.swift in Sources */,
 				80C274D1245872980051A1E6 /* UIFont+Extension.swift in Sources */,
 				C586E2C52465A27D00B1930B /* FileErrors.swift in Sources */,

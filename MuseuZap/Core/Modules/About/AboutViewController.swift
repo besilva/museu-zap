@@ -9,6 +9,7 @@
 import UIKit
 
 class AboutViewController: UIViewController, ViewController, NavigationDelegate {
+    var screenName: String { return "" }
     weak var delegate: NavigationDelegate?
     var viewModel: AboutViewModel?
     // swiftlint:disable force_cast
@@ -68,5 +69,6 @@ class AboutViewController: UIViewController, ViewController, NavigationDelegate 
     
     func setup() {
           tabBarItem = UITabBarItem(title: "Sobre", image: UIImage(named: "about-outline"), selectedImage: UIImage(named: "about-filled"))
+        self.setScreenName()
     }
 }

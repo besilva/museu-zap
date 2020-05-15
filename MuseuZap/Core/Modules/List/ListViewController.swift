@@ -11,6 +11,8 @@ import CoreData
 import DatabaseKit
 
 class ListViewController: UIViewController, ViewController, NavigationDelegate {
+    var screenName: String { return ""}
+    
     func handleNavigation(action: Action) {
         return
     }
@@ -54,5 +56,6 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
     
     func setup() {
         tabBarItem = UITabBarItem(title: "Explorar", image: UIImage(named: "explore-outline"), selectedImage: UIImage(named: "explore-filled"))
+        self.setScreenName()
     }
 }
