@@ -35,6 +35,7 @@ class TestCoordinator: BaseCoordinator {
                 print(FileErrors.invalidURL)
             } else {
                 let ac = UIActivityViewController(activityItems: [audioURL], applicationActivities: nil)
+                AnalyticsManager.share(url: audioURL)
                 self.rootViewController.present(ac, animated: true)
             }
         default:

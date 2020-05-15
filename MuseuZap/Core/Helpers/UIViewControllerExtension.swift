@@ -14,8 +14,6 @@ protocol ViewController: UIViewController, NavigationDelegate {
     var delegate: NavigationDelegate? {get set}
     var screenName: String { get }
     func setScreenName()
-    /// Setup navigation and call Analytics
-    func setup()
 
 }
 

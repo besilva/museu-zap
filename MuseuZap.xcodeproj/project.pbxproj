@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5BEE3737D0136F81E6BD9BAE /* libPods-MuseuZapTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CC2334E5C2D616ABBE0AB72C /* libPods-MuseuZapTests.a */; };
 		642C63A4246EC7CE0059FBDC /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C63A3246EC7CE0059FBDC /* AnalyticsManager.swift */; };
+		642C63A7246EE73D0059FBDC /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C63A6246EE73D0059FBDC /* main.swift */; };
+		642C63AB246EE9990059FBDC /* AppDelegateFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C63A8246EE97C0059FBDC /* AppDelegateFake.swift */; };
 		6461820A24645363003BC3AB /* SnapshotContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6461820724645363003BC3AB /* SnapshotContainer.swift */; };
 		6461820B24645363003BC3AB /* TableViewCellSnapshotContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6461820824645363003BC3AB /* TableViewCellSnapshotContainer.swift */; };
 		6461820C24645363003BC3AB /* IPhoneWidthsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6461820924645363003BC3AB /* IPhoneWidthsEnum.swift */; };
@@ -120,6 +122,8 @@
 		1A6029E4F4A6CAFBB228741A /* Pods-MuseuZap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseuZap.release.xcconfig"; path = "Target Support Files/Pods-MuseuZap/Pods-MuseuZap.release.xcconfig"; sourceTree = "<group>"; };
 		2DE1787F22D7FD189AF7E317 /* Pods-MuseuZapTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseuZapTests.release.xcconfig"; path = "Target Support Files/Pods-MuseuZapTests/Pods-MuseuZapTests.release.xcconfig"; sourceTree = "<group>"; };
 		642C63A3246EC7CE0059FBDC /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
+		642C63A6246EE73D0059FBDC /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		642C63A8246EE97C0059FBDC /* AppDelegateFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateFake.swift; sourceTree = "<group>"; };
 		646181FB24644D8F003BC3AB /* DatabaseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DatabaseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6461820124644DEE003BC3AB /* DatabaseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DatabaseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6461820724645363003BC3AB /* SnapshotContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotContainer.swift; sourceTree = "<group>"; };
@@ -265,6 +269,7 @@
 				64DD6FE1243E080800404321 /* Core */,
 				6473EDE2243B6D3E00A10F2C /* Info.plist */,
 				64F50827246CE8F800625878 /* GoogleService-Info.plist */,
+				642C63A6246EE73D0059FBDC /* main.swift */,
 			);
 			path = MuseuZap;
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 		6473EDEA243B6D3E00A10F2C /* MuseuZapTests */ = {
 			isa = PBXGroup;
 			children = (
+				642C63A8246EE97C0059FBDC /* AppDelegateFake.swift */,
 				C53F4CA9246585FD001AAD57 /* FileExchanger */,
 				6461820624645363003BC3AB /* Helpers */,
 				80C274C424585BBA0051A1E6 /* CustomCellTests */,
@@ -652,10 +658,12 @@
 				80D80EF32447377200915F1C /* AboutViewController.swift in Sources */,
 				64DD6FE4243E084100404321 /* Coordinator.swift in Sources */,
 				80C3D4CC24508EDA0001879C /* AboutError.swift in Sources */,
+				642C63A7246EE73D0059FBDC /* main.swift in Sources */,
 				642C63A4246EC7CE0059FBDC /* AnalyticsManager.swift in Sources */,
 				8024DA2D2449F19000093D37 /* AboutView.swift in Sources */,
 				80C274D1245872980051A1E6 /* UIFont+Extension.swift in Sources */,
 				C586E2C52465A27D00B1930B /* FileErrors.swift in Sources */,
+				642C63AB246EE9990059FBDC /* AppDelegateFake.swift in Sources */,
 				80D80EF02447365C00915F1C /* AboutCoordinator.swift in Sources */,
 				80ABB7B72457230C0020CF42 /* TimeInterval+Extension.swift in Sources */,
 				80ABB7B324571C460020CF42 /* AudioCellViewModel.swift in Sources */,

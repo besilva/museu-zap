@@ -10,12 +10,15 @@ import Foundation
 import Firebase
 
 class AnalyticsManager {
-    
-    static func share(fileType: String, fileName: String) {
-        Analytics.logEvent(AnalyticsEventShare, parameters: [
-            AnalyticsParameterContentType: fileType,
-            AnalyticsParameterItemID: fileName
-        ])
+
+    static func share(url: URL) {
+        let fileName = url.deletingPathExtension().lastPathComponent
+        if let fileType = url.lastPathComponent.split(separator: ".").last {
+            Analytics.logEvent(AnalyticsEventShare, parameters: [
+                AnalyticsParameterContentType: fileType,
+                AnalyticsParameterItemID: fileName
+            ])
+        }
     }
     
     static func category(name: String) {
@@ -27,5 +30,5 @@ class AnalyticsManager {
     static func customEvent(name: String, parameters: [String: Any]?) {
         Analytics.logEvent(name, parameters: parameters)
     }
-
+    
 }
