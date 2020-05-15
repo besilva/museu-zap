@@ -54,12 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         publicAudio.audioPath = url1.path
         publicAudio.duration = 28
         publicAudio.isPrivate = false
-
-        AudioServices().createAudio(audio: publicAudio) { (error) in
-            if let err = error {
-                print(err as Any)
-            }
-        }
+        publicAudio.category = category
     }
 
     private func addCategory() {
@@ -70,13 +65,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let err = error {
                 print(err as Any)
             }
-        }
-
-        // Save context once
-        do {
-            try CoreDataManager.sharedInstance.managedObjectContext.save()
-        } catch {
-            print("COULD NOT SAVE CONTEXT")
         }
     }
 
