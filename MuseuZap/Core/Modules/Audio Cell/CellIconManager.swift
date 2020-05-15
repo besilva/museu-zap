@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class CellIconManager {
     
@@ -42,6 +43,11 @@ class CellIconManager {
             name: .playbackPaused,
             object: nil
         )
+        
+        AudioManager.shared.notificationCenter.addObserver(self,
+                     selector: #selector(playbackDidEnd),
+                     name: .AVPlayerItemDidPlayToEndTime,
+                     object: nil)
     }
     
     @objc func playbackDidStart(_ notification: Notification) {
@@ -62,6 +68,10 @@ class CellIconManager {
         }
         
         self.playStatus = State.paused(audioPath)
+    }
+    
+    @objc func playbackDidEnd(_ notification: Notification) {
+        self.playStatus = State.idle
     }
     
     func changePlayStatus(audioPath: String, cell: AudioCell) {
@@ -93,7 +103,6 @@ extension CellIconManager {
                 if playingPath == audioPath {
                     // Set play status for target cell
                     cell.isPlaying = true
-                    
                 }
             default:
                 // Set pause status for target cell
