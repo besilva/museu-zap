@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Descomentar o save context UMA VEZ para poder utilizar a share extension
 //        addCategory()
+        addPublicAudio()
 
         return true
     }
@@ -39,6 +40,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().backgroundColor = UIColor.Default.navBar
         UINavigationBar.appearance().barTintColor = UIColor.Default.navBar
         UINavigationBar.appearance().isTranslucent = false
+    }
+
+    private func addPublicAudio() {
+        let path1 = Bundle.main.path(forResource: "sextou", ofType: "mp3")!
+        let url1 = URL(fileURLWithPath: path1, isDirectory: false)
+
+        let category = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category.categoryName = "Sextou"
+
+        let publicAudio = Audio(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        publicAudio.audioName = "Sextou"
+        publicAudio.audioPath = url1.path
+        publicAudio.duration = 28
+        publicAudio.isPrivate = false
+
+        AudioServices().createAudio(audio: publicAudio) { (error) in
+            if let err = error {
+                print(err as Any)
+            }
+        }
     }
 
     private func addCategory() {

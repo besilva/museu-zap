@@ -69,6 +69,7 @@
 		C586E2C82465B6E200B1930B /* FileErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C586E2C42465A27D00B1930B /* FileErrors.swift */; };
 		C59A6B2D2464887C0011828D /* FileExchanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59A6B2C2464887C0011828D /* FileExchanger.swift */; };
 		C59A6B2E2464887C0011828D /* FileExchanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59A6B2C2464887C0011828D /* FileExchanger.swift */; };
+		C5E1FDF8246EEFB4004651B6 /* sextou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E1FDF7246EEFB4004651B6 /* sextou.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,6 +174,7 @@
 		C586E2C42465A27D00B1930B /* FileErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileErrors.swift; sourceTree = "<group>"; };
 		C586E2C62465AA2400B1930B /* FileExchangerErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExchangerErrorTests.swift; sourceTree = "<group>"; };
 		C59A6B2C2464887C0011828D /* FileExchanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExchanger.swift; sourceTree = "<group>"; };
+		C5E1FDF7246EEFB4004651B6 /* sextou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sextou.mp3; sourceTree = "<group>"; };
 		CC2334E5C2D616ABBE0AB72C /* libPods-MuseuZapTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MuseuZapTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -338,6 +340,7 @@
 		64DD6FE9243E0B3100404321 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C5E1FDF6246EEFA2004651B6 /* Public Audios */,
 				80C274C92458719B0051A1E6 /* Fonts */,
 				6473EDDD243B6D3E00A10F2C /* Assets.xcassets */,
 				6473EDDF243B6D3E00A10F2C /* LaunchScreen.storyboard */,
@@ -420,6 +423,14 @@
 				C586E2C62465AA2400B1930B /* FileExchangerErrorTests.swift */,
 			);
 			path = FileExchanger;
+			sourceTree = "<group>";
+		};
+		C5E1FDF6246EEFA2004651B6 /* Public Audios */ = {
+			isa = PBXGroup;
+			children = (
+				C5E1FDF7246EEFB4004651B6 /* sextou.mp3 */,
+			);
+			path = "Public Audios";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -532,6 +543,7 @@
 				80C274CC2458721C0051A1E6 /* Poppins-Regular.ttf in Resources */,
 				80C274CE2458721C0051A1E6 /* Poppins-SemiBold.ttf in Resources */,
 				6473EDE1243B6D3E00A10F2C /* LaunchScreen.storyboard in Resources */,
+				C5E1FDF8246EEFB4004651B6 /* sextou.mp3 in Resources */,
 				6473EDDE243B6D3E00A10F2C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

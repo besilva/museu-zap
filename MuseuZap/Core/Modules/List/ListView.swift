@@ -37,7 +37,8 @@ class ListView: UIView, ViewCodable {
         tableView.estimatedRowHeight = 76
         tableView.separatorStyle = .none
         tableView.register(AudioCell.self, forCellReuseIdentifier: self.cellIdentifier)
-        tableView.addSubview(refreshControl)
+        tableView.insertSubview(refreshControl, at: 0)
+        refreshControl.translatesAutoresizingMaskIntoConstraints = false
         setupView()
     }
     
@@ -64,6 +65,16 @@ class ListView: UIView, ViewCodable {
     }
     
     func setupConstraints() {
+
+        // TODO: fix constraints, error is beeing printed
+
+        refreshControl.setupConstraints { (refresh) in
+            refresh.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+            refresh.bottomAnchor.constraint(equalTo: self.tableView.topAnchor, constant: -16).isActive = true
+            refresh.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
+            refresh.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
+        }
+
         tableView.setupConstraints { (tableView) in
             tableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
@@ -120,6 +131,7 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
 
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         viewModel?.handleRefresh(refreshControl)
+        self.refreshControl.endRefreshing()
     }
 }
 

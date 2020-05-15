@@ -8,7 +8,6 @@
 
 import Foundation
 import DatabaseKit
-// TODO: import UI Kit aqui?
 import UIKit
 
 protocol ListViewModelDelegate: class {
@@ -72,6 +71,6 @@ class ListViewModel: ListViewModelProtocol {
     func handleRefresh(_ refreshControl: UIRefreshControl) {
         getArray()
         delegate?.reloadTableView()
-        delegate?.endRefreshing()
+//        self.delegate?.endRefreshing()
     }
 }
