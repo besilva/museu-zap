@@ -11,6 +11,7 @@ import UIKit
 class AudioCellViewModel: AudioCellViewModelProtocol {
     weak var navigationDelegate: NavigationDelegate?
     internal weak var delegate: AudioCellViewModelDelegate?
+    var iconManager: CellIconManager = CellIconManager.shared
     var title: String
     var audioPath: String
     var duration: TimeInterval
@@ -32,7 +33,7 @@ class AudioCellViewModel: AudioCellViewModelProtocol {
     }
     
     func changePlayStatus(cell: AudioCell) {
-        CellIconManager.shared.changePlayStatus(audioPath: audioPath, cell: cell)
+        iconManager.changePlayStatus(audioPath: audioPath, cell: cell)
     }
     
     func share() {

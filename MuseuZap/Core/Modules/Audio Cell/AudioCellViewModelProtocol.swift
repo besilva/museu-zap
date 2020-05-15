@@ -19,6 +19,7 @@ protocol AudioCellViewModelProtocol {
     var audioPath: String { get set }
     var duration: TimeInterval { get set }
     var actionHandler: (Action) -> Void { get set }
+    var iconManager: CellIconManager { get }
     func changePlayStatus(cell: AudioCell)
     func share()
     

@@ -16,7 +16,7 @@ class AudioManagerTests: XCTestCase {
     var fileURL: URL!
 
     override func setUp() {
-        sut = AudioManger.shared
+        sut = AudioManager.shared
     }
 
     override func tearDown() {

@@ -107,7 +107,6 @@ extension CellIconManager {
             default:
                 // Set pause status for target cell
                 cell.isPlaying = false
-                break
             }
         }
     }
