@@ -8,10 +8,13 @@
 
 import Foundation
 import DatabaseKit
+// TODO: import UI Kit aqui?
+import UIKit
 
 protocol ListViewModelDelegate: class {
     func stopLoading()
     func reloadTableView()
+    func endRefreshing()
 }
 
 protocol ListViewModelProtocol {
@@ -19,7 +22,7 @@ protocol ListViewModelProtocol {
     var navigationDelegate: NavigationDelegate? { get }
     var count: Int { get }
     var delegate: ListViewModelDelegate? { get set }
-//    Func getAllAudios()
+    func handleRefresh(_ refreshControl: UIRefreshControl)
     func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties
     func back()
     init(audioServices: AudioServices, delegate: ListViewModelDelegate)
@@ -63,5 +66,12 @@ class ListViewModel: ListViewModelProtocol {
         let element = array[indexPath.row]
         return AudioProperties(from: element)
     }
-    
+
+    // MARK: - Refresh
+
+    func handleRefresh(_ refreshControl: UIRefreshControl) {
+        getArray()
+        delegate?.reloadTableView()
+        delegate?.endRefreshing()
+    }
 }

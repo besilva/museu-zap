@@ -19,6 +19,15 @@ class ListView: UIView, ViewCodable {
             updateView()
         }
     }
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self,
+                                 action: #selector(self.handleRefresh(_:)),
+                                 for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor.Default.power
+
+        return refreshControl
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,6 +37,7 @@ class ListView: UIView, ViewCodable {
         tableView.estimatedRowHeight = 76
         tableView.separatorStyle = .none
         tableView.register(AudioCell.self, forCellReuseIdentifier: self.cellIdentifier)
+        tableView.addSubview(refreshControl)
         setupView()
     }
     
@@ -107,9 +117,14 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
         }
         return UITableViewCell()
     }
+
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        viewModel?.handleRefresh(refreshControl)
+    }
 }
 
 extension ListView: ListViewModelDelegate {
+
     func reloadTableView() {
         tableView.reloadData()
     }
@@ -119,5 +134,11 @@ extension ListView: ListViewModelDelegate {
             self.loader.stopAnimating()
         }
     }
-    
+
+    func endRefreshing() {
+        DispatchQueue.main.async {
+            self.refreshControl.endRefreshing()
+        }
+    }
+
 }
