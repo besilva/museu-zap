@@ -10,6 +10,8 @@ import XCTest
 @testable import MuseuZap
 
 class MockAudioCellViewModel: AudioCellViewModelProtocol {
+    var delegate: AudioCellViewModelDelegate?
+    
     weak var navigationDelegate: NavigationDelegate?
     
     var title: String
@@ -22,32 +24,13 @@ class MockAudioCellViewModel: AudioCellViewModelProtocol {
     
     var actionHandler: (Action) -> Void
     
+    var iconManager: CellIconManager = CellIconManager()
     var throwError: Bool = false
     var shareTouch: Bool = false
     var delayTime = 0.0
 
-    func changePlayStatus(completion: ((Error?) -> Void)?) {
-//        Sends handler a play action, containing current audio path
-        actionHandler(.play(audioPath, { _ in
-    //            If play action occurred successfully, changes play status and
-    //            Calls completion with no errors
-            DispatchQueue.main.asyncAfter(deadline: .now() + self.delayTime) {
-                if self.throwError == false {
-                    
-                    self.playing = !self.playing
-                    if let completion = completion {
-                        completion(nil)
-                    }
-                } else {
-    //                Calls completion with an error otherwise
-                    let mockError = AudioCellError.ShareError
-                    
-                    if let completion = completion {
-                        completion(mockError)
-                    }
-                }
-            }
-        }))
+    func changePlayStatus(cell: AudioCell) {
+        iconManager.changePlayStatus(audioPath: audioPath, cell: cell)
     }
 
     func share() {
@@ -88,10 +71,8 @@ class CustomCellViewTests: XCTestCase {
             default:
                 return
             }
-            
         }
-        
-        customCellView?.viewModel = mockViewModel
+        customCellView.viewModel = mockViewModel
     }
 
     override func tearDownWithError() throws {
@@ -99,49 +80,11 @@ class CustomCellViewTests: XCTestCase {
         customCellView = nil
     }
 
-//    func testPlayAudioIcon() throws {
-//        
-//        let operation = AsyncOperation { self.customCellView.changePlayStatus() }
-//        try await(operation.perform)
-//        XCTAssertEqual(self.customCellView.playIcon.image, UIImage(named: "pause.fill"), "Output image does not match")
-//    }
-    
-//    func testPlayAudioIconWithDelay() throws {
-//        mockViewModel.delayTime = 1.0
-//        customCellView?.changePlayStatus()
-//        waitForExpectations(timeout: 5.0) { (error) in
-//            if let error = error {
-//                XCTFail("Did not satisfy every expectation: " + error.localizedDescription)
-//            } else {
-//                XCTAssertEqual(self.customCellView.playIcon.image, UIImage(named: "pause.fill"))
-//            }
-//        }
-//    }
-//    
-//    func testPlayAudioIconWithError() throws {
-//        mockViewModel.throwError = true
-//        customCellView?.changePlayStatus()
-//        waitForExpectations(timeout: 5.0) { (error) in
-//            if let error = error {
-//                XCTFail("Did not satisfy every expectation: " + error.localizedDescription)
-//            } else {
-//                XCTAssertEqual(self.customCellView.playIcon.image, UIImage(named: "play.fill"))
-//            }
-//        }
-//    }
-//    
-//    func testPlayAudioIconWithErrorAndDelay() throws {
-//        mockViewModel.throwError = true
-//        mockViewModel.delayTime = 1.0
-//        customCellView?.changePlayStatus()
-//        waitForExpectations(timeout: 5.0) { (error) in
-//            if let error = error {
-//                XCTFail("Did not satisfy every expectation: " + error.localizedDescription)
-//            } else {
-//                XCTAssertEqual(self.customCellView.playIcon.image, UIImage(named: "play.fill"))
-//            }
-//        }
-//    }
+    // Tests if changing isPlaying status causes an icon change
+    func testPlayAudioIcon() throws {
+        self.customCellView.isPlaying = true
+        XCTAssertEqual(self.customCellView.playIcon.image, UIImage(named: "pause.fill"), "Output image does not match")
+    }
 
     func testShare() throws {
         customCellView?.shareAudio()

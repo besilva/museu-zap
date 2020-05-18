@@ -58,7 +58,7 @@ class ShareViewController: SLComposeServiceViewController {
                                                         print(err)
                                                     }
         })
-
+        self.textView.delegate = self
     }
     
     // MARK: - Share Functions
@@ -135,9 +135,8 @@ class ShareViewController: SLComposeServiceViewController {
 extension ShareViewController: CategoryTableViewControllerDelegate {
     func categorySelected(category: AudioCategory) {
         self.category = category
+        self.textViewDidChange(self.textView)
         popConfigurationViewController()
-        // TODO: bug ao salvar: prineiro coloco nome, depois seleciono categoria, quando volto botao save nao esta habilitado
-        _ = isContentValid()
     }
 
 }
@@ -184,8 +183,7 @@ extension ShareViewController {
         // All imported audios are private
         audio.isPrivate = true
         audio.category = category
-        // TODO: Singleton de AUDIO pegar a duracao do arquivo! OU TRATAR DEPOIS tb nao sei
-        audio.duration = 0
+        audio.duration = AudioManager.shared.getDurationFrom(file: appAudioFileURL)
 
         AudioServices().createAudio(audio: audio) { (error) in
             if let err = error {
@@ -193,4 +191,5 @@ extension ShareViewController {
             }
         }
     }
+    
 }

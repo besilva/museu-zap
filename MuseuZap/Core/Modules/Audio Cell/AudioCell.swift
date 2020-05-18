@@ -16,13 +16,22 @@ class AudioCell: UITableViewCell, ViewCodable {
 
     var playIcon: UIImageView = UIImageView()
     var shareIcon: UIImageView = UIImageView()
+    
+    var isPlaying: Bool {
+        didSet {
+            self.playIcon.image = self.isPlaying ? UIImage(named: "pause.fill") : UIImage(named: "play.fill")
+//            self.setNeedsDisplay()
+        }
+    }
 
     var viewModel: AudioCellViewModelProtocol? {
         didSet {
             updateView()
         }
     }
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        self.isPlaying = false
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
     }
@@ -153,13 +162,7 @@ class AudioCell: UITableViewCell, ViewCodable {
     
     @objc func changePlayStatus() {
         guard let viewModel = viewModel else { return }
-        viewModel.changePlayStatus { error in
-//            If play status was changed successfully, updates icon
-            if error == nil {
-                guard let viewModel = self.viewModel else { return }
-                self.playIcon.image = viewModel.playing ? UIImage(named: "pause.fill") : UIImage(named: "play.fill")
-            }
-        }
+        viewModel.changePlayStatus(cell: self)
     }
 }
 
@@ -255,5 +258,12 @@ extension AudioCell {
             shareIcon.topAnchor.constraint(equalTo: container.topAnchor, constant: 16).isActive = true
             shareIcon.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -16).isActive = true
         }
+    }
+}
+
+extension AudioCell {
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.isPlaying = false
     }
 }

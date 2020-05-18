@@ -43,7 +43,7 @@ public extension FileManager {
     static func verifyIfFileExists(url: URL) throws {
 
         if !FileManager.default.fileExists(atPath: url.path) {
-            throw FileErrors.notAFile
+            throw FileErrors.invalidURL
         }
     }
 }

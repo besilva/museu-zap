@@ -9,6 +9,13 @@
 import AVFoundation
 import MediaPlayer
 
+/// Used to create observers
+enum State: Equatable {
+    case idle
+    case playing(String)
+    case paused(String)
+}
+
 /// Class used to play Audio Files
 class AudioManager: NSObject {
 
@@ -21,7 +28,7 @@ class AudioManager: NSObject {
     /// MPNowPlayingInfoCenter
     var nowPlayingInfoCenter: MPNowPlayingInfoCenter?
     /// Notification Center, default
-    private let notificationCenter: NotificationCenter
+    let notificationCenter: NotificationCenter
 
     // Audio File
     /// PossibleAudioExtensions
@@ -37,13 +44,6 @@ class AudioManager: NSObject {
     var playerItem: AVPlayerItem?
     /// Provide the player item to an AVPlayer object to play an instance of AVAsset
     var player: AVPlayer?
-
-    /// Used to create observers
-    enum State: Equatable {
-        case idle
-        case playing(String)
-        case paused(String)
-    }
 
     public private(set) var state = State.idle {
         // We add a property observer on 'state', which lets us run a function on each value change.
@@ -158,7 +158,7 @@ class AudioManager: NSObject {
 
         // Case URL is broken, throw error
         if !FileManager.default.fileExists(atPath: url.path) {
-            throw FileErrors.notAFile
+            throw FileErrors.invalidURL
         }
 
         // Verify if file is a AudioFile possible extension
@@ -166,7 +166,6 @@ class AudioManager: NSObject {
             throw AudioErrors.noAudioFile
         }
     }
-
 }
 
     // MARK: - Notification Center

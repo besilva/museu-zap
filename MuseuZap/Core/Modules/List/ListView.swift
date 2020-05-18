@@ -9,11 +9,12 @@
 import UIKit
 
 class ListView: UIView, ViewCodable {
-    
+
     private var loader: UIActivityIndicatorView!
     private var tableView: UITableView = UITableView()
     private var cellIdentifier: String = "cell"
-    var audioHandler: ((Action) -> ())?
+    var iconManager: CellIconManager = CellIconManager.shared
+    var audioHandler: ((Action) -> Void)?
     var viewModel: ListViewModelProtocol? {
         didSet {
             updateView()
@@ -30,29 +31,29 @@ class ListView: UIView, ViewCodable {
         tableView.register(AudioCell.self, forCellReuseIdentifier: self.cellIdentifier)
         setupView()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
     }
-    
+
     func configure() {
         setupTableView()
     }
-    
+
     func setupHierarchy() {
         addSubviews(tableView, loader)
     }
-    
+
     func createLoader() {
         loader.startAnimating()
         loader.hidesWhenStopped = true
     }
-    
+
     func setupConstraints() {
         tableView.setupConstraints { (tableView) in
             tableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
@@ -120,5 +121,20 @@ extension ListView: ListViewModelDelegate {
             self.loader.stopAnimating()
         }
     }
+}
+
+extension ListView {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let audioCell = cell as? AudioCell else {
+            return
+        }
+        iconManager.updateCellStatus(visible: true, cell: audioCell)
+    }
     
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let audioCell = cell as? AudioCell else {
+            return
+        }
+        iconManager.updateCellStatus(visible: false, cell: audioCell)
+    }
 }

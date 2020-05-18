@@ -48,7 +48,7 @@ class AudioManagerTestsError: XCTestCase {
     func testVerifyIfURLIsAudioFileError1() {
 
         XCTAssertThrowsError(try sut.verifyIfURLIsAudioFile(url: nonExistingFile)) { error in
-            XCTAssertEqual(error as? FileErrors, FileErrors.notAFile)
+            XCTAssertEqual(error as? FileErrors, FileErrors.invalidURL)
         }
     }
 
