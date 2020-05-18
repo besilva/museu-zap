@@ -10,12 +10,14 @@ import UIKit
 import AVFoundation
 
 class TestCoordinator: BaseCoordinator {
-    
-    typealias T = UINavigationController
+
     var rootViewController: UINavigationController
+    var analyticsManager: AnalyticsManager
     
-    required init(rootViewController: UINavigationController = UINavigationController()) {
+    init(rootViewController: UINavigationController = UINavigationController(),
+         analyticsManager: AnalyticsManager = AnalyticsManager()) {
         self.rootViewController = rootViewController
+        self.analyticsManager = analyticsManager
     }
     
     func startFlow() {
@@ -35,6 +37,7 @@ class TestCoordinator: BaseCoordinator {
                 print(FileErrors.invalidURL)
             } else {
                 let ac = UIActivityViewController(activityItems: [audioURL], applicationActivities: nil)
+                analyticsManager.analytics.share(url: audioURL)
                 self.rootViewController.present(ac, animated: true)
             }
         default:

@@ -10,10 +10,9 @@ import UIKit
 
 class AboutCoordinator: BaseCoordinator {
 
-    typealias T = UINavigationController
     var rootViewController: UINavigationController
     
-    required init(rootViewController: UINavigationController = UINavigationController()) {
+    init(rootViewController: UINavigationController = UINavigationController()) {
         self.rootViewController = rootViewController
     }
     

@@ -9,13 +9,12 @@
 import UIKit
 
 class AppCoordinator: NSObject, Coordinator {
-    typealias T = UITabBarController
     
     private var coordinators = Stack<Coordinator>()
     
     var rootViewController: UITabBarController
     
-    required init(rootViewController: UITabBarController) {
+    init(rootViewController: UITabBarController) {
         self.rootViewController = rootViewController
     }
     

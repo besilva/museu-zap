@@ -7,7 +7,22 @@
 //
 
 import UIKit
+import Firebase
 
 protocol ViewController: UIViewController, NavigationDelegate {
+
     var delegate: NavigationDelegate? {get set}
+    var screenName: String { get }
+    dynamic func setScreenName() -> Bool
+
+}
+
+extension ViewController {
+
+    @discardableResult
+    func setScreenName() -> Bool {
+        Analytics.setScreenName(self.screenName, screenClass: NSStringFromClass(Self.self))
+        return true
+    }
+
 }
