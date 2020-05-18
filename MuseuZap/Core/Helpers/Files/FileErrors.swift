@@ -12,7 +12,6 @@ import Foundation
 public enum FileErrors: Error {
     // Not a folder deveria ser usado pela extension no FileMAnager, em DatabaseKit
     case notAFolder
-    case notAFile
     case copy
     case listContents
     case appSharedURL
