@@ -9,9 +9,27 @@
 import Foundation
 import Firebase
 
-class AnalyticsManager {
+protocol AnalyticsProtocol {
+    func share(url: URL)
+    func category(name: String)
+    func customEvent(name: String, parameters: [String: Any]?)
+}
 
-    static func share(url: URL) {
+class AnalyticsManager {
+    var analytics: AnalyticsProtocol
+    
+    init(analytics: AnalyticsProtocol = FirebaseAnalytics.shared) {
+        self.analytics = analytics
+    }
+}
+
+class FirebaseAnalytics: AnalyticsProtocol {
+
+    static let shared = FirebaseAnalytics()
+    
+    private init() {}
+    
+    func share(url: URL) {
         let fileName = url.deletingPathExtension().lastPathComponent
         if let fileType = url.lastPathComponent.split(separator: ".").last {
             Analytics.logEvent(AnalyticsEventShare, parameters: [
@@ -21,13 +39,13 @@ class AnalyticsManager {
         }
     }
     
-    static func category(name: String) {
+    func category(name: String) {
         Analytics.logEvent(AnalyticsEventViewItemList, parameters: [
             AnalyticsParameterItemCategory: name
         ])
     }
     
-    static func customEvent(name: String, parameters: [String: Any]?) {
+    func customEvent(name: String, parameters: [String: Any]?) {
         Analytics.logEvent(name, parameters: parameters)
     }
     

@@ -13,14 +13,16 @@ protocol ViewController: UIViewController, NavigationDelegate {
 
     var delegate: NavigationDelegate? {get set}
     var screenName: String { get }
-    func setScreenName()
+    dynamic func setScreenName() -> Bool
 
 }
 
 extension ViewController {
 
-    func setScreenName() {
+    @discardableResult
+    func setScreenName() -> Bool {
         Analytics.setScreenName(self.screenName, screenClass: NSStringFromClass(Self.self))
+        return true
     }
 
 }

@@ -11,7 +11,6 @@ import CoreData
 import DatabaseKit
 import Firebase
 
-
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var coordinator: AppCoordinator?
