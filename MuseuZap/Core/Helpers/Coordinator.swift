@@ -24,7 +24,6 @@ protocol NavigationDelegate: class {
 
 protocol BaseCoordinator: Coordinator, NavigationDelegate {
     associatedtype T: UIViewController
-    init(rootViewController: T)
     var rootViewController: T { get set }
     
 }

@@ -9,8 +9,8 @@
 import UIKit
 import CoreData
 import DatabaseKit
+import Firebase
 
-@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var coordinator: AppCoordinator?
@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         coordinator?.startFlow()
         window?.rootViewController = tabController
         window?.makeKeyAndVisible()
-
+        
         setNavigationBarColor()
 
         // Audio Controls
@@ -32,6 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AudioManager.shared.setupRemoteTransportControls()
         application.beginReceivingRemoteControlEvents()
 
+        FirebaseConfiguration.shared.setLoggerLevel(FirebaseLoggerLevel.min)
+        FirebaseApp.configure()
+        
         // Descomentar o save context UMA VEZ para poder utilizar a share extension
 //        addCategory()
 
