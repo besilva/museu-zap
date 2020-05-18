@@ -36,9 +36,15 @@ class TestCoordinator: BaseCoordinator {
             if !audioURL.isFileURL {
                 print(FileErrors.invalidURL)
             } else {
-                let ac = UIActivityViewController(activityItems: [audioURL], applicationActivities: nil)
-                analyticsManager.analytics.share(url: audioURL)
-                self.rootViewController.present(ac, animated: true)
+                do {
+                    try AudioManager.shared.verifyIfURLIsAudioFile(url: audioURL)
+                    let ac = UIActivityViewController(activityItems: [audioURL], applicationActivities: nil)
+                    self.rootViewController.present(ac, animated: true)
+                    analyticsManager.analytics.share(url: audioURL)
+                } catch {
+                    print("Error loading audioURL to share")
+                    print(error)
+                }
             }
         default:
             break

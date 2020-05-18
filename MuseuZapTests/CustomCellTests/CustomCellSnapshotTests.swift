@@ -55,4 +55,16 @@ class CustomCellSnapshotTests: XCTestCase {
         })
         assertSnapshot(matching: container, as: .image)
     }
+    
+    func testPlayButtonAfterDelay() throws {
+        
+    }
+    
+    func testPlayButtonAfterFail() throws {
+        
+    }
+    
+    func testPlayButtonAfterDelayAndFail() throws {
+        
+    }
 }

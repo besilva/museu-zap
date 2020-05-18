@@ -10,13 +10,11 @@ import XCTest
 @testable import MuseuZap
 
 class AudioCellViewModelMock: AudioCellViewModelProtocol {
-    var actionHandler: (Action) -> Void
-    
     weak var navigationDelegate: NavigationDelegate?
     
     var title: String
     
-    var audioPath: String
+    var audioURL: String
     
     var duration: TimeInterval
     
@@ -32,23 +30,21 @@ class AudioCellViewModelMock: AudioCellViewModelProtocol {
         shareTouch = true
     }
     
-    required init(title: String, duration: TimeInterval, audioPath: String, audioHandler: @escaping (Action) -> Void) {
+    required init(title: String, duration: TimeInterval, audioURL: String) {
         self.title = title
         self.duration = duration
-        self.audioPath = audioPath
+        self.audioURL = audioURL
         self.playing = false
         self.shareTouch = false
-        actionHandler = audioHandler
     }
     
-    required init(audioPath: String, audioHandler: @escaping (Action) -> Void) {
-        self.audioPath = audioPath
+    required init(audioURL: String) {
+        self.audioURL = audioURL
         self.playing = false
         self.shareTouch = false
         // TODO: Call to API function to retrieve audio data
         self.title = "Lorem Ipsum"
         self.duration = 60
-        actionHandler = audioHandler
     }
 }
 
@@ -59,9 +55,7 @@ class CustomCellTests: XCTestCase {
     override func setUpWithError() throws {
         super.setUp()
         customCellView = AudioCell()
-        mockViewModel = AudioCellViewModelMock(title: "gemidao", duration: 90, audioPath: "sampleURL") { _ in
-            return
-        }
+        mockViewModel = AudioCellViewModelMock(title: "gemidao", duration: 90, audioURL: "sampleURL")
         customCellView?.viewModel = mockViewModel
     }
 

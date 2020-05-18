@@ -39,7 +39,10 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
  
     override func loadView() {
         let myView = ListView()
+//        Sets the action handler for the List View
         myView.audioHandler = { (action) in
+//            The list view performs the action using the list view controller
+//            Navigation delegate
             self.delegate?.handleNavigation(action: action)
         }
         view = myView

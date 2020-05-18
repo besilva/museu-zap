@@ -26,6 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         setNavigationBarColor()
+
+        // Audio Controls
+        AudioManager.shared.configureAVAudioSession()
+        AudioManager.shared.setupRemoteTransportControls()
+        application.beginReceivingRemoteControlEvents()
+
         FirebaseConfiguration.shared.setLoggerLevel(FirebaseLoggerLevel.min)
         FirebaseApp.configure()
         

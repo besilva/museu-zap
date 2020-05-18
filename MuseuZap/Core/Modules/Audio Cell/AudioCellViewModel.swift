@@ -10,32 +10,30 @@ import UIKit
 
 class AudioCellViewModel: AudioCellViewModelProtocol {
     weak var navigationDelegate: NavigationDelegate?
+    internal weak var delegate: AudioCellViewModelDelegate?
+    var iconManager: CellIconManager = CellIconManager.shared
     var title: String
     var audioPath: String
     var duration: TimeInterval
-    var playing: Bool
     var actionHandler: (Action) -> Void
     
     required init(title: String, duration: TimeInterval, audioPath: String, audioHandler: @escaping (Action) -> Void) {
         self.title = title
         self.duration = duration
         self.audioPath = audioPath
-        self.playing = false
         actionHandler = audioHandler
     }
     
     required init(audioPath: String, audioHandler: @escaping (Action) -> Void) {
         self.audioPath = audioPath
-        self.playing = false
         // TODO: Call to API function to retrieve audio data
         self.title = "Lorem Ipsum"
         self.duration = 90
         actionHandler = audioHandler
     }
     
-    func changePlayStatus() {
-        playing = !playing
-//        TODO: Call media manager singleton to change play status
+    func changePlayStatus(cell: AudioCell) {
+        iconManager.changePlayStatus(audioPath: audioPath, cell: cell)
     }
     
     func share() {
