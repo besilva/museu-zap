@@ -68,6 +68,7 @@ class AudioManager: NSObject {
         do {
             try verifyIfURLIsAudioFile(url: file)
         } catch {
+            print("INVALID URL\n", error)
             throw AudioErrors.noAudioFile
         }
 
@@ -163,6 +164,7 @@ class AudioManager: NSObject {
 
         // Verify if file is a AudioFile possible extension
         if !self.possibleExtensions.contains(url.pathExtension) {
+            print("INVALID URL\n")
             throw AudioErrors.noAudioFile
         }
     }
