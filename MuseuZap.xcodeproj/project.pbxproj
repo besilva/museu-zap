@@ -64,6 +64,7 @@
 		80FA892B2462F241006B2B61 /* AboutViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FA892A2462F241006B2B61 /* AboutViewSnapshotTests.swift */; };
 		80FAABD82451BFD6008B7DB8 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FAABD72451BFD6008B7DB8 /* UIColorExtension.swift */; };
 		C53F4CAB246598C2001AAD57 /* FileExchangerSuccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53F4CAA246598C2001AAD57 /* FileExchangerSuccessTests.swift */; };
+		C5645C6D24746B1B005C411C /* ShareExtensionErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5645C6C24746B1B005C411C /* ShareExtensionErrors.swift */; };
 		C586E2C52465A27D00B1930B /* FileErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C586E2C42465A27D00B1930B /* FileErrors.swift */; };
 		C586E2C72465AA2400B1930B /* FileExchangerErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C586E2C62465AA2400B1930B /* FileExchangerErrorTests.swift */; };
 		C586E2C82465B6E200B1930B /* FileErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C586E2C42465A27D00B1930B /* FileErrors.swift */; };
@@ -171,6 +172,7 @@
 		80FA892A2462F241006B2B61 /* AboutViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewSnapshotTests.swift; sourceTree = "<group>"; };
 		80FAABD72451BFD6008B7DB8 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		C53F4CAA246598C2001AAD57 /* FileExchangerSuccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExchangerSuccessTests.swift; sourceTree = "<group>"; };
+		C5645C6C24746B1B005C411C /* ShareExtensionErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtensionErrors.swift; sourceTree = "<group>"; };
 		C586E2C42465A27D00B1930B /* FileErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileErrors.swift; sourceTree = "<group>"; };
 		C586E2C62465AA2400B1930B /* FileExchangerErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExchangerErrorTests.swift; sourceTree = "<group>"; };
 		C59A6B2C2464887C0011828D /* FileExchanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExchanger.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				64C77595245FBA7D00FDEA03 /* MuseuZapShare.entitlements */,
 				64C7757C2457162700FDEA03 /* ShareViewController.swift */,
 				64C7758E245B128700FDEA03 /* CategoryTableViewController.swift */,
+				C5645C6C24746B1B005C411C /* ShareExtensionErrors.swift */,
 				64C7757E2457162700FDEA03 /* MainInterface.storyboard */,
 				64C775812457162700FDEA03 /* Info.plist */,
 				64C7758C2458739C00FDEA03 /* Assets.xcassets */,
@@ -674,6 +677,7 @@
 				64C77592245F7F1800FDEA03 /* UIFont+Extension.swift in Sources */,
 				64C7757D2457162700FDEA03 /* ShareViewController.swift in Sources */,
 				64C7758924571EF100FDEA03 /* ViewCodable.swift in Sources */,
+				C5645C6D24746B1B005C411C /* ShareExtensionErrors.swift in Sources */,
 				C59A6B2E2464887C0011828D /* FileExchanger.swift in Sources */,
 				64C77591245F7F1100FDEA03 /* UIColorExtension.swift in Sources */,
 				804F1DE3246AECD900AE29D3 /* AudioManager.swift in Sources */,
