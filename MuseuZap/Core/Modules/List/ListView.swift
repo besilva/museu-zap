@@ -9,10 +9,11 @@
 import UIKit
 
 class ListView: UIView, ViewCodable {
-    
+
     private var loader: UIActivityIndicatorView!
     private var tableView: UITableView = UITableView()
     private var cellIdentifier: String = "cell"
+    var iconManager: CellIconManager = CellIconManager.shared
     var audioHandler: ((Action) -> Void)?
     var viewModel: ListViewModelProtocol? {
         didSet {
@@ -41,29 +42,29 @@ class ListView: UIView, ViewCodable {
         refreshControl.translatesAutoresizingMaskIntoConstraints = false
         setupView()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
     }
-    
+
     func configure() {
         setupTableView()
     }
-    
+
     func setupHierarchy() {
         addSubviews(tableView, loader)
     }
-    
+
     func createLoader() {
         loader.startAnimating()
         loader.hidesWhenStopped = true
     }
-    
+
     func setupConstraints() {
 
         // TODO: fix constraints, error is beeing printed
@@ -117,6 +118,7 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as? AudioCell {
             
             let viewModel = AudioCellViewModel(title: audio.name, duration: audio.duration, audioPath: audio.path) { (action) in
+//                Makes List View handle actions performed by the audio cell view model
                 if let audioHandler = self.audioHandler {
                     audioHandler(action)
                 }  
@@ -153,4 +155,20 @@ extension ListView: ListViewModelDelegate {
         }
     }
 
+}
+
+extension ListView {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let audioCell = cell as? AudioCell else {
+            return
+        }
+        iconManager.updateCellStatus(visible: true, cell: audioCell)
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let audioCell = cell as? AudioCell else {
+            return
+        }
+        iconManager.updateCellStatus(visible: false, cell: audioCell)
+    }
 }

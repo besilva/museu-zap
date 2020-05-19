@@ -45,18 +45,21 @@ class FileExchangerSuccessTests: XCTestCase {
     }
 
     func deleteFilesAtTempDir() {
-        let list = FileManager.listAllFilesFrom(folder: sut.appGroupFolderURL)
+        do {
+            let list = try FileManager.listAllFilesFrom(folder: sut.appGroupFolderURL)
 
-        if !list.isEmpty {
-            for file in list {
-                do {
-                    try FileManager.default.removeItem(at: file)
-                } catch {
-                    print(error)
+            if !list.isEmpty {
+                for file in list {
+                    do {
+                        try FileManager.default.removeItem(at: file)
+                    } catch {
+                        print(error)
+                    }
                 }
+            } else {
+                print("LIST SHOULD NOT BE EMPTY")
             }
-        } else {
-            print("LIST SHOULD NOT BE EMPTY")
+        } catch {
         }
 
     }
@@ -78,6 +81,7 @@ class FileExchangerSuccessTests: XCTestCase {
     // MARK: - Copy
 
     // Copies the "FileExchangerTests.txt" to the same folder with another name. Checks count and name
+    // If snapshot tests fail, this test will too
     func testCopyAudioToGroupFolder() {
         let newFile = "CopiedFile.txt"
 

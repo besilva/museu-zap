@@ -43,10 +43,8 @@ extension DAOCoreData {
     /// - throws: If an error occurs during saving an object into database (DatabaseErrors.create)
     public func create(_ objectToBeSaved: Entity) throws {
         do {
-            // Add object to be saved to the context
-            managedContext.insert(objectToBeSaved)
-
-            // Aersist changes at the context
+            // Persist changes at the context.
+            // When entity is created, it automatically insert it into shared context.
             try managedContext.save()
         } catch {
             print("DATABASE ERROR CREATE \n", error)

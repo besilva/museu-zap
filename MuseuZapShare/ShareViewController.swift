@@ -187,7 +187,7 @@ extension ShareViewController {
         // All imported audios are private
         audio.isPrivate = true
         audio.category = audioCategory
-        audio.duration = AudioManager().getDurationFrom(file: appAudioFileURL)
+        audio.duration = AudioManager.shared.getDurationFrom(file: appAudioFileURL)
 
         AudioServices().createAudio(audio: audio) { (error) in
             if let err = error {
