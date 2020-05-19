@@ -31,7 +31,6 @@ platform :ios do
     create_pull_request(
       repo: "besilva/museu-zap",
       title: "Version " + version + "(" + build_number+")",
-      base: "master", # optional, defaults to "master"
       body: "Bitrise did it again"    # optional
     )
   end
