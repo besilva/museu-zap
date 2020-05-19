@@ -155,6 +155,7 @@ extension ShareViewController {
             let audioName = contentText + ".\(audioExtension)"
 
             guard let audioCategory = self.category else {
+                print("COULD NOT GET CATEGORY\n")
                 throw ShareExtensionErrors.noCategory
             }
 
@@ -172,14 +173,12 @@ extension ShareViewController {
                 throw FileErrors.copy
             }
         } else {
-            print("COULD NOT GET external audio URL")
+            print("COULD NOT GET external audio URL\n")
             throw FileErrors.externalAudioURL
         }
     }
 
     func createEntities(withCategory audioCategory: AudioCategory) {
-//        let category = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
-//        category.categoryName = categoryText
 
         let audio = Audio(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
         audio.audioName = contentText
@@ -194,6 +193,5 @@ extension ShareViewController {
                 print(err)
             }
         }
-
     }
 }
