@@ -46,7 +46,7 @@ class CellIconManager {
         
         AudioManager.shared.notificationCenter.addObserver(self,
                      selector: #selector(playbackDidEnd),
-                     name: .AVPlayerItemDidPlayToEndTime,
+                     name: .playbackStopped,
                      object: nil)
     }
     
