@@ -19,7 +19,9 @@ class AudioCell: UITableViewCell, ViewCodable {
     
     var isPlaying: Bool {
         didSet {
-            self.playIcon.image = self.isPlaying ? UIImage(named: "pause.fill") : UIImage(named: "play.fill")
+            let pauseIcon = UIImage(named: "pause")
+            let playIcon = UIImage(named: "play")
+            self.playIcon.image = self.isPlaying ?  pauseIcon : playIcon
 //            self.setNeedsDisplay()
         }
     }
@@ -146,7 +148,7 @@ class AudioCell: UITableViewCell, ViewCodable {
     }
     
     func setupShareButton() {
-        shareIcon.image = UIImage(named: "square.and.arrow.up")
+        shareIcon.image = UIImage(named: "share")
         shareIcon.contentMode = .scaleAspectFit
         
 //        Adds behaviour to share audio on tap
