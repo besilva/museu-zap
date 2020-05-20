@@ -13,6 +13,7 @@ class ListView: UIView, ViewCodable {
     private var loader: UIActivityIndicatorView!
     private var tableView: UITableView = UITableView()
     private var cellIdentifier: String = "cell"
+    var placeholderView: UIView = UIView()
     var iconManager: CellIconManager = CellIconManager.shared
     var audioHandler: ((Action) -> Void)?
     var viewModel: ListViewModelProtocol? {
@@ -43,6 +44,7 @@ class ListView: UIView, ViewCodable {
 
     func configure() {
         setupTableView()
+        setupPlaceholderView()
     }
 
     func setupHierarchy() {
@@ -74,7 +76,7 @@ class ListView: UIView, ViewCodable {
     }
     
     func updateView() {
-        tableView.reloadData()
+        self.reloadTableView()
     }
     
 }
@@ -114,6 +116,13 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
 extension ListView: ListViewModelDelegate {
     func reloadTableView() {
         tableView.reloadData()
+        if self.viewModel?.count == 0  || self.viewModel == nil {
+            self.tableView.isScrollEnabled = false
+            self.tableView.backgroundView?.isHidden = false
+        } else {
+            self.tableView.isScrollEnabled = true
+            self.tableView.backgroundView?.isHidden = true
+        }
     }
     
     func stopLoading() {
@@ -136,5 +145,17 @@ extension ListView {
             return
         }
         iconManager.updateCellStatus(visible: false, cell: audioCell)
+    }
+}
+
+// MARK: Placeholder view
+extension ListView {
+    func setupPlaceholderView() {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height))
+        label.text = "empty!"
+        // styling
+        label.sizeToFit()
+        self.tableView.backgroundView = label
+        self.tableView.backgroundView?.isHidden = true
     }
 }

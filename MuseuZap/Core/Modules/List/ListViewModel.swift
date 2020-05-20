@@ -15,27 +15,31 @@ protocol ListViewModelDelegate: class {
 }
 
 protocol ListViewModelProtocol {
-    var array: [Audio] { get set }
+    var audios: [Audio] { get set }
     var navigationDelegate: NavigationDelegate? { get }
     var count: Int { get }
     var delegate: ListViewModelDelegate? { get set }
 //    Func getAllAudios()
     func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties
     func back()
-    init(audioServices: AudioServices, delegate: ListViewModelDelegate)
+    init(audioServices: AudioServices, audios: [Audio], delegate: ListViewModelDelegate)
 }
 
 class ListViewModel: ListViewModelProtocol {
     var audioServices: AudioServices
-    var array: [Audio] = []
-    var count: Int { array.count }
+    var audios: [Audio] = [] {
+        didSet {
+            self.delegate?.reloadTableView()
+        }
+    }
+    var count: Int { audios.count }
     internal weak var delegate: ListViewModelDelegate?
     internal weak var navigationDelegate: NavigationDelegate?
     
-    required init(audioServices: AudioServices, delegate: ListViewModelDelegate) {
+    required init(audioServices: AudioServices, audios: [Audio], delegate: ListViewModelDelegate) {
         self.audioServices = audioServices
         self.delegate = delegate
-        getArray()
+        self.audios = audios
     }
     
     func back() {
@@ -44,12 +48,12 @@ class ListViewModel: ListViewModelProtocol {
     }
 
     // MARK: - Core Data
-    func getArray() {
+    func retrieveAllAudios() {
 
         audioServices.getAllAudios { (error, audioArray) in
             if let audios = audioArray {
                 // Assign teste Array
-                self.array = audios
+                self.audios = audios
                 self.delegate?.stopLoading()
             } else {
                 // GetAll audios
@@ -60,7 +64,7 @@ class ListViewModel: ListViewModelProtocol {
     }
 
     func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties {
-        let element = array[indexPath.row]
+        let element = audios[indexPath.row]
         return AudioProperties(from: element)
     }
     
