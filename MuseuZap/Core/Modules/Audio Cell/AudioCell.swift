@@ -25,7 +25,6 @@ class AudioCell: UITableViewCell, ViewCodable {
             let pauseIcon = UIImage(named: "pause")
             let playIcon = UIImage(named: "play")
             self.playIcon.image = self.isPlaying ?  pauseIcon : playIcon
-//            self.setNeedsDisplay()
         }
     }
 
@@ -78,7 +77,6 @@ class AudioCell: UITableViewCell, ViewCodable {
     }
     
     func render() {
-
 //        Sets content view appearance
         container.layer.cornerRadius = 4
         container.backgroundColor = UIColor.Default.lightBackground
@@ -123,7 +121,7 @@ class AudioCell: UITableViewCell, ViewCodable {
         paragraphStyle.lineHeightMultiple = 0.9
         let attributedText = NSMutableAttributedString(string: audioTitle,
                                                        attributes: [NSAttributedString.Key.kern: 0.34,
-                                                                    	NSAttributedString.Key.paragraphStyle: paragraphStyle])
+                                                                    NSAttributedString.Key.paragraphStyle: paragraphStyle])
         titleLabel.attributedText = attributedText
         titleLabel.textAlignment = .left
     }
@@ -135,7 +133,7 @@ class AudioCell: UITableViewCell, ViewCodable {
         
 //        Sets text style attributes
         let attributedText = NSMutableAttributedString(string: durationString,
-                                                       	attributes: [NSAttributedString.Key.kern: 0.07])
+                                                       attributes: [NSAttributedString.Key.kern: 0.07])
         durationLabel.attributedText = attributedText
         durationLabel.textAlignment = .left
     }
@@ -163,13 +161,11 @@ class AudioCell: UITableViewCell, ViewCodable {
     @objc func shareAudio() {
         guard let viewModel = viewModel else { return }
         viewModel.share()
-        print("TAPED share")
     }
     
     @objc func changePlayStatus() {
         guard let viewModel = viewModel else { return }
         viewModel.changePlayStatus(cell: self)
-        print("TAPED AUDIO")
     }
 }
 
@@ -247,7 +243,7 @@ extension AudioCell {
         }
     }
     
-//        Setup play icon constraints
+//        Setup play icon constraints, inside hitArea
     func setPlayIconConstraints() {
 
         playHitArea.setContentCompressionResistancePriority(.required, for: .horizontal)
@@ -278,7 +274,7 @@ extension AudioCell {
         }
     }
 
-//        Setup share icon constraints
+//        Setup share icon constraints, inside hitArea
     func setShareIconConstraints() {
 
         shareHitArea.setContentCompressionResistancePriority(.required, for: .horizontal)
