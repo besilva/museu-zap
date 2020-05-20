@@ -14,15 +14,19 @@ protocol ListViewModelDelegate: class {
     func stopLoading()
     func reloadTableView()
     func endRefreshing()
+    var isFiltering: Bool { get }
+    var isSearchBarEmpty: Bool { get }
 }
 
 protocol ListViewModelProtocol {
     var array: [Audio] { get set }
+    var searchResultArray: [Audio] { get set }
     var navigationDelegate: NavigationDelegate? { get }
     var count: Int { get }
     var delegate: ListViewModelDelegate? { get set }
     func handleRefresh(_ refreshControl: UIRefreshControl)
     func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties
+    func performSearch(with text: String)
     func back()
     init(audioServices: AudioServices, delegate: ListViewModelDelegate)
 }
@@ -30,7 +34,14 @@ protocol ListViewModelProtocol {
 class ListViewModel: ListViewModelProtocol {
     var audioServices: AudioServices
     var array: [Audio] = []
-    var count: Int { array.count }
+    var searchResultArray = [Audio]()
+    // Count will be updated if a search starts
+    var count: Int {
+        if delegate?.isFiltering ?? false {
+            return searchResultArray.count
+        }
+        return array.count
+    }
     internal weak var delegate: ListViewModelDelegate?
     internal weak var navigationDelegate: NavigationDelegate?
     
@@ -64,8 +75,24 @@ class ListViewModel: ListViewModelProtocol {
     }
 
     func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties {
-        let element = array[indexPath.row]
+        // Initialize element with normal array and change it case isFiltering
+        var element = array[indexPath.row]
+
+        if delegate?.isFiltering ?? false {
+            element = searchResultArray[indexPath.row]
+        }
+
         return AudioProperties(from: element)
+    }
+
+    // MARK: - Search
+
+    func performSearch(with text: String) {
+        searchResultArray = array.filter { (audio) -> Bool in
+            return audio.audioName.lowercased().contains(text.lowercased())
+        }
+
+        delegate?.reloadTableView()
     }
 
     // MARK: - Refresh

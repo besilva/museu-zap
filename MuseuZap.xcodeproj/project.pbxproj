@@ -312,8 +312,8 @@
 		6473EDEA243B6D3E00A10F2C /* MuseuZapTests */ = {
 			isa = PBXGroup;
 			children = (
-				C527F28B246C22E000714778 /* AudioManager */,
 				642C63A8246EE97C0059FBDC /* AppDelegateFake.swift */,
+				C527F28B246C22E000714778 /* AudioManager */,
 				C53F4CA9246585FD001AAD57 /* FileExchanger */,
 				6461820624645363003BC3AB /* Helpers */,
 				80C274C424585BBA0051A1E6 /* CustomCellTests */,

@@ -31,6 +31,7 @@ class ListView: UIView, ViewCodable {
 
         return refreshControl
     }()
+    let searchController = UISearchController(searchResultsController: nil)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,7 +42,12 @@ class ListView: UIView, ViewCodable {
         tableView.separatorStyle = .none
         tableView.register(AudioCell.self, forCellReuseIdentifier: self.cellIdentifier)
         tableView.insertSubview(refreshControl, at: 0)
+
         refreshControl.translatesAutoresizingMaskIntoConstraints = false
+
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = true
+        searchController.searchBar.placeholder = "Buscar áudio"
         setupView()
     }
 
@@ -101,6 +107,8 @@ class ListView: UIView, ViewCodable {
     
 }
 
+    // MARK: - Table View
+
 extension ListView: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -137,6 +145,8 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+    // MARK: - ViewModel
+
 extension ListView: ListViewModelDelegate {
 
     func reloadTableView() {
@@ -155,7 +165,16 @@ extension ListView: ListViewModelDelegate {
         }
     }
 
+    var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    var isFiltering: Bool {
+      return searchController.isActive && !isSearchBarEmpty
+    }
 }
+
+   // MARK: - Change Icon
 
 extension ListView {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -170,5 +189,15 @@ extension ListView {
             return
         }
         iconManager.updateCellStatus(visible: false, cell: audioCell)
+    }
+}
+
+    // MARK: - Search
+
+extension ListView: UISearchResultsUpdating {
+
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        viewModel?.performSearch(with: searchBar.text!)
     }
 }

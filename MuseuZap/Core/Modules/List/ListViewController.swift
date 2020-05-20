@@ -64,5 +64,6 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
     
     func setup() {
         tabBarItem = UITabBarItem(title: "Explorar", image: UIImage(named: "explore-outline"), selectedImage: UIImage(named: "explore-filled"))
+        navigationItem.searchController = myView.searchController
     }
 }
