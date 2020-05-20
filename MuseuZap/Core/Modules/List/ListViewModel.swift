@@ -52,7 +52,9 @@ class ListViewModel: ListViewModelProtocol {
             if let audios = audioArray {
                 // Assign teste Array
                 self.array = audios
+                // Get array is only called in Init and when refresh, so no problem to leave these delegate calls here
                 self.delegate?.stopLoading()
+                self.delegate?.endRefreshing()
             } else {
                 // GetAll audios
                 // Display here some frendiler message based on Error Type (database error or not)
@@ -71,6 +73,5 @@ class ListViewModel: ListViewModelProtocol {
     func handleRefresh(_ refreshControl: UIRefreshControl) {
         getArray()
         delegate?.reloadTableView()
-//        self.delegate?.endRefreshing()
     }
 }

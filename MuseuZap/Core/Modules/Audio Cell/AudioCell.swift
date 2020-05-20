@@ -246,6 +246,12 @@ extension AudioCell {
     
 //        Setup play icon constraints
     func setPlayIconConstraints() {
+
+
+        
+
+
+
         hitArea.backgroundColor = .lightGray
 
         hitArea.setContentCompressionResistancePriority(.required, for: .horizontal)

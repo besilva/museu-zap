@@ -67,11 +67,9 @@ class ListView: UIView, ViewCodable {
 
     func setupConstraints() {
 
-        // TODO: fix constraints, error is beeing printed
-
         refreshControl.setupConstraints { (refresh) in
             refresh.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-            refresh.bottomAnchor.constraint(equalTo: self.tableView.topAnchor, constant: -16).isActive = true
+            refresh.bottomAnchor.constraint(equalTo: self.tableView.topAnchor, constant: 0).isActive = true
             refresh.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
             refresh.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
         }
@@ -87,6 +85,7 @@ class ListView: UIView, ViewCodable {
             loader.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
             loader.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         }
+        
     }
     
     func render() {
@@ -133,7 +132,6 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
 
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         viewModel?.handleRefresh(refreshControl)
-        self.refreshControl.endRefreshing()
     }
 }
 
