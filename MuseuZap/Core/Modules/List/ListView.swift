@@ -25,7 +25,9 @@ class ListView: UIView, ViewCodable {
         refreshControl.addTarget(self,
                                  action: #selector(self.handleRefresh(_:)),
                                  for: UIControl.Event.valueChanged)
-        refreshControl.tintColor = UIColor.Default.power
+        // For some reason, leaving tintColor = UIColor.default.power is "more red" than normal.
+        // Power color is UIColor(red: 1, green: 0, blue: 0.57, alpha: 1), so letting tintColor little bit less red works
+        refreshControl.tintColor = UIColor(red: 0.8, green: 0, blue: 0.6, alpha: 1)
 
         return refreshControl
     }()
