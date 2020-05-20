@@ -10,12 +10,13 @@ import UIKit
 
 class AudioCell: UITableViewCell, ViewCodable {
 
-    var hitArea: UIView = UIView()
     var container: UIView = UIView()
     var audioDataContentView: UIView = UIView()
     var titleLabel: UILabel = UILabel()
     var durationLabel: UILabel = UILabel()
 
+    var playHitArea: UIView = UIView()
+    var shareHitArea: UIView = UIView()
     var playIcon: UIImageView = UIImageView()
     var shareIcon: UIImageView = UIImageView()
     
@@ -50,9 +51,10 @@ class AudioCell: UITableViewCell, ViewCodable {
     }
     
     func setupHierarchy() {
-        hitArea.addSubview(playIcon)
+        playHitArea.addSubview(playIcon)
+        shareHitArea.addSubview(shareIcon)
         audioDataContentView.addSubviews(titleLabel, durationLabel)
-        container.addSubviews(audioDataContentView, hitArea, shareIcon)
+        container.addSubviews(audioDataContentView, playHitArea, shareHitArea)
         contentView.addSubview(container)
     }
     
@@ -71,11 +73,9 @@ class AudioCell: UITableViewCell, ViewCodable {
         setAudioDurationConstraints()
         setPlayIconConstraints()
         setShareIconConstraints()
-        
     }
     
     func render() {
-//        self.layer.cornerRadius = 4
 
 //        Sets content view appearance
         container.layer.cornerRadius = 4
@@ -144,8 +144,8 @@ class AudioCell: UITableViewCell, ViewCodable {
         
 //        Adds behaviour to play audio on tap
         let tap = UITapGestureRecognizer(target: self, action: #selector(changePlayStatus))
-        hitArea.isUserInteractionEnabled = true
-        hitArea.addGestureRecognizer(tap)
+        playHitArea.isUserInteractionEnabled = true
+        playHitArea.addGestureRecognizer(tap)
     }
     
     func setupShareButton() {
@@ -154,20 +154,20 @@ class AudioCell: UITableViewCell, ViewCodable {
         
 //        Adds behaviour to share audio on tap
         let tap = UITapGestureRecognizer(target: self, action: #selector(shareAudio))
-        shareIcon.isUserInteractionEnabled = true
-        shareIcon.addGestureRecognizer(tap)
+        shareHitArea.isUserInteractionEnabled = true
+        shareHitArea.addGestureRecognizer(tap)
     }
     
     @objc func shareAudio() {
         guard let viewModel = viewModel else { return }
         viewModel.share()
+        print("TAPED share")
     }
     
     @objc func changePlayStatus() {
         guard let viewModel = viewModel else { return }
         viewModel.changePlayStatus(cell: self)
-        print("TAPED")
-        
+        print("TAPED AUDIO")
     }
 }
 
@@ -177,9 +177,10 @@ extension AudioCell {
     func setAudioDataContentViewConstraints() {
         
         audioDataContentView.setContentCompressionResistancePriority(.required, for: .vertical)
+
         audioDataContentView.setupConstraints { (_) in
+
             audioDataContentView.topAnchor.constraint(equalTo: container.topAnchor, constant: 16).isActive = true
-            
             let bottomConstraint = NSLayoutConstraint(item: audioDataContentView,
                                                       attribute: .bottom,
                                                       relatedBy: .equal,
@@ -189,7 +190,7 @@ extension AudioCell {
                                                       constant: -16)
             bottomConstraint.priority = UILayoutPriority(rawValue: 750)
             bottomConstraint.isActive = true
-            
+
             let bottomMarginConstraint = NSLayoutConstraint(item: audioDataContentView,
                                                             attribute: .bottom,
                                                             relatedBy: .lessThanOrEqual,
@@ -199,7 +200,7 @@ extension AudioCell {
                                                             constant: -16)
             bottomMarginConstraint.priority = UILayoutPriority(rawValue: 999)
             bottomMarginConstraint.isActive = true
-            audioDataContentView.trailingAnchor.constraint(equalTo: shareIcon.leadingAnchor, constant: -24).isActive = true
+            audioDataContentView.trailingAnchor.constraint(equalTo: shareHitArea.leadingAnchor, constant: -8).isActive = true
         }
     }
 
@@ -219,12 +220,12 @@ extension AudioCell {
     func setAudioDurationConstraints() {
         durationLabel.setupConstraints { (_) in
             let topConstraint = NSLayoutConstraint(item: durationLabel,
-                                                      attribute: .top,
-                                                      relatedBy: .equal,
-                                                      toItem: titleLabel,
-                                                      attribute: .bottom,
-                                                      multiplier: 1,
-                                                      constant: -2)
+                                                   attribute: .top,
+                                                   relatedBy: .equal,
+                                                   toItem: titleLabel,
+                                                   attribute: .bottom,
+                                                   multiplier: 1,
+                                                   constant: -2)
             topConstraint.priority = UILayoutPriority.required
             topConstraint.isActive = true
             
@@ -239,7 +240,7 @@ extension AudioCell {
             bottomConstraint.priority = UILayoutPriority(rawValue: 999)
             bottomConstraint.isActive = true
             
-            durationLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 13).isActive = true
+            durationLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 26).isActive = true
             durationLabel.leadingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor).isActive = true
         }
     }
@@ -247,21 +248,14 @@ extension AudioCell {
 //        Setup play icon constraints
     func setPlayIconConstraints() {
 
+        playHitArea.setContentCompressionResistancePriority(.required, for: .horizontal)
+        playHitArea.setContentHuggingPriority(.required, for: .horizontal)
+        playHitArea.setupConstraints { (_) in
+            playHitArea.topAnchor.constraint(equalTo: container.topAnchor, constant: 16).isActive = true
+            playHitArea.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 16).isActive = true
+            playHitArea.trailingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor, constant: -16).isActive = true
 
-        
-
-
-
-        hitArea.backgroundColor = .lightGray
-
-        hitArea.setContentCompressionResistancePriority(.required, for: .horizontal)
-        hitArea.setContentHuggingPriority(.required, for: .horizontal)
-        hitArea.setupConstraints { (_) in
-            hitArea.topAnchor.constraint(equalTo: container.topAnchor, constant: 16).isActive = true
-            hitArea.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 16).isActive = true
-            hitArea.trailingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor, constant: -16).isActive = true
-
-            let bottomConstraint = NSLayoutConstraint(item: hitArea,
+            let bottomConstraint = NSLayoutConstraint(item: playHitArea,
                                                       attribute: .bottom,
                                                       relatedBy: .equal,
                                                       toItem: contentView,
@@ -271,43 +265,35 @@ extension AudioCell {
             bottomConstraint.priority = UILayoutPriority(rawValue: 750)
             bottomConstraint.isActive = true
 
-            let width = NSLayoutConstraint(item: hitArea,
-                                                   attribute: .width,
-                                                   relatedBy: .equal,
-                                                   toItem: nil,
-                                                   attribute: .width,
-                                                   multiplier: 1,
-                                                   constant: 44)
-                   width.isActive = true
-
-                   let heigh = NSLayoutConstraint(item: hitArea,
-                                                   attribute: .height,
-                                                   relatedBy: .equal,
-                                                   toItem: nil,
-                                                   attribute: .height,
-                                                   multiplier: 1,
-                                                   constant: 44)
-                   heigh.isActive = true
+            createHitAreaConstrains(for: playHitArea)
         }
 
         playIcon.setContentCompressionResistancePriority(.required, for: .horizontal)
         playIcon.setContentHuggingPriority(.required, for: .horizontal)
         playIcon.setupConstraints { (_) in
-            playIcon.centerYAnchor.constraint(equalTo: hitArea.centerYAnchor).isActive = true
-            playIcon.centerXAnchor.constraint(equalTo: hitArea.centerXAnchor).isActive = true
-//            playIcon.topAnchor.constraint(equalTo: container.topAnchor, constant: 16).isActive = true
-//            playIcon.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 24).isActive = true
-//            playIcon.trailingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor, constant: -16).isActive = true
+            playIcon.centerYAnchor.constraint(equalTo: playHitArea.centerYAnchor).isActive = true
+            playIcon.centerXAnchor.constraint(equalTo: playHitArea.centerXAnchor).isActive = true
         }
     }
 
 //        Setup share icon constraints
     func setShareIconConstraints() {
+
+        shareHitArea.setContentCompressionResistancePriority(.required, for: .horizontal)
+        shareHitArea.setContentHuggingPriority(.required, for: .horizontal)
+        shareHitArea.setupConstraints { (_) in
+            // Leading anchor was already set in audioDataContentView
+            shareHitArea.topAnchor.constraint(equalTo: container.topAnchor, constant: 16).isActive = true
+            shareHitArea.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -8).isActive = true
+
+            createHitAreaConstrains(for: shareHitArea)
+        }
+
         shareIcon.setContentCompressionResistancePriority(.required, for: .horizontal)
         shareIcon.setContentHuggingPriority(.required, for: .horizontal)
         shareIcon.setupConstraints { (_) in
-            shareIcon.topAnchor.constraint(equalTo: container.topAnchor, constant: 16).isActive = true
-            shareIcon.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -16).isActive = true
+            shareIcon.centerYAnchor.constraint(equalTo: shareHitArea.centerYAnchor).isActive = true
+            shareIcon.centerXAnchor.constraint(equalTo: shareHitArea.centerXAnchor).isActive = true
         }
     }
 }
@@ -316,5 +302,31 @@ extension AudioCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         self.isPlaying = false
+    }
+}
+
+    // MARK: - Constrains Helper
+
+extension AudioCell {
+
+    /// Creates minimum hitArea constrains as fixed constrains
+    func createHitAreaConstrains(for view: UIView) {
+        let width = NSLayoutConstraint(item: view,
+                                       attribute: .width,
+                                       relatedBy: .equal,
+                                       toItem: nil,
+                                       attribute: .width,
+                                       multiplier: 1,
+                                       constant: 44)
+        width.isActive = true
+
+        let heigh = NSLayoutConstraint(item: view,
+                                       attribute: .height,
+                                       relatedBy: .equal,
+                                       toItem: nil,
+                                       attribute: .height,
+                                       multiplier: 1,
+                                       constant: 44)
+        heigh.isActive = true
     }
 }
