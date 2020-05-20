@@ -154,6 +154,11 @@ extension ShareViewController {
             let audioExtension = audioSource.pathExtension
             let audioName = contentText + ".\(audioExtension)"
 
+            guard let audioCategory = self.category else {
+                print("COULD NOT GET CATEGORY\n")
+                throw ShareExtensionErrors.noCategory
+            }
+
             do {
                 // Ensures that appAudioFileURL is not optional
                 guard let auxURL = try FileExchanger().copyAudioToGroupFolder(sourceURL: audioSource,
@@ -162,27 +167,25 @@ extension ShareViewController {
                     throw FileErrors.appSharedURL
                 }
                 self.appAudioFileURL = auxURL
-                createEntities()
+                createEntities(withCategory: audioCategory)
             } catch {
                 print(error)
                 throw FileErrors.copy
             }
         } else {
-            print("COULD NOT GET external audio URL")
+            print("COULD NOT GET external audio URL\n")
             throw FileErrors.externalAudioURL
         }
     }
 
-    func createEntities() {
-        let category = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
-        category.categoryName = categoryText
+    func createEntities(withCategory audioCategory: AudioCategory) {
 
         let audio = Audio(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
         audio.audioName = contentText
         audio.audioPath = appAudioFileURL.path
         // All imported audios are private
         audio.isPrivate = true
-        audio.category = category
+        audio.category = audioCategory
         audio.duration = AudioManager.shared.getDurationFrom(file: appAudioFileURL)
 
         AudioServices().createAudio(audio: audio) { (error) in
@@ -191,5 +194,4 @@ extension ShareViewController {
             }
         }
     }
-    
 }

@@ -8,10 +8,12 @@
 
 import Foundation
 import DatabaseKit
+import UIKit
 
 protocol ListViewModelDelegate: class {
     func stopLoading()
     func reloadTableView()
+    func endRefreshing()
 }
 
 protocol ListViewModelProtocol {
@@ -19,7 +21,7 @@ protocol ListViewModelProtocol {
     var navigationDelegate: NavigationDelegate? { get }
     var count: Int { get }
     var delegate: ListViewModelDelegate? { get set }
-//    Func getAllAudios()
+    func handleRefresh(_ refreshControl: UIRefreshControl)
     func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties
     func back()
     init(audioServices: AudioServices, delegate: ListViewModelDelegate)
@@ -50,7 +52,9 @@ class ListViewModel: ListViewModelProtocol {
             if let audios = audioArray {
                 // Assign teste Array
                 self.array = audios
+                // Get array is only called in Init and when refresh, so no problem to leave these delegate calls here
                 self.delegate?.stopLoading()
+                self.delegate?.endRefreshing()
             } else {
                 // GetAll audios
                 // Display here some frendiler message based on Error Type (database error or not)
@@ -63,5 +67,11 @@ class ListViewModel: ListViewModelProtocol {
         let element = array[indexPath.row]
         return AudioProperties(from: element)
     }
-    
+
+    // MARK: - Refresh
+
+    func handleRefresh(_ refreshControl: UIRefreshControl) {
+        getArray()
+        delegate?.reloadTableView()
+    }
 }
