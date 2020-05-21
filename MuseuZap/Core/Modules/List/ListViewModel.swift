@@ -24,7 +24,7 @@ protocol ListViewModelProtocol {
     var navigationDelegate: NavigationDelegate? { get }
     var count: Int { get }
     var delegate: ListViewModelDelegate? { get set }
-    func handleRefresh(_ refreshControl: UIRefreshControl)
+    func handleRefresh()
     func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties
     func performSearch(with text: String)
     func back()
@@ -97,7 +97,7 @@ class ListViewModel: ListViewModelProtocol {
 
     // MARK: - Refresh
 
-    func handleRefresh(_ refreshControl: UIRefreshControl) {
+    func handleRefresh() {
         getArray()
         delegate?.reloadTableView()
     }

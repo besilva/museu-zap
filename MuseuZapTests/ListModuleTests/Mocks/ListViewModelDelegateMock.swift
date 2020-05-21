@@ -9,10 +9,14 @@
 @testable import MuseuZap
 
 class ListViewModelDelegateMock: ListViewModelDelegate {
+    var refreshFlag: Bool = false
+
     func stopLoading() {
     }
 
     func reloadTableView() {
+        // To test if this funtion was called, set flag
+        refreshFlag = true
     }
 
     func endRefreshing() {

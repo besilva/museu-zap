@@ -144,7 +144,7 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
     }
 
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        viewModel?.handleRefresh(refreshControl)
+        viewModel?.handleRefresh()
     }
 }
 

@@ -10,16 +10,36 @@ import DatabaseKit
 
 class AudioServicesMock: AudioServicesProtocol {
 
-    var exampleAudio = Audio()
+    var audio1 = Audio()
+    var searchAudio = Audio()
     var exampleCategory = AudioCategory()
 
     enum MockCases {
-        case addOneMoreAudio
-        case noError
+        case setUp
+        case onlyOneAudio
         case error
     }
 
-    var stateCase: MockCases = .noError
+    var stateCase: MockCases = .setUp
+
+    init() {
+        // Prepare audio
+        exampleCategory.categoryName = "ListViewModelTests Category"
+
+        audio1.audioName = "Audio 1"
+        audio1.audioPath = FileManager.default.temporaryDirectory.path
+        audio1.category = exampleCategory
+        audio1.duration = 15
+        audio1.isPrivate = true
+
+        searchAudio.audioName = "Search Audio"
+        searchAudio.audioPath = FileManager.default.temporaryDirectory.path
+        searchAudio.category = exampleCategory
+        searchAudio.duration = 10
+        searchAudio.isPrivate = false
+    }
+
+    // MARK: - Functions
 
     func createAudio(audio: Audio, _ completion: ((Error?) -> Void)) {
         print("create")
@@ -27,11 +47,11 @@ class AudioServicesMock: AudioServicesProtocol {
 
     func getAllAudios(_ completion: @escaping (Error?, [Audio]?) -> Void) {
         switch stateCase {
-        case .addOneMoreAudio:
-            // Load ViewModel array with 2 example audios
-            completion(nil, [exampleAudio, exampleAudio])
-        case .noError:
-            completion(nil, [exampleAudio])
+        case .setUp:
+            completion(nil, [audio1, searchAudio])
+        case .onlyOneAudio:
+            // Load ViewModel array with 1 example audio
+            completion(nil, [audio1])
         case .error:
             print()
         }
