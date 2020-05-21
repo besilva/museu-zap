@@ -44,6 +44,9 @@
 		64F50825246C38E500625878 /* DatabaseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 64F5081D246C306C00625878 /* DatabaseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		64F50828246CE8F800625878 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64F50827246CE8F800625878 /* GoogleService-Info.plist */; };
 		8024DA2D2449F19000093D37 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8024DA2C2449F19000093D37 /* AboutView.swift */; };
+		803816542476BBC70029FE88 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803816532476BBC70029FE88 /* PlaceholderView.swift */; };
+		803816572476BCAD0029FE88 /* PlaceholderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803816562476BCAD0029FE88 /* PlaceholderViewModel.swift */; };
+		804A612F2476D3520053F011 /* PlaceholderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804A612E2476D3520053F011 /* PlaceholderError.swift */; };
 		808C9E30245F283900FF4FEB /* PublicAudioCellViewModel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808C9E2E245F17D600FF4FEB /* PublicAudioCellViewModel+Extension.swift */; };
 		80A7E965246EDB8D00E7EAA2 /* CellIconManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A7E964246EDB8D00E7EAA2 /* CellIconManagerTests.swift */; };
 		80ABB7AF2457181F0020CF42 /* AudioCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ABB7AE2457181F0020CF42 /* AudioCellViewModelProtocol.swift */; };
@@ -81,6 +84,7 @@
 		C527F28D246C22F800714778 /* AudioManagerTestsSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = C527F28C246C22F800714778 /* AudioManagerTestsSuccess.swift */; };
 		C52F15D4246C7D8B00FBDA98 /* AudioManagerTest.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C5B87713246C4B5E0027A586 /* AudioManagerTest.m4a */; };
 		C53F4CAB246598C2001AAD57 /* FileExchangerSuccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53F4CAA246598C2001AAD57 /* FileExchangerSuccessTests.swift */; };
+		C5645C6D24746B1B005C411C /* ShareExtensionErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5645C6C24746B1B005C411C /* ShareExtensionErrors.swift */; };
 		C586E2C72465AA2400B1930B /* FileExchangerErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C586E2C62465AA2400B1930B /* FileExchangerErrorTests.swift */; };
 		C5904C69246AEED4004B9921 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904C68246AEED4004B9921 /* AudioManager.swift */; };
 		C5AFABE7246D814600E7AF31 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AFABE6246D814600E7AF31 /* FileManager+Extension.swift */; };
@@ -173,6 +177,9 @@
 		64F5081D246C306C00625878 /* DatabaseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DatabaseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64F50827246CE8F800625878 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8024DA2C2449F19000093D37 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		803816532476BBC70029FE88 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
+		803816562476BCAD0029FE88 /* PlaceholderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderViewModel.swift; sourceTree = "<group>"; };
+		804A612E2476D3520053F011 /* PlaceholderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderError.swift; sourceTree = "<group>"; };
 		808C9E2E245F17D600FF4FEB /* PublicAudioCellViewModel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PublicAudioCellViewModel+Extension.swift"; sourceTree = "<group>"; };
 		80A7E964246EDB8D00E7EAA2 /* CellIconManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellIconManagerTests.swift; sourceTree = "<group>"; };
 		80ABB7AE2457181F0020CF42 /* AudioCellViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCellViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -203,6 +210,7 @@
 		C5149216247315FE0080B9B1 /* Sextou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Sextou.mp3; sourceTree = "<group>"; };
 		C527F28C246C22F800714778 /* AudioManagerTestsSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManagerTestsSuccess.swift; sourceTree = "<group>"; };
 		C53F4CAA246598C2001AAD57 /* FileExchangerSuccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExchangerSuccessTests.swift; sourceTree = "<group>"; };
+		C5645C6C24746B1B005C411C /* ShareExtensionErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtensionErrors.swift; sourceTree = "<group>"; };
 		C586E2C62465AA2400B1930B /* FileExchangerErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExchangerErrorTests.swift; sourceTree = "<group>"; };
 		C5904C68246AEED4004B9921 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		C59A6B2C2464887C0011828D /* FileExchanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExchanger.swift; sourceTree = "<group>"; };
@@ -327,6 +335,7 @@
 				64C77595245FBA7D00FDEA03 /* MuseuZapShare.entitlements */,
 				64C7757C2457162700FDEA03 /* ShareViewController.swift */,
 				64C7758E245B128700FDEA03 /* CategoryTableViewController.swift */,
+				C5645C6C24746B1B005C411C /* ShareExtensionErrors.swift */,
 				64C7757E2457162700FDEA03 /* MainInterface.storyboard */,
 				64C775812457162700FDEA03 /* Info.plist */,
 				64C7758C2458739C00FDEA03 /* Assets.xcassets */,
@@ -380,6 +389,7 @@
 		64DD6FE8243E0B1600404321 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				803816552476BC990029FE88 /* Placeholder */,
 				80ABB7AD245717F40020CF42 /* Audio Cell */,
 				80D80EF12447374400915F1C /* About */,
 				64DD6FEA243E0BB800404321 /* List */,
@@ -406,6 +416,16 @@
 				64DD6FF6243E0DB700404321 /* ListViewModel.swift */,
 			);
 			path = List;
+			sourceTree = "<group>";
+		};
+		803816552476BC990029FE88 /* Placeholder */ = {
+			isa = PBXGroup;
+			children = (
+				803816532476BBC70029FE88 /* PlaceholderView.swift */,
+				803816562476BCAD0029FE88 /* PlaceholderViewModel.swift */,
+				804A612E2476D3520053F011 /* PlaceholderError.swift */,
+			);
+			path = Placeholder;
 			sourceTree = "<group>";
 		};
 		80ABB7AD245717F40020CF42 /* Audio Cell */ = {
@@ -762,12 +782,15 @@
 				80ABB7B324571C460020CF42 /* AudioCellViewModel.swift in Sources */,
 				80BBEDE824697DF500F8396E /* AudioCellError.swift in Sources */,
 				80F7235E245319DA00583137 /* UILabel+Extension.swift in Sources */,
+				804A612F2476D3520053F011 /* PlaceholderError.swift in Sources */,
 				80ABB7AF2457181F0020CF42 /* AudioCellViewModelProtocol.swift in Sources */,
 				C500AF6F246B8A1A00F5AC0A /* AudioErrors.swift in Sources */,
 				80D80EF62447378A00915F1C /* AboutViewModel.swift in Sources */,
 				80DF26FC2472B55C00B6A5FC /* FileExchanger.swift in Sources */,
 				64DD6FF9243E10E400404321 /* TestCoordinator.swift in Sources */,
 				64A60C342448BD33003B0F26 /* UIViewControllerExtension.swift in Sources */,
+				803816542476BBC70029FE88 /* PlaceholderView.swift in Sources */,
+				803816572476BCAD0029FE88 /* PlaceholderViewModel.swift in Sources */,
 				64DD6FE6243E0A4700404321 /* Stack.swift in Sources */,
 				C5904C69246AEED4004B9921 /* AudioManager.swift in Sources */,
 				C5AFABE7246D814600E7AF31 /* FileManager+Extension.swift in Sources */,
@@ -812,6 +835,7 @@
 				64C7757D2457162700FDEA03 /* ShareViewController.swift in Sources */,
 				C500AF70246B8AC700F5AC0A /* AudioErrors.swift in Sources */,
 				64C7758924571EF100FDEA03 /* ViewCodable.swift in Sources */,
+				C5645C6D24746B1B005C411C /* ShareExtensionErrors.swift in Sources */,
 				80DF26FD2472B56700B6A5FC /* FileErrors.swift in Sources */,
 				C5AFABE8246D86E000E7AF31 /* FileManager+Extension.swift in Sources */,
 				64C77591245F7F1100FDEA03 /* UIColorExtension.swift in Sources */,
@@ -982,14 +1006,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 18;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				DEVELOPMENT_TEAM = B73YH55T95;
 				INFOPLIST_FILE = MuseuZap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.br.MuseuZap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.br.MuseuZapIgnacio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1008,14 +1032,14 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 18;
-				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				DEVELOPMENT_TEAM = B73YH55T95;
 				INFOPLIST_FILE = MuseuZap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.br.MuseuZap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.br.MuseuZapIgnacio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1032,7 +1056,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				DEVELOPMENT_TEAM = B73YH55T95;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -1067,7 +1091,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				DEVELOPMENT_TEAM = B73YH55T95;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -1101,7 +1125,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 18;
-				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				DEVELOPMENT_TEAM = B73YH55T95;
 				INFOPLIST_FILE = MuseuZapShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1109,7 +1133,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.br.MuseuZap.MuseuZapShare;
+				PRODUCT_BUNDLE_IDENTIFIER = com.br.MuseuZapIgnacio.MuseuZapShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1125,7 +1149,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 18;
-				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				DEVELOPMENT_TEAM = B73YH55T95;
 				INFOPLIST_FILE = MuseuZapShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1133,7 +1157,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.br.MuseuZap.MuseuZapShare;
+				PRODUCT_BUNDLE_IDENTIFIER = com.br.MuseuZapIgnacio.MuseuZapShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;

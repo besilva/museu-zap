@@ -28,14 +28,17 @@ class AboutViewModel: AboutViewModelProtocol {
         self.description = description
     }
     
+    // Handles back action
     func back() {
         navigationDelegate?.handleNavigation(action: .back)
     }
     
+    // Handles copy action
     func copy() {
         navigationDelegate?.handleNavigation(action: .presentAlert("", "Email copiado!", nil, .alert))
     }
     
+    // Handles send email, showing modal view
     func sendEmail() throws {
         if let url = URL(string: "mailto:\(self.email)") {
           if #available(iOS 10.0, *) {

@@ -13,7 +13,7 @@ class ListView: UIView, ViewCodable {
     private var loader: UIActivityIndicatorView!
     private var tableView: UITableView = UITableView()
     private var cellIdentifier: String = "cell"
-    var placeholderView: UIView = UIView()
+    var placeholderView: PlaceholderView = PlaceholderView()
     var iconManager: CellIconManager = CellIconManager.shared
     var audioHandler: ((Action) -> Void)?
     var viewModel: ListViewModelProtocol? {
@@ -21,6 +21,15 @@ class ListView: UIView, ViewCodable {
             updateView()
         }
     }
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self,
+                                 action: #selector(self.handleRefresh(_:)),
+                                 for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor.Default.power
+
+        return refreshControl
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,6 +39,8 @@ class ListView: UIView, ViewCodable {
         tableView.estimatedRowHeight = 76
         tableView.separatorStyle = .none
         tableView.register(AudioCell.self, forCellReuseIdentifier: self.cellIdentifier)
+        tableView.insertSubview(refreshControl, at: 0)
+        refreshControl.translatesAutoresizingMaskIntoConstraints = false
         setupView()
     }
 
@@ -52,22 +63,38 @@ class ListView: UIView, ViewCodable {
     }
 
     func createLoader() {
-        loader.startAnimating()
         loader.hidesWhenStopped = true
+        loader.stopAnimating()
     }
 
     func setupConstraints() {
+
+        refreshControl.setupConstraints { (refresh) in
+            refresh.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+            refresh.bottomAnchor.constraint(equalTo: self.tableView.topAnchor, constant: 0).isActive = true
+            refresh.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
+            refresh.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
+        }
+
         tableView.setupConstraints { (tableView) in
             tableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
-            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
+            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
         }
         
         loader.setupConstraints { (loader) in
             loader.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
             loader.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         }
+        
+        placeholderView.setupConstraints { (_) in
+            placeholderView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+            placeholderView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+            placeholderView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+            placeholderView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        }
+        
     }
     
     func render() {
@@ -111,9 +138,14 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
         }
         return UITableViewCell()
     }
+
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        viewModel?.handleRefresh(refreshControl)
+    }
 }
 
 extension ListView: ListViewModelDelegate {
+
     func reloadTableView() {
         tableView.reloadData()
         if self.viewModel?.count == 0  || self.viewModel == nil {
@@ -125,11 +157,24 @@ extension ListView: ListViewModelDelegate {
         }
     }
     
+    func startLoading() {
+        DispatchQueue.main.async {
+            self.loader.startAnimating()
+        }
+    }
+
     func stopLoading() {
         DispatchQueue.main.async {
             self.loader.stopAnimating()
         }
     }
+
+    func endRefreshing() {
+        DispatchQueue.main.async {
+            self.refreshControl.endRefreshing()
+        }
+    }
+
 }
 
 extension ListView {
@@ -151,11 +196,18 @@ extension ListView {
 // MARK: Placeholder view
 extension ListView {
     func setupPlaceholderView() {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height))
-        label.text = "empty!"
-        // styling
-        label.sizeToFit()
-        self.tableView.backgroundView = label
+        let title = "Você ainda não adicionou áudios.\nTá esperando o quê?! 😜"
+        let subtitle = "No Blin/Pleen você pode organizar áudios do WhatsApp de acordo com categorias."
+        let actionMessage = "Saiba como adicionar áudios"
+        let actionURL = URL(string: "https://www.youtube.com/watch?v=dQw4w9WgXcQ")!
+        let placeholderViewModel = PlaceholderViewModel(title: title,
+                                                        subtitle: subtitle,
+                                                        actionMessage: actionMessage,
+                                                        actionURL: actionURL,
+                                                        iconAssetName: "folder.fill.badge.plus")
+        
+        self.placeholderView.viewModel = placeholderViewModel
+        self.tableView.backgroundView = self.placeholderView
         self.tableView.backgroundView?.isHidden = true
     }
 }
