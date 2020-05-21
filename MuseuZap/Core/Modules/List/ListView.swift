@@ -31,6 +31,7 @@ class ListView: UIView, ViewCodable {
 
         return refreshControl
     }()
+    var refreshScrollConstrain: NSLayoutConstraint!
     let searchController = UISearchController(searchResultsController: nil)
 
     override init(frame: CGRect) {
@@ -44,6 +45,8 @@ class ListView: UIView, ViewCodable {
         tableView.insertSubview(refreshControl, at: 0)
 
         refreshControl.translatesAutoresizingMaskIntoConstraints = false
+        // Constrain will be true or false depending on the scroll delegate
+        refreshScrollConstrain = refreshControl.bottomAnchor.constraint(equalTo: self.tableView.topAnchor, constant: 0)
 
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = true
@@ -77,7 +80,7 @@ class ListView: UIView, ViewCodable {
 
         refreshControl.setupConstraints { (refresh) in
             refresh.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-            refresh.bottomAnchor.constraint(equalTo: self.tableView.topAnchor, constant: 0).isActive = true
+            refreshScrollConstrain.isActive = true
             refresh.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
             refresh.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
         }
@@ -199,5 +202,21 @@ extension ListView: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
         viewModel?.performSearch(with: searchBar.text!)
+    }
+}
+
+    // MARK: - Scroll for refreshControl
+
+// Without this, this constrain would break in order to scroll down
+extension ListView: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        if scrollView.contentOffset.y > 0 {
+            // Scrolling down deactive constrain
+            refreshScrollConstrain.isActive = false
+        } else {
+            // Scrolling up activate in order to pull to refresh
+            refreshScrollConstrain.isActive = true
+        }
     }
 }
