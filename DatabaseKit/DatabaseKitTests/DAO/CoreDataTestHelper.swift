@@ -13,7 +13,7 @@ import CoreData
 
 /// Mocks the persistant Container and Current managedObject
 /// Contex is RAM Memory insted of the own App Database
-class CoreDataTestHelper {
+public class CoreDataTestHelper {
 
     let moduleName = "MuseuZap"
 

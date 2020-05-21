@@ -28,11 +28,11 @@ protocol ListViewModelProtocol {
     func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties
     func performSearch(with text: String)
     func back()
-    init(audioServices: AudioServices, delegate: ListViewModelDelegate)
+    init(audioServices: AudioServicesProtocol, delegate: ListViewModelDelegate)
 }
 
 class ListViewModel: ListViewModelProtocol {
-    var audioServices: AudioServices
+    var audioServices: AudioServicesProtocol
     var array: [Audio] = []
     var searchResultArray = [Audio]()
     // Count will be updated if a search starts
@@ -45,7 +45,7 @@ class ListViewModel: ListViewModelProtocol {
     internal weak var delegate: ListViewModelDelegate?
     internal weak var navigationDelegate: NavigationDelegate?
     
-    required init(audioServices: AudioServices, delegate: ListViewModelDelegate) {
+    required init(audioServices: AudioServicesProtocol, delegate: ListViewModelDelegate) {
         self.audioServices = audioServices
         self.delegate = delegate
         getArray()
