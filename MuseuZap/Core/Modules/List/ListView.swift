@@ -25,9 +25,9 @@ class ListView: UIView, ViewCodable {
         refreshControl.addTarget(self,
                                  action: #selector(self.handleRefresh(_:)),
                                  for: UIControl.Event.valueChanged)
-        // For some reason, leaving tintColor = UIColor.default.power is "more red" than normal.
+        // For some reason, leaving tintColor = UIColor.default.power is "more red" than normal in darkMode.
         // Power color is UIColor(red: 1, green: 0, blue: 0.57, alpha: 1), so letting tintColor little bit less red works
-        refreshControl.tintColor = UIColor(red: 0.8, green: 0, blue: 0.6, alpha: 1)
+        refreshControl.tintColor = UIColor.Default.powerRefresh
 
         return refreshControl
     }()
@@ -43,10 +43,6 @@ class ListView: UIView, ViewCodable {
         tableView.separatorStyle = .none
         tableView.register(AudioCell.self, forCellReuseIdentifier: self.cellIdentifier)
         tableView.insertSubview(refreshControl, at: 0)
-
-        refreshControl.translatesAutoresizingMaskIntoConstraints = false
-        // Constrain will be true or false depending on the scroll delegate
-        refreshScrollConstrain = refreshControl.bottomAnchor.constraint(equalTo: self.tableView.topAnchor, constant: 0)
 
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = true
@@ -78,12 +74,15 @@ class ListView: UIView, ViewCodable {
 
     func setupConstraints() {
 
+        refreshControl.translatesAutoresizingMaskIntoConstraints = false
         refreshControl.setupConstraints { (refresh) in
             refresh.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
             refreshScrollConstrain.isActive = true
             refresh.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
             refresh.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
         }
+        // Constrain will be true or false depending on the scroll delegate
+        refreshScrollConstrain = refreshControl.bottomAnchor.constraint(equalTo: self.tableView.topAnchor, constant: 0)
 
         tableView.setupConstraints { (tableView) in
             tableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
@@ -200,8 +199,8 @@ extension ListView {
 extension ListView: UISearchResultsUpdating {
 
     func updateSearchResults(for searchController: UISearchController) {
-        let searchBar = searchController.searchBar
-        viewModel?.performSearch(with: searchBar.text!)
+        guard let text = searchController.searchBar.text else { return }
+        viewModel?.performSearch(with: text)
     }
 }
 

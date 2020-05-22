@@ -19,6 +19,7 @@ protocol ListViewModelDelegate: class {
 }
 
 protocol ListViewModelProtocol {
+    var audioServices: AudioServicesProtocol { get set }
     var array: [Audio] { get set }
     var searchResultArray: [Audio] { get set }
     var navigationDelegate: NavigationDelegate? { get }

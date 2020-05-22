@@ -33,6 +33,7 @@ class ListViewModelTests: XCTestCase {
         services = nil
         viewDeleg = nil
         audioProp = nil
+        searchAudioProp = nil
         sut = nil
     }
 
