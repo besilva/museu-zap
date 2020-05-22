@@ -32,7 +32,7 @@ class ListView: UIView, ViewCodable {
         return refreshControl
     }()
     var refreshScrollConstrain: NSLayoutConstraint!
-    let searchController = UISearchController(searchResultsController: nil)
+    var searchController: UISearchController!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,7 +48,9 @@ class ListView: UIView, ViewCodable {
         // Constrain will be true or false depending on the scroll delegate
         refreshScrollConstrain = refreshControl.bottomAnchor.constraint(equalTo: self.tableView.topAnchor, constant: 0)
 
-        searchController.searchResultsUpdater = self
+        let searchManager = SearchResultsViewController()
+        searchController = UISearchController(searchResultsController: searchManager)
+        searchController.searchResultsUpdater = searchManager
         searchController.obscuresBackgroundDuringPresentation = true
         searchController.searchBar.placeholder = "Buscar áudio"
         setupView()

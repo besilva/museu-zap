@@ -83,6 +83,9 @@
 		C53F4CAB246598C2001AAD57 /* FileExchangerSuccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53F4CAA246598C2001AAD57 /* FileExchangerSuccessTests.swift */; };
 		C55013F42476C0730036CFFD /* AudioServicesMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55013F32476C0730036CFFD /* AudioServicesMock.swift */; };
 		C5645C6D24746B1B005C411C /* ShareExtensionErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5645C6C24746B1B005C411C /* ShareExtensionErrors.swift */; };
+		C564E5D324780B2300A696D8 /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564E5D024780B2300A696D8 /* SearchResultsView.swift */; };
+		C564E5D424780B2300A696D8 /* SearchResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564E5D124780B2300A696D8 /* SearchResultsViewModel.swift */; };
+		C564E5D524780B2300A696D8 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564E5D224780B2300A696D8 /* SearchResultsViewController.swift */; };
 		C586E2C72465AA2400B1930B /* FileExchangerErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C586E2C62465AA2400B1930B /* FileExchangerErrorTests.swift */; };
 		C5904C69246AEED4004B9921 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904C68246AEED4004B9921 /* AudioManager.swift */; };
 		C5AFABE7246D814600E7AF31 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AFABE6246D814600E7AF31 /* FileManager+Extension.swift */; };
@@ -209,6 +212,9 @@
 		C53F4CAA246598C2001AAD57 /* FileExchangerSuccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExchangerSuccessTests.swift; sourceTree = "<group>"; };
 		C55013F32476C0730036CFFD /* AudioServicesMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioServicesMock.swift; sourceTree = "<group>"; };
 		C5645C6C24746B1B005C411C /* ShareExtensionErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtensionErrors.swift; sourceTree = "<group>"; };
+		C564E5D024780B2300A696D8 /* SearchResultsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
+		C564E5D124780B2300A696D8 /* SearchResultsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewModel.swift; sourceTree = "<group>"; };
+		C564E5D224780B2300A696D8 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		C586E2C62465AA2400B1930B /* FileExchangerErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExchangerErrorTests.swift; sourceTree = "<group>"; };
 		C5904C68246AEED4004B9921 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		C59A6B2C2464887C0011828D /* FileExchanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExchanger.swift; sourceTree = "<group>"; };
@@ -393,6 +399,7 @@
 				80ABB7AD245717F40020CF42 /* Audio Cell */,
 				80D80EF12447374400915F1C /* About */,
 				64DD6FEA243E0BB800404321 /* List */,
+				C564E5CF24780AB600A696D8 /* SearchResults */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -528,6 +535,16 @@
 				C5BC02A52476C44300095A5C /* ListViewModelDelegateMock.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		C564E5CF24780AB600A696D8 /* SearchResults */ = {
+			isa = PBXGroup;
+			children = (
+				C564E5D024780B2300A696D8 /* SearchResultsView.swift */,
+				C564E5D224780B2300A696D8 /* SearchResultsViewController.swift */,
+				C564E5D124780B2300A696D8 /* SearchResultsViewModel.swift */,
+			);
+			path = SearchResults;
 			sourceTree = "<group>";
 		};
 		C5AFABE5246D811200E7AF31 /* Files */ = {
@@ -771,6 +788,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80FAABD82451BFD6008B7DB8 /* UIColorExtension.swift in Sources */,
+				C564E5D324780B2300A696D8 /* SearchResultsView.swift in Sources */,
 				64A60C322448A78C003B0F26 /* ListView.swift in Sources */,
 				64A60C2E24489B9E003B0F26 /* ViewCodable.swift in Sources */,
 				80ABB7B1245718300020CF42 /* AudioCell.swift in Sources */,
@@ -799,6 +817,8 @@
 				64DD6FE6243E0A4700404321 /* Stack.swift in Sources */,
 				C5904C69246AEED4004B9921 /* AudioManager.swift in Sources */,
 				C5AFABE7246D814600E7AF31 /* FileManager+Extension.swift in Sources */,
+				C564E5D424780B2300A696D8 /* SearchResultsViewModel.swift in Sources */,
+				C564E5D524780B2300A696D8 /* SearchResultsViewController.swift in Sources */,
 				64DD6FF7243E0DB700404321 /* ListViewModel.swift in Sources */,
 				64DD6FE0243E07D000404321 /* AppCoordinator.swift in Sources */,
 				80BB0485246D7F02006E4154 /* CellIconManager.swift in Sources */,
