@@ -47,6 +47,7 @@
 		803816542476BBC70029FE88 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803816532476BBC70029FE88 /* PlaceholderView.swift */; };
 		803816572476BCAD0029FE88 /* PlaceholderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803816562476BCAD0029FE88 /* PlaceholderViewModel.swift */; };
 		804A612F2476D3520053F011 /* PlaceholderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804A612E2476D3520053F011 /* PlaceholderError.swift */; };
+		804A61322477F2E70053F011 /* ListViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804A61312477F2E70053F011 /* ListViewTests.swift */; };
 		808C9E30245F283900FF4FEB /* PublicAudioCellViewModel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808C9E2E245F17D600FF4FEB /* PublicAudioCellViewModel+Extension.swift */; };
 		80A7E965246EDB8D00E7EAA2 /* CellIconManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A7E964246EDB8D00E7EAA2 /* CellIconManagerTests.swift */; };
 		80ABB7AF2457181F0020CF42 /* AudioCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ABB7AE2457181F0020CF42 /* AudioCellViewModelProtocol.swift */; };
@@ -180,6 +181,7 @@
 		803816532476BBC70029FE88 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		803816562476BCAD0029FE88 /* PlaceholderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderViewModel.swift; sourceTree = "<group>"; };
 		804A612E2476D3520053F011 /* PlaceholderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderError.swift; sourceTree = "<group>"; };
+		804A61312477F2E70053F011 /* ListViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewTests.swift; sourceTree = "<group>"; };
 		808C9E2E245F17D600FF4FEB /* PublicAudioCellViewModel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PublicAudioCellViewModel+Extension.swift"; sourceTree = "<group>"; };
 		80A7E964246EDB8D00E7EAA2 /* CellIconManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellIconManagerTests.swift; sourceTree = "<group>"; };
 		80ABB7AE2457181F0020CF42 /* AudioCellViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCellViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 		6473EDEA243B6D3E00A10F2C /* MuseuZapTests */ = {
 			isa = PBXGroup;
 			children = (
+				804A61302477F2BD0053F011 /* ListTests */,
 				C527F28B246C22E000714778 /* AudioManager */,
 				642C63A8246EE97C0059FBDC /* AppDelegateFake.swift */,
 				C53F4CA9246585FD001AAD57 /* FileExchanger */,
@@ -389,6 +392,7 @@
 		64DD6FE8243E0B1600404321 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				804A613324780D950053F011 /* MyAudios */,
 				803816552476BC990029FE88 /* Placeholder */,
 				80ABB7AD245717F40020CF42 /* Audio Cell */,
 				80D80EF12447374400915F1C /* About */,
@@ -426,6 +430,21 @@
 				804A612E2476D3520053F011 /* PlaceholderError.swift */,
 			);
 			path = Placeholder;
+			sourceTree = "<group>";
+		};
+		804A61302477F2BD0053F011 /* ListTests */ = {
+			isa = PBXGroup;
+			children = (
+				804A61312477F2E70053F011 /* ListViewTests.swift */,
+			);
+			path = ListTests;
+			sourceTree = "<group>";
+		};
+		804A613324780D950053F011 /* MyAudios */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MyAudios;
 			sourceTree = "<group>";
 		};
 		80ABB7AD245717F40020CF42 /* Audio Cell */ = {
@@ -815,6 +834,7 @@
 				C527F28D246C22F800714778 /* AudioManagerTestsSuccess.swift in Sources */,
 				808C9E30245F283900FF4FEB /* PublicAudioCellViewModel+Extension.swift in Sources */,
 				C586E2C72465AA2400B1930B /* FileExchangerErrorTests.swift in Sources */,
+				804A61322477F2E70053F011 /* ListViewTests.swift in Sources */,
 				80E6C368244DF09700A42A4C /* AboutViewTests.swift in Sources */,
 				80A7E965246EDB8D00E7EAA2 /* CellIconManagerTests.swift in Sources */,
 				C53F4CAB246598C2001AAD57 /* FileExchangerSuccessTests.swift in Sources */,

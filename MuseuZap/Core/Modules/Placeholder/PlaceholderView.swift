@@ -136,7 +136,7 @@ class PlaceholderView: UIView, ViewCodable {
         actionLabel.font = UIFont.Default.semibold.withSize(17)
 //        actionLabel.dynamicFont = subtitleLabel.font
         
-        iconImageView.tintColor = UIColor.Default.lightBackground
+        iconImageView.tintColor = UIColor.Default.lightLabel
         return
     }
 }

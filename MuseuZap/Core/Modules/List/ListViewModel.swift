@@ -21,11 +21,18 @@ protocol ListViewModelProtocol {
     var audios: [Audio] { get set }
     var navigationDelegate: NavigationDelegate? { get }
     var count: Int { get }
-    var delegate: ListViewModelDelegate? { get set }
+    var delegate: ListViewModelDelegate? { get }
     func handleRefresh(_ refreshControl: UIRefreshControl)
     func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties
     func back()
     init(audioServices: AudioServices, audios: [Audio], delegate: ListViewModelDelegate)
+}
+
+extension ListViewModelProtocol {
+    func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties {
+        let element = audios[indexPath.row]
+        return AudioProperties(from: element)
+    }
 }
 
 class ListViewModel: ListViewModelProtocol {
@@ -69,13 +76,9 @@ class ListViewModel: ListViewModelProtocol {
         }
     }
 
-    func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties {
-        let element = audios[indexPath.row]
-        return AudioProperties(from: element)
-    }
+    
 
     // MARK: - Refresh
-
     func handleRefresh(_ refreshControl: UIRefreshControl) {
         retrieveAllAudios()
         delegate?.reloadTableView()
