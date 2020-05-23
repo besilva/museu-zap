@@ -11,7 +11,7 @@ import UIKit
 class ListView: UIView, ViewCodable {
 
     private var loader: UIActivityIndicatorView!
-    private var tableView: UITableView = UITableView()
+    internal var tableView: UITableView = UITableView()
     private var cellIdentifier: String = "cell"
     var iconManager: CellIconManager = CellIconManager.shared
     var audioHandler: ((Action) -> Void)?

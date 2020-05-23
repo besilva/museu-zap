@@ -8,6 +8,6 @@
 
 import UIKit
 
-protocol CellIconManagerDelegate {
+protocol CellIconManagerDelegate: class {
     func updateCellStatus(visible: Bool, audioPath: String, cell: AudioCell)
 }

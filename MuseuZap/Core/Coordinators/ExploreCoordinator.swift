@@ -1,5 +1,5 @@
 //
-//  TestCoordinator.swift
+//  ExploreCoordinator.swift
 //  MuseuZap
 //
 //  Created by Bernardo Silva on 08/04/20.
@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class TestCoordinator: BaseCoordinator {
+class ExploreCoordinator: BaseCoordinator {
 
     var rootViewController: UINavigationController
     var analyticsManager: AnalyticsManager
@@ -21,7 +21,7 @@ class TestCoordinator: BaseCoordinator {
     }
     
     func startFlow() {
-        let listController = ListViewController()
+        let listController = ExploreViewController()
         listController.delegate = self
         self.rootViewController.pushViewController(listController, animated: true)
     }
