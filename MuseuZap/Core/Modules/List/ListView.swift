@@ -93,7 +93,8 @@ class ListView: UIView, ViewCodable {
         }
         // Constraint will be true or false depending on the scroll delegate
         refreshScrollConstraint = refreshControl.bottomAnchor.constraint(equalTo: self.tableView.topAnchor, constant: 0)
-        refreshScrollConstraint.isActive = true
+        // This bottom constraint will be set to true only when topBarHeight was calculated
+        refreshScrollConstraint.isActive = false
 
         tableView.setupConstraints { (tableView) in
             tableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
@@ -220,7 +221,8 @@ extension ListView {
 extension ListView: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
-        if scrollView.contentOffset.y > 0 {
+        // Table view "starts" at topBarHeight
+        if scrollView.contentOffset.y > (-topBarHeight) {
             // Scrolling down deactive constrain
             refreshScrollConstraint.isActive = false
         } else {
