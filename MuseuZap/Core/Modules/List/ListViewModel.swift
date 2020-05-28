@@ -15,17 +15,22 @@ protocol ListViewModelDelegate: class {
     func stopLoading()
     func reloadTableView()
     func endRefreshing()
+    var isFiltering: Bool { get }
+    var isSearchBarEmpty: Bool { get }
 }
 
 protocol ListViewModelProtocol {
     var audios: [Audio] { get set }
+    var audioServices: AudioServicesProtocol { get set }
+    var searchResultArray: [Audio] { get set }
     var navigationDelegate: NavigationDelegate? { get }
     var count: Int { get }
-    var delegate: ListViewModelDelegate? { get }
-    func handleRefresh(_ refreshControl: UIRefreshControl)
+    var delegate: ListViewModelDelegate? { get set }
+    func handleRefresh()
     func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties
+    func performSearch(with text: String)
     func back()
-    init(audioServices: AudioServices, audios: [Audio], delegate: ListViewModelDelegate)
+    init(audioServices: AudioServicesProtocol, delegate: ListViewModelDelegate)
 }
 
 extension ListViewModelProtocol {
@@ -36,20 +41,25 @@ extension ListViewModelProtocol {
 }
 
 class ListViewModel: ListViewModelProtocol {
-    var audioServices: AudioServices
+    var audioServices: AudioServicesProtocol
     var audios: [Audio] = [] {
         didSet {
             self.delegate?.reloadTableView()
         }
     }
-    var count: Int { audios.count }
+    var searchResultArray = [Audio]()
+    var count: Int {
+        if delegate?.isFiltering ?? false {
+        }
+            return searchResultArray.count
+        return audios.count
     internal weak var delegate: ListViewModelDelegate?
     internal weak var navigationDelegate: NavigationDelegate?
     
-    required init(audioServices: AudioServices, audios: [Audio], delegate: ListViewModelDelegate) {
+    required init(audioServices: AudioServicesProtocol, delegate: ListViewModelDelegate) {
         self.audioServices = audioServices
         self.delegate = delegate
-        self.audios = audios
+        retrieveAllAudios()
     }
     
     func back() {
@@ -76,10 +86,30 @@ class ListViewModel: ListViewModelProtocol {
         }
     }
 
-    
+    func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties {
+        // Initialize element with normal array and change it case isFiltering
+        var element = array[indexPath.row]
+
+        if delegate?.isFiltering ?? false {
+            element = searchResultArray[indexPath.row]
+        }
+
+        return AudioProperties(from: element)
+    }
+
+    // MARK: - Search
+
+    func performSearch(with text: String) {
+        searchResultArray = array.filter { (audio) -> Bool in
+            return audio.audioName.lowercased().contains(text.lowercased())
+        }
+
+        delegate?.reloadTableView()
+    }
 
     // MARK: - Refresh
-    func handleRefresh(_ refreshControl: UIRefreshControl) {
+
+    func handleRefresh() {
         retrieveAllAudios()
         delegate?.reloadTableView()
     }

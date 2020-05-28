@@ -8,10 +8,23 @@
 
 import UIKit
 
+// MARK: - Protocol For test purpose
+
+public protocol AudioServicesProtocol {
+    // CRUD Operations: Create, Read, Update, Delete
+    func createAudio(audio: Audio, _ completion: ((_ error: Error?) -> Void))
+    func getAllAudios(_ completion: @escaping (_ errorMessage: Error?,
+                                               _ entity: [Audio]?) -> Void)
+    func getAllAudiosWith(isPrivate bool: Bool, _ completion: @escaping (_ errorMessage: Error?,
+                                                                         _ entity: [Audio]?) -> Void)
+    func updateAllAudios(_ completion: (_ error: Error?) -> Void)
+    func deleteAudio(audio: Audio, _ completion: (_ error: Error?) -> Void)
+}
+
 /// Services Layer for Audio Entity.
 /// Independent from adopted database.
 /// Error Handling + doing aditional treatment to data.
-public class AudioServices {
+public class AudioServices: AudioServicesProtocol {
 
     /// Used Data Access Object
     var audioDAO: AudioDAOProtocol
@@ -73,7 +86,7 @@ public class AudioServices {
     /// - parameters:
     ///     - completion: closure to be executed at the end of this method
     /// - throws: if an error occurs during getting an object from database  (DatabaseErrors.publicAndPrivate)
-    func getAllAudiosWith(isPrivate bool: Bool, _ completion: @escaping (_ errorMessage: Error?,
+    public func getAllAudiosWith(isPrivate bool: Bool, _ completion: @escaping (_ errorMessage: Error?,
                                                                          _ entity: [Audio]?) -> Void) {
         // Error to be returned in case of failure
         var raisedError: DatabaseErrors?
@@ -98,7 +111,7 @@ public class AudioServices {
     ///     - audio: Audio to be updated
     ///     - completion: closure to be executed at the end of this method
     /// - throws: if an error occurs during saving an object into database (DatabaseErrors.update)
-    func updateAllAudios(_ completion: (_ error: Error?) -> Void) {
+    public func updateAllAudios(_ completion: (_ error: Error?) -> Void) {
         do {
             // Save information
             try audioDAO.updateContext()
@@ -118,7 +131,7 @@ public class AudioServices {
     ///     - audio: audio to be deleted
     ///     - completion: closure to be executed at the end of this method
     /// - throws: if an error occurs during saving an object into database (DatabaseErrors.delete)
-    func deleteAudio(audio: Audio, _ completion: (_ error: Error?) -> Void) {
+    public func deleteAudio(audio: Audio, _ completion: (_ error: Error?) -> Void) {
         do {
             // Save information
             try audioDAO.delete(audio)
