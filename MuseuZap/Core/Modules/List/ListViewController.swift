@@ -47,6 +47,7 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
         }
         view = myView
 
+        // This was set to true so resultController could work properly
         extendedLayoutIncludesOpaqueBars = true
     }
     

@@ -222,6 +222,7 @@ extension ListView: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
         // Table view "starts" at topBarHeight
+        // Controller extendedLayoutIncludesOpaqueBars was set to true so resultController could work properly
         if scrollView.contentOffset.y > (-topBarHeight) {
             // Scrolling down deactive constrain
             refreshScrollConstraint.isActive = false

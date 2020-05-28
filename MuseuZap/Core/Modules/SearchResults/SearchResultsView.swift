@@ -12,6 +12,7 @@ class SearchResultsView: UIView, ViewCodable {
 
     // MARK: - Properties
 
+    private var cellIdentifier: String = "searchCell"
     private var tableView: UITableView = UITableView()
     var viewModel: SearchResultsViewModelProtocol? {
         didSet {
@@ -24,6 +25,9 @@ class SearchResultsView: UIView, ViewCodable {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
+        tableView.separatorStyle = .singleLine
+        tableView.register(SearchResultCell.self, forCellReuseIdentifier: self.cellIdentifier)
+
         setupView()
     }
 
@@ -32,7 +36,6 @@ class SearchResultsView: UIView, ViewCodable {
     }
 
     // MARK: - SetUp
-    // Configure, setupHierarchy, setupConstraints, render, setupAcessibilityIdentifiers
 
     func configure() {
         setupTableView()
@@ -47,8 +50,8 @@ class SearchResultsView: UIView, ViewCodable {
         tableView.setupConstraints { (tableView) in
             tableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
-            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
+            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
         }
         
     }
@@ -77,6 +80,9 @@ extension SearchResultsView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as? SearchResultCell {
+             return cell
+        }
         return UITableViewCell()
     }
 }
