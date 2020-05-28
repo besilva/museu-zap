@@ -82,9 +82,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func addDefaultCategories() {
         let category1 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
         category1.categoryName = "Engraçados"
+        category1.identifier = "funny"
 
         let category2 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
         category2.categoryName = "Trabalho"
+        category2.identifier = "family"
 
         AudioCategoryServices().createCategory(category: category1) { (error) in
            if let err = error {

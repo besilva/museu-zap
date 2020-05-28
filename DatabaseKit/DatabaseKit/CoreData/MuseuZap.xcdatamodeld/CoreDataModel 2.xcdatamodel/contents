@@ -9,11 +9,10 @@
     </entity>
     <entity name="AudioCategory" representedClassName="DatabaseKit.AudioCategory" syncable="YES">
         <attribute name="categoryName" attributeType="String" minValueString="1"/>
-        <attribute name="identifier" optional="YES" attributeType="String" minValueString="2"/>
         <relationship name="audios" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Audio" inverseName="category" inverseEntity="Audio"/>
     </entity>
     <elements>
         <element name="Audio" positionX="-18" positionY="45" width="128" height="118"/>
-        <element name="AudioCategory" positionX="217.46875" positionY="51.2890625" width="128" height="88"/>
+        <element name="AudioCategory" positionX="-9" positionY="72" width="128" height="73"/>
     </elements>
 </model>
