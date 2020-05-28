@@ -39,6 +39,8 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
  
     override func loadView() {
         let myView = ListView()
+//        Set the topBarHeight for refreshController
+//        myView.topBarHeight = self.topbarHeight
 //        Sets the action handler for the List View
         myView.audioHandler = { (action) in
 //            The list view performs the action using the list view controller
@@ -46,6 +48,8 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
             self.delegate?.handleNavigation(action: action)
         }
         view = myView
+
+        extendedLayoutIncludesOpaqueBars = true
     }
     
     override func viewDidLoad() {

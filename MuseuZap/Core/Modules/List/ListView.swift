@@ -33,6 +33,8 @@ class ListView: UIView, ViewCodable {
     }()
     var refreshScrollConstrain: NSLayoutConstraint!
     var searchController: UISearchController!
+    /// TopBarHeight from viewController will be used to auto-layout the refreshControl
+    var topBarHeight: CGFloat = 0
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -81,7 +83,7 @@ class ListView: UIView, ViewCodable {
     func setupConstraints() {
 
         refreshControl.setupConstraints { (refresh) in
-            refresh.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+            refresh.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
             refreshScrollConstrain.isActive = true
             refresh.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
             refresh.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
@@ -194,16 +196,6 @@ extension ListView {
             return
         }
         iconManager.updateCellStatus(visible: false, cell: audioCell)
-    }
-}
-
-    // MARK: - Search
-
-extension ListView: UISearchResultsUpdating {
-
-    func updateSearchResults(for searchController: UISearchController) {
-        let searchBar = searchController.searchBar
-        viewModel?.performSearch(with: searchBar.text!)
     }
 }
 
