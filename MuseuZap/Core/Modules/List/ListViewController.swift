@@ -69,8 +69,9 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
         
         audioServices.getAllAudios { (error, audioArray) in
             if let audios = audioArray {
-                let viewModel = ListViewModel(audioServices: audioServices, audios: audios, delegate: self.myView)
+                let viewModel = ListViewModel(audioServices: audioServices, delegate: self.myView)
                 viewModel.navigationDelegate = self
+                viewModel.audios = audios
                 self.myView.viewModel = viewModel
             } else {
                 // GetAll audios

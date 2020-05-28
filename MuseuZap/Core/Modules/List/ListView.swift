@@ -79,13 +79,12 @@ class ListView: UIView, ViewCodable {
         refreshControl.translatesAutoresizingMaskIntoConstraints = false
         refreshControl.setupConstraints { (refresh) in
             refresh.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-            refreshScrollConstrain.isActive = true
             refresh.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
             refresh.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
         }
         // Constrain will be true or false depending on the scroll delegate
         refreshScrollConstrain = refreshControl.bottomAnchor.constraint(equalTo: self.tableView.topAnchor, constant: 0)
-
+        refreshScrollConstrain.isActive = true
         tableView.setupConstraints { (tableView) in
             tableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true

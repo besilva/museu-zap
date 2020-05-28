@@ -49,6 +49,16 @@ public class FileExchanger {
         do {
             list = try FileManager.default.contentsOfDirectory(at: appGroupFolderURL,
                                                                includingPropertiesForKeys: nil)
+            list = list.filter { (url) -> Bool in
+                // ERRO: retorna true para path Data/Application/AE48D155-7E45-47D4-98F0-B0ECAE366213/tmp/CustomCellSnapshotTests
+                var isDirectory: ObjCBool = false
+                let exists = FileManager.default.fileExists(atPath: url.path, isDirectory: &isDirectory)
+                
+                switch (exists, isDirectory.boolValue) {
+                case (true, false): return true
+                default: return false
+                }
+            }
         } catch {
             print("COULD NOT LIST ITEMS in GROUP FOLDER FOR SOME REASON \n", error)
             throw FileErrors.listContents

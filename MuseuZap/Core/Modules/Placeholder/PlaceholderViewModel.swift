@@ -20,7 +20,7 @@ protocol PlaceholderViewModelProtocol {
     var actionURL: URL { get set }
     var iconAssetName: String { get set }
     var delegate: PlaceholderViewModelDelegate? { get set }
-    func performAction() -> Void
+    func performAction()
 }
 
 class PlaceholderViewModel: PlaceholderViewModelProtocol {
@@ -34,7 +34,7 @@ class PlaceholderViewModel: PlaceholderViewModelProtocol {
 
     var iconAssetName: String = "Folder.fill.badge.plus"
     
-    var delegate: PlaceholderViewModelDelegate?
+    weak var delegate: PlaceholderViewModelDelegate?
 
     init(title: String, subtitle: String, actionMessage: String, actionURL: URL, iconAssetName: String?) {
         self.title = title

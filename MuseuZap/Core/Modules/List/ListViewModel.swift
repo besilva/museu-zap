@@ -42,6 +42,8 @@ extension ListViewModelProtocol {
 
 class ListViewModel: ListViewModelProtocol {
     var audioServices: AudioServicesProtocol
+    internal weak var delegate: ListViewModelDelegate?
+    internal weak var navigationDelegate: NavigationDelegate?
     var audios: [Audio] = [] {
         didSet {
             self.delegate?.reloadTableView()
@@ -50,12 +52,11 @@ class ListViewModel: ListViewModelProtocol {
     var searchResultArray = [Audio]()
     var count: Int {
         if delegate?.isFiltering ?? false {
-        }
             return searchResultArray.count
+        }
         return audios.count
-    internal weak var delegate: ListViewModelDelegate?
-    internal weak var navigationDelegate: NavigationDelegate?
-    
+    }
+
     required init(audioServices: AudioServicesProtocol, delegate: ListViewModelDelegate) {
         self.audioServices = audioServices
         self.delegate = delegate
@@ -88,7 +89,7 @@ class ListViewModel: ListViewModelProtocol {
 
     func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties {
         // Initialize element with normal array and change it case isFiltering
-        var element = array[indexPath.row]
+        var element = audios[indexPath.row]
 
         if delegate?.isFiltering ?? false {
             element = searchResultArray[indexPath.row]
@@ -100,7 +101,7 @@ class ListViewModel: ListViewModelProtocol {
     // MARK: - Search
 
     func performSearch(with text: String) {
-        searchResultArray = array.filter { (audio) -> Bool in
+        searchResultArray = audios.filter { (audio) -> Bool in
             return audio.audioName.lowercased().contains(text.lowercased())
         }
 
