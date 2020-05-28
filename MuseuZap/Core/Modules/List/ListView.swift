@@ -31,7 +31,8 @@ class ListView: UIView, ViewCodable {
 
         return refreshControl
     }()
-    var refreshScrollConstrain: NSLayoutConstraint!
+    /// This constrain needs to be deativated when scrolling down
+    var refreshScrollConstraint: NSLayoutConstraint!
     var searchController: UISearchController!
     /// TopBarHeight from viewController will be used to auto-layout the refreshControl
     var topBarHeight: CGFloat = 0
@@ -45,10 +46,6 @@ class ListView: UIView, ViewCodable {
         tableView.separatorStyle = .none
         tableView.register(AudioCell.self, forCellReuseIdentifier: self.cellIdentifier)
         tableView.insertSubview(refreshControl, at: 0)
-
-        refreshControl.translatesAutoresizingMaskIntoConstraints = false
-        // Constrain will be true or false depending on the scroll delegate
-        refreshScrollConstrain = refreshControl.bottomAnchor.constraint(equalTo: self.tableView.topAnchor, constant: 0)
 
         let searchManager = SearchResultsViewController()
         searchController = UISearchController(searchResultsController: searchManager)
@@ -85,12 +82,12 @@ class ListView: UIView, ViewCodable {
         refreshControl.translatesAutoresizingMaskIntoConstraints = false
         refreshControl.setupConstraints { (refresh) in
             refresh.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
-            refreshScrollConstrain.isActive = true
             refresh.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
             refresh.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
         }
-        // Constrain will be true or false depending on the scroll delegate
-        refreshScrollConstrain = refreshControl.bottomAnchor.constraint(equalTo: self.tableView.topAnchor, constant: 0)
+        // Constraint will be true or false depending on the scroll delegate
+        refreshScrollConstraint = refreshControl.bottomAnchor.constraint(equalTo: self.tableView.topAnchor, constant: 0)
+        refreshScrollConstraint.isActive = true
 
         tableView.setupConstraints { (tableView) in
             tableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
@@ -210,10 +207,10 @@ extension ListView: UIScrollViewDelegate {
 
         if scrollView.contentOffset.y > 0 {
             // Scrolling down deactive constrain
-            refreshScrollConstrain.isActive = false
+            refreshScrollConstraint.isActive = false
         } else {
             // Scrolling up activate in order to pull to refresh
-            refreshScrollConstrain.isActive = true
+            refreshScrollConstraint.isActive = true
         }
     }
 }
