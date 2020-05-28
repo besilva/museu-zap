@@ -66,7 +66,7 @@ class ListViewModel: ListViewModelProtocol {
                 self.array = audios
                 // Get array is only called in Init and when refresh, so no problem to leave these delegate calls here
                 self.delegate?.stopLoading()
-//                self.delegate?.endRefreshing()
+                self.delegate?.endRefreshing()
             } else {
                 // GetAll audios
                 // Display here some frendiler message based on Error Type (database error or not)

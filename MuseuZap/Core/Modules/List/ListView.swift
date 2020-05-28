@@ -36,6 +36,10 @@ class ListView: UIView, ViewCodable {
     var searchController: UISearchController!
     /// TopBarHeight from viewController will be used to auto-layout the refreshControl
     var topBarHeight: CGFloat = 0
+    var navBarHeight: CGFloat = 0 {
+           // Calculate topBarHeight only when navBarHeight was set
+           didSet { setRefreshTopAnchor() }
+       }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,6 +56,7 @@ class ListView: UIView, ViewCodable {
         searchController.searchResultsUpdater = searchManager
         searchController.obscuresBackgroundDuringPresentation = true
         searchController.searchBar.placeholder = "Buscar áudio"
+
         setupView()
     }
 
@@ -81,7 +86,8 @@ class ListView: UIView, ViewCodable {
 
         refreshControl.translatesAutoresizingMaskIntoConstraints = false
         refreshControl.setupConstraints { (refresh) in
-            refresh.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
+            // Top anchor is only constructed at setRefreshTopAnchor
+            // Bottom anchor is refreshScrollConstraint
             refresh.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
             refresh.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
         }
@@ -147,8 +153,17 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
 
+    // MARK: - Refresh
+    
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         viewModel?.handleRefresh()
+    }
+
+    func setRefreshTopAnchor() {
+        // Calculate topAnchor with topBarHeight updated
+        topBarHeight = navBarHeight + searchController.searchBar.frame.height
+        refreshControl.topAnchor.constraint(equalTo: self.topAnchor, constant: topBarHeight).isActive = true
+        setNeedsUpdateConstraints()
     }
 }
 

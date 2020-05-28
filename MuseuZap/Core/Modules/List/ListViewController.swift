@@ -39,8 +39,6 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
  
     override func loadView() {
         let myView = ListView()
-//        Set the topBarHeight for refreshController
-//        myView.topBarHeight = self.topbarHeight
 //        Sets the action handler for the List View
         myView.audioHandler = { (action) in
 //            The list view performs the action using the list view controller
@@ -62,9 +60,16 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-           super.viewDidAppear(animated)
-           self.setScreenName()
-       }
+        super.viewDidAppear(animated)
+        self.setScreenName()
+    }
+
+    // Somehow topBarHeight has to be populated here, because outside here reference to navigationBar is nil
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Set the navBarHeight to calculate topBarHeight for refreshController
+        myView.navBarHeight = self.navBarHeight
+    }
     
     func setup() {
         tabBarItem = UITabBarItem(title: "Explorar", image: UIImage(named: "explore-outline"), selectedImage: UIImage(named: "explore-filled"))
