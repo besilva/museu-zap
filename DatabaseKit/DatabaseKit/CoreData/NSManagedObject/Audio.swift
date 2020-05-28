@@ -13,7 +13,7 @@ import CoreData
 // MARK: - Properties Struct
 
 /// Used to reduce clutter for View
-public struct AudioProperties {
+public struct AudioProperties: Equatable {
 
     // MARK: - Properties
 
@@ -31,6 +31,20 @@ public struct AudioProperties {
         self.category = audio.category.categoryName
         self.duration = audio.duration
         self.isPrivate = audio.isPrivate
+    }
+
+    // MARK: - Func to test
+
+    public static func == (lhs: AudioProperties, rhs: AudioProperties) -> Bool {
+        if lhs.name == rhs.name,
+            lhs.path == rhs.path,
+            lhs.isPrivate == rhs.isPrivate,
+            lhs.duration == rhs.duration,
+            lhs.category == rhs.category {
+                return true
+        } else {
+            return false
+        }
     }
 }
 
@@ -54,6 +68,18 @@ public class Audio: NSManagedObject {
 
         // Call super
         self.init(entity: entityDescription!, insertInto: currentManagedObjectContext)
+    }
+
+    // Used for test purpose
+    public convenience init() {
+         // Get context
+         let managedObjectContext: NSManagedObjectContext = CoreDataManager.sharedInstance.persistentContainer.viewContext
+
+         // Create entity description
+         let entityDescription = NSEntityDescription.entity(forEntityName: Entities.audio.rawValue, in: managedObjectContext)
+
+         // Call super
+         self.init(entity: entityDescription!, insertInto: nil)
     }
 }
 

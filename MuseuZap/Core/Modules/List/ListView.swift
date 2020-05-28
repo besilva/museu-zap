@@ -25,10 +25,14 @@ class ListView: UIView, ViewCodable {
         refreshControl.addTarget(self,
                                  action: #selector(self.handleRefresh(_:)),
                                  for: UIControl.Event.valueChanged)
-        refreshControl.tintColor = UIColor.Default.power
+        // For some reason, leaving tintColor = UIColor.default.power is "more red" than normal in darkMode.
+        // Power color is UIColor(red: 1, green: 0, blue: 0.57, alpha: 1), so letting tintColor little bit less red works
+        refreshControl.tintColor = UIColor.Default.powerRefresh
 
         return refreshControl
     }()
+    var refreshScrollConstrain: NSLayoutConstraint!
+    let searchController = UISearchController(searchResultsController: nil)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,7 +43,10 @@ class ListView: UIView, ViewCodable {
         tableView.separatorStyle = .none
         tableView.register(AudioCell.self, forCellReuseIdentifier: self.cellIdentifier)
         tableView.insertSubview(refreshControl, at: 0)
-        refreshControl.translatesAutoresizingMaskIntoConstraints = false
+
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = true
+        searchController.searchBar.placeholder = "Buscar áudio"
         setupView()
     }
 
@@ -67,12 +74,15 @@ class ListView: UIView, ViewCodable {
 
     func setupConstraints() {
 
+        refreshControl.translatesAutoresizingMaskIntoConstraints = false
         refreshControl.setupConstraints { (refresh) in
             refresh.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-            refresh.bottomAnchor.constraint(equalTo: self.tableView.topAnchor, constant: 0).isActive = true
+            refreshScrollConstrain.isActive = true
             refresh.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
             refresh.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
         }
+        // Constrain will be true or false depending on the scroll delegate
+        refreshScrollConstrain = refreshControl.bottomAnchor.constraint(equalTo: self.tableView.topAnchor, constant: 0)
 
         tableView.setupConstraints { (tableView) in
             tableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
@@ -98,6 +108,8 @@ class ListView: UIView, ViewCodable {
     }
     
 }
+
+    // MARK: - Table View
 
 extension ListView: UITableViewDelegate, UITableViewDataSource {
 
@@ -131,9 +143,11 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
     }
 
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        viewModel?.handleRefresh(refreshControl)
+        viewModel?.handleRefresh()
     }
 }
+
+    // MARK: - ViewModel
 
 extension ListView: ListViewModelDelegate {
 
@@ -153,7 +167,16 @@ extension ListView: ListViewModelDelegate {
         }
     }
 
+    var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    var isFiltering: Bool {
+      return searchController.isActive && !isSearchBarEmpty
+    }
 }
+
+   // MARK: - Change Icon
 
 extension ListView {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -168,5 +191,31 @@ extension ListView {
             return
         }
         iconManager.updateCellStatus(visible: false, cell: audioCell)
+    }
+}
+
+    // MARK: - Search
+
+extension ListView: UISearchResultsUpdating {
+
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        viewModel?.performSearch(with: text)
+    }
+}
+
+    // MARK: - Scroll for refreshControl
+
+// Without this, this constrain would break in order to scroll down
+extension ListView: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        if scrollView.contentOffset.y > 0 {
+            // Scrolling down deactive constrain
+            refreshScrollConstrain.isActive = false
+        } else {
+            // Scrolling up activate in order to pull to refresh
+            refreshScrollConstrain.isActive = true
+        }
     }
 }
