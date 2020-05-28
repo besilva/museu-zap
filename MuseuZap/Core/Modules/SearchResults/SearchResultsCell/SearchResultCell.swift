@@ -16,10 +16,9 @@ class SearchResultCell: UITableViewCell, ViewCodable {
     var titleLabel: UILabel = UILabel()
     var durationLabel: UILabel = UILabel()
 
-    var playHitArea: UIView = UIView()
-    var shareHitArea: UIView = UIView()
-    var playIcon: UIImageView = UIImageView()
-    var shareIcon: UIImageView = UIImageView()
+//    var playHitArea: UIView = UIView()
+//    var playIcon: UIImageView = UIImageView()
+    var playBtn = PlayButton()
 
     // MARK: - Set Up
 
@@ -38,14 +37,12 @@ class SearchResultCell: UITableViewCell, ViewCodable {
         setupTitleLabel()
         setupDurationLabel()
         setupPlayButton()
-        setupShareButton()
     }
     
     func setupHierarchy() {
-        playHitArea.addSubview(playIcon)
-        shareHitArea.addSubview(shareIcon)
+//        playHitArea.addSubview(playIcon)
         audioDataContentView.addSubviews(titleLabel, durationLabel)
-        contentView.addSubviews(audioDataContentView, playHitArea, shareHitArea)
+        contentView.addSubviews(audioDataContentView, playBtn)
     }
     
     func setupConstraints() {
@@ -56,7 +53,6 @@ class SearchResultCell: UITableViewCell, ViewCodable {
         setAudioTitleConstraints()
         setAudioDurationConstraints()
         setPlayIconConstraints()
-        setShareIconConstraints()
     }
     
     func render() {
@@ -75,8 +71,7 @@ class SearchResultCell: UITableViewCell, ViewCodable {
         durationLabel.dynamicFont = durationlabelFont
         
 //        Set icons colors
-        shareIcon.tintColor = UIColor.Default.power
-        playIcon.tintColor = UIColor.Default.power
+//        playIcon.tintColor = UIColor.Default.power
         
 //        Adds shadow
         self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.05).cgColor
@@ -123,23 +118,17 @@ class SearchResultCell: UITableViewCell, ViewCodable {
     }
 
     func setupPlayButton() {
-        playIcon.image = UIImage(named: "play.fill")
-        playIcon.contentMode = .scaleAspectFit
+//        playIcon.image = UIImage(named: "play.fill")
+//        playIcon.contentMode = .scaleAspectFit
         
 //        Adds behaviour to play audio on tap
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(changePlayStatus))
-//        playHitArea.isUserInteractionEnabled = true
-//        playHitArea.addGestureRecognizer(tap)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(changePlayStatus))
+        playBtn.isUserInteractionEnabled = true
+        playBtn.addGestureRecognizer(tap)
     }
-    
-    func setupShareButton() {
-        shareIcon.image = UIImage(named: "share")
-        shareIcon.contentMode = .scaleAspectFit
-        
-//        Adds behaviour to share audio on tap
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(shareAudio))
-//        shareHitArea.isUserInteractionEnabled = true
-//        shareHitArea.addGestureRecognizer(tap)
+
+    @objc func changePlayStatus() {
+        print("tap ok!")
     }
 }
 
@@ -174,7 +163,7 @@ extension SearchResultCell {
                                                             constant: -16)
             bottomMarginConstraint.priority = UILayoutPriority(rawValue: 999)
             bottomMarginConstraint.isActive = true
-            audioDataContentView.trailingAnchor.constraint(equalTo: shareHitArea.leadingAnchor, constant: -8).isActive = true
+            audioDataContentView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32).isActive = true
         }
     }
 
@@ -222,14 +211,14 @@ extension SearchResultCell {
 //        Setup play icon constraints, inside hitArea
     func setPlayIconConstraints() {
 
-        playHitArea.setContentCompressionResistancePriority(.required, for: .horizontal)
-        playHitArea.setContentHuggingPriority(.required, for: .horizontal)
-        playHitArea.setupConstraints { (_) in
-            playHitArea.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
-            playHitArea.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
-            playHitArea.trailingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor, constant: -16).isActive = true
+        playBtn.setContentCompressionResistancePriority(.required, for: .horizontal)
+        playBtn.setContentHuggingPriority(.required, for: .horizontal)
+        playBtn.setupConstraints { (_) in
+            playBtn.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
+            playBtn.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32).isActive = true
+            playBtn.trailingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor, constant: -16).isActive = true
 
-            let bottomConstraint = NSLayoutConstraint(item: playHitArea,
+            let bottomConstraint = NSLayoutConstraint(item: playBtn,
                                                       attribute: .bottom,
                                                       relatedBy: .equal,
                                                       toItem: contentView,
@@ -238,62 +227,6 @@ extension SearchResultCell {
                                                       constant: -16)
             bottomConstraint.priority = UILayoutPriority(rawValue: 750)
             bottomConstraint.isActive = true
-
-            createHitAreaConstraints(for: playHitArea)
         }
-
-        playIcon.setContentCompressionResistancePriority(.required, for: .horizontal)
-        playIcon.setContentHuggingPriority(.required, for: .horizontal)
-        playIcon.setupConstraints { (_) in
-            playIcon.centerYAnchor.constraint(equalTo: playHitArea.centerYAnchor).isActive = true
-            playIcon.centerXAnchor.constraint(equalTo: playHitArea.centerXAnchor).isActive = true
-        }
-    }
-
-//        Setup share icon constraints, inside hitArea
-    func setShareIconConstraints() {
-
-        shareHitArea.setContentCompressionResistancePriority(.required, for: .horizontal)
-        shareHitArea.setContentHuggingPriority(.required, for: .horizontal)
-        shareHitArea.setupConstraints { (_) in
-            // Leading anchor was already set in audioDataContentView
-            shareHitArea.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
-            shareHitArea.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8).isActive = true
-
-            createHitAreaConstraints(for: shareHitArea)
-        }
-
-        shareIcon.setContentCompressionResistancePriority(.required, for: .horizontal)
-        shareIcon.setContentHuggingPriority(.required, for: .horizontal)
-        shareIcon.setupConstraints { (_) in
-            shareIcon.centerYAnchor.constraint(equalTo: shareHitArea.centerYAnchor).isActive = true
-            shareIcon.centerXAnchor.constraint(equalTo: shareHitArea.centerXAnchor).isActive = true
-        }
-    }
-}
-
-    // MARK: - Constraints Helper
-
-extension SearchResultCell {
-
-    /// Creates minimum hitArea constrains as fixed constrains
-    func createHitAreaConstraints(for view: UIView) {
-        let width = NSLayoutConstraint(item: view,
-                                       attribute: .width,
-                                       relatedBy: .equal,
-                                       toItem: nil,
-                                       attribute: .width,
-                                       multiplier: 1,
-                                       constant: 44)
-        width.isActive = true
-
-        let heigh = NSLayoutConstraint(item: view,
-                                       attribute: .height,
-                                       relatedBy: .equal,
-                                       toItem: nil,
-                                       attribute: .height,
-                                       multiplier: 1,
-                                       constant: 44)
-        heigh.isActive = true
     }
 }

@@ -79,6 +79,8 @@
 		C500AF70246B8AC700F5AC0A /* AudioErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500AF6E246B8A1A00F5AC0A /* AudioErrors.swift */; };
 		C5149217247315FE0080B9B1 /* Sextou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5149216247315FE0080B9B1 /* Sextou.mp3 */; };
 		C525643F24803A9100EF9509 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C525643E24803A9100EF9509 /* SearchResultCell.swift */; };
+		C5256442248042CF00EF9509 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5256441248042CF00EF9509 /* PlayButton.swift */; };
+		C5256444248044F500EF9509 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5256443248044F500EF9509 /* UIImage+Extension.swift */; };
 		C527F28D246C22F800714778 /* AudioManagerTestsSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = C527F28C246C22F800714778 /* AudioManagerTestsSuccess.swift */; };
 		C52F15D4246C7D8B00FBDA98 /* AudioManagerTest.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C5B87713246C4B5E0027A586 /* AudioManagerTest.m4a */; };
 		C53F4CAB246598C2001AAD57 /* FileExchangerSuccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53F4CAA246598C2001AAD57 /* FileExchangerSuccessTests.swift */; };
@@ -210,6 +212,8 @@
 		C500AF6E246B8A1A00F5AC0A /* AudioErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioErrors.swift; sourceTree = "<group>"; };
 		C5149216247315FE0080B9B1 /* Sextou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Sextou.mp3; sourceTree = "<group>"; };
 		C525643E24803A9100EF9509 /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
+		C5256441248042CF00EF9509 /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
+		C5256443248044F500EF9509 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		C527F28C246C22F800714778 /* AudioManagerTestsSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManagerTestsSuccess.swift; sourceTree = "<group>"; };
 		C53F4CAA246598C2001AAD57 /* FileExchangerSuccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExchangerSuccessTests.swift; sourceTree = "<group>"; };
 		C55013F32476C0730036CFFD /* AudioServicesMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioServicesMock.swift; sourceTree = "<group>"; };
@@ -377,6 +381,7 @@
 		64DD6FE2243E081E00404321 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C5256440248042BC00EF9509 /* UIView Components */,
 				C5AFABE5246D811200E7AF31 /* Files */,
 				C500AF6D246B8A0200F5AC0A /* Audio */,
 				64DD6FE3243E084100404321 /* Coordinator.swift */,
@@ -384,6 +389,7 @@
 				64DD6FE5243E0A4700404321 /* Stack.swift */,
 				64796F0B2453152800104448 /* TabBarController.swift */,
 				80ABB7B62457230C0020CF42 /* TimeInterval+Extension.swift */,
+				C5256443248044F500EF9509 /* UIImage+Extension.swift */,
 				80FAABD72451BFD6008B7DB8 /* UIColorExtension.swift */,
 				80C274D0245872980051A1E6 /* UIFont+Extension.swift */,
 				80F7235D245319DA00583137 /* UILabel+Extension.swift */,
@@ -506,6 +512,14 @@
 				C525643E24803A9100EF9509 /* SearchResultCell.swift */,
 			);
 			path = SearchResultsCell;
+			sourceTree = "<group>";
+		};
+		C5256440248042BC00EF9509 /* UIView Components */ = {
+			isa = PBXGroup;
+			children = (
+				C5256441248042CF00EF9509 /* PlayButton.swift */,
+			);
+			path = "UIView Components";
 			sourceTree = "<group>";
 		};
 		C527F28B246C22E000714778 /* AudioManager */ = {
@@ -817,8 +831,10 @@
 				642C63AB246EE9990059FBDC /* AppDelegateFake.swift in Sources */,
 				80D80EF02447365C00915F1C /* AboutCoordinator.swift in Sources */,
 				80ABB7B72457230C0020CF42 /* TimeInterval+Extension.swift in Sources */,
+				C5256444248044F500EF9509 /* UIImage+Extension.swift in Sources */,
 				80ABB7B324571C460020CF42 /* AudioCellViewModel.swift in Sources */,
 				80BBEDE824697DF500F8396E /* AudioCellError.swift in Sources */,
+				C5256442248042CF00EF9509 /* PlayButton.swift in Sources */,
 				80F7235E245319DA00583137 /* UILabel+Extension.swift in Sources */,
 				80ABB7AF2457181F0020CF42 /* AudioCellViewModelProtocol.swift in Sources */,
 				C500AF6F246B8A1A00F5AC0A /* AudioErrors.swift in Sources */,
