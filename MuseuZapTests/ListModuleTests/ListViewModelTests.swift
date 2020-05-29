@@ -74,9 +74,9 @@ class ListViewModelTests: XCTestCase {
     func testPerformSearch() {
         // There is one audio with name "Search Audio"
         sut.performSearch(with: "s")
-        XCTAssertEqual(sut.searchResultArray.count, 1, "AudioServicesMock has only one audio with 's' at name")
+        XCTAssertEqual(sut.searchResultsArray.count, 1, "AudioServicesMock has only one audio with 's' at name")
 
-        let result = sut.searchResultArray[0]
+        let result = sut.searchResultsArray[0]
         XCTAssertEqual(result.audioName, "Search Audio", "AudioServicesMock has only one audio with 's' at name")
     }
 

@@ -11,11 +11,12 @@ import DatabaseKit
 import UIKit
 
 protocol SearchResultsViewModelDelegate: class {
-
+    func reloadTableView()
 }
 
+/// Protocol used so that from viewController ListViewModel (who handles search logic) can access searchResultArray
 protocol SearchResultsViewModelProtocol {
-
+    var searchResultArray: [Audio] { get set }
 }
 
 class SearchResultsViewModel: SearchResultsViewModelProtocol {
@@ -31,4 +32,11 @@ class SearchResultsViewModel: SearchResultsViewModelProtocol {
         self.delegate = delegate
     }
 
+    // MARK: - Audio
+
+    func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties {
+        let element = searchResultArray[indexPath.row]
+
+        return AudioProperties(from: element)
+    }
 }

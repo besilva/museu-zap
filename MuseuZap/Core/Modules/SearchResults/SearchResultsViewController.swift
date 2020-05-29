@@ -16,7 +16,11 @@ class SearchResultsViewController: UIViewController {
         // swiftlint:disable force_cast
         return view as! SearchResultsView
     }
- 
+
+    /// Reference to SearchResultsViewModel is used so ResultsCell can get  searchResultArray
+    var model: SearchResultsViewModelProtocol?
+    var viewDelegate: SearchResultsViewModelDelegate?
+
     override func loadView() {
         let myView = SearchResultsView()
         view = myView
@@ -26,6 +30,8 @@ class SearchResultsViewController: UIViewController {
         super.viewDidLoad()
         let viewModel = SearchResultsViewModel(delegate: myView)
         myView.viewModel = viewModel
+        model = viewModel
+        viewDelegate = myView
     }
 
     override func viewDidAppear(_ animated: Bool) {

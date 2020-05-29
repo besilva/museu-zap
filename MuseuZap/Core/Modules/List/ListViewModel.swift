@@ -21,7 +21,8 @@ protocol ListViewModelDelegate: class {
 protocol ListViewModelProtocol {
     var audioServices: AudioServicesProtocol { get set }
     var array: [Audio] { get set }
-    var searchResultArray: [Audio] { get set }
+    var searchResultsArray: [Audio] { get set }
+    var searchManager: SearchResultsViewController { get set }
     var navigationDelegate: NavigationDelegate? { get }
     var count: Int { get }
     var delegate: ListViewModelDelegate? { get set }
@@ -35,17 +36,19 @@ protocol ListViewModelProtocol {
 class ListViewModel: ListViewModelProtocol {
     var audioServices: AudioServicesProtocol
     var array: [Audio] = []
-    var searchResultArray = [Audio]()
     // Count will be updated if a search starts
     var count: Int {
         if delegate?.isFiltering ?? false {
-            return searchResultArray.count
+            return searchResultsArray.count
         }
         return array.count
     }
     internal weak var delegate: ListViewModelDelegate?
     internal weak var navigationDelegate: NavigationDelegate?
-    
+    // Search
+    var searchResultsArray = [Audio]()
+    var searchManager = SearchResultsViewController()
+
     required init(audioServices: AudioServicesProtocol, delegate: ListViewModelDelegate) {
         self.audioServices = audioServices
         self.delegate = delegate
@@ -80,7 +83,7 @@ class ListViewModel: ListViewModelProtocol {
         var element = array[indexPath.row]
 
         if delegate?.isFiltering ?? false {
-            element = searchResultArray[indexPath.row]
+            element = searchResultsArray[indexPath.row]
         }
 
         return AudioProperties(from: element)
@@ -88,12 +91,14 @@ class ListViewModel: ListViewModelProtocol {
 
     // MARK: - Search
 
+    // Ideia é fazer que a view faça a lógiuca da busca e CUSPA o array filtrado para a searchresults controller
     func performSearch(with text: String) {
-        searchResultArray = array.filter { (audio) -> Bool in
+        searchResultsArray = array.filter { (audio) -> Bool in
             return audio.audioName.lowercased().contains(text.lowercased())
         }
 
-        delegate?.reloadTableView()
+        searchManager.model?.searchResultArray = searchResultsArray
+        searchManager.viewDelegate?.reloadTableView()
     }
 
     // MARK: - Refresh

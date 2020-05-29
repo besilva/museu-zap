@@ -17,6 +17,7 @@ class ListView: UIView, ViewCodable {
     var audioHandler: ((Action) -> Void)?
     var viewModel: ListViewModelProtocol? {
         didSet {
+            setSearchController()
             updateView()
         }
     }
@@ -51,11 +52,7 @@ class ListView: UIView, ViewCodable {
         tableView.register(AudioCell.self, forCellReuseIdentifier: self.cellIdentifier)
         tableView.insertSubview(refreshControl, at: 0)
 
-        let searchManager = SearchResultsViewController()
-        searchController = UISearchController(searchResultsController: searchManager)
-        searchController.searchResultsUpdater = searchManager
-        searchController.obscuresBackgroundDuringPresentation = true
-        searchController.searchBar.placeholder = "Buscar áudio"
+        // SearchController is configuered when viewModel is set
 
         setupView()
     }
@@ -118,7 +115,15 @@ class ListView: UIView, ViewCodable {
     func updateView() {
         tableView.reloadData()
     }
-    
+
+    /// This is called only when viewModel is set
+    func setSearchController() {
+        // SearchManager will be used to display results, ListViewModel will handle search logic
+        searchController = UISearchController(searchResultsController: viewModel?.searchManager)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = true
+        searchController.searchBar.placeholder = "Buscar áudio"
+    }
 }
 
     // MARK: - Table View
@@ -154,21 +159,34 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
 
-    // MARK: - Refresh
-    
-    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        viewModel?.handleRefresh()
+    // MARK: - Change Icon
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let audioCell = cell as? AudioCell else {
+            return
+        }
+        iconManager.updateCellStatus(visible: true, cell: audioCell)
     }
 
-    func setRefreshTopAnchor() {
-        // Calculate topAnchor with topBarHeight updated
-        topBarHeight = navBarHeight + searchController.searchBar.frame.height
-        refreshControl.topAnchor.constraint(equalTo: self.topAnchor, constant: topBarHeight).isActive = true
-        setNeedsUpdateConstraints()
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let audioCell = cell as? AudioCell else {
+            return
+        }
+        iconManager.updateCellStatus(visible: false, cell: audioCell)
     }
 }
 
-    // MARK: - ViewModel
+    // MARK: - Search
+
+extension ListView: UISearchResultsUpdating {
+
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        viewModel?.performSearch(with: text)
+    }
+}
+
+    // MARK: - For ViewModel
 
 extension ListView: ListViewModelDelegate {
 
@@ -197,21 +215,19 @@ extension ListView: ListViewModelDelegate {
     }
 }
 
-   // MARK: - Change Icon
+   // MARK: - Refresh
 
 extension ListView {
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let audioCell = cell as? AudioCell else {
-            return
-        }
-        iconManager.updateCellStatus(visible: true, cell: audioCell)
+
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        viewModel?.handleRefresh()
     }
-    
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let audioCell = cell as? AudioCell else {
-            return
-        }
-        iconManager.updateCellStatus(visible: false, cell: audioCell)
+
+    func setRefreshTopAnchor() {
+        // Calculate topAnchor with topBarHeight updated
+        topBarHeight = navBarHeight + searchController.searchBar.frame.height
+        refreshControl.topAnchor.constraint(equalTo: self.topAnchor, constant: topBarHeight).isActive = true
+        setNeedsUpdateConstraints()
     }
 }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchResultCell: UITableViewCell, ViewCodable {
+class SearchResultsCell: UITableViewCell, ViewCodable {
 
     // MARK: - Properties
 
@@ -16,9 +16,13 @@ class SearchResultCell: UITableViewCell, ViewCodable {
     var titleLabel: UILabel = UILabel()
     var durationLabel: UILabel = UILabel()
 
-//    var playHitArea: UIView = UIView()
-//    var playIcon: UIImageView = UIImageView()
     var playBtn = PlayButton()
+
+    var viewModel: SearchResultsCellViewModel? {
+        didSet {
+            updateView()
+        }
+    }
 
     // MARK: - Set Up
 
@@ -40,7 +44,6 @@ class SearchResultCell: UITableViewCell, ViewCodable {
     }
     
     func setupHierarchy() {
-//        playHitArea.addSubview(playIcon)
         audioDataContentView.addSubviews(titleLabel, durationLabel)
         contentView.addSubviews(audioDataContentView, playBtn)
     }
@@ -52,28 +55,25 @@ class SearchResultCell: UITableViewCell, ViewCodable {
         setAudioDataContentViewConstraints()
         setAudioTitleConstraints()
         setAudioDurationConstraints()
-        setPlayIconConstraints()
+        setPlayButtonConstraints()
     }
     
     func render() {
-//        Sets content view appearance
+        //  Sets content view appearance
         contentView.backgroundColor = UIColor.Default.lightBackground
 
-//        Sets text attributes for title label
+        // Sets text attributes for title label
         titleLabel.textColor = UIColor.Default.label
         titleLabel.font = UIFont.Default.semibold
         titleLabel.dynamicFont = titleLabel.font
 
-//      Sets duration label visual attributes
+        // Sets duration label visual attributes
         durationLabel.textColor = UIColor.Default.lightLabel
         let durationlabelFont = UIFont.Default.regular
         durationLabel.font = durationlabelFont.withSize(12)
         durationLabel.dynamicFont = durationlabelFont
         
-//        Set icons colors
-//        playIcon.tintColor = UIColor.Default.power
-        
-//        Adds shadow
+        // Adds shadow
         self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.05).cgColor
         self.layer.shadowOpacity = 1
         self.layer.shadowRadius = 20
@@ -85,10 +85,6 @@ class SearchResultCell: UITableViewCell, ViewCodable {
     func updateView() {
         configure()
     }
-    
-    func setupAudioDataContentView() {
-        audioDataContentView.backgroundColor = UIColor.Default.lightBackground
-    }
 
     func setupTitleLabel() {
 //        guard let viewModel = viewModel else { return }
@@ -98,7 +94,7 @@ class SearchResultCell: UITableViewCell, ViewCodable {
         let paragraphStyle = NSMutableParagraphStyle()
 
         paragraphStyle.lineHeightMultiple = 0.9
-        let attributedText = NSMutableAttributedString(string: "teste",
+        let attributedText = NSMutableAttributedString(string: "Laboris cupidatat exercitation reprehenderit commodo qui proident",
                                                        attributes: [NSAttributedString.Key.kern: 0.34,
                                                                     NSAttributedString.Key.paragraphStyle: paragraphStyle])
         titleLabel.attributedText = attributedText
@@ -118,9 +114,6 @@ class SearchResultCell: UITableViewCell, ViewCodable {
     }
 
     func setupPlayButton() {
-//        playIcon.image = UIImage(named: "play.fill")
-//        playIcon.contentMode = .scaleAspectFit
-        
 //        Adds behaviour to play audio on tap
         let tap = UITapGestureRecognizer(target: self, action: #selector(changePlayStatus))
         playBtn.isUserInteractionEnabled = true
@@ -132,10 +125,9 @@ class SearchResultCell: UITableViewCell, ViewCodable {
     }
 }
 
-    // MARK: - Constrains
+    // MARK: - Constraints
 
-// Constraint setting methods
-extension SearchResultCell {
+extension SearchResultsCell {
 //      Setup audio data content view constraints
     func setAudioDataContentViewConstraints() {
         
@@ -208,8 +200,8 @@ extension SearchResultCell {
         }
     }
     
-//        Setup play icon constraints, inside hitArea
-    func setPlayIconConstraints() {
+    // Setup PlayButton constraints
+    func setPlayButtonConstraints() {
 
         playBtn.setContentCompressionResistancePriority(.required, for: .horizontal)
         playBtn.setContentHuggingPriority(.required, for: .horizontal)

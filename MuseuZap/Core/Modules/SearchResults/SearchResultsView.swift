@@ -26,7 +26,7 @@ class SearchResultsView: UIView, ViewCodable {
         super.init(frame: frame)
 
         tableView.separatorStyle = .singleLine
-        tableView.register(SearchResultCell.self, forCellReuseIdentifier: self.cellIdentifier)
+        tableView.register(SearchResultsCell.self, forCellReuseIdentifier: self.cellIdentifier)
 
         setupView()
     }
@@ -80,7 +80,9 @@ extension SearchResultsView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as? SearchResultCell {
+//        guard let searchViewModel = viewModel else { return UITableViewCell() }
+
+        if let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as? SearchResultsCell {
              return cell
         }
         return UITableViewCell()
@@ -90,5 +92,8 @@ extension SearchResultsView: UITableViewDelegate, UITableViewDataSource {
     // MARK: - ViewModel
 
 extension SearchResultsView: SearchResultsViewModelDelegate {
+    func reloadTableView() {
+        tableView.reloadData()
+    }
 
 }
