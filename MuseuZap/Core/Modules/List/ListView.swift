@@ -130,10 +130,6 @@ class ListView: UIView, ViewCodable {
 
 extension ListView: UITableViewDelegate, UITableViewDataSource {
 
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        return nil
-    }
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let viewModel = viewModel else { return 0 }
         return viewModel.count
@@ -173,6 +169,15 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
             return
         }
         iconManager.updateCellStatus(visible: false, cell: audioCell)
+    }
+
+    // Avoid cell getting selected
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return nil
+    }
+    // Avoid cell getting highlighted
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
 }
 

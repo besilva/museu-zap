@@ -102,6 +102,31 @@ extension SearchResultsView: UITableViewDelegate, UITableViewDataSource {
         
         return UITableViewCell()
     }
+
+    // MARK: - Change Icon
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let audioCell = cell as? SearchResultsCell else {
+            return
+        }
+        iconManager.updateCellStatus(visible: true, cell: audioCell)
+    }
+
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let audioCell = cell as? SearchResultsCell else {
+            return
+        }
+        iconManager.updateCellStatus(visible: false, cell: audioCell)
+    }
+
+    // Avoid cell getting selected
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return nil
+    }
+    // Avoid cell getting highlighted
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
 }
 
     // MARK: - ViewModel
