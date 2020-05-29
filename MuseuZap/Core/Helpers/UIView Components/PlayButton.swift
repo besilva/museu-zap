@@ -30,7 +30,7 @@ class PlayButton: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    /// Creates minimum hitArea constrains as fixed constrains
+    /// Creates minimum hitArea constraints as fixed constrains
     func setUpHitAreaConstraints() {
         let width = NSLayoutConstraint(item: self,
                                        attribute: .width,
@@ -41,14 +41,14 @@ class PlayButton: UIView {
                                        constant: 44)
         width.isActive = true
 
-        let heigh = NSLayoutConstraint(item: self,
+        let height = NSLayoutConstraint(item: self,
                                        attribute: .height,
                                        relatedBy: .equal,
                                        toItem: nil,
                                        attribute: .height,
                                        multiplier: 1,
                                        constant: 44)
-        heigh.isActive = true
+        height.isActive = true
     }
 
     func setUpIconConstraints() {

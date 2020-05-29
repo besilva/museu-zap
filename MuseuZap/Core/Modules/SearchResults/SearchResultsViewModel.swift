@@ -17,7 +17,7 @@ protocol SearchResultsViewModelDelegate: class {
 /// Protocol used so that from viewController ListViewModel (who handles search logic) can access searchResultArray
 protocol SearchResultsViewModelProtocol {
     var searchResultArray: [Audio] { get set }
-    func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties
+    func getSearchedAudioItemProperties(at indexPath: IndexPath) -> AudioProperties
 }
 
 class SearchResultsViewModel: SearchResultsViewModelProtocol {
@@ -35,7 +35,7 @@ class SearchResultsViewModel: SearchResultsViewModelProtocol {
 
     // MARK: - Audio
 
-    func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties {
+    func getSearchedAudioItemProperties(at indexPath: IndexPath) -> AudioProperties {
         let element = searchResultArray[indexPath.row]
 
         return AudioProperties(from: element)

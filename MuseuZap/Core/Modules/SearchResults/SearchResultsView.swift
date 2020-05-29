@@ -19,6 +19,8 @@ class SearchResultsView: UIView, ViewCodable {
             updateView()
         }
     }
+    var iconManager: CellIconManager = CellIconManager.shared
+    var audioHandler: ((Action) -> Void)?
 
     // MARK: - Init
 
@@ -83,10 +85,16 @@ extension SearchResultsView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let viewModel = viewModel else { return UITableViewCell() }
 
-        let audio = viewModel.getAudioItemProperties(at: indexPath)
+        let audio = viewModel.getSearchedAudioItemProperties(at: indexPath)
 
         if let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as? SearchResultsCell {
-            let viewModel = SearchResultsCellViewModel(title: audio.name, duration: audio.duration, audioPath: audio.path)
+            let viewModel = SearchResultsCellViewModel(title: audio.name, duration: audio.duration, audioPath: audio.path) { (action) in
+                //  Makes List View handle actions performed by the audio cell view model
+                    if let audioHandler = self.audioHandler {
+                        audioHandler(action)
+                    }
+            }
+
             cell.viewModel = viewModel
             return cell
         }

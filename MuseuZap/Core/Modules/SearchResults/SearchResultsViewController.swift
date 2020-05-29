@@ -12,14 +12,18 @@ import DatabaseKit
 
 class SearchResultsViewController: UIViewController {
 
+    // MARK: - Properties
+
+    /// Reference to SearchResultsViewModel is used so ResultsCell can get  searchResultArray
+    var model: SearchResultsViewModelProtocol?
+    weak var viewDelegate: SearchResultsViewModelDelegate?
+
     private var myView: SearchResultsView {
         // swiftlint:disable force_cast
         return view as! SearchResultsView
     }
 
-    /// Reference to SearchResultsViewModel is used so ResultsCell can get  searchResultArray
-    var model: SearchResultsViewModelProtocol?
-    var viewDelegate: SearchResultsViewModelDelegate?
+    // MARK: - Life Cycle
 
     override func loadView() {
         let myView = SearchResultsView()
@@ -32,15 +36,5 @@ class SearchResultsViewController: UIViewController {
         myView.viewModel = viewModel
         model = viewModel
         viewDelegate = myView
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-           super.viewDidAppear(animated)
-       }
-}
-
-extension SearchResultsViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        print("oi")
     }
 }

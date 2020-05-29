@@ -1,5 +1,5 @@
 //
-//  SearchResultCell.swift
+//  SearchResultsCell.swift
 //  MuseuZap
 //
 //  Created by Ivo Dutra on 28/05/20.
@@ -24,17 +24,27 @@ class SearchResultsCell: UITableViewCell, ViewCodable {
         }
     }
 
+    var isPlaying: Bool {
+        didSet {
+            self.playBtn.icon.image = self.isPlaying ?  UIImage.Default.pauseIcon : UIImage.Default.playIcon
+        }
+    }
+
     // MARK: - Set Up
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-//        self.isPlaying = false
+        self.isPlaying = false
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         setupView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.isPlaying = false
     }
     
     func configure() {
@@ -120,8 +130,11 @@ class SearchResultsCell: UITableViewCell, ViewCodable {
         playBtn.addGestureRecognizer(tap)
     }
 
+    // MARK: - Change Status
+
     @objc func changePlayStatus() {
-        print("tap ok!")
+        guard let viewModel = viewModel else { return }
+        viewModel.changePlayStatus(cell: self)
     }
 }
 
@@ -170,7 +183,7 @@ extension SearchResultsCell {
             titleLabel.trailingAnchor.constraint(equalTo: audioDataContentView.trailingAnchor).isActive = true
         }
     }
-    
+
 //        Setup audio duration constraints
     func setAudioDurationConstraints() {
         durationLabel.setupConstraints { (_) in

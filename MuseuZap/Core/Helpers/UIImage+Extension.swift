@@ -11,5 +11,6 @@ import UIKit
 extension UIImage {
     struct Default {
         static let playIcon = UIImage(named: "play.fill")
+        static let pauseIcon = UIImage(named: "pause.fill")
     }
 }

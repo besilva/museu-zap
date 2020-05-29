@@ -10,23 +10,34 @@ import UIKit
 
 class SearchResultsCellViewModel {
 
+    // MARK: - Properties
+
     var title: String
     var audioPath: String
     var duration: TimeInterval
 
-    required init(title: String, duration: TimeInterval, audioPath: String) {
+    var iconManager: CellIconManager = CellIconManager.shared
+    var actionHandler: (Action) -> Void
+
+    // MARK: - Init
+
+    required init(title: String, duration: TimeInterval, audioPath: String, audioHandler: @escaping (Action) -> Void) {
         self.title = title
         self.duration = duration
         self.audioPath = audioPath
+        actionHandler = audioHandler
     }
 
     required init(audioPath: String, audioHandler: @escaping (Action) -> Void) {
         self.audioPath = audioPath
-        self.title = ""
-        self.duration = 0
+        self.title = "Lorem Ipsum"
+        self.duration = 90
+        actionHandler = audioHandler
     }
 
+    // MARK: - Action
+
     func changePlayStatus(cell: SearchResultsCell) {
-       print("change play status")
+//       iconManager.changePlayStatus(audioPath: audioPath, cell: cell)
     }
 }

@@ -19,12 +19,10 @@ class AudioCell: UITableViewCell, ViewCodable {
     var shareHitArea: UIView = UIView()
     var playIcon: UIImageView = UIImageView()
     var shareIcon: UIImageView = UIImageView()
-    
+
     var isPlaying: Bool {
         didSet {
-            let pauseIcon = UIImage(named: "pause")
-            let playIcon = UIImage(named: "play")
-            self.playIcon.image = self.isPlaying ?  pauseIcon : playIcon
+            self.playIcon.image = self.isPlaying ?  UIImage.Default.pauseIcon : UIImage.Default.playIcon
         }
     }
 
