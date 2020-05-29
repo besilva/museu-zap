@@ -100,7 +100,6 @@
 		C5BC02A82476C4C200095A5C /* ListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BC02A72476C4C200095A5C /* ListViewModelTests.swift */; };
 		C5CD5EB5246BFDBB0054C4EB /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD5EB4246BFDBB0054C4EB /* AsyncOperation.swift */; };
 		C5CD5EB7246BFDD00054C4EB /* XCTestCase+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD5EB6246BFDD00054C4EB /* XCTestCase+Extension.swift */; };
-		C5F4AFB32480504C008CCF2E /* SearchResultsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4AFB22480504C008CCF2E /* SearchResultsCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -233,7 +232,6 @@
 		C5BC02A72476C4C200095A5C /* ListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModelTests.swift; sourceTree = "<group>"; };
 		C5CD5EB4246BFDBB0054C4EB /* AsyncOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		C5CD5EB6246BFDD00054C4EB /* XCTestCase+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extension.swift"; sourceTree = "<group>"; };
-		C5F4AFB22480504C008CCF2E /* SearchResultsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsCellViewModel.swift; sourceTree = "<group>"; };
 		D7F5F29DEFE1985ABEACBA35 /* Pods-MuseuZap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseuZap.release.xcconfig"; path = "Target Support Files/Pods-MuseuZap/Pods-MuseuZap.release.xcconfig"; sourceTree = "<group>"; };
 		DE01B3ADB3A48B36B5C7B8EB /* Pods-MuseuZapTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseuZapTests.release.xcconfig"; path = "Target Support Files/Pods-MuseuZapTests/Pods-MuseuZapTests.release.xcconfig"; sourceTree = "<group>"; };
 		DF64FC4F5B2F7DE84F22A03F /* libPods-MuseuZapTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MuseuZapTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -506,15 +504,6 @@
 			path = Audio;
 			sourceTree = "<group>";
 		};
-		C525643D24803A5A00EF9509 /* SearchResultsCell */ = {
-			isa = PBXGroup;
-			children = (
-				C525643E24803A9100EF9509 /* SearchResultsCell.swift */,
-				C5F4AFB22480504C008CCF2E /* SearchResultsCellViewModel.swift */,
-			);
-			path = SearchResultsCell;
-			sourceTree = "<group>";
-		};
 		C5256440248042BC00EF9509 /* UIView Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -565,7 +554,7 @@
 		C564E5CF24780AB600A696D8 /* SearchResults */ = {
 			isa = PBXGroup;
 			children = (
-				C525643D24803A5A00EF9509 /* SearchResultsCell */,
+				C525643E24803A9100EF9509 /* SearchResultsCell.swift */,
 				C564E5D024780B2300A696D8 /* SearchResultsView.swift */,
 				C564E5D224780B2300A696D8 /* SearchResultsViewController.swift */,
 				C564E5D124780B2300A696D8 /* SearchResultsViewModel.swift */,
@@ -843,7 +832,6 @@
 				80DF26FC2472B55C00B6A5FC /* FileExchanger.swift in Sources */,
 				64DD6FF9243E10E400404321 /* TestCoordinator.swift in Sources */,
 				64A60C342448BD33003B0F26 /* UIViewControllerExtension.swift in Sources */,
-				C5F4AFB32480504C008CCF2E /* SearchResultsCellViewModel.swift in Sources */,
 				64DD6FE6243E0A4700404321 /* Stack.swift in Sources */,
 				C5904C69246AEED4004B9921 /* AudioManager.swift in Sources */,
 				C5AFABE7246D814600E7AF31 /* FileManager+Extension.swift in Sources */,

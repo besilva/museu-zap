@@ -88,11 +88,12 @@ extension SearchResultsView: UITableViewDelegate, UITableViewDataSource {
         let audio = viewModel.getSearchedAudioItemProperties(at: indexPath)
 
         if let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as? SearchResultsCell {
-            let viewModel = SearchResultsCellViewModel(title: audio.name, duration: audio.duration, audioPath: audio.path) { (action) in
-                //  Makes List View handle actions performed by the audio cell view model
-                    if let audioHandler = self.audioHandler {
-                        audioHandler(action)
-                    }
+            // Search results cell inherits from AudioCell, same viewModel is used
+            let viewModel = AudioCellViewModel(title: audio.name, duration: audio.duration, audioPath: audio.path) { (action) in
+                // Makes SearchResultsView handle actions performed by the audio cell view model
+                if let audioHandler = self.audioHandler {
+                    audioHandler(action)
+                }
             }
 
             cell.viewModel = viewModel
