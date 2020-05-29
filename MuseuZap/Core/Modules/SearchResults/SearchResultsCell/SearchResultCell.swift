@@ -87,14 +87,14 @@ class SearchResultsCell: UITableViewCell, ViewCodable {
     }
 
     func setupTitleLabel() {
-//        guard let viewModel = viewModel else { return }
-//        let audioTitle = viewModel.title
-//
+        guard let viewModel = viewModel else { return }
+        let audioTitle = viewModel.title
+
         titleLabel.numberOfLines = 0
         let paragraphStyle = NSMutableParagraphStyle()
 
         paragraphStyle.lineHeightMultiple = 0.9
-        let attributedText = NSMutableAttributedString(string: "Laboris cupidatat exercitation reprehenderit commodo qui proident",
+        let attributedText = NSMutableAttributedString(string: audioTitle,
                                                        attributes: [NSAttributedString.Key.kern: 0.34,
                                                                     NSAttributedString.Key.paragraphStyle: paragraphStyle])
         titleLabel.attributedText = attributedText
@@ -102,19 +102,19 @@ class SearchResultsCell: UITableViewCell, ViewCodable {
     }
     
     func setupDurationLabel() {
-//        Loads and formats content from viewModel
-//        guard let viewModel = viewModel else { return }
-//        let durationString = viewModel.duration.stringFromTimeInterval()
+        // Loads and formats content from viewModel
+        guard let viewModel = viewModel else { return }
+        let durationString = viewModel.duration.stringFromTimeInterval()
         
-//        Sets text style attributes
-        let attributedText = NSMutableAttributedString(string: "0000",
+        // Sets text style attributes
+        let attributedText = NSMutableAttributedString(string: durationString,
                                                        attributes: [NSAttributedString.Key.kern: 0.07])
         durationLabel.attributedText = attributedText
         durationLabel.textAlignment = .left
     }
 
     func setupPlayButton() {
-//        Adds behaviour to play audio on tap
+        // Adds behaviour to play audio on tap
         let tap = UITapGestureRecognizer(target: self, action: #selector(changePlayStatus))
         playBtn.isUserInteractionEnabled = true
         playBtn.addGestureRecognizer(tap)

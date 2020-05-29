@@ -76,15 +76,21 @@ class SearchResultsView: UIView, ViewCodable {
 
 extension SearchResultsView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        guard let viewModel = viewModel else { return 0 }
+        return viewModel.searchResultArray.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let searchViewModel = viewModel else { return UITableViewCell() }
+        guard let viewModel = viewModel else { return UITableViewCell() }
+
+        let audio = viewModel.getAudioItemProperties(at: indexPath)
 
         if let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as? SearchResultsCell {
-             return cell
+            let viewModel = SearchResultsCellViewModel(title: audio.name, duration: audio.duration, audioPath: audio.path)
+            cell.viewModel = viewModel
+            return cell
         }
+        
         return UITableViewCell()
     }
 }

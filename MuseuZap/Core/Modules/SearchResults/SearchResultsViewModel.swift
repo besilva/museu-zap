@@ -17,6 +17,7 @@ protocol SearchResultsViewModelDelegate: class {
 /// Protocol used so that from viewController ListViewModel (who handles search logic) can access searchResultArray
 protocol SearchResultsViewModelProtocol {
     var searchResultArray: [Audio] { get set }
+    func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties
 }
 
 class SearchResultsViewModel: SearchResultsViewModelProtocol {

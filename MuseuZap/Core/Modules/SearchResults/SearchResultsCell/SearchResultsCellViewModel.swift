@@ -26,7 +26,7 @@ class SearchResultsCellViewModel {
         self.duration = 0
     }
 
-    func changePlayStatus(cell: AudioCell) {
+    func changePlayStatus(cell: SearchResultsCell) {
        print("change play status")
     }
 }
