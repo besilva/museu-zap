@@ -14,13 +14,15 @@ class SearchResultsViewController: UIViewController {
 
     // MARK: - Properties
 
-    /// Reference to SearchResultsViewModel is used so ResultsCell can get  searchResultArray
+    /// Reference to SearchResultsViewModel so ListViewModel can reach searchResultArray
     var model: SearchResultsViewModelProtocol?
+    /// Reference to SearchResultsView so ListViewModel can reach tableView.reloadData()
     weak var viewDelegate: SearchResultsViewModelDelegate?
 
     private var myView: SearchResultsView {
         // swiftlint:disable force_cast
         return view as! SearchResultsView
+        // swiftlint:enable force_cast
     }
 
     // MARK: - Life Cycle
@@ -32,7 +34,7 @@ class SearchResultsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let viewModel = SearchResultsViewModel(delegate: myView)
+        let viewModel = SearchResultsViewModel()
         myView.viewModel = viewModel
         model = viewModel
         viewDelegate = myView

@@ -10,63 +10,40 @@ import DatabaseKit
 
 class AudioServicesMock: AudioServicesProtocol {
 
-    var audio1 = Audio()
-    var searchAudio = Audio()
-    var exampleCategory = AudioCategory()
+    var audios = MockAudio()
 
     enum MockCases {
-        case setUp
+        case setUp // Contains 3 Audios
         case onlyOneAudio
         case error
     }
 
     var stateCase: MockCases = .setUp
 
-    init() {
-        // Prepare audio
-        exampleCategory.categoryName = "ListViewModelTests Category"
-
-        audio1.audioName = "Audio 1"
-        audio1.audioPath = FileManager.default.temporaryDirectory.path
-        audio1.category = exampleCategory
-        audio1.duration = 15
-        audio1.isPrivate = true
-
-        searchAudio.audioName = "Search Audio"
-        searchAudio.audioPath = FileManager.default.temporaryDirectory.path
-        searchAudio.category = exampleCategory
-        searchAudio.duration = 10
-        searchAudio.isPrivate = false
-    }
-
     // MARK: - Functions
 
     func createAudio(audio: Audio, _ completion: ((Error?) -> Void)) {
-        print("create")
     }
 
     func getAllAudios(_ completion: @escaping (Error?, [Audio]?) -> Void) {
         switch stateCase {
+        // At setUp, load viewModel with 3 audios
         case .setUp:
-            completion(nil, [audio1, searchAudio])
+            completion(nil, [audios.audioPrivate, audios.audioPublic, audios.searchAudio])
+        // Load ViewModel array with 1 example audio
         case .onlyOneAudio:
-            // Load ViewModel array with 1 example audio
-            completion(nil, [audio1])
+            completion(nil, [audios.audioPublic])
         case .error:
             print()
         }
     }
 
     func getAllAudiosWith(isPrivate bool: Bool, _ completion: @escaping (Error?, [Audio]?) -> Void) {
-        print("getwith")
     }
 
     func updateAllAudios(_ completion: (Error?) -> Void) {
-        print("update")
     }
 
     func deleteAudio(audio: Audio, _ completion: (Error?) -> Void) {
-        print("delete")
     }
-
 }
