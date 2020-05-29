@@ -14,13 +14,16 @@ class SearchResultsView: UIView, ViewCodable {
 
     private var cellIdentifier: String = "searchCell"
     private var tableView: UITableView = UITableView()
+    private var dataSource: SearchResultsDataSource!
     var viewModel: SearchResultsViewModelProtocol? {
         didSet {
+            // Create data source only when viewModel was set
+            // Then setUp table view
+            dataSource = SearchResultsDataSource(viewModel: viewModel!, withIdentifier: cellIdentifier)
             updateView()
         }
     }
     var iconManager: CellIconManager = CellIconManager.shared
-    var audioHandler: ((Action) -> Void)?
 
     // MARK: - Init
 
@@ -37,7 +40,7 @@ class SearchResultsView: UIView, ViewCodable {
     // MARK: - SetUp
 
     func configure() {
-        setupTableView()
+        // TableView will be configured when dataSource is set
     }
 
     func setupHierarchy() {
@@ -63,46 +66,32 @@ class SearchResultsView: UIView, ViewCodable {
 
     func setupTableView() {
         tableView.delegate = self
-        tableView.dataSource = self
+        tableView.dataSource = dataSource
         tableView.separatorStyle = .singleLine
         tableView.register(SearchResultsCell.self, forCellReuseIdentifier: self.cellIdentifier)
     }
 
     func updateView() {
+        setupTableView()
         tableView.reloadData()
     }
 }
 
     // MARK: - Table View
 
-extension SearchResultsView: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let viewModel = viewModel else { return 0 }
-        return viewModel.searchResultArray.count
+// Data Source comes from SearchResultsDataSource
+extension SearchResultsView: UITableViewDelegate {
+
+    // Avoid cell getting selected
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return nil
+    }
+    // Avoid cell getting highlighted
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let viewModel = viewModel else { return UITableViewCell() }
-
-        let audio = viewModel.getSearchedAudioItemProperties(at: indexPath)
-
-        if let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as? SearchResultsCell {
-            // Search results cell inherits from AudioCell, same viewModel is used
-            let viewModel = AudioCellViewModel(title: audio.name, duration: audio.duration, audioPath: audio.path) { (action) in
-                // Makes SearchResultsView handle actions performed by the audio cell view model
-                if let audioHandler = self.audioHandler {
-                    audioHandler(action)
-                }
-            }
-
-            cell.viewModel = viewModel
-            return cell
-        }
-        
-        return UITableViewCell()
-    }
-
-    // MARK: - Change Icon
+    // MARK: Change Icon
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let audioCell = cell as? SearchResultsCell else {
@@ -116,15 +105,6 @@ extension SearchResultsView: UITableViewDelegate, UITableViewDataSource {
             return
         }
         iconManager.updateCellStatus(visible: false, cell: audioCell)
-    }
-
-    // Avoid cell getting selected
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        return nil
-    }
-    // Avoid cell getting highlighted
-    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        return false
     }
 }
 
