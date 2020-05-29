@@ -99,8 +99,12 @@
 		C5AFABEA246D8C8200E7AF31 /* AudioManagerTestsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AFABE9246D8C8200E7AF31 /* AudioManagerTestsError.swift */; };
 		C5AFABEC246D8CD000E7AF31 /* MockedNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AFABEB246D8CD000E7AF31 /* MockedNotificationCenter.swift */; };
 		C5AFABEF246D8F1700E7AF31 /* wrongExtension.txt in Resources */ = {isa = PBXBuildFile; fileRef = C5AFABED246D8F0000E7AF31 /* wrongExtension.txt */; };
+		C5B2B4FC24818059000D2C7F /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2B4FB24818059000D2C7F /* File.swift */; };
 		C5BC02A62476C44300095A5C /* ListViewModelDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BC02A52476C44300095A5C /* ListViewModelDelegateMock.swift */; };
 		C5BC02A82476C4C200095A5C /* ListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BC02A72476C4C200095A5C /* ListViewModelTests.swift */; };
+		C5C5963724819A1900E8539E /* SearchResultsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C5963624819A1900E8539E /* SearchResultsViewControllerTests.swift */; };
+		C5C5963924819C1600E8539E /* SearchResultsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C5963824819C1600E8539E /* SearchResultsViewTests.swift */; };
+		C5C5963C24819DCE00E8539E /* MockSearchResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C5963B24819DCE00E8539E /* MockSearchResultsViewModel.swift */; };
 		C5CD5EB5246BFDBB0054C4EB /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD5EB4246BFDBB0054C4EB /* AsyncOperation.swift */; };
 		C5CD5EB7246BFDD00054C4EB /* XCTestCase+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD5EB6246BFDD00054C4EB /* XCTestCase+Extension.swift */; };
 /* End PBXBuildFile section */
@@ -233,9 +237,13 @@
 		C5AFABE9246D8C8200E7AF31 /* AudioManagerTestsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManagerTestsError.swift; sourceTree = "<group>"; };
 		C5AFABEB246D8CD000E7AF31 /* MockedNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedNotificationCenter.swift; sourceTree = "<group>"; };
 		C5AFABED246D8F0000E7AF31 /* wrongExtension.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wrongExtension.txt; sourceTree = "<group>"; };
+		C5B2B4FB24818059000D2C7F /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		C5B87713246C4B5E0027A586 /* AudioManagerTest.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = AudioManagerTest.m4a; sourceTree = "<group>"; };
 		C5BC02A52476C44300095A5C /* ListViewModelDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModelDelegateMock.swift; sourceTree = "<group>"; };
 		C5BC02A72476C4C200095A5C /* ListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModelTests.swift; sourceTree = "<group>"; };
+		C5C5963624819A1900E8539E /* SearchResultsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewControllerTests.swift; sourceTree = "<group>"; };
+		C5C5963824819C1600E8539E /* SearchResultsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewTests.swift; sourceTree = "<group>"; };
+		C5C5963B24819DCE00E8539E /* MockSearchResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSearchResultsViewModel.swift; sourceTree = "<group>"; };
 		C5CD5EB4246BFDBB0054C4EB /* AsyncOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		C5CD5EB6246BFDD00054C4EB /* XCTestCase+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extension.swift"; sourceTree = "<group>"; };
 		D7F5F29DEFE1985ABEACBA35 /* Pods-MuseuZap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseuZap.release.xcconfig"; path = "Target Support Files/Pods-MuseuZap/Pods-MuseuZap.release.xcconfig"; sourceTree = "<group>"; };
@@ -344,6 +352,7 @@
 				80E6C366244DF05500A42A4C /* AboutModuleTests */,
 				C55013F22476C0480036CFFD /* ListModuleTests */,
 				C5A4D4FA24815B5C006C97FF /* SearchResultsModuleTests */,
+				C5B2B4FA24817F64000D2C7F /* UIView Components Tests */,
 				6473EDED243B6D3E00A10F2C /* Info.plist */,
 			);
 			path = MuseuZapTests;
@@ -574,6 +583,9 @@
 		C5A4D4FA24815B5C006C97FF /* SearchResultsModuleTests */ = {
 			isa = PBXGroup;
 			children = (
+				C5C5963A24819DB000E8539E /* Mock */,
+				C5C5963824819C1600E8539E /* SearchResultsViewTests.swift */,
+				C5C5963624819A1900E8539E /* SearchResultsViewControllerTests.swift */,
 				C5A4D4FB24815B91006C97FF /* SearchResultsViewModelTests.swift */,
 			);
 			path = SearchResultsModuleTests;
@@ -587,6 +599,22 @@
 				80DF26FA2472B55C00B6A5FC /* FileExchanger.swift */,
 			);
 			path = Files;
+			sourceTree = "<group>";
+		};
+		C5B2B4FA24817F64000D2C7F /* UIView Components Tests */ = {
+			isa = PBXGroup;
+			children = (
+				C5B2B4FB24818059000D2C7F /* File.swift */,
+			);
+			path = "UIView Components Tests";
+			sourceTree = "<group>";
+		};
+		C5C5963A24819DB000E8539E /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				C5C5963B24819DCE00E8539E /* MockSearchResultsViewModel.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -876,10 +904,14 @@
 				C5AFABEC246D8CD000E7AF31 /* MockedNotificationCenter.swift in Sources */,
 				C527F28D246C22F800714778 /* AudioManagerTestsSuccess.swift in Sources */,
 				808C9E30245F283900FF4FEB /* PublicAudioCellViewModel+Extension.swift in Sources */,
+				C5C5963924819C1600E8539E /* SearchResultsViewTests.swift in Sources */,
 				C586E2C72465AA2400B1930B /* FileExchangerErrorTests.swift in Sources */,
 				80E6C368244DF09700A42A4C /* AboutViewTests.swift in Sources */,
 				80A7E965246EDB8D00E7EAA2 /* CellIconManagerTests.swift in Sources */,
 				C53F4CAB246598C2001AAD57 /* FileExchangerSuccessTests.swift in Sources */,
+				C5B2B4FC24818059000D2C7F /* File.swift in Sources */,
+				C5C5963C24819DCE00E8539E /* MockSearchResultsViewModel.swift in Sources */,
+				C5C5963724819A1900E8539E /* SearchResultsViewControllerTests.swift in Sources */,
 				C5AFABEA246D8C8200E7AF31 /* AudioManagerTestsError.swift in Sources */,
 				80C274C624585BEA0051A1E6 /* AudioCellSnapshotTests.swift in Sources */,
 				6461820B24645363003BC3AB /* TableViewCellSnapshotContainer.swift in Sources */,

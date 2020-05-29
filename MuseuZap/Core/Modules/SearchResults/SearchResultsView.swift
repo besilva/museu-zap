@@ -27,9 +27,6 @@ class SearchResultsView: UIView, ViewCodable {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        tableView.separatorStyle = .singleLine
-        tableView.register(SearchResultsCell.self, forCellReuseIdentifier: self.cellIdentifier)
-
         setupView()
     }
 
@@ -67,6 +64,8 @@ class SearchResultsView: UIView, ViewCodable {
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorStyle = .singleLine
+        tableView.register(SearchResultsCell.self, forCellReuseIdentifier: self.cellIdentifier)
     }
 
     func updateView() {
@@ -135,5 +134,4 @@ extension SearchResultsView: SearchResultsViewModelDelegate {
     func reloadTableView() {
         tableView.reloadData()
     }
-
 }
