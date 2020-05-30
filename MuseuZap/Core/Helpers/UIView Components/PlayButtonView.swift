@@ -1,5 +1,5 @@
 //
-//  PlayButton.swift
+//  PlayButtonView.swift
 //  MuseuZap
 //
 //  Created by Ivo Dutra on 28/05/20.
@@ -9,7 +9,7 @@
 import UIKit
 
 /// Creates a View with playIcon in the middle
-class PlayButton: UIView {
+class PlayButtonView: UIView {
     public var icon: UIImageView = UIImageView()
 
     override init(frame: CGRect) {

@@ -11,6 +11,8 @@ import XCTest
 
 class SearchResultsViewControllerTests: XCTestCase {
 
+    // Note: Here are also parts from SearchResultsView tested, embedded
+
     var sut: SearchResultsViewController!
 
     override func setUp() {

@@ -34,7 +34,7 @@ class MockAudio {
         audioPrivate.audioPath = FileManager.default.temporaryDirectory.path
         audioPrivate.category = category2
         audioPrivate.duration = 10
-        audioPrivate.isPrivate = false
+        audioPrivate.isPrivate = true
 
         searchAudio.audioName = "Search"
         searchAudio.audioPath = FileManager.default.temporaryDirectory.path
