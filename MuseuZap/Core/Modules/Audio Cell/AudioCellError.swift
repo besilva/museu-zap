@@ -10,6 +10,6 @@ import Foundation
 
 // Custom errors
 enum AudioCellError: Error {
-    case ChangePlayStatusError
-    case ShareError
+    case changePlayStatusError
+    case shareError
 }

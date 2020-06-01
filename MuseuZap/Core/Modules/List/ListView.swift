@@ -161,13 +161,13 @@ extension ListView: ListViewModelDelegate {
 
     func reloadTableView() {
         tableView.reloadData()
-        if self.viewModel?.count == 0  || self.viewModel == nil {
-            self.tableView.isScrollEnabled = false
-            self.tableView.backgroundView?.isHidden = false
-        } else {
+        guard self.viewModel?.count == 0 || self.viewModel == nil else {
             self.tableView.isScrollEnabled = true
             self.tableView.backgroundView?.isHidden = true
+            return
         }
+        self.tableView.isScrollEnabled = false
+        self.tableView.backgroundView?.isHidden = false
     }
     
     func startLoading() {
