@@ -53,10 +53,7 @@ public class FileExchanger {
                 var isDirectory: ObjCBool = false
                 let exists = FileManager.default.fileExists(atPath: url.path, isDirectory: &isDirectory)
                 
-                if exists && !isDirectory.boolValue {
-                    return true
-                }
-                return false
+                return exists && !isDirectory.boolValue
             }
         } catch {
             print("COULD NOT LIST ITEMS in GROUP FOLDER FOR SOME REASON \n", error)
