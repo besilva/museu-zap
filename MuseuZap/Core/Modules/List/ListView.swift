@@ -123,6 +123,7 @@ class ListView: UIView, ViewCodable {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = true
         searchController.searchBar.placeholder = "Buscar áudio"
+        searchController.searchBar.tintColor = UIColor.Default.power
     }
 }
 
@@ -243,7 +244,7 @@ extension ListView: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
         // Table view "starts" at topBarHeight
-        // Controller extendedLayoutIncludesOpaqueBars was set to true so resultController could work properly
+        // ListController extendedLayoutIncludesOpaqueBars was set to true so SearchResultsController could work properly
         if scrollView.contentOffset.y > (-topBarHeight) {
             // Scrolling down deactive constrain
             refreshScrollConstraint.isActive = false
