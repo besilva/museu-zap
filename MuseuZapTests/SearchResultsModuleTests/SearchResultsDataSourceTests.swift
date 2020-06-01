@@ -49,20 +49,26 @@ class SearchResultsDataSourceTests: XCTestCase {
 
     // MARK: - Label
 
-//    func testAudioLabelText() {
-//
-//        let table = UITableView()
-//        let cai = MockSearchResultsViewModel()
-//        cai.arrayCount = .onePrivate
-//        table.register(SearchResultsCell.self, forCellReuseIdentifier: "oi")
-//        let sut1 = SearchResultsDataSource(viewModel: cai, withIdentifier: "oi")
-//        table.dataSource = sut1
-//
-//        table.reloadData()
-//        print(sut1.viewModel.searchResultArray)
-//        print(table.numberOfRows(inSection: 0))
-//
-//        let cell = table.visibleCells[0] as? SearchResultsCell
-//
-//    }
+    /*
+     This test is breaking the constraints when loading custom cell at a isolated tableView, not sure why
+
+    func testAudioLabelText() {
+
+        let table = UITableView()
+        let mock = MockSearchResultsViewModel()
+        mock.arrayCount = .onePrivate
+        table.register(SearchResultsCell.self, forCellReuseIdentifier: "oi")
+        let sut1 = SearchResultsDataSource(viewModel: mock, withIdentifier: "oi")
+        table.dataSource = sut1
+
+        table.reloadData()
+        print(sut1.viewModel.searchResultArray, "\n esse array deve conter APENAS 1 AUDIO")
+        print(table.numberOfRows(inSection: 0), "\n aqui mostra que a table view tem APENAS 1 AUDII, O PRIVATE")
+
+        let cell = table.visibleCells[0] as? SearchResultsCell
+        print(cell?.titleLabel.text! as Any, "\n e aqui a gente ve que o titulo da celula NAO BATE com o search results array, da AUDIO PUBLIC")
+
+    }
+     
+   */
 }
