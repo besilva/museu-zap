@@ -54,6 +54,11 @@ class CategoryCell: UICollectionViewCell, ViewCodable {
         iconWidthConstraint?.constant = width
         iconHeightConstraint?.constant = height
     }
+    
+    private func changeColor() {
+        backgroundColor = viewModel?.backgroundColor?.withAlphaComponent(viewModel!.opacity)
+
+    }
 }
 
 extension CategoryCell {
@@ -102,9 +107,14 @@ extension CategoryCell {
         numberOfAudiosLabel.textColor = UIColor.Default.lightLabel
         numberOfAudiosLabel.font = UIFont.Default.regular.withSize(12)
         
-        backgroundColor = viewModel?.backgroundColor?.withAlphaComponent(viewModel!.opacity)
+        changeColor()
+        
         layer.cornerRadius = 16
         
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        changeColor()
     }
     
 }

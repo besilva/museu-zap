@@ -24,6 +24,8 @@ class CategoryCollectionView: UICollectionView {
         self.delegate = self
         self.dataSource = self
         self.backgroundColor = UIColor.Default.background
+        self.showsVerticalScrollIndicator = false
+        self.showsHorizontalScrollIndicator = false
     }
     
     convenience init(categories: [AudioCategory]) {

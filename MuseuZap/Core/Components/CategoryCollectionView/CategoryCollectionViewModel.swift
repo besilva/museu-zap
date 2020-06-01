@@ -26,7 +26,7 @@ class CategoryCollectionViewModel {
     }
     
     func retrieveAllCategories() {
-        service.getAllCategories { (error, categories) in
+        service.getAllCategoriesWith(isPrivate: false) { (error, categories) in
             if let error = error {
                 print(error)
             } else if let categories = categories {

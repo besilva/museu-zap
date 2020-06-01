@@ -48,7 +48,7 @@ public class FileExchanger {
 
         do {
             list = try FileManager.default.contentsOfDirectory(at: appGroupFolderURL,
-                                                               includingPropertiesForKeys: nil)
+                                                               includingPropertiesForKeys:[URLResourceKey.fileSizeKey])
         } catch {
             print("COULD NOT LIST ITEMS in GROUP FOLDER FOR SOME REASON \n", error)
             throw FileErrors.listContents

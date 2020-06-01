@@ -1,5 +1,5 @@
 //
-//  TestCell.swift
+//  CategoryTableViewCell.swift
 //  MuseuZap
 //
 //  Created by Bernardo Silva on 22/05/20.
@@ -9,10 +9,7 @@
 import UIKit
 import DatabaseKit
 
-class TestCell: UITableViewCell, ViewCodable {
-    func render() {
-        
-    }
+class CategoryTableViewCell: UITableViewCell, ViewCodable {
     
 //    var container: UIView = UIView()
     let categoryCollection: CategoryCollectionView
@@ -24,6 +21,7 @@ class TestCell: UITableViewCell, ViewCodable {
         categoryCollection = CategoryCollectionView(frame: .zero, collectionViewLayout: layout)
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setupView()
+        categoryCollection.viewModel = CategoryCollectionViewModel(service: AudioCategoryServices())
     }
     
     required init?(coder: NSCoder) {
@@ -46,15 +44,9 @@ class TestCell: UITableViewCell, ViewCodable {
             view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
             view.heightAnchor.constraint(greaterThanOrEqualToConstant: 200).isActive = true
         }
-
-        categoryCollection.viewModel = CategoryCollectionViewModel(service: AudioCategoryServices())
-//        categoryCollection.setupConstraints { (collection) in
-//            collection.heightAnchor.constraint(equalToConstant: 200).isActive = true
-//            collection.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: 0).isActive = true
-//            collection.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 0).isActive = true
-//            collection.topAnchor.constraint(equalTo: container.topAnchor, constant: 0).isActive = true
-//            collection.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: 0).isActive = true
-//        }
     }
 
+    func render() {
+        
+    }
 }
