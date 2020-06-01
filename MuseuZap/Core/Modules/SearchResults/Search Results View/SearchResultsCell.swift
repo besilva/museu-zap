@@ -19,6 +19,8 @@ class SearchResultsCell: AudioCell {
         setupTitleLabel()
         setupDurationLabel()
         setupPlayButton()
+        // Commenting this line will turn playButton blue. Somehow tintColor was override to blue?
+        playIcon.tintColor = UIColor.Default.power
     }
 
     // So ShareButton does not get called. Container is also not needed

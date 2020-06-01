@@ -11,4 +11,3 @@ public enum ShareExtensionErrors: Error {
    
     case noCategory
 }
-

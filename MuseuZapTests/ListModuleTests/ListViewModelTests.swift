@@ -40,9 +40,8 @@ class ListViewModelTests: XCTestCase {
     func testGetArray() {
         services.stateCase = .onlyOneAudio
         
-        sut.getArray()
-
-        XCTAssertEqual(sut.array.count, 1, "AudioServicesMock at onlyOneAudio produces only one audio, default 3 (setUp)")
+        sut.retrieveAllAudios()
+        XCTAssertEqual(sut.audios.count, 1, "AudioServicesMock at onlyOneAudio produces only one audio, default 2 (setUp)")
     }
 
     // MARK: - GetAudioItemProperties

@@ -13,6 +13,7 @@ class ListView: UIView, ViewCodable {
     private var loader: UIActivityIndicatorView!
     private var tableView: UITableView = UITableView()
     private var cellIdentifier: String = "cell"
+    var placeholderView: PlaceholderView = PlaceholderView()
     var iconManager: CellIconManager = CellIconManager.shared
     var audioHandler: ((Action) -> Void)?
     var viewModel: ListViewModelProtocol? {
@@ -35,12 +36,14 @@ class ListView: UIView, ViewCodable {
     /// This constrain needs to be deativated when scrolling down
     var refreshScrollConstraint: NSLayoutConstraint!
     var searchController: UISearchController!
-    /// TopBarHeight from viewController will be used to auto-layout the refreshControl
+    /// TopBarHeight from viewController will be used to auto-layout the refreshControl and PlaceholderView
     var topBarHeight: CGFloat = 0
     var navBarHeight: CGFloat = 0 {
            // Calculate topBarHeight only when navBarHeight was set
-           didSet { setRefreshTopAnchor() }
-       }
+           didSet {
+            setRefreshAndPlaceholderTopAnchor()
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -68,6 +71,7 @@ class ListView: UIView, ViewCodable {
 
     func configure() {
         setupTableView()
+        setupPlaceholderView()
     }
 
     func setupHierarchy() {
@@ -75,8 +79,8 @@ class ListView: UIView, ViewCodable {
     }
 
     func createLoader() {
-        loader.startAnimating()
         loader.hidesWhenStopped = true
+        loader.stopAnimating()
     }
 
     func setupConstraints() {
@@ -105,6 +109,13 @@ class ListView: UIView, ViewCodable {
             loader.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         }
         
+        placeholderView.setupConstraints { (_) in
+            // Top anchor is only constructed at setRefreshAndPlaceholderTopAnchor
+            placeholderView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+            placeholderView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+            placeholderView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        }
+        
     }
     
     func render() {
@@ -113,7 +124,7 @@ class ListView: UIView, ViewCodable {
     }
     
     func updateView() {
-        tableView.reloadData()
+        self.reloadTableView()
     }
 
     /// This is called only when viewModel is set
@@ -198,8 +209,21 @@ extension ListView: ListViewModelDelegate {
 
     func reloadTableView() {
         tableView.reloadData()
+        guard self.viewModel?.count == 0 || self.viewModel == nil else {
+            self.tableView.isScrollEnabled = true
+            self.tableView.backgroundView?.isHidden = true
+            return
+        }
+        self.tableView.isScrollEnabled = false
+        self.tableView.backgroundView?.isHidden = false
     }
     
+    func startLoading() {
+        DispatchQueue.main.async {
+            self.loader.startAnimating()
+        }
+    }
+
     func stopLoading() {
         DispatchQueue.main.async {
             self.loader.stopAnimating()
@@ -221,6 +245,24 @@ extension ListView: ListViewModelDelegate {
     }
 }
 
+// MARK: Placeholder view
+extension ListView {
+    func setupPlaceholderView() {
+        let title = "Você ainda não adicionou áudios.\nTá esperando o quê?! 😜"
+        let subtitle = "No Blin/Pleen você pode organizar áudios do WhatsApp de acordo com categorias."
+        let actionMessage = "Saiba como adicionar áudios"
+        let actionURL = URL(string: "https://www.youtube.com/watch?v=dQw4w9WgXcQ")!
+        let placeholderViewModel = PlaceholderViewModel(title: title,
+                                                        subtitle: subtitle,
+                                                        actionMessage: actionMessage,
+                                                        actionURL: actionURL,
+                                                        iconAssetName: "folder.fill.badge.plus")
+        self.placeholderView.viewModel = placeholderViewModel
+        self.tableView.backgroundView = self.placeholderView
+        self.tableView.backgroundView?.isHidden = true
+    }
+}
+
    // MARK: - Refresh
 
 extension ListView {
@@ -229,10 +271,12 @@ extension ListView {
         viewModel?.handleRefresh()
     }
 
-    func setRefreshTopAnchor() {
+    func setRefreshAndPlaceholderTopAnchor() {
         // Calculate topAnchor with topBarHeight updated
         topBarHeight = navBarHeight + searchController.searchBar.frame.height
         refreshControl.topAnchor.constraint(equalTo: self.topAnchor, constant: topBarHeight).isActive = true
+        placeholderView.topAnchor.constraint(equalTo: self.topAnchor, constant: topBarHeight).isActive = true
+
         setNeedsUpdateConstraints()
     }
 }
