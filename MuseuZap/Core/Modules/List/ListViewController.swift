@@ -47,14 +47,10 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
         }
         view = myView
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Fake doing request
-        let audioServices = AudioServices(dao: AudioDAO())
-        let viewModel = ListViewModel(audioServices: audioServices, delegate: myView)
-        viewModel.navigationDelegate = self
-        myView.viewModel = viewModel
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.retrieveAllAudios()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -65,5 +61,23 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
     func setup() {
         tabBarItem = UITabBarItem(title: "Explorar", image: UIImage(named: "explore-outline"), selectedImage: UIImage(named: "explore-filled"))
         navigationItem.searchController = myView.searchController
+    }
+    
+    // MARK: - Core Data
+    func retrieveAllAudios() {
+        let audioServices = AudioServices(dao: AudioDAO())
+        
+        audioServices.getAllAudios { (error, audioArray) in
+            if let audios = audioArray {
+                let viewModel = ListViewModel(audioServices: audioServices, delegate: self.myView)
+                viewModel.navigationDelegate = self
+                viewModel.audios = audios
+                self.myView.viewModel = viewModel
+            } else {
+                // GetAll audios
+                // Display here some frendiler message based on Error Type (database error or not)
+                print(error ?? "Some default error value")
+            }
+        }
     }
 }

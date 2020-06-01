@@ -11,6 +11,9 @@ import UIKit
 
 class TabBar: UITabBarController {
     // Player customization will be here someday
+    lazy var currentViewController: UIViewController? = {
+        return self.viewControllers?[self.selectedIndex]
+    }()
 }
 
 extension UITabBarController {

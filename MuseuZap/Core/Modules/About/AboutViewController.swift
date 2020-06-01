@@ -18,6 +18,7 @@ class AboutViewController: UIViewController, ViewController, NavigationDelegate 
     }
     // swiftlint:enable force_cast
     
+    // Sets default view
     override func loadView() {
         let myView = AboutView()
         view = myView
@@ -38,20 +39,26 @@ class AboutViewController: UIViewController, ViewController, NavigationDelegate 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Sets view content
         self.title = "Info"
         // swiftlint:disable line_length
         let aboutDescription1 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi elementum nunc, sollicitudin non pellentesque. In egestas adipiscing vestibulum varius "
         let aboutDescription2 = "urna sed ornare consectetur. Convallis in volutpat fermentum ipsum in condimentum ut. Odio ornare id ornare augue. Aliquam sit cras arcu amet erat maecenas mi, amet."
         // swiftlint:enable line_length
         
+        // Initializes view model and binds to view
         let viewModel = AboutViewModel(email: "sample@mail.com", description: aboutDescription1 + aboutDescription2)
         myView.viewModel = viewModel
         viewModel.navigationDelegate = self
     }
     
+    // Handles navigation actions
     func handleNavigation(action: Action) {
         switch action {
+        // Handles alert when copying an email
         case .presentAlert( _, let message, let timeout, let preferredStyle):
+            // Shows and dismisses alert
             let alert = UIAlertController(title: nil, message: message, preferredStyle: preferredStyle)
             
             alert.show(self, sender: nil)
@@ -74,6 +81,5 @@ class AboutViewController: UIViewController, ViewController, NavigationDelegate 
     
     func setup() {
           tabBarItem = UITabBarItem(title: "Sobre", image: UIImage(named: "about-outline"), selectedImage: UIImage(named: "about-filled"))
-       
     }
 }

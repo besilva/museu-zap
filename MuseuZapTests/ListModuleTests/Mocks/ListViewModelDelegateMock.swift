@@ -9,6 +9,10 @@
 @testable import MuseuZap
 
 class ListViewModelDelegateMock: ListViewModelDelegate {
+    func startLoading() {
+        
+    }
+    
     var refreshFlag: Bool = false
 
     func stopLoading() {

@@ -52,10 +52,14 @@ class AudioCell: UITableViewCell, ViewCodable {
     }
     
     func setupHierarchy() {
+//        Icons go into their respective enhanced hit areas
         playHitArea.addSubview(playIcon)
         shareHitArea.addSubview(shareIcon)
+//        Audio labels go into a content view
         audioDataContentView.addSubviews(titleLabel, durationLabel)
+//        The audio content view and the hit areas go into the cell container
         container.addSubviews(audioDataContentView, playHitArea, shareHitArea)
+//        Adds the container into the cell content view
         contentView.addSubview(container)
     }
     
@@ -303,7 +307,7 @@ extension AudioCell {
     }
 }
 
-    // MARK: - Constrains Helper
+    // MARK: - Constraints Helper
 
 extension AudioCell {
 

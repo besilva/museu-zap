@@ -143,12 +143,13 @@ class AboutView: UIView, ViewCodable {
         contentView.backgroundColor = UIColor.Default.background
 
         contentViewMailLabel.backgroundColor = UIColor.Default.lightBackground
-        //        Adds shadow
+//        Adds shadow
         contentViewMailLabel.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.05).cgColor
         contentViewMailLabel.layer.shadowOpacity = 1
         contentViewMailLabel.layer.shadowRadius = 20
         contentViewMailLabel.layer.shadowOffset = CGSize(width: 0, height: 4)
 
+//        Sets font attributes for remaining components
         mailLabel.tintColor = UIColor.Default.label
         mailLabel.font = UIFont.Default.regular.withSize(14)
         mailLabel.dynamicFont = mailLabel.font
@@ -191,11 +192,12 @@ class AboutView: UIView, ViewCodable {
         guard let viewModel = viewModel else { return }
         mailLabel.text = viewModel.email
         
-//        Adds feature to send email on tap
+
         let underlineAttriString = NSAttributedString(string: viewModel.email,
                                                   attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
         mailLabel.attributedText = underlineAttriString
 
+//        Adds feature to send email on tap
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         mailLabel.addGestureRecognizer(tap)
         mailLabel.isUserInteractionEnabled = true
