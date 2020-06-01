@@ -74,11 +74,12 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
     
     // Set ViewModel
     func retrieveAllAudios() {
-        let audioServices = AudioServices(dao: AudioDAO())
+        let audServices = AudioServices()
+        let audCatServices = AudioCategoryServices()
         
-        audioServices.getAllAudios { (error, audioArray) in
+        audServices.getAllAudios { (error, audioArray) in
             if let audios = audioArray {
-                let viewModel = ListViewModel(audioServices: audioServices, delegate: self.myView)
+                let viewModel = ListViewModel(audioServices: audServices, audioCategoryServices: audCatServices, delegate: self.myView)
                 viewModel.navigationDelegate = self
                 viewModel.audios = audios
                 self.myView.viewModel = viewModel

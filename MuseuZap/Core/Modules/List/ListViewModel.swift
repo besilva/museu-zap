@@ -22,16 +22,18 @@ protocol ListViewModelDelegate: class {
 protocol ListViewModelProtocol {
     var audios: [Audio] { get set }
     var audioServices: AudioServicesProtocol { get set }
+    var audioCategories: [AudioCategory] { get set }
+    var audioCategoryServices: AudioCategoryServicesProtocol { get set }
     var searchResultsArray: [Audio] { get set }
     var searchManager: SearchResultsViewController { get set }
-    var navigationDelegate: NavigationDelegate? { get }
     var count: Int { get }
+    var navigationDelegate: NavigationDelegate? { get }
     var delegate: ListViewModelDelegate? { get set }
     func handleRefresh()
     func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties
     func performSearch(with text: String)
     func back()
-    init(audioServices: AudioServicesProtocol, delegate: ListViewModelDelegate)
+    init(audioServices: AudioServicesProtocol, audioCategoryServices: AudioCategoryServicesProtocol, delegate: ListViewModelDelegate)
 }
 
 extension ListViewModelProtocol {
@@ -42,14 +44,17 @@ extension ListViewModelProtocol {
 }
 
 class ListViewModel: ListViewModelProtocol {
-    internal weak var delegate: ListViewModelDelegate?
-    internal weak var navigationDelegate: NavigationDelegate?
-    var audioServices: AudioServicesProtocol
     var audios: [Audio] = [] {
         didSet {
             self.delegate?.reloadTableView()
         }
     }
+    var audioServices: AudioServicesProtocol
+    var audioCategories: [AudioCategory] = []
+    var audioCategoryServices: AudioCategoryServicesProtocol
+    // Search
+    var searchResultsArray: [Audio] = []
+    var searchManager = SearchResultsViewController()
     // Count will be updated if a search starts
     var count: Int {
         if delegate?.isFiltering ?? false {
@@ -57,12 +62,12 @@ class ListViewModel: ListViewModelProtocol {
         }
         return audios.count
     }
-    // Search
-    var searchResultsArray: [Audio] = []
-    var searchManager = SearchResultsViewController()
+    internal weak var delegate: ListViewModelDelegate?
+    internal weak var navigationDelegate: NavigationDelegate?
 
-    required init(audioServices: AudioServicesProtocol, delegate: ListViewModelDelegate) {
+    required init(audioServices: AudioServicesProtocol, audioCategoryServices: AudioCategoryServicesProtocol, delegate: ListViewModelDelegate) {
         self.audioServices = audioServices
+        self.audioCategoryServices = audioCategoryServices
         self.delegate = delegate
         retrieveAllAudios()
     }
@@ -73,6 +78,7 @@ class ListViewModel: ListViewModelProtocol {
     }
 
     // MARK: - Core Data
+
     func retrieveAllAudios() {
         self.delegate?.startLoading()
         audioServices.getAllAudios { (error, audioArray) in
@@ -102,9 +108,20 @@ class ListViewModel: ListViewModelProtocol {
         return AudioProperties(from: element)
     }
 
+    func retrieveAllCategories() {
+        audioCategoryServices.getAllCategories { (error, audioCategories) in
+            if let categories = audioCategories {
+                // Assign
+                self.audioCategories = categories
+            } else {
+                // Display here some frendiler message based on Error Type (database error or not)
+                print(error ?? "Some default error value")
+            }
+        }
+    }
+
     // MARK: - Search
 
-    // Ideia é fazer que a view faça a lógiuca da busca e CUSPA o array filtrado para a searchresults controller
     func performSearch(with text: String) {
         searchResultsArray = audios.filter { (audio) -> Bool in
             return audio.audioName.lowercased().contains(text.lowercased())

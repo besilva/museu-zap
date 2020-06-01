@@ -13,22 +13,25 @@ import DatabaseKit
 class ListViewModelTests: XCTestCase {
 
     var sut: ListViewModel!
-    var services: AudioServicesMock!
+    var audServices: AudioServicesMock!
+    var audCatServices: AudioCategoryServicesMock!
     var viewDeleg: ListViewModelDelegateMock!
     var audioPrivate: AudioProperties!
     var searchAudioProp: AudioProperties!
 
     override func setUp() {
-        services = AudioServicesMock()
+        audServices = AudioServicesMock()
+        audCatServices = AudioCategoryServicesMock()
         viewDeleg = ListViewModelDelegateMock()
-        sut = ListViewModel(audioServices: services, delegate: viewDeleg)
+        sut = ListViewModel(audioServices: audServices, audioCategoryServices: audCatServices, delegate: viewDeleg)
 
-        audioPrivate = AudioProperties(from: services.audios.audioPrivate)
-        searchAudioProp = AudioProperties(from: services.audios.searchAudio)
+        audioPrivate = AudioProperties(from: audServices.audios.audioPrivate)
+        searchAudioProp = AudioProperties(from: audServices.audios.searchAudio)
     }
 
     override func tearDown() {
-        services = nil
+        audServices = nil
+        audCatServices = nil
         viewDeleg = nil
         audioPrivate = nil
         searchAudioProp = nil
@@ -38,16 +41,16 @@ class ListViewModelTests: XCTestCase {
     // MARK: - Get Array
 
     func testGetArray() {
-        services.stateCase = .onlyOneAudio
+        audServices.stateCase = .onlyOneAudio
         
         sut.retrieveAllAudios()
-        XCTAssertEqual(sut.audios.count, 1, "AudioServicesMock at onlyOneAudio produces only one audio, default 2 (setUp)")
+        XCTAssertEqual(sut.audios.count, 1, "AudioaudServicesMock at onlyOneAudio produces only one audio, default 2 (setUp)")
     }
 
     // MARK: - GetAudioItemProperties
 
     func testGetAudioItemPropertiesFilteringFalse() {
-        // First audio from array created by AudioServicesMock is type MockAudio().audioPrivate
+        // First audio from array created by AudioaudServicesMock is type MockAudio().audioPrivate
         let indexPath = IndexPath(row: 0, section: 0)
         let properties = sut.getAudioItemProperties(at: indexPath)
 
@@ -71,10 +74,10 @@ class ListViewModelTests: XCTestCase {
     func testPerformSearch() {
         // There are 3 audios, only one audio with name "Search"
         sut.performSearch(with: "s")
-        XCTAssertEqual(sut.searchResultsArray.count, 1, "AudioServicesMock has only one audio with 's' at name")
+        XCTAssertEqual(sut.searchResultsArray.count, 1, "AudioaudServicesMock has only one audio with 's' at name")
 
         let result = sut.searchResultsArray[0]
-        XCTAssertEqual(result.audioName, "Search", "AudioServicesMock has only one audio with 's' at name")
+        XCTAssertEqual(result.audioName, "Search", "AudioaudServicesMock has only one audio with 's' at name")
     }
 
      // MARK: - Refresh

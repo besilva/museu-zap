@@ -81,6 +81,7 @@
 		AA44CB276164DDA1890005A1 /* libPods-MuseuZapTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF64FC4F5B2F7DE84F22A03F /* libPods-MuseuZapTests.a */; };
 		C500AF6F246B8A1A00F5AC0A /* AudioErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500AF6E246B8A1A00F5AC0A /* AudioErrors.swift */; };
 		C500AF70246B8AC700F5AC0A /* AudioErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500AF6E246B8A1A00F5AC0A /* AudioErrors.swift */; };
+		C51338BC2485646A0000F760 /* AudioCategoryServicesMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51338BB2485646A0000F760 /* AudioCategoryServicesMock.swift */; };
 		C5149217247315FE0080B9B1 /* Sextou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5149216247315FE0080B9B1 /* Sextou.mp3 */; };
 		C525643F24803A9100EF9509 /* SearchResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C525643E24803A9100EF9509 /* SearchResultsCell.swift */; };
 		C5256442248042CF00EF9509 /* PlayButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5256441248042CF00EF9509 /* PlayButtonView.swift */; };
@@ -226,6 +227,7 @@
 		A2D4D7BBFE78FDD91CF8A220 /* Pods-MuseuZapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseuZapTests.debug.xcconfig"; path = "Target Support Files/Pods-MuseuZapTests/Pods-MuseuZapTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA4B57FE60AB825365349231 /* Pods-MuseuZap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseuZap.debug.xcconfig"; path = "Target Support Files/Pods-MuseuZap/Pods-MuseuZap.debug.xcconfig"; sourceTree = "<group>"; };
 		C500AF6E246B8A1A00F5AC0A /* AudioErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioErrors.swift; sourceTree = "<group>"; };
+		C51338BB2485646A0000F760 /* AudioCategoryServicesMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCategoryServicesMock.swift; sourceTree = "<group>"; };
 		C5149216247315FE0080B9B1 /* Sextou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Sextou.mp3; sourceTree = "<group>"; };
 		C525643E24803A9100EF9509 /* SearchResultsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsCell.swift; sourceTree = "<group>"; };
 		C5256441248042CF00EF9509 /* PlayButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButtonView.swift; sourceTree = "<group>"; };
@@ -603,6 +605,7 @@
 		C55013F52476C0B90036CFFD /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				C51338BB2485646A0000F760 /* AudioCategoryServicesMock.swift */,
 				C55013F32476C0730036CFFD /* AudioServicesMock.swift */,
 				C5BC02A52476C44300095A5C /* ListViewModelDelegateMock.swift */,
 			);
@@ -951,6 +954,7 @@
 				804A61322477F2E70053F011 /* ListViewTests.swift in Sources */,
 				80E6C368244DF09700A42A4C /* AboutViewTests.swift in Sources */,
 				80A7E965246EDB8D00E7EAA2 /* CellIconManagerTests.swift in Sources */,
+				C51338BC2485646A0000F760 /* AudioCategoryServicesMock.swift in Sources */,
 				C53F4CAB246598C2001AAD57 /* FileExchangerSuccessTests.swift in Sources */,
 				C5B2B4FC24818059000D2C7F /* PlayButtonViewTests.swift in Sources */,
 				C5C5963C24819DCE00E8539E /* MockSearchResultsViewModel.swift in Sources */,

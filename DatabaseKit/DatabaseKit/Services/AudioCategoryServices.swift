@@ -8,10 +8,21 @@
 
 import UIKit
 
+// MARK: - Protocol For test purpose
+
+public protocol AudioCategoryServicesProtocol {
+    // CRUD Operations: Create, Read, Update, Delete
+    func createCategory(category: AudioCategory, _ completion: (_ error: Error?) -> Void)
+    func getAllCategories(_ completion: @escaping (_ errorMessage: Error?,
+                                                   _ entity: [AudioCategory]?) -> Void)
+    func updateAllCategories(_ completion: (_ error: Error?) -> Void)
+    func deleteCategory(category: AudioCategory, _ completion: (_ error: Error?) -> Void)
+}
+
 /// Services Layer for Category Entity.
 /// Independent from adopted database.
 /// Error Handling + doing aditional treatment to data.
-public class AudioCategoryServices {
+public class AudioCategoryServices: AudioCategoryServicesProtocol {
 
     /// Used Data Access Object
     var categoryDAO: AudioCategoryDAOProtocol
