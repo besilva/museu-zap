@@ -12,7 +12,8 @@ import DatabaseKit
 class PrivateCategoryTableViewCell: UITableViewCell, ViewCodable, CategoryTableViewCellProtocol {
     
     var categoryCollection: CategoryCollectionView
-    
+    var categories: [AudioCategory] = []
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 16.0

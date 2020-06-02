@@ -74,7 +74,6 @@
 		80C274D2245872980051A1E6 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C274D0245872980051A1E6 /* UIFont+Extension.swift */; };
 		80C3AB7E2485459000B17066 /* MyAudiosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3AB7D2485459000B17066 /* MyAudiosView.swift */; };
 		80C3AB802485459B00B17066 /* MyAudiosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3AB7F2485459B00B17066 /* MyAudiosViewController.swift */; };
-		80C3AB822485591300B17066 /* MyAudiosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3AB812485591300B17066 /* MyAudiosViewModel.swift */; };
 		80C3D4CC24508EDA0001879C /* AboutError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3D4CA24508E0E0001879C /* AboutError.swift */; };
 		80C6F4D4248689EC00880BEB /* PrivateCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C6F4D3248689EC00880BEB /* PrivateCategoryTableViewCell.swift */; };
 		80C6F4D624868B7F00880BEB /* PrivateCategoryCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C6F4D524868B7F00880BEB /* PrivateCategoryCollectionViewModel.swift */; };
@@ -235,7 +234,6 @@
 		80C274D0245872980051A1E6 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		80C3AB7D2485459000B17066 /* MyAudiosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAudiosView.swift; sourceTree = "<group>"; };
 		80C3AB7F2485459B00B17066 /* MyAudiosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAudiosViewController.swift; sourceTree = "<group>"; };
-		80C3AB812485591300B17066 /* MyAudiosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAudiosViewModel.swift; sourceTree = "<group>"; };
 		80C3D4CA24508E0E0001879C /* AboutError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutError.swift; sourceTree = "<group>"; };
 		80C6F4D3248689EC00880BEB /* PrivateCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		80C6F4D524868B7F00880BEB /* PrivateCategoryCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateCategoryCollectionViewModel.swift; sourceTree = "<group>"; };
@@ -592,7 +590,6 @@
 				80C6F4D2248689CE00880BEB /* Cell */,
 				80C3AB7D2485459000B17066 /* MyAudiosView.swift */,
 				80C3AB7F2485459B00B17066 /* MyAudiosViewController.swift */,
-				80C3AB812485591300B17066 /* MyAudiosViewModel.swift */,
 			);
 			path = MyAudios;
 			sourceTree = "<group>";
@@ -1002,7 +999,6 @@
 				8024DA2D2449F19000093D37 /* AboutView.swift in Sources */,
 				80C274D1245872980051A1E6 /* UIFont+Extension.swift in Sources */,
 				6443CD502478031500572AD8 /* CategoryCollectionViewModel.swift in Sources */,
-				80C3AB822485591300B17066 /* MyAudiosViewModel.swift in Sources */,
 				64CC44E52476C63400ACC4B4 /* ExploreView.swift in Sources */,
 				80DF26FB2472B55C00B6A5FC /* FileErrors.swift in Sources */,
 				80BB0487246D8856006E4154 /* CellIconManagerDelegate.swift in Sources */,

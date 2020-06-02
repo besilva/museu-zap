@@ -15,6 +15,8 @@ public protocol AudioCategoryServicesProtocol {
     func createCategory(category: AudioCategory, _ completion: (_ error: Error?) -> Void)
     func getAllCategories(_ completion: @escaping (_ errorMessage: Error?,
                                                    _ entity: [AudioCategory]?) -> Void)
+    func getAllCategoriesWith(isPrivate bool: Bool, _ completion: @escaping (_ errorMessage: Error?,
+                                                                            _ entity: [AudioCategory]?) -> Void)
     func updateAllCategories(_ completion: (_ error: Error?) -> Void)
     func deleteCategory(category: AudioCategory, _ completion: (_ error: Error?) -> Void)
 }
