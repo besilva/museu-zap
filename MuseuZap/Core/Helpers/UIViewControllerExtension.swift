@@ -25,4 +25,9 @@ extension ViewController {
         return true
     }
 
+    /// Height of status bar + navigation bar (if navigation bar exist)
+    var navBarHeight: CGFloat {
+        UIApplication.shared.statusBarFrame.size.height +
+        (self.navigationController?.navigationBar.frame.height ?? 0.0)
+    }
 }

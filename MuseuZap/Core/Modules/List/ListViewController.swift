@@ -46,35 +46,44 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
             self.delegate?.handleNavigation(action: action)
         }
         view = myView
+
+        // This was set to true so resultController could work properly
+        extendedLayoutIncludesOpaqueBars = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.retrieveAllAudios()
+        // Somehow topBarHeight has to be populated here, because outside here reference to navigationBar is nil
+        // Set the navBarHeight to calculate topBarHeight for refreshController
+        myView.navBarHeight = self.navBarHeight
+        // TODO: olhar onde que a search pode ser setada. Precisa da viewmodel para setar ela, e a viewModel é setada no retrieveAllAudios
+        navigationItem.searchController = myView.searchController
     }
 
     override func viewDidAppear(_ animated: Bool) {
-           super.viewDidAppear(animated)
-           self.setScreenName()
-       }
+        super.viewDidAppear(animated)
+        self.setScreenName()
+    }
     
     func setup() {
         tabBarItem = UITabBarItem(title: "Explorar", image: UIImage(named: "explore-outline"), selectedImage: UIImage(named: "explore-filled"))
-        navigationItem.searchController = myView.searchController
     }
     
     // MARK: - Core Data
+    
+    // Set ViewModel
     func retrieveAllAudios() {
-        let audioServices = AudioServices(dao: AudioDAO())
+        let audioServices = AudioServices()
+        let audioCategoryServices = AudioCategoryServices()
         
         audioServices.getAllAudios { (error, audioArray) in
             if let audios = audioArray {
-                let viewModel = ListViewModel(audioServices: audioServices, delegate: self.myView)
+                let viewModel = ListViewModel(audioServices: audioServices, audioCategoryServices: audioCategoryServices, delegate: self.myView)
                 viewModel.navigationDelegate = self
                 viewModel.audios = audios
                 self.myView.viewModel = viewModel
             } else {
-                // GetAll audios
                 // Display here some frendiler message based on Error Type (database error or not)
                 print(error ?? "Some default error value")
             }

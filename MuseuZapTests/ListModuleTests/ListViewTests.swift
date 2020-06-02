@@ -12,40 +12,36 @@ import DatabaseKit
 @testable import MuseuZap
 
 class ListViewModelMock: ListViewModelProtocol {
-    var audioServices: AudioServicesProtocol
-    
-    var searchResultArray: [Audio] = []
-    
     var audios: [Audio] = []
-    
-    weak var navigationDelegate: NavigationDelegate?
-    
+    var audioServices: AudioServicesProtocol
+    var audioCategories: [AudioCategory] = []
+    var audioCategoryServices: AudioCategoryServicesProtocol
+    var searchResultsArray: [Audio] = []
+    var searchManager: SearchResultsViewController
     var count: Int {
         if delegate?.isFiltering ?? false {
-            return searchResultArray.count
+            return searchResultsArray.count
         }
         return audios.count
     }
-    
+    weak var navigationDelegate: NavigationDelegate?
     weak var delegate: ListViewModelDelegate?
 
     func handleRefresh() {
     }
-    
+
     func performSearch(with text: String) {
     }
-    
-    required init(audioServices: AudioServicesProtocol, delegate: ListViewModelDelegate) {
-        self.audioServices = audioServices
-        self.delegate = delegate
-    }
-    
-    func handleRefresh(_ refreshControl: UIRefreshControl) {
-        return
-    }
-    
+
     func back() {
-        return
+    }
+
+    required init(audioServices: AudioServicesProtocol, audioCategoryServices: AudioCategoryServicesProtocol, delegate: ListViewModelDelegate) {
+        self.audioServices = audioServices
+        self.audioCategoryServices = audioCategoryServices
+        self.delegate = delegate
+        self.searchResultsArray = []
+        self.searchManager = SearchResultsViewController()
     }
 }
 
@@ -55,8 +51,9 @@ class ListViewTests: XCTestCase {
 
     override func setUpWithError() throws {
         listView = ListView(frame: CGRect.zero)
-        let dummyServices = AudioServices()
-        listViewModel = ListViewModelMock(audioServices: dummyServices, delegate: listView)
+        let dummyServices1 = AudioServices()
+        let dummyServices2 = AudioCategoryServices()
+        listViewModel = ListViewModelMock(audioServices: dummyServices1, audioCategoryServices: dummyServices2, delegate: listView)
         listView.viewModel = listViewModel
     }
 

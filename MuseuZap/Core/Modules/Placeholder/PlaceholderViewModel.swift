@@ -24,6 +24,7 @@ protocol PlaceholderViewModelProtocol {
 }
 
 class PlaceholderViewModel: PlaceholderViewModelProtocol {
+
     var title: String
     
     var subtitle: String

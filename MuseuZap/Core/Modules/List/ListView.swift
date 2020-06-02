@@ -18,6 +18,7 @@ class ListView: UIView, ViewCodable {
     var audioHandler: ((Action) -> Void)?
     var viewModel: ListViewModelProtocol? {
         didSet {
+            setSearchController()
             updateView()
         }
     }
@@ -32,8 +33,17 @@ class ListView: UIView, ViewCodable {
 
         return refreshControl
     }()
-    var refreshScrollConstrain: NSLayoutConstraint!
-    let searchController = UISearchController(searchResultsController: nil)
+    /// This constrain needs to be deativated when scrolling down
+    var refreshScrollConstraint: NSLayoutConstraint!
+    var searchController: UISearchController!
+    /// TopBarHeight from viewController will be used to auto-layout the refreshControl and PlaceholderView
+    var topBarHeight: CGFloat = 0
+    var navBarHeight: CGFloat = 0 {
+           // Calculate topBarHeight only when navBarHeight was set
+           didSet {
+            setRefreshAndPlaceholderTopAnchor()
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,9 +55,8 @@ class ListView: UIView, ViewCodable {
         tableView.register(AudioCell.self, forCellReuseIdentifier: self.cellIdentifier)
         tableView.insertSubview(refreshControl, at: 0)
 
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = true
-        searchController.searchBar.placeholder = "Buscar áudio"
+        // SearchController is configuered when viewModel is set
+
         setupView()
     }
 
@@ -78,13 +87,16 @@ class ListView: UIView, ViewCodable {
 
         refreshControl.translatesAutoresizingMaskIntoConstraints = false
         refreshControl.setupConstraints { (refresh) in
-            refresh.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+            // Top anchor is only constructed at setRefreshTopAnchor
+            // Bottom anchor is refreshScrollConstraint
             refresh.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
             refresh.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
         }
-        // Constrain will be true or false depending on the scroll delegate
-        refreshScrollConstrain = refreshControl.bottomAnchor.constraint(equalTo: self.tableView.topAnchor, constant: 0)
-        refreshScrollConstrain.isActive = true
+        // Constraint will be true or false depending on the scroll delegate
+        refreshScrollConstraint = refreshControl.bottomAnchor.constraint(equalTo: self.tableView.topAnchor, constant: 0)
+        // This bottom constraint will be set to true only when topBarHeight was calculated
+        refreshScrollConstraint.isActive = false
+
         tableView.setupConstraints { (tableView) in
             tableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
@@ -98,7 +110,7 @@ class ListView: UIView, ViewCodable {
         }
         
         placeholderView.setupConstraints { (_) in
-            placeholderView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+            // Top anchor is only constructed at setRefreshAndPlaceholderTopAnchor
             placeholderView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
             placeholderView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
             placeholderView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
@@ -114,16 +126,21 @@ class ListView: UIView, ViewCodable {
     func updateView() {
         self.reloadTableView()
     }
-    
+
+    /// This is called only when viewModel is set
+    func setSearchController() {
+        // SearchManager will be used to display results, ListViewModel will handle search logic
+        searchController = UISearchController(searchResultsController: viewModel?.searchManager)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = true
+        searchController.searchBar.placeholder = "Buscar áudio"
+        searchController.searchBar.tintColor = UIColor.Default.power
+    }
 }
 
     // MARK: - Table View
 
 extension ListView: UITableViewDelegate, UITableViewDataSource {
-
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        return nil
-    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let viewModel = viewModel else { return 0 }
@@ -150,12 +167,43 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
 
-    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        viewModel?.handleRefresh()
+    // MARK: - Change Icon
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let audioCell = cell as? AudioCell else {
+            return
+        }
+        iconManager.updateCellStatus(visible: true, cell: audioCell)
+    }
+
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let audioCell = cell as? AudioCell else {
+            return
+        }
+        iconManager.updateCellStatus(visible: false, cell: audioCell)
+    }
+
+    // Avoid cell getting selected
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return nil
+    }
+    // Avoid cell getting highlighted
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
 }
 
-    // MARK: - ViewModel
+    // MARK: - Search
+
+extension ListView: UISearchResultsUpdating {
+
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        viewModel?.performSearch(with: text)
+    }
+}
+
+    // MARK: - For ViewModel
 
 extension ListView: ListViewModelDelegate {
 
@@ -197,24 +245,6 @@ extension ListView: ListViewModelDelegate {
     }
 }
 
-   // MARK: - Change Icon
-
-extension ListView {
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let audioCell = cell as? AudioCell else {
-            return
-        }
-        iconManager.updateCellStatus(visible: true, cell: audioCell)
-    }
-    
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let audioCell = cell as? AudioCell else {
-            return
-        }
-        iconManager.updateCellStatus(visible: false, cell: audioCell)
-    }
-}
-
 // MARK: Placeholder view
 extension ListView {
     func setupPlaceholderView() {
@@ -227,20 +257,27 @@ extension ListView {
                                                         actionMessage: actionMessage,
                                                         actionURL: actionURL,
                                                         iconAssetName: "folder.fill.badge.plus")
-        
         self.placeholderView.viewModel = placeholderViewModel
         self.tableView.backgroundView = self.placeholderView
         self.tableView.backgroundView?.isHidden = true
     }
 }
 
-    // MARK: - Search
+   // MARK: - Refresh
 
-extension ListView: UISearchResultsUpdating {
+extension ListView {
 
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else { return }
-        viewModel?.performSearch(with: text)
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        viewModel?.handleRefresh()
+    }
+
+    func setRefreshAndPlaceholderTopAnchor() {
+        // Calculate topAnchor with topBarHeight updated
+        topBarHeight = navBarHeight + searchController.searchBar.frame.height
+        refreshControl.topAnchor.constraint(equalTo: self.topAnchor, constant: topBarHeight).isActive = true
+        placeholderView.topAnchor.constraint(equalTo: self.topAnchor, constant: topBarHeight).isActive = true
+
+        setNeedsUpdateConstraints()
     }
 }
 
@@ -250,12 +287,14 @@ extension ListView: UISearchResultsUpdating {
 extension ListView: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
-        if scrollView.contentOffset.y > 0 {
+        // Table view "starts" at topBarHeight
+        // ListController extendedLayoutIncludesOpaqueBars was set to true so SearchResultsController could work properly
+        if scrollView.contentOffset.y > (-topBarHeight) {
             // Scrolling down deactive constrain
-            refreshScrollConstrain.isActive = false
+            refreshScrollConstraint.isActive = false
         } else {
             // Scrolling up activate in order to pull to refresh
-            refreshScrollConstrain.isActive = true
+            refreshScrollConstraint.isActive = true
         }
     }
 }

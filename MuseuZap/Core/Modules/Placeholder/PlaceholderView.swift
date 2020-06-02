@@ -52,8 +52,9 @@ class PlaceholderView: UIView, ViewCodable {
         contentView.addSubviews(iconImageView, titleSubtitleContentView, actionContentView)
         addSubview(contentView)
     }
-    
+
     func setupConstraints() {
+
 //        Setup content View constraints
         contentView.setupConstraints { (_) in
             contentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true

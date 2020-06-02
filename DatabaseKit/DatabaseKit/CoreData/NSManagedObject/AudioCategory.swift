@@ -13,7 +13,7 @@ import CoreData
     // MARK: - Properties Struct
 
 /// Used to reduce clutter for View
-public struct CategoryProperties {
+public struct AudioCategoryProperties {
 
     // MARK: - Properties
 

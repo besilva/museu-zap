@@ -9,6 +9,9 @@
 import UIKit
 import AVFoundation
 
+// TODO: movimento tela principal e dar play em um audio - ir pra tela de resultados com esse audio playado - e dar pause com remote control -> só atualiza o ícone da célula da tela principal e não atualiza o ícone da tela de resultados.
+// Acho que bastaria um "refresh" na tela de resultados no momento em que o remote control volta
+
 class CellIconManager {
 //    Updates icon when changing play status
     var playStatus: State {

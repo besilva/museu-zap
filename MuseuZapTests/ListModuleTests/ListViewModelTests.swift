@@ -10,29 +10,30 @@ import XCTest
 import DatabaseKit
 @testable import MuseuZap
 
-// testar count
-
 class ListViewModelTests: XCTestCase {
 
     var sut: ListViewModel!
-    var services: AudioServicesMock!
+    var audioServices: AudioServicesMock!
+    var audioCategoryServices: AudioCategoryServicesMock!
     var viewDeleg: ListViewModelDelegateMock!
-    var audioProp: AudioProperties!
+    var audioPrivate: AudioProperties!
     var searchAudioProp: AudioProperties!
 
     override func setUp() {
-        services = AudioServicesMock()
+        audioServices = AudioServicesMock()
+        audioCategoryServices = AudioCategoryServicesMock()
         viewDeleg = ListViewModelDelegateMock()
-        sut = ListViewModel(audioServices: services, delegate: viewDeleg)
+        sut = ListViewModel(audioServices: audioServices, audioCategoryServices: audioCategoryServices, delegate: viewDeleg)
 
-        audioProp = AudioProperties(from: services.audio1)
-        searchAudioProp = AudioProperties(from: services.searchAudio)
+        audioPrivate = AudioProperties(from: audioServices.audios.audioPrivate)
+        searchAudioProp = AudioProperties(from: audioServices.audios.searchAudio)
     }
 
     override func tearDown() {
-        services = nil
+        audioServices = nil
+        audioCategoryServices = nil
         viewDeleg = nil
-        audioProp = nil
+        audioPrivate = nil
         searchAudioProp = nil
         sut = nil
     }
@@ -40,28 +41,27 @@ class ListViewModelTests: XCTestCase {
     // MARK: - Get Array
 
     func testGetArray() {
-        services.stateCase = .onlyOneAudio
         
         sut.retrieveAllAudios()
-        XCTAssertEqual(sut.audios.count, 1, "AudioServicesMock at onlyOneAudio produces only one audio, default 2 (setUp)")
+        XCTAssert(audioServices.isCalled)
     }
 
     // MARK: - GetAudioItemProperties
 
     func testGetAudioItemPropertiesFilteringFalse() {
-        // First is audio1
+        // First audio from array created by AudioaudServicesMock is type MockAudio().audioPrivate
         let indexPath = IndexPath(row: 0, section: 0)
         let properties = sut.getAudioItemProperties(at: indexPath)
 
-        XCTAssert(properties == audioProp)
+        XCTAssert(properties == audioPrivate)
     }
 
     func testGetAudioItemPropertiesWithFilteringTrue() {
-        // There is one audio with name "Search Audio"
+        // There is one audio with name "Search"
         sut.performSearch(with: "s")
         viewDeleg.isFiltering = true
 
-        // GetAudioProperties should return properties from searchResultArray
+        // GetAudioProperties should return properties from searchResultArray, which should contain only "Search" Audio
         let indexPath = IndexPath(row: 0, section: 0)
         let properties = sut.getAudioItemProperties(at: indexPath)
 
@@ -71,12 +71,12 @@ class ListViewModelTests: XCTestCase {
     // MARK: - PerformSearch
 
     func testPerformSearch() {
-        // There is one audio with name "Search Audio"
+        // There are 3 audios, only one audio with name "Search"
         sut.performSearch(with: "s")
-        XCTAssertEqual(sut.searchResultArray.count, 1, "AudioServicesMock has only one audio with 's' at name")
+        XCTAssertEqual(sut.searchResultsArray.count, 1, "AudioaudServicesMock has only one audio with 's' at name")
 
-        let result = sut.searchResultArray[0]
-        XCTAssertEqual(result.audioName, "Search Audio", "AudioServicesMock has only one audio with 's' at name")
+        let result = sut.searchResultsArray[0]
+        XCTAssertEqual(result.audioName, "Search", "AudioaudServicesMock has only one audio with 's' at name")
     }
 
      // MARK: - Refresh
@@ -85,5 +85,4 @@ class ListViewModelTests: XCTestCase {
         sut.handleRefresh()
         XCTAssert(viewDeleg.refreshFlag)
     }
-
 }
