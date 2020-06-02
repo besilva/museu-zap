@@ -58,32 +58,3 @@ public class FileExchanger {
     }
 
 }
-
-// MARK: - Methods to use to create items in Document Folder (find through iPhone Files App)
-
-// Extension is useful to debug
-extension FileExchanger {
-    // MARK: - Set Info.plist
-
-    // Application supports iTunes file sharing
-    // Supports opening documents in place
-
-    var appDocumentPublicFolder: URL {
-        return FileManager.default.urls(for: .documentDirectory,
-                                        in: .userDomainMask).first!
-    }
-
-    func addSimpleFileToDocumentPublicFolder() {
-        let file = "Example.txt"
-        let content = "Some text..."
-
-        let fileURL = appDocumentPublicFolder.appendingPathComponent(file)
-
-        do {
-            try content.write(to: fileURL, atomically: false, encoding: .utf8)
-        } catch {
-            print(error)
-        }
-    }
-
-}

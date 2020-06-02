@@ -13,7 +13,7 @@ import CoreData
     // MARK: - Properties Struct
 
 /// Used to reduce clutter for View
-public struct CategoryProperties {
+public struct AudioCategoryProperties {
 
     // MARK: - Properties
 
@@ -60,6 +60,18 @@ public class AudioCategory: NSManagedObject {
 
         // Call super
         self.init(entity: entityDescription!, insertInto: currentManagedObjectContext)
+    }
+
+    // Used for test purpose
+    public convenience init() {
+         // Get context
+         let managedObjectContext: NSManagedObjectContext = CoreDataManager.sharedInstance.persistentContainer.viewContext
+
+         // Create entity description
+         let entityDescription = NSEntityDescription.entity(forEntityName: Entities.audioCategory.rawValue, in: managedObjectContext)
+
+         // Call super
+         self.init(entity: entityDescription!, insertInto: nil)
     }
 }
 

@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Custom errors
 enum AboutError: Error {
     case nilValue
 }

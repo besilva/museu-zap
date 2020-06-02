@@ -11,33 +11,65 @@ import DatabaseKit
 import UIKit
 
 protocol ListViewModelDelegate: class {
+    func startLoading()
     func stopLoading()
     func reloadTableView()
     func endRefreshing()
+    var isFiltering: Bool { get }
+    var isSearchBarEmpty: Bool { get }
 }
 
 protocol ListViewModelProtocol {
-    var array: [Audio] { get set }
-    var navigationDelegate: NavigationDelegate? { get }
+    var audios: [Audio] { get set }
+    var audioServices: AudioServicesProtocol { get set }
+    var audioCategories: [AudioCategory] { get set }
+    var audioCategoryServices: AudioCategoryServicesProtocol { get set }
+    var searchResultsArray: [Audio] { get set }
+    var searchManager: SearchResultsViewController { get set }
     var count: Int { get }
+    var navigationDelegate: NavigationDelegate? { get }
     var delegate: ListViewModelDelegate? { get set }
-    func handleRefresh(_ refreshControl: UIRefreshControl)
+    func handleRefresh()
     func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties
+    func performSearch(with text: String)
     func back()
-    init(audioServices: AudioServices, delegate: ListViewModelDelegate)
+    init(audioServices: AudioServicesProtocol, audioCategoryServices: AudioCategoryServicesProtocol, delegate: ListViewModelDelegate)
+}
+
+extension ListViewModelProtocol {
+    func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties {
+        let element = audios[indexPath.row]
+        return AudioProperties(from: element)
+    }
 }
 
 class ListViewModel: ListViewModelProtocol {
-    var audioServices: AudioServices
-    var array: [Audio] = []
-    var count: Int { array.count }
+    var audios: [Audio] = [] {
+        didSet {
+            self.delegate?.reloadTableView()
+        }
+    }
+    var audioServices: AudioServicesProtocol
+    var audioCategories: [AudioCategory] = []
+    var audioCategoryServices: AudioCategoryServicesProtocol
+    // Search
+    var searchResultsArray: [Audio] = []
+    var searchManager = SearchResultsViewController()
+    // Count will be updated if a search starts
+    var count: Int {
+        if delegate?.isFiltering ?? false {
+            return searchResultsArray.count
+        }
+        return audios.count
+    }
     internal weak var delegate: ListViewModelDelegate?
     internal weak var navigationDelegate: NavigationDelegate?
-    
-    required init(audioServices: AudioServices, delegate: ListViewModelDelegate) {
+
+    required init(audioServices: AudioServicesProtocol, audioCategoryServices: AudioCategoryServicesProtocol, delegate: ListViewModelDelegate) {
         self.audioServices = audioServices
+        self.audioCategoryServices = audioCategoryServices
         self.delegate = delegate
-        getArray()
+        retrieveAllAudios()
     }
     
     func back() {
@@ -46,32 +78,63 @@ class ListViewModel: ListViewModelProtocol {
     }
 
     // MARK: - Core Data
-    func getArray() {
 
+    func retrieveAllAudios() {
+        self.delegate?.startLoading()
         audioServices.getAllAudios { (error, audioArray) in
             if let audios = audioArray {
                 // Assign teste Array
-                self.array = audios
+                self.audios = audios
                 // Get array is only called in Init and when refresh, so no problem to leave these delegate calls here
                 self.delegate?.stopLoading()
                 self.delegate?.endRefreshing()
             } else {
                 // GetAll audios
                 // Display here some frendiler message based on Error Type (database error or not)
+                print("Error retrieving all audios")
                 print(error ?? "Some default error value")
             }
         }
     }
 
     func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties {
-        let element = array[indexPath.row]
+        // Initialize element with normal array and change it case isFiltering
+        var element = audios[indexPath.row]
+
+        if delegate?.isFiltering ?? false {
+            element = searchResultsArray[indexPath.row]
+        }
+
         return AudioProperties(from: element)
+    }
+
+    func retrieveAllCategories() {
+        audioCategoryServices.getAllCategories { (error, audioCategories) in
+            if let categories = audioCategories {
+                // Assign
+                self.audioCategories = categories
+            } else {
+                // Display here some frendiler message based on Error Type (database error or not)
+                print(error ?? "Some default error value")
+            }
+        }
+    }
+
+    // MARK: - Search
+
+    func performSearch(with text: String) {
+        searchResultsArray = audios.filter { (audio) -> Bool in
+            return audio.audioName.lowercased().contains(text.lowercased())
+        }
+
+        searchManager.model?.searchResultArray = searchResultsArray
+        searchManager.viewDelegate?.reloadTableView()
     }
 
     // MARK: - Refresh
 
-    func handleRefresh(_ refreshControl: UIRefreshControl) {
-        getArray()
+    func handleRefresh() {
+        retrieveAllAudios()
         delegate?.reloadTableView()
     }
 }
