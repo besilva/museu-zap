@@ -13,7 +13,13 @@ protocol CategoryCollectionViewModelDelegate: class {
     func reloadCollectionData()
 }
 
-class CategoryCollectionViewModel {
+protocol CategoryCollectionViewModelProtocol {
+    var categories: [AudioCategory] {get}
+    var service: AudioCategoryServices {get}
+    var delegate: CategoryCollectionViewModelDelegate? {get set}
+}
+
+class CategoryCollectionViewModel: CategoryCollectionViewModelProtocol {
     
     var categories: [AudioCategory]
     var service: AudioCategoryServices

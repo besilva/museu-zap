@@ -9,9 +9,9 @@
 import UIKit
 import DatabaseKit
 
-class CategoryCollectionView: UICollectionView {
-    
-    var viewModel: CategoryCollectionViewModel? {
+class CategoryCollectionView: UICollectionView, ViewCodable {
+
+    var viewModel: CategoryCollectionViewModelProtocol? {
         didSet {
             viewModel?.delegate = self
             updateView()
@@ -20,18 +20,12 @@ class CategoryCollectionView: UICollectionView {
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
-        self.register(CategoryCell.self, forCellWithReuseIdentifier: "category")
-        self.delegate = self
-        self.dataSource = self
-        self.backgroundColor = UIColor.Default.background
-        self.showsVerticalScrollIndicator = false
-        self.showsHorizontalScrollIndicator = false
+        setupView()
     }
     
     convenience init(categories: [AudioCategory]) {
         self.init(frame: .zero, collectionViewLayout: UICollectionViewLayout())
-        self.delegate = self
-        self.dataSource = self
+      setupView()
     }
     
     required init?(coder: NSCoder) {
@@ -66,6 +60,24 @@ extension CategoryCollectionView: UICollectionViewDataSource, UICollectionViewDe
         return CGSize(width: 162, height: 162)
     }
 
+}
+
+extension CategoryCollectionView {
+    func configure() {
+        self.delegate = self
+        self.dataSource = self
+        self.register(CategoryCell.self, forCellWithReuseIdentifier: "category")
+        self.showsVerticalScrollIndicator = false
+        self.showsHorizontalScrollIndicator = false
+    }
+    
+    func setupHierarchy() { }
+    
+    func setupConstraints() {}
+    
+    func render() {
+        self.backgroundColor = UIColor.Default.background
+    }
 }
 
 extension CategoryCollectionView: CategoryCollectionViewModelDelegate {

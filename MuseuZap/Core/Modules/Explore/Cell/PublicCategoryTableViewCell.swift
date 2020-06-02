@@ -9,10 +9,23 @@
 import UIKit
 import DatabaseKit
 
-class CategoryTableViewCell: UITableViewCell, ViewCodable {
+protocol CategoryTableViewCellProtocol: UITableViewCell, ViewCodable {
+    var categoryCollection: CategoryCollectionView {get set}
+    func setupViewModel()
+}
+
+extension CategoryTableViewCellProtocol {
+    func setupHierarchy() {
+        contentView.addSubview(categoryCollection)
+    }
     
+    func render() { }
+}
+
+class PublicCategoryTableViewCell: UITableViewCell, ViewCodable, CategoryTableViewCellProtocol {
+
 //    var container: UIView = UIView()
-    let categoryCollection: CategoryCollectionView
+    var categoryCollection: CategoryCollectionView
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         let layout = UICollectionViewFlowLayout()
@@ -20,17 +33,16 @@ class CategoryTableViewCell: UITableViewCell, ViewCodable {
         layout.scrollDirection = .horizontal
         categoryCollection = CategoryCollectionView(frame: .zero, collectionViewLayout: layout)
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupViewModel()
         self.setupView()
-        categoryCollection.viewModel = CategoryCollectionViewModel(service: AudioCategoryServices())
     }
-    
+        
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupHierarchy() {
-//        container.addSubview(categoryCollection)
-        contentView.addSubview(categoryCollection)
+    func setupViewModel() {
+         categoryCollection.viewModel = CategoryCollectionViewModel(service: AudioCategoryServices())
     }
     
     func setupConstraints() {
@@ -46,7 +58,4 @@ class CategoryTableViewCell: UITableViewCell, ViewCodable {
         }
     }
 
-    func render() {
-        
-    }
 }
