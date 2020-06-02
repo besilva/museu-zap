@@ -1,5 +1,5 @@
 //
-//  MockAudio.swift
+//  AudioMock.swift
 //  MuseuZapTests
 //
 //  Created by Ivo Dutra on 29/05/20.
@@ -9,7 +9,7 @@
 import DatabaseKit
 
 /// Simple Mocked audios to be used for testing purposes
-class MockAudio {
+class AudioMock {
 
     public var category1 = AudioCategory()
     public var category2 = AudioCategory()

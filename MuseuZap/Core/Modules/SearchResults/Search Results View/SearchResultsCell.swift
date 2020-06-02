@@ -42,7 +42,7 @@ class SearchResultsCell: AudioCell {
         setPlayButtonConstraints()
     }
 
-    /// Container is not needed
+    // Container is not needed
     override func render() {
         //  Sets content view appearance
         contentView.backgroundColor = UIColor.Default.lightBackground

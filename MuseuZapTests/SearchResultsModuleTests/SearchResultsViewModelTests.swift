@@ -13,12 +13,12 @@ import DatabaseKit
 class SearchResultsViewModelTests: XCTestCase {
 
     var sut: SearchResultsViewModel!
-    var audios: MockAudio!
+    var audios: AudioMock!
     var audioProp: AudioProperties!
 
     override func setUp() {
         sut = SearchResultsViewModel()
-        audios = MockAudio()
+        audios = AudioMock()
 
         sut.searchResultArray = [audios.audioPublic]
 

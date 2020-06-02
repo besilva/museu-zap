@@ -25,7 +25,7 @@ class SearchResultsDataSourceTests: XCTestCase {
         tableView.register(SearchResultsCell.self, forCellReuseIdentifier: cellIdentifier)
         tableView.dataSource = sut
 
-        audioLabel = MockAudio().audioPrivate.audioName
+        audioLabel = AudioMock().audioPrivate.audioName
     }
 
     override func tearDown() {

@@ -10,15 +10,8 @@ import DatabaseKit
 
 class AudioServicesMock: AudioServicesProtocol {
 
-    var audios = MockAudio()
-
-    enum MockCases {
-        case setUp // Contains 3 Audios
-        case onlyOneAudio
-        case error
-    }
-
-    var stateCase: MockCases = .setUp
+    var audios = AudioMock()
+    var isCalled = false
 
     // MARK: - Functions
 
@@ -26,16 +19,8 @@ class AudioServicesMock: AudioServicesProtocol {
     }
 
     func getAllAudios(_ completion: @escaping (Error?, [Audio]?) -> Void) {
-        switch stateCase {
-        // At setUp, load viewModel with 3 audios
-        case .setUp:
-            completion(nil, [audios.audioPrivate, audios.audioPublic, audios.searchAudio])
-        // Load ViewModel array with 1 example audio
-        case .onlyOneAudio:
-            completion(nil, [audios.audioPublic])
-        case .error:
-            print()
-        }
+        self.isCalled = true
+        completion(nil, [audios.audioPrivate, audios.audioPublic, audios.searchAudio])
     }
 
     func getAllAudiosWith(isPrivate bool: Bool, _ completion: @escaping (Error?, [Audio]?) -> Void) {

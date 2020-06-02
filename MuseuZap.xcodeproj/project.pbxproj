@@ -99,7 +99,7 @@
 		C5904C69246AEED4004B9921 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904C68246AEED4004B9921 /* AudioManager.swift */; };
 		C5A4D4F9248159F6006C97FF /* SearchResultsCellSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A4D4F8248159F6006C97FF /* SearchResultsCellSnapshotTests.swift */; };
 		C5A4D4FC24815B91006C97FF /* SearchResultsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A4D4FB24815B91006C97FF /* SearchResultsViewModelTests.swift */; };
-		C5A4D4FE248161FB006C97FF /* MockAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A4D4FD248161FB006C97FF /* MockAudio.swift */; };
+		C5A4D4FE248161FB006C97FF /* AudioMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A4D4FD248161FB006C97FF /* AudioMock.swift */; };
 		C5AFABE7246D814600E7AF31 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AFABE6246D814600E7AF31 /* FileManager+Extension.swift */; };
 		C5AFABE8246D86E000E7AF31 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AFABE6246D814600E7AF31 /* FileManager+Extension.swift */; };
 		C5AFABEA246D8C8200E7AF31 /* AudioManagerTestsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AFABE9246D8C8200E7AF31 /* AudioManagerTestsError.swift */; };
@@ -244,7 +244,7 @@
 		C5904C68246AEED4004B9921 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		C5A4D4F8248159F6006C97FF /* SearchResultsCellSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsCellSnapshotTests.swift; sourceTree = "<group>"; };
 		C5A4D4FB24815B91006C97FF /* SearchResultsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewModelTests.swift; sourceTree = "<group>"; };
-		C5A4D4FD248161FB006C97FF /* MockAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAudio.swift; sourceTree = "<group>"; };
+		C5A4D4FD248161FB006C97FF /* AudioMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMock.swift; sourceTree = "<group>"; };
 		C5AFABE6246D814600E7AF31 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		C5AFABE9246D8C8200E7AF31 /* AudioManagerTestsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManagerTestsError.swift; sourceTree = "<group>"; };
 		C5AFABEB246D8CD000E7AF31 /* MockedNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedNotificationCenter.swift; sourceTree = "<group>"; };
@@ -314,7 +314,7 @@
 				6461820724645363003BC3AB /* SnapshotContainer.swift */,
 				6461820824645363003BC3AB /* TableViewCellSnapshotContainer.swift */,
 				6461820924645363003BC3AB /* IPhoneWidthsEnum.swift */,
-				C5A4D4FD248161FB006C97FF /* MockAudio.swift */,
+				C5A4D4FD248161FB006C97FF /* AudioMock.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -941,7 +941,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5A4D4FE248161FB006C97FF /* MockAudio.swift in Sources */,
+				C5A4D4FE248161FB006C97FF /* AudioMock.swift in Sources */,
 				C5CD5EB7246BFDD00054C4EB /* XCTestCase+Extension.swift in Sources */,
 				C5BC02A62476C44300095A5C /* ListViewModelDelegateMock.swift in Sources */,
 				80FA892B2462F241006B2B61 /* AboutViewSnapshotTests.swift in Sources */,
@@ -1202,7 +1202,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B73YH55T95;
+				DEVELOPMENT_TEAM = 8C3NFSJWVT;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -1237,7 +1237,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B73YH55T95;
+				DEVELOPMENT_TEAM = 8C3NFSJWVT;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",

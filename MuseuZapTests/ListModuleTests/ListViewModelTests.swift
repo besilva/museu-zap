@@ -13,25 +13,25 @@ import DatabaseKit
 class ListViewModelTests: XCTestCase {
 
     var sut: ListViewModel!
-    var audServices: AudioServicesMock!
-    var audCatServices: AudioCategoryServicesMock!
+    var audioServices: AudioServicesMock!
+    var audioCategoryServices: AudioCategoryServicesMock!
     var viewDeleg: ListViewModelDelegateMock!
     var audioPrivate: AudioProperties!
     var searchAudioProp: AudioProperties!
 
     override func setUp() {
-        audServices = AudioServicesMock()
-        audCatServices = AudioCategoryServicesMock()
+        audioServices = AudioServicesMock()
+        audioCategoryServices = AudioCategoryServicesMock()
         viewDeleg = ListViewModelDelegateMock()
-        sut = ListViewModel(audioServices: audServices, audioCategoryServices: audCatServices, delegate: viewDeleg)
+        sut = ListViewModel(audioServices: audioServices, audioCategoryServices: audioCategoryServices, delegate: viewDeleg)
 
-        audioPrivate = AudioProperties(from: audServices.audios.audioPrivate)
-        searchAudioProp = AudioProperties(from: audServices.audios.searchAudio)
+        audioPrivate = AudioProperties(from: audioServices.audios.audioPrivate)
+        searchAudioProp = AudioProperties(from: audioServices.audios.searchAudio)
     }
 
     override func tearDown() {
-        audServices = nil
-        audCatServices = nil
+        audioServices = nil
+        audioCategoryServices = nil
         viewDeleg = nil
         audioPrivate = nil
         searchAudioProp = nil
@@ -41,10 +41,9 @@ class ListViewModelTests: XCTestCase {
     // MARK: - Get Array
 
     func testGetArray() {
-        audServices.stateCase = .onlyOneAudio
         
         sut.retrieveAllAudios()
-        XCTAssertEqual(sut.audios.count, 1, "AudioaudServicesMock at onlyOneAudio produces only one audio, default 2 (setUp)")
+        XCTAssert(audioServices.isCalled)
     }
 
     // MARK: - GetAudioItemProperties
@@ -86,5 +85,4 @@ class ListViewModelTests: XCTestCase {
         sut.handleRefresh()
         XCTAssert(viewDeleg.refreshFlag)
     }
-
 }

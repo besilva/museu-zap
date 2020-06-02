@@ -12,7 +12,7 @@ import DatabaseKit
 class MockSearchResultsViewModel: SearchResultsViewModelProtocol {
     // MARK: - Properties
     var searchResultArray = [Audio]()
-    var audios = MockAudio()
+    var audios = AudioMock()
     var arrayCount: AudioCount = .all {
         didSet {
             loadSearchArray()
