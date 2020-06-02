@@ -19,12 +19,10 @@ class AudioCell: UITableViewCell, ViewCodable {
     var shareHitArea: UIView = UIView()
     var playIcon: UIImageView = UIImageView()
     var shareIcon: UIImageView = UIImageView()
-    
+
     var isPlaying: Bool {
         didSet {
-            let pauseIcon = UIImage(named: "pause")
-            let playIcon = UIImage(named: "play")
-            self.playIcon.image = self.isPlaying ?  pauseIcon : playIcon
+            self.playIcon.image = self.isPlaying ?  UIImage.Default.pauseIcon : UIImage.Default.playIcon
         }
     }
 
@@ -52,10 +50,14 @@ class AudioCell: UITableViewCell, ViewCodable {
     }
     
     func setupHierarchy() {
+//        Icons go into their respective enhanced hit areas
         playHitArea.addSubview(playIcon)
         shareHitArea.addSubview(shareIcon)
+//        Audio labels go into a content view
         audioDataContentView.addSubviews(titleLabel, durationLabel)
+//        The audio content view and the hit areas go into the cell container
         container.addSubviews(audioDataContentView, playHitArea, shareHitArea)
+//        Adds the container into the cell content view
         contentView.addSubview(container)
     }
     
@@ -167,13 +169,12 @@ class AudioCell: UITableViewCell, ViewCodable {
         guard let viewModel = viewModel else { return }
         viewModel.changePlayStatus(cell: self)
     }
-}
 
-// Constraint setting methods
-extension AudioCell {
+    // MARK: - Constraints
+
 //      Setup audio data content view constraints
     func setAudioDataContentViewConstraints() {
-        
+
         audioDataContentView.setContentCompressionResistancePriority(.required, for: .vertical)
 
         audioDataContentView.setupConstraints { (_) in
@@ -201,7 +202,6 @@ extension AudioCell {
             audioDataContentView.trailingAnchor.constraint(equalTo: shareHitArea.leadingAnchor, constant: -8).isActive = true
         }
     }
-
 //        Setup audio title constraints
     func setAudioTitleConstraints() {
         titleLabel.sizeToFit()
@@ -213,7 +213,7 @@ extension AudioCell {
             titleLabel.trailingAnchor.constraint(equalTo: audioDataContentView.trailingAnchor).isActive = true
         }
     }
-    
+
 //        Setup audio duration constraints
     func setAudioDurationConstraints() {
         durationLabel.setupConstraints { (_) in
@@ -226,7 +226,7 @@ extension AudioCell {
                                                    constant: -2)
             topConstraint.priority = UILayoutPriority.required
             topConstraint.isActive = true
-            
+
             durationLabel.bottomAnchor.constraint(equalTo: audioDataContentView.bottomAnchor).isActive = true
             let bottomConstraint = NSLayoutConstraint(item: durationLabel,
                                                       attribute: .bottom,
@@ -237,12 +237,12 @@ extension AudioCell {
                                                       constant: 0)
             bottomConstraint.priority = UILayoutPriority(rawValue: 999)
             bottomConstraint.isActive = true
-            
+
             durationLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 26).isActive = true
             durationLabel.leadingAnchor.constraint(equalTo: audioDataContentView.leadingAnchor).isActive = true
         }
     }
-    
+
 //        Setup play icon constraints, inside hitArea
     func setPlayIconConstraints() {
 
@@ -303,7 +303,7 @@ extension AudioCell {
     }
 }
 
-    // MARK: - Constrains Helper
+    // MARK: - Constraints Helper
 
 extension AudioCell {
 

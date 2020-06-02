@@ -32,10 +32,12 @@ class AudioCellViewModel: AudioCellViewModelProtocol {
         actionHandler = audioHandler
     }
     
+//    Changes the play status of a given cell
     func changePlayStatus(cell: AudioCell) {
         iconManager.changePlayStatus(audioPath: audioPath, cell: cell)
     }
     
+//    Shares a given cell audio, using its path
     func share() {
         print(self.title)
         actionHandler(.share(audioPath))

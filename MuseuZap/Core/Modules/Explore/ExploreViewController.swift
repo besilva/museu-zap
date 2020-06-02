@@ -51,7 +51,7 @@ class ExploreViewController: UIViewController, ViewController, NavigationDelegat
         super.viewDidLoad()
         // Fake doing request
         let audioServices = AudioServices(dao: AudioDAO())
-        let viewModel = ListViewModel(audioServices: audioServices, delegate: myView)
+        let viewModel = ListViewModel(audioServices: audioServices, audioCategoryServices: AudioCategoryServices(), delegate: myView)
         viewModel.navigationDelegate = self
         myView.viewModel = viewModel
     }

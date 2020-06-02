@@ -9,8 +9,11 @@
 import UIKit
 import AVFoundation
 
+// TODO: movimento tela principal e dar play em um audio - ir pra tela de resultados com esse audio playado - e dar pause com remote control -> só atualiza o ícone da célula da tela principal e não atualiza o ícone da tela de resultados.
+// Acho que bastaria um "refresh" na tela de resultados no momento em que o remote control volta
+
 class CellIconManager {
-    
+//    Updates icon when changing play status
     var playStatus: State {
         didSet {
             guard let audioCell = self.subjectCell else {
@@ -25,6 +28,7 @@ class CellIconManager {
     /// Singleton
     static let shared = CellIconManager()
     
+//    Removes observers when deinitializing
     deinit {
         AudioManager.shared.notificationCenter.removeObserver(self)
      }
@@ -32,24 +36,29 @@ class CellIconManager {
     init() {
         self.playStatus = .idle
         self.isCellVisible = false
+
+//        Observes when playback starts
         AudioManager.shared.notificationCenter.addObserver(self,
             selector: #selector(playbackDidStart),
             name: .playbackStarted,
             object: nil
         )
-        
+
+//        Observe when playback pauses
         AudioManager.shared.notificationCenter.addObserver(self,
             selector: #selector(playbackDidStop),
             name: .playbackPaused,
             object: nil
         )
-        
+
+//        Observes when playback ends
         AudioManager.shared.notificationCenter.addObserver(self,
                      selector: #selector(playbackDidEnd),
                      name: .playbackStopped,
                      object: nil)
     }
     
+//    Changes play status to play using given object as the audio path
     @objc func playbackDidStart(_ notification: Notification) {
         guard let audioPath = notification.object as? String else {
             let object = notification.object as Any
@@ -60,6 +69,7 @@ class CellIconManager {
         self.playStatus = State.playing(audioPath)
     }
     
+//    Changes play status to pause using given object as the audio path
     @objc func playbackDidStop(_ notification: Notification) {
         guard let audioPath = notification.object as? String else {
             let object = notification.object as Any
@@ -69,12 +79,15 @@ class CellIconManager {
         
         self.playStatus = State.paused(audioPath)
     }
-    
+
+//    Changes play status to idle
     @objc func playbackDidEnd(_ notification: Notification) {
         self.playStatus = State.idle
     }
     
+//    Handles play status change
     func changePlayStatus(audioPath: String, cell: AudioCell) {
+//        If cell changed is not current monitored cell
         if self.subjectCell != cell && self.subjectCell != nil {
             self.subjectCell!.isPlaying = false
         }
