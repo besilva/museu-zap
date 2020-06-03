@@ -23,6 +23,7 @@
 		6473EDE1243B6D3E00A10F2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6473EDDF243B6D3E00A10F2C /* LaunchScreen.storyboard */; };
 		64796F0C2453152800104448 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64796F0B2453152800104448 /* TabBarController.swift */; };
 		648BCD5C2485292200DD1A2F /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644720832475637600CEDB0B /* CategoryCell.swift */; };
+		648BCD602487D6CF00DD1A2F /* CategoryCollectionViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BCD5F2487D6CF00DD1A2F /* CategoryCollectionViewSnapshotTests.swift */; };
 		64A60C2E24489B9E003B0F26 /* ViewCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A60C2D24489B9E003B0F26 /* ViewCodable.swift */; };
 		64A60C3024489D62003B0F26 /* UIView+ConstraintsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A60C2F24489D62003B0F26 /* UIView+ConstraintsExtension.swift */; };
 		64A60C322448A78C003B0F26 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A60C312448A78C003B0F26 /* ListView.swift */; };
@@ -186,6 +187,7 @@
 		6473EDE7243B6D3E00A10F2C /* MuseuZapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MuseuZapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6473EDED243B6D3E00A10F2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64796F0B2453152800104448 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		648BCD5F2487D6CF00DD1A2F /* CategoryCollectionViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewSnapshotTests.swift; sourceTree = "<group>"; };
 		64A60C2D24489B9E003B0F26 /* ViewCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCodable.swift; sourceTree = "<group>"; };
 		64A60C2F24489D62003B0F26 /* UIView+ConstraintsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ConstraintsExtension.swift"; sourceTree = "<group>"; };
 		64A60C312448A78C003B0F26 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
@@ -407,16 +409,17 @@
 		6473EDEA243B6D3E00A10F2C /* MuseuZapTests */ = {
 			isa = PBXGroup;
 			children = (
+				6473EDED243B6D3E00A10F2C /* Info.plist */,
 				642C63A8246EE97C0059FBDC /* AppDelegateFake.swift */,
+				80E6C366244DF05500A42A4C /* AboutModuleTests */,
 				C527F28B246C22E000714778 /* AudioManager */,
+				648BCD5D2487D1B300DD1A2F /* Components */,
+				80C274C424585BBA0051A1E6 /* CustomCellTests */,
 				C53F4CA9246585FD001AAD57 /* FileExchanger */,
 				6461820624645363003BC3AB /* Helpers */,
-				80C274C424585BBA0051A1E6 /* CustomCellTests */,
-				80E6C366244DF05500A42A4C /* AboutModuleTests */,
 				C55013F22476C0480036CFFD /* ListModuleTests */,
 				C5A4D4FA24815B5C006C97FF /* SearchResultsModuleTests */,
 				C5B2B4FA24817F64000D2C7F /* UIView Components Tests */,
-				6473EDED243B6D3E00A10F2C /* Info.plist */,
 			);
 			path = MuseuZapTests;
 			sourceTree = "<group>";
@@ -427,6 +430,22 @@
 				6443CD5124780EDC00572AD8 /* PublicCategoryTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		648BCD5D2487D1B300DD1A2F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				648BCD5E2487D6BA00DD1A2F /* CategoryCollectionView */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		648BCD5E2487D6BA00DD1A2F /* CategoryCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				648BCD5F2487D6CF00DD1A2F /* CategoryCollectionViewSnapshotTests.swift */,
+			);
+			path = CategoryCollectionView;
 			sourceTree = "<group>";
 		};
 		64C7757B2457162700FDEA03 /* MuseuZapShare */ = {
@@ -1022,6 +1041,7 @@
 				C586E2C72465AA2400B1930B /* FileExchangerErrorTests.swift in Sources */,
 				804A61322477F2E70053F011 /* ListViewTests.swift in Sources */,
 				80E6C368244DF09700A42A4C /* AboutViewTests.swift in Sources */,
+				648BCD602487D6CF00DD1A2F /* CategoryCollectionViewSnapshotTests.swift in Sources */,
 				80A7E965246EDB8D00E7EAA2 /* CellIconManagerTests.swift in Sources */,
 				C51338BC2485646A0000F760 /* AudioCategoryServicesMock.swift in Sources */,
 				C53F4CAB246598C2001AAD57 /* FileExchangerSuccessTests.swift in Sources */,

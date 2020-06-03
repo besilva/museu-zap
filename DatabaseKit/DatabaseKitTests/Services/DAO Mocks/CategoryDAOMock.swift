@@ -62,6 +62,7 @@ class CategoryDAOMock: AudioCategoryDAOProtocol {
         if shouldThrowError {
             throw DatabaseErrors.read
         }
+        return []
     }
     
 }

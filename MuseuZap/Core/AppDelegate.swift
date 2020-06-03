@@ -113,7 +113,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         category1.identifier = "funny"
         category1.isPrivate = false
         
+        let category2 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+               category2.categoryName = "Clássicos do Zap"
+               category2.identifier = "classic"
+               category2.isPrivate = false
+        
         AudioCategoryServices().createCategory(category: category1) { _ in }
+        AudioCategoryServices().createCategory(category: category2) { _ in }
     }
     
     // MARK: - Default App Delegate

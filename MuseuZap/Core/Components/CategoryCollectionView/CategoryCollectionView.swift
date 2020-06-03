@@ -25,7 +25,7 @@ class CategoryCollectionView: UICollectionView, ViewCodable {
     
     convenience init(categories: [AudioCategory]) {
         self.init(frame: .zero, collectionViewLayout: UICollectionViewLayout())
-      setupView()
+        setupView()
     }
     
     required init?(coder: NSCoder) {
