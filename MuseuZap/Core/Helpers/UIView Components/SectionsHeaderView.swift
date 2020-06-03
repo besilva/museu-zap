@@ -13,14 +13,15 @@ class SectionsHeaderView: UIView, ViewCodable {
 
     // MARK: - Properties
 
-    private var stack: UIStackView
     public var seeAllButton: UIButton
     public var sectionLabel: UILabel
+    /// Helps autoLayout to calculate height
+    private var contentView: UIView
 
     // MARK: - Init
 
     override init(frame: CGRect) {
-        stack = UIStackView()
+        contentView = UIView()
         seeAllButton = UIButton()
         sectionLabel = UILabel()
 
@@ -35,36 +36,52 @@ class SectionsHeaderView: UIView, ViewCodable {
 
     // MARK: - Set Up
 
-    func configure() {
-    }
+    func configure() { }
 
     func setupHierarchy() {
-        stack.addSubviews(sectionLabel, seeAllButton)
-        self.addSubviews(stack)
+        contentView.addSubviews(sectionLabel, seeAllButton)
+
+        self.addSubviews(contentView)
     }
 
     func setupConstraints() {
+        // SectionsHeaderView width should be equal to screenWidth - 2x(tableViewSpacing), leading and trailing
         self.translatesAutoresizingMaskIntoConstraints = false
-        setUpStackConstraints()
+        let width = UIScreen.main.bounds.width - (2 * Constants.tableViewSpacing)
+        self.widthAnchor.constraint(equalToConstant: width).isActive = true
+        // Height anchor is set after section Label is rendered
+
+        setContentViewConstraints()
+        setSectionLabelConstraints()
+        setSeeAllButtonConstraints()
     }
 
     func render() {
-        seeAllButton.titleLabel?.text = "Default"
-        seeAllButton.titleLabel?.textColor = UIColor.Default.power
-        seeAllButton.titleLabel?.font = UIFont.Default.regular.withSize(15)
-//        seeAllButton.dynamicFont = seeAllButton.titleLabel?.font
-        // TODO: ver a extensão dynamic também para botões ou só colocar label mesmo
+        renderLabels()
     }
 
     // MARK: - Set Up Helpers
 
-    /// Creates minimum hitArea constraints as fixed constrains
-    func setUpStackConstraints() {
-        stack.setupConstraints { (view) in
+    func renderLabels() {
+        sectionLabel.text = "Default"
+        sectionLabel.textColor = UIColor.Default.label
+        sectionLabel.font = UIFont.Default.semibold.withSize(25)
 
-            // Height
-            view.heightAnchor.constraint(greaterThanOrEqualToConstant: 44).isActive = true
-            // Pin stack to be the size of the view itself
+        // Set height anchor
+        self.heightAnchor.constraint(equalToConstant: sectionLabel.bounds.height).isActive = true
+
+        seeAllButton.setTitle("Ver todos", for: .normal)
+        seeAllButton.setTitleColor(UIColor.Default.power, for: .normal)
+        seeAllButton.titleLabel?.font = UIFont.Default.regular.withSize(15)
+//      seeAllButton.dynamicFont = seeAllButton.titleLabel?.font
+        // TODO: ver a extensão dynamic também para botões ou só colocar label mesmo
+    }
+
+    // MARK: - Constraints
+
+    func setContentViewConstraints() {
+        contentView.setupConstraints { (view) in
+            // Pin contentView to be the size of the view itself
             view.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
             view.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
             view.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
@@ -72,4 +89,23 @@ class SectionsHeaderView: UIView, ViewCodable {
         }
     }
 
+    func setSectionLabelConstraints() {
+        sectionLabel.sizeToFit()
+        sectionLabel.setContentCompressionResistancePriority(.required, for: .vertical)
+        sectionLabel.setupConstraints { (view) in
+            view.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .vertical)
+            view.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+            view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        }
+    }
+
+    func setSeeAllButtonConstraints() {
+        seeAllButton.sizeToFit()
+        seeAllButton.setContentCompressionResistancePriority(.required, for: .vertical)
+        seeAllButton.setupConstraints { (view) in
+            view.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .vertical)
+            view.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        }
+        seeAllButton.titleLabel?.lastBaselineAnchor.constraint(equalTo: sectionLabel.lastBaselineAnchor).isActive = true
+    }
 }

@@ -102,8 +102,8 @@ class ListView: UIView, ViewCodable {
         tableView.setupConstraints { (tableView) in
             tableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
-            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.tableViewSpacing).isActive = true
+            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constants.tableViewSpacing).isActive = true
         }
         
         loader.setupConstraints { (loader) in

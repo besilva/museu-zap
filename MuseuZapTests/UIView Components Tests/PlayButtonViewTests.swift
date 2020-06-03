@@ -33,6 +33,7 @@ class PlayButtonViewTests: XCTestCase {
     // MARK: - View Contraints
 
     // Should test view frame size, but it is always 0
+    // Should initialize view with a frame somehow
 
     func testViewConstraints() {
 
