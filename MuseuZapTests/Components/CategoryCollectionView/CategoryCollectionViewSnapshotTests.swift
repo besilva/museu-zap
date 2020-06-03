@@ -11,24 +11,6 @@ import XCTest
 @testable import MuseuZap
 @testable import DatabaseKit
 
-class ViewModelMock: CategoryCollectionViewModelProtocol {
-    
-    var categories: [AudioCategory]
-
-    var service: AudioCategoryServicesProtocol
-
-    weak var delegate: CategoryCollectionViewModelDelegate?
-
-    init() {
-        categories = []
-        service = AudioCategoryServicesMock()
-        service.getAllCategoriesWith(isPrivate: false, { (_, categories) in
-            self.categories = categories!
-        })
-    }
-
-}
-
 class CategoryCollectionViewSnapshotTests: XCTestCase {
     
     var sut: CategoryCollectionView!
@@ -40,7 +22,7 @@ class CategoryCollectionViewSnapshotTests: XCTestCase {
         layout.minimumLineSpacing = 16.0
         layout.scrollDirection = .horizontal
         sut = CategoryCollectionView(frame: CGRect(x: 0, y: 0, width: IPhoneWidths.regular.rawValue, height: 194), collectionViewLayout: layout)
-        let viewModel = ViewModelMock()
+        let viewModel = CategoryCollectionViewModel(service: AudioCategoryServicesMock())
         sut.viewModel = viewModel
     }
 

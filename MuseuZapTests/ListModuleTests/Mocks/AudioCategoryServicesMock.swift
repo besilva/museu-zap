@@ -34,7 +34,7 @@ class AudioCategoryServicesMock: AudioCategoryServicesProtocol {
         category1.isPrivate = false
         
         let category2 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
-        category2.categoryName = "Clássicos do Zap"
+        category2.categoryName = "Clássicos do Zap"
         category2.identifier = "classic"
         category2.isPrivate = false
         

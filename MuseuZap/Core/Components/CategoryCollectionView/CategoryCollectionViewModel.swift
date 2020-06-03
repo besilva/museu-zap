@@ -25,7 +25,7 @@ class CategoryCollectionViewModel: CategoryCollectionViewModelProtocol {
     var service: AudioCategoryServicesProtocol
     weak var delegate: CategoryCollectionViewModelDelegate?
     
-    init(service: AudioCategoryServices) {
+    init(service: AudioCategoryServicesProtocol) {
         self.service = service
         categories = []
         retrieveAllCategories()
