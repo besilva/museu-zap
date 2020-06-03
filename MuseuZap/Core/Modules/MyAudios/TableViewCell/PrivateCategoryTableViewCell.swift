@@ -10,7 +10,6 @@ import UIKit
 import DatabaseKit
 
 class PrivateCategoryTableViewCell: UITableViewCell, ViewCodable, CategoryTableViewCellProtocol {
-    
     var categoryCollection: CategoryCollectionView
     var categories: [AudioCategory] = [] {
         didSet {
@@ -22,7 +21,7 @@ class PrivateCategoryTableViewCell: UITableViewCell, ViewCodable, CategoryTableV
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 16.0
         layout.scrollDirection = .horizontal
-        categoryCollection = CategoryCollectionView(frame: .zero, collectionViewLayout: layout)
+        categoryCollection = PrivateCategoryCollectionView(frame: .zero, collectionViewLayout: layout)
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViewModel()
         self.setupView()

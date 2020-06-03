@@ -10,7 +10,7 @@ import UIKit
 import DatabaseKit
 
 class CategoryCellViewModel {
-    private let category: AudioCategory
+    var category: AudioCategory
     var backgroundColor: UIColor?
     var icon: UIImage?
     var title: String {
@@ -39,7 +39,5 @@ class CategoryCellViewModel {
             self.backgroundColor = color
             self.icon = icon
         }
-        
     }
-    
 }

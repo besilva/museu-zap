@@ -35,6 +35,14 @@ class CategoryCollectionView: UICollectionView, ViewCodable {
     func updateView() {
         self.reloadData()
     }
+    
+    func configure() {
+        self.delegate = self
+        self.dataSource = self
+        self.register(CategoryCell.self, forCellWithReuseIdentifier: "category")
+        self.showsVerticalScrollIndicator = false
+        self.showsHorizontalScrollIndicator = false
+    }
 }
 
 extension CategoryCollectionView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -62,14 +70,6 @@ extension CategoryCollectionView: UICollectionViewDataSource, UICollectionViewDe
 }
 
 extension CategoryCollectionView {
-    func configure() {
-        self.delegate = self
-        self.dataSource = self
-        self.register(CategoryCell.self, forCellWithReuseIdentifier: "category")
-        self.showsVerticalScrollIndicator = false
-        self.showsHorizontalScrollIndicator = false
-    }
-    
     func setupHierarchy() { }
     
     func setupConstraints() {}

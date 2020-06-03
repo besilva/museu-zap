@@ -58,18 +58,27 @@ class CategoryCell: UICollectionViewCell, ViewCodable {
     private func changeColor() {
         contentView.backgroundColor = viewModel?.backgroundColor?.withAlphaComponent(viewModel!.opacity)
     }
+    
+    func render() {
+        titleLabel.numberOfLines = 0
+        titleLabel.textColor = UIColor.Default.label
+        titleLabel.font = UIFont.Default.semibold
+        
+        numberOfAudiosLabel.numberOfLines = 1
+        numberOfAudiosLabel.textColor = UIColor.Default.lightLabel
+        numberOfAudiosLabel.font = UIFont.Default.regular.withSize(12)
+        
+        changeColor()
+        layer.cornerRadius = 16
+        self.contentView.layer.cornerRadius = 16
+    }
 }
 
 extension CategoryCell {
-    
     func configure() {
         guard let viewModel = viewModel else { return }
         iconImageView.image = viewModel.icon
         titleLabel.text = viewModel.title
-    }
-    
-    func setupHierarchy() {
-        contentView.addSubviews(iconImageView, titleLabel, numberOfAudiosLabel)
     }
     
     func setupConstraints() {
@@ -96,54 +105,11 @@ extension CategoryCell {
             view.heightAnchor.constraint(equalToConstant: 13).isActive = true
         }
     }
-    
-    func render() {
-        titleLabel.numberOfLines = 0
-        titleLabel.textColor = UIColor.Default.label
-        titleLabel.font = UIFont.Default.semibold
-        
-        numberOfAudiosLabel.numberOfLines = 1
-        numberOfAudiosLabel.textColor = UIColor.Default.lightLabel
-        numberOfAudiosLabel.font = UIFont.Default.regular.withSize(12)
-        
-        changeColor()
-//        cell.layer.masksToBounds = false
-        layer.cornerRadius = 16
-        
-        //        Adds shadow
-        self.contentView.layer.cornerRadius = 20
-        self.contentView.layer.borderWidth = 1.0
-        self.contentView.layer.borderColor = UIColor.clear.cgColor
-        self.contentView.layer.masksToBounds = false
-        
-        self.layer.shadowColor = UIColor.lightGray.cgColor//UIColor(red: 0, green: 0, blue: 0, alpha: 0.05).cgColor
-        self.layer.shadowOpacity = 1
-        self.layer.shadowRadius = 20
-        self.layer.shadowOffset = CGSize(width: 0, height: 4)
-        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: contentView.layer.cornerRadius).cgPath
-        layer.backgroundColor = UIColor.clear.cgColor
-        self.layer.masksToBounds = false
-        
-        
-//        contentViewMailLabel.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.05).cgColor
-//        contentViewMailLabel.layer.shadowOpacity = 1
-//        contentViewMailLabel.layer.shadowRadius = 20
-//        contentViewMailLabel.layer.shadowOffset = CGSize(width: 0, height: 4)
-        
-//        self.contentView.layer.borderWidth = 1.0
-//        self.contentView.layer.borderColor = UIColor.clear.cgColor
-//        self.contentView.layer.masksToBounds = true
-//
-//        self.layer.shadowColor = UIColor.black.cgColor
-//        self.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-//        self.layer.shadowRadius = 2.0
-//        self.layer.shadowOpacity = 0.5
-//        self.layer.masksToBounds = false
-//        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
+
+    func setupHierarchy() {
+        contentView.addSubviews(iconImageView, titleLabel, numberOfAudiosLabel)
     }
-    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         changeColor()
     }
-    
 }
