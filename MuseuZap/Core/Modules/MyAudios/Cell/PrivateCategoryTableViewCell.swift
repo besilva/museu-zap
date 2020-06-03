@@ -12,7 +12,11 @@ import DatabaseKit
 class PrivateCategoryTableViewCell: UITableViewCell, ViewCodable, CategoryTableViewCellProtocol {
     
     var categoryCollection: CategoryCollectionView
-    var categories: [AudioCategory] = []
+    var categories: [AudioCategory] = [] {
+        didSet {
+            self.categoryCollection.viewModel?.categories = self.categories
+        }
+    }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         let layout = UICollectionViewFlowLayout()
@@ -29,13 +33,12 @@ class PrivateCategoryTableViewCell: UITableViewCell, ViewCodable, CategoryTableV
     }
     
     func setupViewModel() {
-         categoryCollection.viewModel = CategoryCollectionViewModel(service: AudioCategoryServices())
+         categoryCollection.viewModel = PrivateCategoryCollectionViewModel(service: AudioCategoryServices())
     }
     
     func setupConstraints() {
         self.setContentCompressionResistancePriority(.required, for: .vertical)
         self.setContentCompressionResistancePriority(.required, for: .horizontal)
-        
         categoryCollection.setupConstraints { (view) in
             view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8).isActive = true
             view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
@@ -43,6 +46,9 @@ class PrivateCategoryTableViewCell: UITableViewCell, ViewCodable, CategoryTableV
             view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
             view.heightAnchor.constraint(greaterThanOrEqualToConstant: 200).isActive = true
         }
+        
+        func render() {
+            self.layer.masksToBounds = false
+        }
     }
-    
 }

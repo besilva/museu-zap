@@ -191,7 +191,6 @@ class AboutView: UIView, ViewCodable {
 //        Loads content from view model
         guard let viewModel = viewModel else { return }
         mailLabel.text = viewModel.email
-        
 
         let underlineAttriString = NSAttributedString(string: viewModel.email,
                                                   attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])

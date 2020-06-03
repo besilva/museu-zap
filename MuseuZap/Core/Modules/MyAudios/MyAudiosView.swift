@@ -10,6 +10,12 @@ import UIKit
 import DatabaseKit
 
 class MyAudiosView: ListView {
+    override var viewModel: ListViewModelProtocol? {
+        didSet {
+            self.reloadTableView()
+        }
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.tableView.register(PrivateCategoryTableViewCell.self, forCellReuseIdentifier: "category")
@@ -38,10 +44,16 @@ class MyAudiosView: ListView {
             let startIndex = 2*indexPath.row
             let endIndex = 2*indexPath.row + 2
             cell.categories = self.viewModel?.audioCategories ?? []
-            cell.categories = Array (self.viewModel?.audioCategories[startIndex..<endIndex]  ?? [])
+            cell.categories = Array(self.viewModel?.audioCategories[startIndex..<endIndex]  ?? [])
             return cell
         } else {
             return super.tableView(tableView, cellForRowAt: indexPath)
         }
+    }
+    
+    override func render() {
+        super.render()
+        self.layer.masksToBounds = false
+        self.tableView.layer.masksToBounds = false
     }
 }

@@ -22,11 +22,14 @@ class AppCoordinator: NSObject, Coordinator {
         UITabBar.appearance().tintColor = UIColor.Default.power
         let testCoordinator = ExploreCoordinator()
         testCoordinator.startFlow()
+        let myAudiosCoordinator = MyAudiosCoordinator()
+        myAudiosCoordinator.startFlow()
         let aboutCoordinator = AboutCoordinator()
         aboutCoordinator.startFlow()
         rootViewController.addChild(testCoordinator.rootViewController,
+                                    myAudiosCoordinator.rootViewController,
                                     aboutCoordinator.rootViewController)
-        coordinators.push(testCoordinator, aboutCoordinator)
+        coordinators.push(testCoordinator, myAudiosCoordinator, aboutCoordinator)
 
     }
 

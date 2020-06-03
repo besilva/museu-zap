@@ -59,7 +59,6 @@ extension CategoryCollectionView: UICollectionViewDataSource, UICollectionViewDe
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 162, height: 162)
     }
-
 }
 
 extension CategoryCollectionView {
@@ -77,6 +76,7 @@ extension CategoryCollectionView {
     
     func render() {
         self.backgroundColor = UIColor.Default.background
+        self.layer.masksToBounds = false
     }
 }
 

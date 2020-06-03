@@ -107,8 +107,7 @@ class ListViewModel: ListViewModelProtocol {
 
         return AudioProperties(from: element)
     }
-    
-    
+        
     // MARK: - Categories
     func retrieveAllCategories() {
         audioCategoryServices.getAllCategories { (error, audioCategories) in
@@ -123,8 +122,7 @@ class ListViewModel: ListViewModelProtocol {
     }
     
     func retrieveAllCategoriesWith(isPrivate: Bool) {
-        audioCategoryServices.getAllCategoriesWith(isPrivate: isPrivate) {
-            (error, audioCategories) in
+        audioCategoryServices.getAllCategoriesWith(isPrivate: isPrivate) { (error, audioCategories) in
             if let categories = audioCategories {
                 // Assign
                 self.audioCategories = categories

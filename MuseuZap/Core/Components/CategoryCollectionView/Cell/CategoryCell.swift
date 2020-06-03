@@ -56,8 +56,7 @@ class CategoryCell: UICollectionViewCell, ViewCodable {
     }
     
     private func changeColor() {
-        backgroundColor = viewModel?.backgroundColor?.withAlphaComponent(viewModel!.opacity)
-
+        contentView.backgroundColor = viewModel?.backgroundColor?.withAlphaComponent(viewModel!.opacity)
     }
 }
 
@@ -108,9 +107,39 @@ extension CategoryCell {
         numberOfAudiosLabel.font = UIFont.Default.regular.withSize(12)
         
         changeColor()
-        
+//        cell.layer.masksToBounds = false
         layer.cornerRadius = 16
         
+        //        Adds shadow
+        self.contentView.layer.cornerRadius = 20
+        self.contentView.layer.borderWidth = 1.0
+        self.contentView.layer.borderColor = UIColor.clear.cgColor
+        self.contentView.layer.masksToBounds = false
+        
+        self.layer.shadowColor = UIColor.lightGray.cgColor//UIColor(red: 0, green: 0, blue: 0, alpha: 0.05).cgColor
+        self.layer.shadowOpacity = 1
+        self.layer.shadowRadius = 20
+        self.layer.shadowOffset = CGSize(width: 0, height: 4)
+        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: contentView.layer.cornerRadius).cgPath
+        layer.backgroundColor = UIColor.clear.cgColor
+        self.layer.masksToBounds = false
+        
+        
+//        contentViewMailLabel.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.05).cgColor
+//        contentViewMailLabel.layer.shadowOpacity = 1
+//        contentViewMailLabel.layer.shadowRadius = 20
+//        contentViewMailLabel.layer.shadowOffset = CGSize(width: 0, height: 4)
+        
+//        self.contentView.layer.borderWidth = 1.0
+//        self.contentView.layer.borderColor = UIColor.clear.cgColor
+//        self.contentView.layer.masksToBounds = true
+//
+//        self.layer.shadowColor = UIColor.black.cgColor
+//        self.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+//        self.layer.shadowRadius = 2.0
+//        self.layer.shadowOpacity = 0.5
+//        self.layer.masksToBounds = false
+//        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

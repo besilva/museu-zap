@@ -46,7 +46,7 @@ class MyAudiosViewController: UIViewController, ViewController, NavigationDelega
         // Fake doing request
         let categoryServices = AudioCategoryServices()
         let audioServices = AudioServices(dao: AudioDAO())
-        let viewModel = ListViewModel(audioServices: audioServices, audioCategoryServices: categoryServices, delegate: myView)
+        let viewModel = MyAudiosViewModel(audioServices: audioServices, audioCategoryServices: categoryServices, delegate: myView)
         viewModel.navigationDelegate = self
         myView.viewModel = viewModel
     }
