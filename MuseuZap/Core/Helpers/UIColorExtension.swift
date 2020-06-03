@@ -18,5 +18,6 @@ extension UIColor {
         static let power = UIColor(named: "power")
         static let powerRefresh = UIColor(named: "powerRefresh")
         static let navBar = UIColor(named: "navBarColor")
+        static let pageControl = UIColor(named: "pageControl")
     }
 }

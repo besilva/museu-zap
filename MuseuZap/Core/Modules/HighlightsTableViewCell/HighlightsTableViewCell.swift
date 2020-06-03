@@ -81,7 +81,7 @@ extension HighlightsTableViewCell: ViewCodable {
         pageControL.currentPage = 0
         pageControL.numberOfPages = collectionViewModel.highlightedAudios.count
         pageControL.currentPageIndicatorTintColor = UIColor.Default.power
-        pageControL.pageIndicatorTintColor = UIColor.Default.lightLabel // TODO: verificar cor
+        pageControL.pageIndicatorTintColor = UIColor.Default.pageControl
     }
 
     // MARK: - Constraints

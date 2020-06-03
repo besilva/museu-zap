@@ -137,6 +137,19 @@ class ListView: UIView, ViewCodable {
         searchController.obscuresBackgroundDuringPresentation = true
         searchController.searchBar.placeholder = "Buscar áudio"
         searchController.searchBar.tintColor = UIColor.Default.power
+
+        // TODO: acertar tamanho das fontes
+
+        // Set SearchBar Button
+       let attributes: [NSAttributedString.Key: Any] = [
+           .font: UIFont.Default.regular.withSize(15)
+       ]
+       UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes(attributes, for: .normal)
+
+        // If available, modify searchBar font
+        if #available(iOS 13, *) {
+            searchController.searchBar.searchTextField.font = UIFont.Default.regular.withSize(22)
+        }
     }
 }
 
