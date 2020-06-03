@@ -69,6 +69,10 @@ extension HighlightsCell: ViewCodable {
 
     func setUpPlayButton() {
         playButton.icon.image = UIImage.Default.playIconHighlights
+        // Adds behaviour to play audio on tap
+        let tap = UITapGestureRecognizer(target: self, action: #selector(changePlayStatus))
+        playButton.isUserInteractionEnabled = true
+        playButton.addGestureRecognizer(tap)
     }
 
     func setUpPlayButtonConstraints() {
@@ -78,6 +82,13 @@ extension HighlightsCell: ViewCodable {
             view.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
             view.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         }
+    }
+
+    // MARK: - changePlayStatus
+
+    @objc func changePlayStatus() {
+        guard let viewModel = viewModel else { return }
+        viewModel.changePlayStatus()
     }
 
 }

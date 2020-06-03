@@ -411,7 +411,6 @@
 			children = (
 				6473EDD4243B6D3700A10F2C /* AppDelegate.swift */,
 				64DD6FDE243E07BC00404321 /* Coordinators */,
-				C5E784C62486BF4600222919 /* Components */,
 				64DD6FE2243E081E00404321 /* Helpers */,
 				64DD6FE8243E0B1600404321 /* Modules */,
 				64DD6FE9243E0B3100404321 /* Resource */,
@@ -422,6 +421,7 @@
 		64DD6FE2243E081E00404321 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C5E784C72486BF6700222919 /* HighlightsCollectionView */,
 				C5256440248042BC00EF9509 /* UIView Components */,
 				C5AFABE5246D811200E7AF31 /* Files */,
 				C500AF6D246B8A0200F5AC0A /* Audio */,
@@ -672,14 +672,6 @@
 				C5C5963B24819DCE00E8539E /* MockSearchResultsViewModel.swift */,
 			);
 			path = Mock;
-			sourceTree = "<group>";
-		};
-		C5E784C62486BF4600222919 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				C5E784C72486BF6700222919 /* HighlightsCollectionView */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		C5E784C72486BF6700222919 /* HighlightsCollectionView */ = {

@@ -8,57 +8,68 @@
 
 import UIKit
 
-///// Creates a View with playIcon in the middle
-//class SectionsHeaderView: UIView {
-//
-//    private var stack: UIStackView
-//    public var title: Uilab UIImageView = UIImageView()
-//
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//
-//        // Set icons colors
-//        icon.tintColor = UIColor.Default.power
-//        icon.image = UIImage.Default.playIcon
-//        icon.contentMode = .scaleAspectFit
-//        self.addSubview(icon)
-//
-//        self.translatesAutoresizingMaskIntoConstraints = false
-//        setUpHitAreaConstraints()
-//        setUpIconConstraints()
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//
-//    /// Creates minimum hitArea constraints as fixed constrains
-//    func setUpHitAreaConstraints() {
-//        let width = NSLayoutConstraint(item: self,
-//                                       attribute: .width,
-//                                       relatedBy: .equal,
-//                                       toItem: nil,
-//                                       attribute: .width,
-//                                       multiplier: 1,
-//                                       constant: 44)
-//        width.isActive = true
-//
-//        let height = NSLayoutConstraint(item: self,
-//                                       attribute: .height,
-//                                       relatedBy: .equal,
-//                                       toItem: nil,
-//                                       attribute: .height,
-//                                       multiplier: 1,
-//                                       constant: 44)
-//        height.isActive = true
-//    }
-//
-//    func setUpIconConstraints() {
-//        icon.setContentCompressionResistancePriority(.required, for: .horizontal)
-//        icon.setContentHuggingPriority(.required, for: .horizontal)
-//        icon.setupConstraints { (_) in
-//            icon.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-//            icon.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-//        }
-//    }
-//}
+/// Creates the view used for tableView Sections
+class SectionsHeaderView: UIView, ViewCodable {
+
+    // MARK: - Properties
+
+    private var stack: UIStackView
+    public var seeAllButton: UIButton
+    public var sectionLabel: UILabel
+
+    // MARK: - Init
+
+    override init(frame: CGRect) {
+        stack = UIStackView()
+        seeAllButton = UIButton()
+        sectionLabel = UILabel()
+
+        super.init(frame: frame)
+
+        setupView()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Set Up
+
+    func configure() {
+    }
+
+    func setupHierarchy() {
+        stack.addSubviews(sectionLabel, seeAllButton)
+        self.addSubviews(stack)
+    }
+
+    func setupConstraints() {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        setUpStackConstraints()
+    }
+
+    func render() {
+        seeAllButton.titleLabel?.text = "Default"
+        seeAllButton.titleLabel?.textColor = UIColor.Default.power
+        seeAllButton.titleLabel?.font = UIFont.Default.regular.withSize(15)
+//        seeAllButton.dynamicFont = seeAllButton.titleLabel?.font
+        // TODO: ver a extensão dynamic também para botões ou só colocar label mesmo
+    }
+
+    // MARK: - Set Up Helpers
+
+    /// Creates minimum hitArea constraints as fixed constrains
+    func setUpStackConstraints() {
+        stack.setupConstraints { (view) in
+
+            // Height
+            view.heightAnchor.constraint(greaterThanOrEqualToConstant: 44).isActive = true
+            // Pin stack to be the size of the view itself
+            view.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+            view.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+            view.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+            view.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        }
+    }
+
+}

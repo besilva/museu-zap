@@ -9,26 +9,48 @@
 import UIKit
 
 /// Creates a View with playIcon in the middle
-class PlayButtonView: UIView {
-    public var icon: UIImageView = UIImageView()
+class PlayButtonView: UIView, ViewCodable {
+
+    // MARK: - Properties
+
+    public var icon: UIImageView
+
+    // MARK: - Init
 
     override init(frame: CGRect) {
+        icon = UIImageView()
+
         super.init(frame: frame)
 
-        // Set icons colors
-        icon.tintColor = UIColor.Default.power
-        icon.image = UIImage.Default.playIcon
-        icon.contentMode = .scaleAspectFit
-        self.addSubview(icon)
-
-        self.translatesAutoresizingMaskIntoConstraints = false
-        setUpHitAreaConstraints()
-        setUpIconConstraints()
+        setupView()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: - Set Up
+
+    func configure() {
+        icon.image = UIImage.Default.playIcon
+        icon.contentMode = .scaleAspectFit
+    }
+
+    func setupHierarchy() {
+        self.addSubview(icon)
+    }
+
+    func setupConstraints() {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        setUpHitAreaConstraints()
+        setUpIconConstraints()
+    }
+
+    func render() {
+        icon.tintColor = UIColor.Default.power
+    }
+
+    // MARK: - Set Up Helpers
 
     /// Creates minimum hitArea constraints as fixed constrains
     func setUpHitAreaConstraints() {
