@@ -10,26 +10,33 @@ import UIKit
 //import DatabaseKit
 
 class HighlightsCell: UICollectionViewCell {
+
+    // MARK: - Properties
+
+    var playButton: PlayButtonView
     
-//    let iconImageView: UIImageView
-//    let titleLabel: UILabel
-//    let numberOfAudiosLabel: UILabel
-//    var iconWidthConstraint: NSLayoutConstraint?
-//    var iconHeightConstraint: NSLayoutConstraint?
     var viewModel: HighlightsCellViewModel? {
         didSet {
             render()
             configure()
         }
     }
+
+    // MARK: - Init
      
     init() {
+        playButton = PlayButtonView()
+
         super.init(frame: .zero)
+
         setupView()
     }
     
     override init(frame: CGRect) {
+        playButton = PlayButtonView()
+
         super.init(frame: frame)
+
         setupView()
     }
     
@@ -45,18 +52,32 @@ extension HighlightsCell: ViewCodable {
 
     func configure() {
         self.backgroundColor = .purple
+        setUpPlayButton()
     }
     
     func setupHierarchy() {
-
+        self.addSubviews(playButton)
     }
     
     func setupConstraints() {
-
+         setUpPlayButtonConstraints()
     }
     
-    func render() {
+    func render() { }
 
+    // MARK: - Set Up Helpers
+
+    func setUpPlayButton() {
+        playButton.icon.image = UIImage.Default.playIconHighlights
     }
-    
+
+    func setUpPlayButtonConstraints() {
+        playButton.setContentCompressionResistancePriority(.required, for: .horizontal)
+        playButton.setContentHuggingPriority(.required, for: .horizontal)
+        playButton.setupConstraints { (view) in
+            view.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+            view.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        }
+    }
+
 }

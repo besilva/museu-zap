@@ -9,7 +9,7 @@
 import UIKit
 //import DatabaseKit
 
-protocol HighlightsCollectionViewDelegate {
+protocol HighlightsCollectionViewDelegate: class {
     func updateCurrentPage(toPage: Int)
 }
 
@@ -18,7 +18,6 @@ class HighlightsCollectionView: UICollectionView {
     // MARK: - Properties
 
     let cellId = "highlightsCollection"
-
     var viewModel: HighlightsCollectionViewModelProtocol? {
         didSet {
             viewModel?.delegate = self
@@ -29,6 +28,7 @@ class HighlightsCollectionView: UICollectionView {
     // MARK: - Init
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
+
         super.init(frame: frame, collectionViewLayout: layout)
         setupView()
     }
@@ -104,6 +104,8 @@ extension HighlightsCollectionView: ViewCodable {
     func render() {
         self.backgroundColor = UIColor.Default.background
     }
+
+    // MARK: - Set Up Helpers
 }
 
 extension HighlightsCollectionView: HighlightsCollectionViewModelDelegate {

@@ -138,8 +138,6 @@ class ListView: UIView, ViewCodable {
         searchController.searchBar.placeholder = "Buscar áudio"
         searchController.searchBar.tintColor = UIColor.Default.power
 
-        // TODO: acertar tamanho das fontes
-
         // Set SearchBar Button
        let attributes: [NSAttributedString.Key: Any] = [
            .font: UIFont.Default.regular.withSize(15)
@@ -148,7 +146,7 @@ class ListView: UIView, ViewCodable {
 
         // If available, modify searchBar font
         if #available(iOS 13, *) {
-            searchController.searchBar.searchTextField.font = UIFont.Default.regular.withSize(22)
+            searchController.searchBar.searchTextField.font = UIFont.Default.regular.withSize(15)
         }
     }
 }
