@@ -9,6 +9,10 @@
 import UIKit
 //import DatabaseKit
 
+protocol HighlightsCollectionViewDelegate {
+    func updateCurrentPage(toPage: Int)
+}
+
 class HighlightsCollectionView: UICollectionView {
 
     // MARK: - Properties
@@ -45,7 +49,9 @@ extension HighlightsCollectionView: UICollectionViewDataSource, UICollectionView
     override var numberOfSections: Int { return 1 }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        guard let viewModel = self.viewModel else { return 1 }
+
+        return viewModel.highlightedAudios.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -67,6 +73,17 @@ extension HighlightsCollectionView: UICollectionViewDataSource, UICollectionView
 
 }
 
+    // MARK: - Scroll
+
+extension HighlightsCollectionView {
+
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+
+        let nextPage = Int(targetContentOffset.pointee.x / self.frame.width)
+        viewModel?.updateCurrentPage(toPage: nextPage)
+    }
+}
+
     // MARK: - Set Up
 
 extension HighlightsCollectionView: ViewCodable {
@@ -85,11 +102,12 @@ extension HighlightsCollectionView: ViewCodable {
     func setupConstraints() { }
     
     func render() {
-        self.backgroundColor = .yellow //UIColor.Default.background
+        self.backgroundColor = UIColor.Default.background
     }
 }
 
 extension HighlightsCollectionView: HighlightsCollectionViewModelDelegate {
+
     func reloadCollectionData() {
         self.reloadData()
     }

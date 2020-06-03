@@ -15,13 +15,19 @@ protocol HighlightsCollectionViewModelDelegate: class {
 
 protocol HighlightsCollectionViewModelProtocol {
     var delegate: HighlightsCollectionViewModelDelegate? { get set }
+    var tableViewDelegate: HighlightsTableViewCellDelegate? { get set }
     var highlightedAudios: [String] { get set }
-
+    func updateCurrentPage(toPage: Int)
 }
 
 class HighlightsCollectionViewModel: HighlightsCollectionViewModelProtocol {
 
     weak var delegate: HighlightsCollectionViewModelDelegate?
+    weak var tableViewDelegate: HighlightsTableViewCellDelegate?
     var highlightedAudios: [String] = ["1", "2", "3", "4"]
+
+    func updateCurrentPage(toPage page: Int) {
+        tableViewDelegate?.updatePageControlToPage(toPage: page)
+    }
 
 }

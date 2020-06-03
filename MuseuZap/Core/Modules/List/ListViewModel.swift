@@ -97,8 +97,6 @@ class ListViewModel: ListViewModelProtocol {
         }
     }
 
-    // TODO: inicializar a top audios como uma HEADER CELL!
-
     func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties {
         // Initialize element with normal array and change it case isFiltering
         var element = audios[indexPath.row - 1]
