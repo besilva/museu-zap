@@ -17,6 +17,8 @@
 		644720812475624300CEDB0B /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644720802475624300CEDB0B /* ExploreViewController.swift */; };
 		64576F992487EEAA003935DA /* UIViewControllerExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64576F982487EEAA003935DA /* UIViewControllerExtensionTests.swift */; };
 		64576F9A2487EF55003935DA /* StackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64576F952487EB40003935DA /* StackTests.swift */; };
+		64576F9D248880F2003935DA /* ExploreViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64576F9C248880F2003935DA /* ExploreViewTests.swift */; };
+		64576F9F24888B09003935DA /* ExploreViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64576F9E24888B09003935DA /* ExploreViewControllerTests.swift */; };
 		6461820A24645363003BC3AB /* SnapshotContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6461820724645363003BC3AB /* SnapshotContainer.swift */; };
 		6461820B24645363003BC3AB /* TableViewCellSnapshotContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6461820824645363003BC3AB /* TableViewCellSnapshotContainer.swift */; };
 		6461820C24645363003BC3AB /* IPhoneWidthsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6461820924645363003BC3AB /* IPhoneWidthsEnum.swift */; };
@@ -179,6 +181,8 @@
 		644720832475637600CEDB0B /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		64576F952487EB40003935DA /* StackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackTests.swift; sourceTree = "<group>"; };
 		64576F982487EEAA003935DA /* UIViewControllerExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensionTests.swift; sourceTree = "<group>"; };
+		64576F9C248880F2003935DA /* ExploreViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewTests.swift; sourceTree = "<group>"; };
+		64576F9E24888B09003935DA /* ExploreViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewControllerTests.swift; sourceTree = "<group>"; };
 		646181FB24644D8F003BC3AB /* DatabaseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DatabaseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6461820124644DEE003BC3AB /* DatabaseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DatabaseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6461820724645363003BC3AB /* SnapshotContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotContainer.swift; sourceTree = "<group>"; };
@@ -365,6 +369,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		64576F9B2488805A003935DA /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				64576F9C248880F2003935DA /* ExploreViewTests.swift */,
+				64576F9E24888B09003935DA /* ExploreViewControllerTests.swift */,
+			);
+			path = Explore;
+			sourceTree = "<group>";
+		};
 		6461820624645363003BC3AB /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -418,16 +431,17 @@
 				6473EDED243B6D3E00A10F2C /* Info.plist */,
 				642C63A8246EE97C0059FBDC /* AppDelegateFake.swift */,
 				64576F952487EB40003935DA /* StackTests.swift */,
+				64576F982487EEAA003935DA /* UIViewControllerExtensionTests.swift */,
 				80E6C366244DF05500A42A4C /* AboutModuleTests */,
 				C527F28B246C22E000714778 /* AudioManager */,
 				648BCD5D2487D1B300DD1A2F /* Components */,
 				80C274C424585BBA0051A1E6 /* CustomCellTests */,
+				64576F9B2488805A003935DA /* Explore */,
 				C53F4CA9246585FD001AAD57 /* FileExchanger */,
 				6461820624645363003BC3AB /* Helpers */,
 				C55013F22476C0480036CFFD /* ListModuleTests */,
 				C5A4D4FA24815B5C006C97FF /* SearchResultsModuleTests */,
 				C5B2B4FA24817F64000D2C7F /* UIView Components Tests */,
-				64576F982487EEAA003935DA /* UIViewControllerExtensionTests.swift */,
 			);
 			path = MuseuZapTests;
 			sourceTree = "<group>";
@@ -1044,6 +1058,7 @@
 				C5BC02A62476C44300095A5C /* ListViewModelDelegateMock.swift in Sources */,
 				80FA892B2462F241006B2B61 /* AboutViewSnapshotTests.swift in Sources */,
 				6461820C24645363003BC3AB /* IPhoneWidthsEnum.swift in Sources */,
+				64576F9D248880F2003935DA /* ExploreViewTests.swift in Sources */,
 				6461820A24645363003BC3AB /* SnapshotContainer.swift in Sources */,
 				C5AFABEC246D8CD000E7AF31 /* MockedNotificationCenter.swift in Sources */,
 				C527F28D246C22F800714778 /* AudioManagerTestsSuccess.swift in Sources */,
@@ -1053,6 +1068,7 @@
 				64576F992487EEAA003935DA /* UIViewControllerExtensionTests.swift in Sources */,
 				80E6C368244DF09700A42A4C /* AboutViewTests.swift in Sources */,
 				648BCD602487D6CF00DD1A2F /* CategoryCollectionViewSnapshotTests.swift in Sources */,
+				64576F9F24888B09003935DA /* ExploreViewControllerTests.swift in Sources */,
 				80A7E965246EDB8D00E7EAA2 /* CellIconManagerTests.swift in Sources */,
 				C51338BC2485646A0000F760 /* AudioCategoryServicesMock.swift in Sources */,
 				C53F4CAB246598C2001AAD57 /* FileExchangerSuccessTests.swift in Sources */,
