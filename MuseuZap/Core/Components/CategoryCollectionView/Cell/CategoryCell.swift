@@ -79,6 +79,7 @@ extension CategoryCell {
         guard let viewModel = viewModel else { return }
         iconImageView.image = viewModel.icon
         titleLabel.text = viewModel.title
+        numberOfAudiosLabel.text = viewModel.audiosText
     }
     
     func setupConstraints() {
@@ -94,7 +95,10 @@ extension CategoryCell {
         titleLabel.setupConstraints(completion: { (view) in
             view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
             view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
-            view.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 64).isActive = true
+            view.topAnchor.constraint(
+                lessThanOrEqualTo: iconImageView.bottomAnchor,
+                constant: 64)
+            .isActive = true
             view.bottomAnchor.constraint(equalTo: numberOfAudiosLabel.topAnchor, constant: -8).isActive = true
         }, activateAll: true)
         

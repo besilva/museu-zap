@@ -19,6 +19,8 @@ public protocol AudioCategoryServicesProtocol {
                                                                             _ entity: [AudioCategory]?) -> Void)
     func updateAllCategories(_ completion: (_ error: Error?) -> Void)
     func deleteCategory(category: AudioCategory, _ completion: (_ error: Error?) -> Void)
+    func getAllCategoriesWith(isPrivate bool: Bool, _ completion: @escaping (_ errorMessage: Error?,
+    _ entity: [AudioCategory]?) -> Void)
 }
 
 /// Services Layer for Category Entity.

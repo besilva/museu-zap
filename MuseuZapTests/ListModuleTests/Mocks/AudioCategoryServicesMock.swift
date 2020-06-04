@@ -23,5 +23,13 @@ class AudioCategoryServicesMock: AudioCategoryServicesProtocol {
 
     func deleteCategory(category: AudioCategory, _ completion: (Error?) -> Void) {
     }
+    
+    func getAllCategoriesWith(isPrivate bool: Bool, _ completion: @escaping (Error?, [AudioCategory]?) -> Void) {
+        if !bool {
+            let mock = AudioMock()
+            _ = mock.addPublicCategories()
+            completion(nil, [mock.category1, mock.category2])
+        }
+    }
 
 }

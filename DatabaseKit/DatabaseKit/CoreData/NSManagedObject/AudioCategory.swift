@@ -19,14 +19,14 @@ public struct AudioCategoryProperties {
 
     var name: String
     var audios: [String]?
-    var identifier: String?
+    var assetIdentifier: String?
     var isPrivate: Bool
 
     // MARK: - Init
 
     init(from category: AudioCategory) {
         self.name = category.categoryName
-        self.identifier = category.identifier
+        self.assetIdentifier = category.assetIdentifier
         self.isPrivate = category.isPrivate
         
         if let audios = category.audios {
@@ -82,7 +82,7 @@ extension AudioCategory {
     }
 
     @NSManaged public var categoryName: String
-    @NSManaged public var identifier: String?
+    @NSManaged public var assetIdentifier: String?
     @NSManaged public var audios: Set<Audio>?
     @NSManaged public var isPrivate: Bool
 

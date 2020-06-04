@@ -13,6 +13,7 @@ protocol AnalyticsProtocol {
     func share(url: URL)
     func category(name: String)
     func customEvent(name: String, parameters: [String: Any]?)
+    func setScreenName(name: String?, screenClass: String?)
 }
 
 class AnalyticsManager {
@@ -49,4 +50,7 @@ class FirebaseAnalytics: AnalyticsProtocol {
         Analytics.logEvent(name, parameters: parameters)
     }
     
+    func setScreenName(name: String?, screenClass: String?) {
+        Analytics.setScreenName(name, screenClass: screenClass)
+    }
 }

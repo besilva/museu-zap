@@ -8,8 +8,8 @@
         <relationship name="category" maxCount="1" deletionRule="Nullify" destinationEntity="AudioCategory" inverseName="audios" inverseEntity="AudioCategory"/>
     </entity>
     <entity name="AudioCategory" representedClassName="DatabaseKit.AudioCategory" syncable="YES">
+        <attribute name="assetIdentifier" optional="YES" attributeType="String" minValueString="2"/>
         <attribute name="categoryName" attributeType="String" minValueString="1"/>
-        <attribute name="identifier" optional="YES" attributeType="String" minValueString="2"/>
         <attribute name="isPrivate" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <relationship name="audios" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Audio" inverseName="category" inverseEntity="Audio"/>
     </entity>

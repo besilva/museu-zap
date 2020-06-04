@@ -59,4 +59,12 @@ class CategoryDAOMock: AudioCategoryDAOProtocol {
             throw DatabaseErrors.delete
         }
     }
+
+    func fetchCategoriesWith(isPrivate: Bool) throws -> [AudioCategory] {
+        if shouldThrowError {
+            throw DatabaseErrors.read
+        }
+        return []
+    }
+    
 }
