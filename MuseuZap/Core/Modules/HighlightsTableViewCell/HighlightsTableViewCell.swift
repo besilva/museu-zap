@@ -16,12 +16,15 @@ class HighlightsTableViewCell: UITableViewCell {
 
     // MARK: - Properties
 
+    var sectionView: SectionsHeaderView
     var highlightsCollection: HighlightsCollectionView
     private let pageControL: UIPageControl
 
     // MARK: - Init
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        sectionView = SectionsHeaderView()
+
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
         layout.scrollDirection = .horizontal
@@ -64,15 +67,18 @@ extension HighlightsTableViewCell: ViewCodable {
     }
 
     func setupHierarchy() {
-        contentView.addSubviews(highlightsCollection, pageControL)
+        contentView.addSubviews(highlightsCollection, pageControL, sectionView)
     }
 
     func setupConstraints() {
+        setSectionViewConstraints()
         setUpCollectionConstraints()
         setUpPageControlConstraints()
     }
 
-    func render() { }
+    func render() {
+        renderSectionView()
+    }
 
     // MARK: - Set Up Helpers
 
@@ -84,14 +90,27 @@ extension HighlightsTableViewCell: ViewCodable {
         pageControL.pageIndicatorTintColor = UIColor.Default.pageControl
     }
 
+    func renderSectionView() {
+        sectionView.sectionLabel.text = "Top áudios"
+    }
+
     // MARK: - Constraints
+
+    func setSectionViewConstraints() {
+        sectionView.setupConstraints { (view) in
+            view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
+            // Bottom is at collection Constraints
+            view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+            view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        }
+    }
 
     func setUpCollectionConstraints() {
         self.setContentCompressionResistancePriority(.required, for: .vertical)
         self.setContentCompressionResistancePriority(.required, for: .horizontal)
 
         highlightsCollection.setupConstraints { (view) in
-            view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8).isActive = true
+            view.topAnchor.constraint(equalTo: sectionView.bottomAnchor, constant: 0).isActive = true
             view.bottomAnchor.constraint(equalTo: pageControL.topAnchor, constant: 0).isActive = true
             view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
             view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true

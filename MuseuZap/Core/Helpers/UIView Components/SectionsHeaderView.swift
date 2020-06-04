@@ -11,6 +11,8 @@ import UIKit
 /// Creates the view used for tableView Sections
 class SectionsHeaderView: UIView, ViewCodable {
 
+    // TODO: alterar espaçamento da fonte?
+
     // MARK: - Properties
 
     public var seeAllButton: UIButton
@@ -49,7 +51,8 @@ class SectionsHeaderView: UIView, ViewCodable {
         self.translatesAutoresizingMaskIntoConstraints = false
         let width = UIScreen.main.bounds.width - (2 * Constants.tableViewSpacing)
         self.widthAnchor.constraint(equalToConstant: width).isActive = true
-        // Height anchor is set after section Label is rendered
+        // UIButton at this label has height equal to 33
+        self.heightAnchor.constraint(greaterThanOrEqualToConstant: 33).isActive = true
 
         setContentViewConstraints()
         setSectionLabelConstraints()
@@ -65,10 +68,7 @@ class SectionsHeaderView: UIView, ViewCodable {
     func renderLabels() {
         sectionLabel.text = "Default"
         sectionLabel.textColor = UIColor.Default.label
-        sectionLabel.font = UIFont.Default.semibold.withSize(25)
-
-        // Set height anchor
-        self.heightAnchor.constraint(equalToConstant: sectionLabel.bounds.height).isActive = true
+        sectionLabel.font = UIFont.Default.semibold.withSize(20)
 
         seeAllButton.setTitle("Ver todos", for: .normal)
         seeAllButton.setTitleColor(UIColor.Default.power, for: .normal)

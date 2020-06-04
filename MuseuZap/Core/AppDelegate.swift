@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         setNavigationBarColor()
+        setStatusBarColor()
         
         // Audio Controls
         AudioManager.shared.configureAVAudioSession()
@@ -54,6 +55,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().backgroundColor = UIColor.Default.navBar
         UINavigationBar.appearance().barTintColor = UIColor.Default.navBar
         UINavigationBar.appearance().isTranslucent = false
+    }
+
+    func setStatusBarColor() {
+        if #available(iOS 13, *) {
+             let statusBar = UIView(frame: (UIApplication.shared.keyWindow?.windowScene?.statusBarManager?.statusBarFrame)!)
+             statusBar.backgroundColor = UIColor.Default.navBar
+             UIApplication.shared.keyWindow?.addSubview(statusBar)
+         } else {
+            // ADD THE STATUS BAR AND SET A CUSTOM COLOR
+            // swiftlint:disable force_cast
+            let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+            if statusBar.responds(to: #selector(setter: UIView.backgroundColor)) {
+               statusBar.backgroundColor = UIColor.Default.navBar
+            }
+            // swiftlint:enable force_cast
+         }
     }
     
     private func addPublicAudio() {
