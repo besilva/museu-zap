@@ -38,6 +38,8 @@ public class CoreDataManager {
         let container =  NSPersistentContainer(name: moduleName, managedObjectModel: self.managedObjectModel)
         let storeURL = FileManager.sharedContainerURL().appendingPathComponent("\(moduleName).sqlite")
         let storeDescription = NSPersistentStoreDescription(url: storeURL)
+        storeDescription.shouldMigrateStoreAutomatically = true
+        
         container.persistentStoreDescriptions = [storeDescription]
         container.loadPersistentStores(completionHandler: { (_, error) in // storeDescription, error
             if let error = error as NSError? {

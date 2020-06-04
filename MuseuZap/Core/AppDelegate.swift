@@ -39,12 +39,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Add a default category and default audio, only once per user Defaults
         if UserDefaults.standard.object(forKey: "isFirstTime") == nil {
             UserDefaults.standard.set(false, forKey: "isFirstTime")
-            addDefaultCategories()
+            addPrivateCategories()
+            addPublicCategories()
         }
         
         // Every time the application launches, change the main Bundle URL, so public audios are not saved
-//                addPublicAudio()
-        
+        //addPublicAudio()
+
         return true
     }
     
@@ -55,48 +56,70 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor.Default.navBar
         UINavigationBar.appearance().isTranslucent = false
     }
-    
-    private func addPublicAudio() {
-        var categoryArray = [AudioCategory]()
-        AudioCategoryServices().getAllCategories { (error, array) in
-            if let categories = array {
-                categoryArray = categories
-            } else {
-                print(error ?? "addPublicAudio error\n")
-            }
-        }
-        
-        let path = Bundle.main.path(forResource: "Sextou", ofType: "mp3")!
-        let url = URL(fileURLWithPath: path, isDirectory: false)
-        let category = categoryArray[0]
 
-        let publicAudio = Audio(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
-        publicAudio.audioName = "Sextou"
-        //
-        publicAudio.audioPath = url.path
-        publicAudio.duration = AudioManager.shared.getDurationFrom(file: url)
-        publicAudio.isPrivate = false
-        publicAudio.category = category
+//    private func addPublicAudio() {
+//        var categoryArray = [AudioCategory]()
+//        AudioCategoryServices().getAllCategories { (error, array) in
+//            if let categories = array {
+//               categoryArray = categories
+//            } else {
+//                print(error ?? "addPublicAudio error\n")
+//            }
+//        }
+//
+//        let path = Bundle.main.path(forResource: "Sextou", ofType: "mp3")!
+//        let url = URL(fileURLWithPath: path, isDirectory: false)
+//        let category = categoryArray[0]
+//
+//        let publicAudio = Audio(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+//        publicAudio.audioName = "Sextou"
+//        //
+//        publicAudio.audioPath = url.path
+//        publicAudio.duration = AudioManager.shared.getDurationFrom(file: url)
+//        publicAudio.isPrivate = false
+//        publicAudio.category = category
+//    }
+
+    private func addPrivateCategories() {
+        let category1 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category1.categoryName = "Humor"
+        category1.assetIdentifier = "funny"
+        category1.isPrivate = true
+
+        let category2 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category2.categoryName = "Familia"
+        category2.assetIdentifier = "family"
+        category2.isPrivate = true
+        
+        let category3 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category3.categoryName = "Trabalho"
+        category3.assetIdentifier = "work"
+        category3.isPrivate = true
+        
+        let category4 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category4.categoryName = "Estudos"
+        category4.assetIdentifier = "study"
+        category4.isPrivate = true
+        
+        AudioCategoryServices().createCategory(category: category1) { _ in }
+        AudioCategoryServices().createCategory(category: category2) { _ in }
+        AudioCategoryServices().createCategory(category: category3) { _ in }
+        AudioCategoryServices().createCategory(category: category4) { _ in }
     }
     
-    private func addDefaultCategories() {
+    func addPublicCategories() {
         let category1 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
         category1.categoryName = "Engraçados"
+        category1.assetIdentifier = "funny"
+        category1.isPrivate = false
         
         let category2 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
-        category2.categoryName = "Trabalho"
+               category2.categoryName = "Clássicos do Zap"
+               category2.assetIdentifier = "classic"
+               category2.isPrivate = false
         
-        AudioCategoryServices().createCategory(category: category1) { (error) in
-            if let err = error {
-                print(err as Any)
-            }
-        }
-        
-        AudioCategoryServices().createCategory(category: category2) { (error) in
-            if let err = error {
-                print(err as Any)
-            }
-        }
+        AudioCategoryServices().createCategory(category: category1) { _ in }
+        AudioCategoryServices().createCategory(category: category2) { _ in }
     }
     
     // MARK: - Default App Delegate
