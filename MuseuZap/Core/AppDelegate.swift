@@ -72,7 +72,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // swiftlint:enable force_cast
          }
     }
-    
+//
+//    func createHighlightedAudios() -> [Audio] {
+//        let array: [Audio] = []
+//
+//        let path1 = Bundle.main.path(forResource: "Sextou", ofType: "mp3")!
+//        let url1 = URL(fileURLWithPath: path, isDirectory: false)
+//
+//        let ivan = Audio(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+//        ivan.audioName = "Ivan tentando vender queijos"
+//
+//        let armando =
+//        let galinha =
+//
+//        return array
+//    }
+
     private func addPublicAudio() {
         var categoryArray = [AudioCategory]()
         AudioCategoryServices().getAllCategories { (error, array) in

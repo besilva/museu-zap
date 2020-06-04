@@ -49,7 +49,7 @@ class AudioDataView: UIView, ViewCodable {
 
     func setupConstraints() {
         // AudioDataView width should be greater than 00:00 (duration label), 40
-        // Height should be equal to minum duration + one line title label, 45
+        // Height should be be greater than minum duration + one line title label, 45
         self.translatesAutoresizingMaskIntoConstraints = false
         self.widthAnchor.constraint(greaterThanOrEqualToConstant: 40).isActive = true
         self.heightAnchor.constraint(greaterThanOrEqualToConstant: 45).isActive = true

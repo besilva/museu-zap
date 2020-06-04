@@ -14,8 +14,8 @@ class HighlightsCell: UICollectionViewCell {
     // MARK: - Properties
 
     var audioImage: UIImageView
-//    var playButton: PlayButtonView
-    var playButton: AudioDataView
+    var playButton: PlayButtonView
+    var audioDataView: AudioDataView
     
     var viewModel: HighlightsCellViewModel? {
         didSet {
@@ -28,8 +28,8 @@ class HighlightsCell: UICollectionViewCell {
      
     init() {
         audioImage = UIImageView()
-//        playButton = PlayButtonView()
-        playButton = AudioDataView()
+        playButton = PlayButtonView()
+        audioDataView = AudioDataView()
 
         super.init(frame: .zero)
 
@@ -38,8 +38,8 @@ class HighlightsCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         audioImage = UIImageView()
-//        playButton = PlayButtonView()
-        playButton = AudioDataView()
+        playButton = PlayButtonView()
+        audioDataView = AudioDataView()
 
         super.init(frame: frame)
 
@@ -59,16 +59,18 @@ extension HighlightsCell: ViewCodable {
     func configure() {
         setUpAudioImage()
         setUpPlayButton()
+        setUpAudioDataView()
     }
     
     func setupHierarchy() {
         // Playbutton should be added directly to HighlightsCell so that tap works
-        self.addSubviews(audioImage, playButton)
+        self.addSubviews(audioImage, playButton, audioDataView)
     }
     
     func setupConstraints() {
         setAudioImageConstraints()
         setPlayButtonConstraints()
+        setAudioDataViewConstraints()
     }
     
     func render() {
@@ -78,17 +80,23 @@ extension HighlightsCell: ViewCodable {
     // MARK: - Set Up Helpers
 
     func setUpAudioImage() {
+        guard let viewModel = viewModel else { return }
         // TODO: resolver isso
         audioImage.contentMode = .scaleAspectFill
         audioImage.image = UIImage.Highlights.uma?.withRoundedCorners(radius: 10)
     }
 
     func setUpPlayButton() {
-//        playButton.icon.image = UIImage.Default.playIconHighlights
+        playButton.icon.image = UIImage.Default.playIconHighlights
+        playButton.icon.tintColor = UIColor.white
         // Adds behaviour to play audio on tap
         let tap = UITapGestureRecognizer(target: self, action: #selector(changePlayStatus))
         playButton.isUserInteractionEnabled = true
         playButton.addGestureRecognizer(tap)
+    }
+
+    func setUpAudioDataView() {
+
     }
 
     // MARK: - Constraints
@@ -112,6 +120,17 @@ extension HighlightsCell: ViewCodable {
         playButton.setupConstraints { (view) in
             view.centerYAnchor.constraint(equalTo: audioImage.centerYAnchor).isActive = true
             view.centerXAnchor.constraint(equalTo: audioImage.centerXAnchor).isActive = true
+        }
+    }
+
+    func setAudioDataViewConstraints() {
+        audioDataView.setContentCompressionResistancePriority(.required, for: .horizontal)
+        audioDataView.setContentHuggingPriority(.required, for: .horizontal)
+        audioDataView.setupConstraints { (view) in
+            // Do not pin audioData top constraint
+            view.bottomAnchor.constraint(equalTo: audioImage.bottomAnchor, constant: -20).isActive = true
+            view.leadingAnchor.constraint(equalTo: audioImage.leadingAnchor, constant: 20).isActive = true
+            view.trailingAnchor.constraint(equalTo: audioImage.trailingAnchor, constant: -20).isActive = true
         }
     }
 
