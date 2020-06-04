@@ -14,7 +14,8 @@ class HighlightsCell: UICollectionViewCell {
     // MARK: - Properties
 
     var audioImage: UIImageView
-    var playButton: PlayButtonView
+//    var playButton: PlayButtonView
+    var playButton: AudioDataView
     
     var viewModel: HighlightsCellViewModel? {
         didSet {
@@ -27,7 +28,8 @@ class HighlightsCell: UICollectionViewCell {
      
     init() {
         audioImage = UIImageView()
-        playButton = PlayButtonView()
+//        playButton = PlayButtonView()
+        playButton = AudioDataView()
 
         super.init(frame: .zero)
 
@@ -36,7 +38,8 @@ class HighlightsCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         audioImage = UIImageView()
-        playButton = PlayButtonView()
+//        playButton = PlayButtonView()
+        playButton = AudioDataView()
 
         super.init(frame: frame)
 
@@ -81,7 +84,7 @@ extension HighlightsCell: ViewCodable {
     }
 
     func setUpPlayButton() {
-        playButton.icon.image = UIImage.Default.playIconHighlights
+//        playButton.icon.image = UIImage.Default.playIconHighlights
         // Adds behaviour to play audio on tap
         let tap = UITapGestureRecognizer(target: self, action: #selector(changePlayStatus))
         playButton.isUserInteractionEnabled = true
