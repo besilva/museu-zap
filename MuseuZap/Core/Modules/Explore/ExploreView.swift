@@ -21,6 +21,7 @@ class ExploreView: ListView {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        guard let viewModel = viewModel, viewModel.count > 0 else { return 0 }
         return 2
     }
     

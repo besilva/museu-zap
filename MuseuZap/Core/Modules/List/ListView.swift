@@ -10,7 +10,7 @@ import UIKit
 
 class ListView: UIView, ViewCodable {
 
-    private var loader: UIActivityIndicatorView!
+    var loader: UIActivityIndicatorView!
     internal var tableView: UITableView = UITableView()
     private var cellIdentifier: String = "cell"
     var placeholderView: PlaceholderView = PlaceholderView()

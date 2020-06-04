@@ -14,4 +14,8 @@ class MyAudiosViewModel: ListViewModel {
         super.init(audioServices: audioServices, audioCategoryServices: audioCategoryServices, delegate: delegate)
         retrieveAllCategoriesWith(isPrivate: true)
     }
+    
+    // TODO: Retrieve audios w/o categories here
+    override func retrieveAllAudios() {
+    }
 }

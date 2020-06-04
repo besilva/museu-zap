@@ -57,12 +57,29 @@ class MyAudiosView: ListView {
         self.tableView.layer.masksToBounds = false
     }
     
-    override func setupConstraints() {       
+    override func setupConstraints() {
+        refreshControl.translatesAutoresizingMaskIntoConstraints = false
+        refreshControl.setupConstraints { (refresh) in
+            // Top anchor is only constructed at setRefreshTopAnchor
+            // Bottom anchor is refreshScrollConstraint
+            refresh.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
+            refresh.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
+        }
+        // Constraint will be true or false depending on the scroll delegate
+        refreshScrollConstraint = refreshControl.bottomAnchor.constraint(equalTo: self.tableView.topAnchor, constant: 0)
+        // This bottom constraint will be set to true only when topBarHeight was calculated
+        refreshScrollConstraint.isActive = false
+
         tableView.setupConstraints { (tableView) in
             tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: 8).isActive = true
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+        }
+        
+        loader.setupConstraints { (loader) in
+            loader.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+            loader.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         }
         
         placeholderView.setupConstraints { (_) in
