@@ -29,7 +29,7 @@ class AudioMock {
         audioPublic.category = category1
         audioPublic.duration = 15
         audioPublic.isPrivate = false
-
+        
         audioPrivate.audioName = "Audio Private"
         audioPrivate.audioPath = FileManager.default.temporaryDirectory.path
         audioPrivate.category = category2
@@ -45,15 +45,16 @@ class AudioMock {
     }
     
     internal func addPublicCategories() -> [AudioCategory] {
-        category1 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        
         category1.categoryName = "Engraçados"
         category1.identifier = "funny"
         category1.isPrivate = false
+        category1.addToAudios(self.audioPublic)
         
-        category2 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
         category2.categoryName = "Clássicos do Zap"
         category2.identifier = "classic"
         category2.isPrivate = false
+        category2.addToAudios(self.audioPrivate)
         
         return [category1, category2]
     }

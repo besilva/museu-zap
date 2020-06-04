@@ -16,6 +16,7 @@ class CategoryCellViewModel {
     var title: String {
         return category.categoryName
     }
+    var audiosText: String
     
     var opacity: CGFloat {
         if #available(iOS 13.0, *) {
@@ -39,7 +40,17 @@ class CategoryCellViewModel {
             self.backgroundColor = color
             self.icon = icon
         }
-        
+        self.audiosText = CategoryCellViewModel.generateAudiosText(audios: category.audios?.count)
+    }
+    
+    static func generateAudiosText(audios: Int?) -> String {
+        guard let audios = audios, audios > 0 else { return "Sem audios" }
+        switch audios {
+        case 1:
+            return "\(audios) audio"
+        default:
+            return "\(audios) audios"
+        }
     }
     
 }

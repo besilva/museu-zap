@@ -67,6 +67,7 @@ extension CategoryCell {
         guard let viewModel = viewModel else { return }
         iconImageView.image = viewModel.icon
         titleLabel.text = viewModel.title
+        numberOfAudiosLabel.text = viewModel.audiosText
     }
     
     func setupHierarchy() {
