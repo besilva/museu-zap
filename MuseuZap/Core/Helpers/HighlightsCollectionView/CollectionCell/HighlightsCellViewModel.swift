@@ -7,20 +7,24 @@
 //
 
 import UIKit
-//import DatabaseKit
+import DatabaseKit
 
 class HighlightsCellViewModel {
 
     // MARK: - Properties
 
-    private let audio: String
+    let audio: Audio
     var iconManager: CellIconManager
+    var image: UIImage
 
     // MARK: - Init
 
-    init(audio: String) {
+    init(audio: Audio) {
         self.audio = audio
         self.iconManager = CellIconManager.shared
+        self.image = UIImage()
+
+        updateHighlightImage()
     }
 
     // MARK: - Icon manager
@@ -28,6 +32,21 @@ class HighlightsCellViewModel {
     //    Changes the play status of a given cell
     func changePlayStatus() {
         print("TAAAPEDD")
+    }
+
+    // MARK: - Update highlight image
+
+    func updateHighlightImage() {
+        switch audio.audioName {
+        case "Seu Armando":
+            self.image = UIImage.Highlights.armando!
+        case "Ivan tentando vender queijos":
+            self.image = UIImage.Highlights.ivan!
+        case "Três conchada de galinha!":
+            self.image = UIImage.Highlights.galinha!
+        default:
+            print("COULD NOT GET highlight image! \n")
+        }
     }
 
 }

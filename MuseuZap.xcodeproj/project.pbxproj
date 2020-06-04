@@ -99,7 +99,7 @@
 		C564E5D524780B2300A696D8 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564E5D224780B2300A696D8 /* SearchResultsViewController.swift */; };
 		C586E2C72465AA2400B1930B /* FileExchangerErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C586E2C62465AA2400B1930B /* FileExchangerErrorTests.swift */; };
 		C5904C69246AEED4004B9921 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904C68246AEED4004B9921 /* AudioManager.swift */; };
-		C5A05B4A248962D70046402D /* Três conchada de galinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5A05B49248962D70046402D /* Três conchada de galinha.mp3 */; };
+		C5A05B4E2489738C0046402D /* Três conchada de galinha!.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5A05B4D2489738C0046402D /* Três conchada de galinha!.mp3 */; };
 		C5A4D4F9248159F6006C97FF /* SearchResultsCellSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A4D4F8248159F6006C97FF /* SearchResultsCellSnapshotTests.swift */; };
 		C5A4D4FC24815B91006C97FF /* SearchResultsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A4D4FB24815B91006C97FF /* SearchResultsViewModelTests.swift */; };
 		C5A4D4FE248161FB006C97FF /* AudioMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A4D4FD248161FB006C97FF /* AudioMock.swift */; };
@@ -255,7 +255,7 @@
 		C564E5D224780B2300A696D8 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		C586E2C62465AA2400B1930B /* FileExchangerErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExchangerErrorTests.swift; sourceTree = "<group>"; };
 		C5904C68246AEED4004B9921 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
-		C5A05B49248962D70046402D /* Três conchada de galinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Três conchada de galinha.mp3"; sourceTree = "<group>"; };
+		C5A05B4D2489738C0046402D /* Três conchada de galinha!.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Três conchada de galinha!.mp3"; sourceTree = "<group>"; };
 		C5A4D4F8248159F6006C97FF /* SearchResultsCellSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsCellSnapshotTests.swift; sourceTree = "<group>"; };
 		C5A4D4FB24815B91006C97FF /* SearchResultsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewModelTests.swift; sourceTree = "<group>"; };
 		C5A4D4FD248161FB006C97FF /* AudioMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMock.swift; sourceTree = "<group>"; };
@@ -692,7 +692,7 @@
 			children = (
 				C5C77AF9248940A200A1DB6B /* Ivan tentando vender queijos.mp3 */,
 				C5C77AFA248940A200A1DB6B /* Seu Armando.mp3 */,
-				C5A05B49248962D70046402D /* Três conchada de galinha.mp3 */,
+				C5A05B4D2489738C0046402D /* Três conchada de galinha!.mp3 */,
 			);
 			path = HighlightsAudios;
 			sourceTree = "<group>";
@@ -838,10 +838,10 @@
 				C52F15D4246C7D8B00FBDA98 /* AudioManagerTest.m4a in Resources */,
 				80C274CC2458721C0051A1E6 /* Poppins-Regular.ttf in Resources */,
 				80C274CE2458721C0051A1E6 /* Poppins-SemiBold.ttf in Resources */,
-				C5A05B4A248962D70046402D /* Três conchada de galinha.mp3 in Resources */,
 				6473EDE1243B6D3E00A10F2C /* LaunchScreen.storyboard in Resources */,
 				C5AFABEF246D8F1700E7AF31 /* wrongExtension.txt in Resources */,
 				C5C77AFD248940A200A1DB6B /* Seu Armando.mp3 in Resources */,
+				C5A05B4E2489738C0046402D /* Três conchada de galinha!.mp3 in Resources */,
 				64F50828246CE8F800625878 /* GoogleService-Info.plist in Resources */,
 				6473EDDE243B6D3E00A10F2C /* Assets.xcassets in Resources */,
 			);

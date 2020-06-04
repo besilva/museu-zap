@@ -16,11 +16,10 @@ extension UIImage {
         static let pauseIconHighlights = UIImage(named: "pause-highlights")
     }
 
-    // TODO: olhar case iterable
     struct Highlights {
-        static let uma = UIImage(named: "Seu Armando")
-        static let dois = UIImage(named: "Ivan tentando vender queijos")
-        static let tres = UIImage(named: "Três conchada de galinha!")
+        static let armando = UIImage(named: "Seu Armando")
+        static let ivan = UIImage(named: "Ivan tentando vender queijos")
+        static let galinha = UIImage(named: "Três conchada de galinha!")
     }
 }
 

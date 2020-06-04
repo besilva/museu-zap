@@ -81,9 +81,9 @@ extension HighlightsCell: ViewCodable {
 
     func setUpAudioImage() {
         guard let viewModel = viewModel else { return }
-        // TODO: resolver isso
-        audioImage.contentMode = .scaleAspectFill
-        audioImage.image = UIImage.Highlights.uma?.withRoundedCorners(radius: 10)
+
+        audioImage.contentMode = .scaleAspectFit
+        audioImage.image = viewModel.image.withRoundedCorners(radius: 10)
     }
 
     func setUpPlayButton() {
@@ -96,7 +96,13 @@ extension HighlightsCell: ViewCodable {
     }
 
     func setUpAudioDataView() {
+        guard let viewModel = viewModel else { return }
 
+        let audioTitle = viewModel.audio.audioName
+        let duration: TimeInterval = viewModel.audio.duration
+
+        audioDataView.titleLabel.text = audioTitle
+        audioDataView.durationLabel.text = duration.stringFromTimeInterval()
     }
 
     // MARK: - Constraints

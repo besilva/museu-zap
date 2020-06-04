@@ -59,7 +59,7 @@ class HighlightsCollectionViewModel: HighlightsCollectionViewModelProtocol {
         let highlights = [
             "Ivan tentando vender queijos",
             "Seu Armando",
-            "Três conchada de galinha"
+            "Três conchada de galinha!"
         ]
 
         filtered = array.filter { (audio) -> Bool in

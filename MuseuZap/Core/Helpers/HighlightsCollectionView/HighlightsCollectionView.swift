@@ -7,7 +7,6 @@
 //
 
 import UIKit
-//import DatabaseKit
 
 protocol HighlightsCollectionViewDelegate: class {
     func updateCurrentPage(toPage: Int)
@@ -58,7 +57,7 @@ extension HighlightsCollectionView: UICollectionViewDataSource, UICollectionView
         guard let audios = viewModel?.highlightedAudios else {  return UICollectionViewCell() }
 
         if let cell = self.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? HighlightsCell {
-            cell.viewModel = HighlightsCellViewModel(audio: audios[indexPath.row].audioName)
+            cell.viewModel = HighlightsCellViewModel(audio: audios[indexPath.row])
             return cell
         }
 
