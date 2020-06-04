@@ -9,9 +9,6 @@
 import DatabaseKit
 
 class AudioCategoryServicesMock: AudioCategoryServicesProtocol {
-    func getAllCategoriesWith(isPrivate bool: Bool, _ completion: @escaping (Error?, [AudioCategory]?) -> Void) {
-    }
-    
     func createCategory(category: AudioCategory, _ completion: (Error?) -> Void) {
     }
 

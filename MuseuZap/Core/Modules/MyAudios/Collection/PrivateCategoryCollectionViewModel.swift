@@ -11,7 +11,6 @@ import DatabaseKit
 
 // View model for a collection view containing only private categories
 class PrivateCategoryCollectionViewModel: CategoryCollectionViewModelProtocol {
-    
     var categories: [AudioCategory] {
         didSet {
             self.delegate?.reloadCollectionData()
@@ -19,10 +18,10 @@ class PrivateCategoryCollectionViewModel: CategoryCollectionViewModelProtocol {
     }
     // I won't use this service because the mother view
     // (my audios) loads the required categories
-    var service: AudioCategoryServices
+    var service: AudioCategoryServicesProtocol
     weak var delegate: CategoryCollectionViewModelDelegate?
     
-    init(service: AudioCategoryServices) {
+    init(service: AudioCategoryServicesProtocol) {
         self.service = service
         categories = []
     }
