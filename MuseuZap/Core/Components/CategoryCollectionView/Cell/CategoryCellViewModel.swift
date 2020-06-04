@@ -34,7 +34,7 @@ class CategoryCellViewModel {
     init(category: AudioCategory) {
         self.category = category
         
-        if let identifier = category.identifier,
+        if let identifier = category.assetIdentifier,
             let color = UIColor(named: identifier),
             let icon = UIImage(named: identifier) {
             self.backgroundColor = color
