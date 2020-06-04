@@ -43,6 +43,12 @@ class CategoryCollectionView: UICollectionView, ViewCodable {
         self.showsVerticalScrollIndicator = false
         self.showsHorizontalScrollIndicator = false
     }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 162, height: 162)
+    }
 }
 
 extension CategoryCollectionView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -60,12 +66,6 @@ extension CategoryCollectionView: UICollectionViewDataSource, UICollectionViewDe
             return cell
         }
         return UICollectionViewCell()
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 162, height: 162)
     }
 }
 

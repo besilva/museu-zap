@@ -56,4 +56,20 @@ class MyAudiosView: ListView {
         self.layer.masksToBounds = false
         self.tableView.layer.masksToBounds = false
     }
+    
+    override func setupConstraints() {       
+        tableView.setupConstraints { (tableView) in
+            tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: 8).isActive = true
+            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+        }
+        
+        placeholderView.setupConstraints { (_) in
+            // Top anchor is only constructed at setRefreshAndPlaceholderTopAnchor
+            placeholderView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+            placeholderView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+            placeholderView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        }
+    }
 }

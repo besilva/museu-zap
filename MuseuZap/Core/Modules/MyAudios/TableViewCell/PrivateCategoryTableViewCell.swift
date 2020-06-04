@@ -36,14 +36,15 @@ class PrivateCategoryTableViewCell: UITableViewCell, ViewCodable, CategoryTableV
     }
     
     func setupConstraints() {
+        categoryCollection.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
         self.setContentCompressionResistancePriority(.required, for: .vertical)
         self.setContentCompressionResistancePriority(.required, for: .horizontal)
         categoryCollection.setupConstraints { (view) in
-            view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8).isActive = true
+            view.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
             view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
             view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
             view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-            view.heightAnchor.constraint(greaterThanOrEqualToConstant: 200).isActive = true
+            view.heightAnchor.constraint(greaterThanOrEqualToConstant: 180).isActive = true
         }
         
         func render() {

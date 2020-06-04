@@ -13,7 +13,7 @@ class PrivateCategoryCellViewModel: CategoryCellViewModel {
     override var opacity: CGFloat { return 1 }
     override init(category: AudioCategory) {
         super.init(category: category)
-        let color = UIColor.Default.background
+        let color = UIColor.Default.lightBackground
         self.backgroundColor = color
         self.category = category
     }
