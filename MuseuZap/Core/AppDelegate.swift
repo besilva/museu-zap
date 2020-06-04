@@ -72,21 +72,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // swiftlint:enable force_cast
          }
     }
-//
-//    func createHighlightedAudios() -> [Audio] {
-//        let array: [Audio] = []
-//
-//        let path1 = Bundle.main.path(forResource: "Sextou", ofType: "mp3")!
-//        let url1 = URL(fileURLWithPath: path, isDirectory: false)
-//
-//        let ivan = Audio(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
-//        ivan.audioName = "Ivan tentando vender queijos"
-//
-//        let armando =
-//        let galinha =
-//
-//        return array
-//    }
 
     private func addPublicAudio() {
         var categoryArray = [AudioCategory]()
@@ -97,18 +82,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print(error ?? "addPublicAudio error\n")
             }
         }
-        
-        let path = Bundle.main.path(forResource: "Sextou", ofType: "mp3")!
-        let url = URL(fileURLWithPath: path, isDirectory: false)
+
         let category = categoryArray[0]
 
-        let publicAudio = Audio(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
-        publicAudio.audioName = "Sextou"
-        //
-        publicAudio.audioPath = url.path
-        publicAudio.duration = AudioManager.shared.getDurationFrom(file: url)
-        publicAudio.isPrivate = false
-        publicAudio.category = category
+        // All public audios
+        guard let urls = Bundle.main.urls(forResourcesWithExtension: "mp3", subdirectory: nil) else { return }
+
+        for url in urls {
+            let name = url.deletingPathExtension().lastPathComponent
+
+            let publicAudio = Audio(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+            publicAudio.audioName = name
+            publicAudio.audioPath = url.path
+            publicAudio.duration = AudioManager.shared.getDurationFrom(file: url)
+            publicAudio.isPrivate = false
+            publicAudio.category = category
+        }
     }
     
     private func addDefaultCategories() {
