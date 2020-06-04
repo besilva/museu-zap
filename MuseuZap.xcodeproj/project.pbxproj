@@ -100,6 +100,7 @@
 		C586E2C72465AA2400B1930B /* FileExchangerErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C586E2C62465AA2400B1930B /* FileExchangerErrorTests.swift */; };
 		C5904C69246AEED4004B9921 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904C68246AEED4004B9921 /* AudioManager.swift */; };
 		C5A05B4E2489738C0046402D /* Três conchada de galinha!.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5A05B4D2489738C0046402D /* Três conchada de galinha!.mp3 */; };
+		C5A05B502489760F0046402D /* AudioCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A05B4F2489760F0046402D /* AudioCellProtocol.swift */; };
 		C5A4D4F9248159F6006C97FF /* SearchResultsCellSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A4D4F8248159F6006C97FF /* SearchResultsCellSnapshotTests.swift */; };
 		C5A4D4FC24815B91006C97FF /* SearchResultsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A4D4FB24815B91006C97FF /* SearchResultsViewModelTests.swift */; };
 		C5A4D4FE248161FB006C97FF /* AudioMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A4D4FD248161FB006C97FF /* AudioMock.swift */; };
@@ -256,6 +257,7 @@
 		C586E2C62465AA2400B1930B /* FileExchangerErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExchangerErrorTests.swift; sourceTree = "<group>"; };
 		C5904C68246AEED4004B9921 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		C5A05B4D2489738C0046402D /* Três conchada de galinha!.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Três conchada de galinha!.mp3"; sourceTree = "<group>"; };
+		C5A05B4F2489760F0046402D /* AudioCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioCellProtocol.swift; sourceTree = "<group>"; };
 		C5A4D4F8248159F6006C97FF /* SearchResultsCellSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsCellSnapshotTests.swift; sourceTree = "<group>"; };
 		C5A4D4FB24815B91006C97FF /* SearchResultsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewModelTests.swift; sourceTree = "<group>"; };
 		C5A4D4FD248161FB006C97FF /* AudioMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMock.swift; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 				64A60C2D24489B9E003B0F26 /* ViewCodable.swift */,
 				642C63A3246EC7CE0059FBDC /* AnalyticsManager.swift */,
 				C539FC1B2488114B00A8A6A0 /* Constants.swift */,
+				C5A05B4F2489760F0046402D /* AudioCellProtocol.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -987,6 +990,7 @@
 				804A612F2476D3520053F011 /* PlaceholderError.swift in Sources */,
 				80ABB7AF2457181F0020CF42 /* AudioCellViewModelProtocol.swift in Sources */,
 				C500AF6F246B8A1A00F5AC0A /* AudioErrors.swift in Sources */,
+				C5A05B502489760F0046402D /* AudioCellProtocol.swift in Sources */,
 				80D80EF62447378A00915F1C /* AboutViewModel.swift in Sources */,
 				80DF26FC2472B55C00B6A5FC /* FileExchanger.swift in Sources */,
 				64DD6FF9243E10E400404321 /* TestCoordinator.swift in Sources */,

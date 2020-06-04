@@ -7,16 +7,25 @@
 //
 
 import UIKit
-//import DatabaseKit
 
-class HighlightsCell: UICollectionViewCell {
+class HighlightsCell: UICollectionViewCell, AudioCellProtocol {
 
     // MARK: - Properties
 
     var audioImage: UIImageView
     var playButton: PlayButtonView
     var audioDataView: AudioDataView
-    
+
+    // AudioCellProtocol
+    var isPlaying: Bool {
+        didSet {
+            self.playButton.icon.image = self.isPlaying ?  pauseImage : playImage
+        }
+    }
+    var playImage: UIImage
+    var pauseImage: UIImage
+    var audioPath: String
+
     var viewModel: HighlightsCellViewModel? {
         didSet {
             render()
@@ -30,6 +39,10 @@ class HighlightsCell: UICollectionViewCell {
         audioImage = UIImageView()
         playButton = PlayButtonView()
         audioDataView = AudioDataView()
+        isPlaying = false
+        playImage = UIImage()
+        pauseImage = UIImage()
+        audioPath = String()
 
         super.init(frame: .zero)
 
@@ -40,6 +53,10 @@ class HighlightsCell: UICollectionViewCell {
         audioImage = UIImageView()
         playButton = PlayButtonView()
         audioDataView = AudioDataView()
+        isPlaying = false
+        playImage = UIImage()
+        pauseImage = UIImage()
+        audioPath = String()
 
         super.init(frame: frame)
 
@@ -57,6 +74,7 @@ class HighlightsCell: UICollectionViewCell {
 extension HighlightsCell: ViewCodable {
 
     func configure() {
+        setUpAudioCellProtocolInfo()
         setUpAudioImage()
         setUpPlayButton()
         setUpAudioDataView()
@@ -79,10 +97,17 @@ extension HighlightsCell: ViewCodable {
 
     // MARK: - Set Up Helpers
 
+    func setUpAudioCellProtocolInfo() {
+        guard let viewModel = viewModel else { return }
+        self.playImage = UIImage.Default.playIconHighlights!
+        self.pauseImage = UIImage.Default.pauseIconHighlights!
+        self.audioPath = viewModel.audio.audioPath
+    }
+
     func setUpAudioImage() {
         guard let viewModel = viewModel else { return }
 
-        audioImage.contentMode = .scaleAspectFit
+        audioImage.contentMode = .scaleAspectFill 
         audioImage.image = viewModel.image.withRoundedCorners(radius: 10)
     }
 
@@ -144,7 +169,7 @@ extension HighlightsCell: ViewCodable {
 
     @objc func changePlayStatus() {
         guard let viewModel = viewModel else { return }
-        viewModel.changePlayStatus()
+        viewModel.changePlayStatus(cell: self)
     }
 
 }

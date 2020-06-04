@@ -30,8 +30,8 @@ class HighlightsCellViewModel {
     // MARK: - Icon manager
 
     //    Changes the play status of a given cell
-    func changePlayStatus() {
-        print("TAAAPEDD")
+    func changePlayStatus(cell: HighlightsCell) {
+        iconManager.changePlayStatus(audioPath: audio.audioPath, cell: cell)
     }
 
     // MARK: - Update highlight image

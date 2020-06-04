@@ -16,6 +16,7 @@ class HighlightsCollectionView: UICollectionView {
 
     // MARK: - Properties
 
+    var iconManager: CellIconManager
     let cellId = "highlightsCollection"
     var viewModel: HighlightsCollectionViewModelProtocol? {
         didSet {
@@ -27,7 +28,8 @@ class HighlightsCollectionView: UICollectionView {
     // MARK: - Init
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
-
+        iconManager = CellIconManager.shared
+        
         super.init(frame: frame, collectionViewLayout: layout)
         setupView()
     }
@@ -68,6 +70,22 @@ extension HighlightsCollectionView: UICollectionViewDataSource, UICollectionView
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.frame.width, height: self.frame.height)
+    }
+
+    // MARK: - Change Icon
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let highlightsCell = cell as? HighlightsCell else {
+            return
+        }
+        iconManager.updateCellStatus(visible: true, cell: highlightsCell)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let highlightsCell = cell as? HighlightsCell else {
+            return
+        }
+        iconManager.updateCellStatus(visible: true, cell: highlightsCell)
     }
 
 }
