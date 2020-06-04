@@ -13,6 +13,7 @@ class HighlightsCell: UICollectionViewCell {
 
     // MARK: - Properties
 
+    var audioImage: UIImageView
     var playButton: PlayButtonView
     
     var viewModel: HighlightsCellViewModel? {
@@ -25,6 +26,7 @@ class HighlightsCell: UICollectionViewCell {
     // MARK: - Init
      
     init() {
+        audioImage = UIImageView()
         playButton = PlayButtonView()
 
         super.init(frame: .zero)
@@ -33,6 +35,7 @@ class HighlightsCell: UICollectionViewCell {
     }
     
     override init(frame: CGRect) {
+        audioImage = UIImageView()
         playButton = PlayButtonView()
 
         super.init(frame: frame)
@@ -51,21 +54,32 @@ class HighlightsCell: UICollectionViewCell {
 extension HighlightsCell: ViewCodable {
 
     func configure() {
-        self.backgroundColor = .purple
+        setUpAudioImage()
         setUpPlayButton()
     }
     
     func setupHierarchy() {
-        self.addSubviews(playButton)
+        // Playbutton should be added directly to HighlightsCell so that tap works
+        self.addSubviews(audioImage, playButton)
     }
     
     func setupConstraints() {
-         setUpPlayButtonConstraints()
+        setAudioImageConstraints()
+        setPlayButtonConstraints()
     }
     
-    func render() { }
+    func render() {
+        self.backgroundColor = UIColor.Default.background
+//        audioImage.image = UIImage.Highlights.armando?.withRoundedCorners(radius: 10)
+        
+    }
 
     // MARK: - Set Up Helpers
+
+    func setUpAudioImage() {
+        audioImage.image = UIImage.Highlights.armando
+        audioImage.contentMode = .scaleAspectFit
+    }
 
     func setUpPlayButton() {
         playButton.icon.image = UIImage.Default.playIconHighlights
@@ -75,12 +89,27 @@ extension HighlightsCell: ViewCodable {
         playButton.addGestureRecognizer(tap)
     }
 
-    func setUpPlayButtonConstraints() {
+    // MARK: - Constraints
+
+    /// ImageView occupies the whole CollectionViewCell, with 16 spacing to HeaderView (table view cell)
+    func setAudioImageConstraints() {
+        audioImage.setContentCompressionResistancePriority(.required, for: .vertical)
+        audioImage.setContentCompressionResistancePriority(.required, for: .horizontal)
+        audioImage.setupConstraints { (view) in
+          view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
+          view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+          view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+          view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        }
+    }
+
+    /// PlayButton is at the center from imageView
+    func setPlayButtonConstraints() {
         playButton.setContentCompressionResistancePriority(.required, for: .horizontal)
         playButton.setContentHuggingPriority(.required, for: .horizontal)
         playButton.setupConstraints { (view) in
-            view.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-            view.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+            view.centerYAnchor.constraint(equalTo: audioImage.centerYAnchor).isActive = true
+            view.centerXAnchor.constraint(equalTo: audioImage.centerXAnchor).isActive = true
         }
     }
 

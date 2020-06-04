@@ -63,6 +63,7 @@ extension HighlightsTableViewCell: HighlightsTableViewCellDelegate {
 extension HighlightsTableViewCell: ViewCodable {
 
     func configure() {
+        setUpSectionView()
         setUpPageControl()
     }
 
@@ -82,12 +83,23 @@ extension HighlightsTableViewCell: ViewCodable {
 
     // MARK: - Set Up Helpers
 
+    func setUpSectionView() {
+        sectionView.seeAllButton.addTarget(self, action: #selector(showAllHighlights), for: .touchUpInside)
+        // Until there is a view to display, button is hidden
+        sectionView.seeAllButton.isHidden = true
+    }
+
     func setUpPageControl() {
         guard let collectionViewModel = highlightsCollection.viewModel else { return }
         pageControL.currentPage = 0
         pageControL.numberOfPages = collectionViewModel.highlightedAudios.count
         pageControL.currentPageIndicatorTintColor = UIColor.Default.power
         pageControL.pageIndicatorTintColor = UIColor.Default.pageControl
+
+    }
+
+    @objc func showAllHighlights(sender: UIButton!) {
+        // Code here to list all highlight audios
     }
 
     func renderSectionView() {
