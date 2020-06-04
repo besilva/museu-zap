@@ -41,5 +41,20 @@ class AudioMock {
         searchAudio.category = category1
         searchAudio.duration = 5
         searchAudio.isPrivate = false
+        
+    }
+    
+    internal func addPublicCategories() -> [AudioCategory] {
+        category1 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category1.categoryName = "Engraçados"
+        category1.identifier = "funny"
+        category1.isPrivate = false
+        
+        category2 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category2.categoryName = "Clássicos do Zap"
+        category2.identifier = "classic"
+        category2.isPrivate = false
+        
+        return [category1, category2]
     }
 }

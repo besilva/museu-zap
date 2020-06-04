@@ -40,7 +40,7 @@ public class AudioCategoryDAO: DAOCoreData, AudioCategoryDAOProtocol {
     
     public func fetchCategoriesWith(isPrivate: Bool) throws -> [AudioCategory] {
         // Array of objects to be returned
-        var audios: [Entity]
+        var categories: [Entity]
 
         // Custom search predicate: depending on argument
         // Returns all audios with isPrivate == true or all audios with isPrivate == false
@@ -53,11 +53,11 @@ public class AudioCategoryDAO: DAOCoreData, AudioCategoryDAOProtocol {
             // Fetch the ones according to the predicate
             request.predicate = predicate
 
-            audios = try managedContext.fetch(request)
+            categories = try managedContext.fetch(request)
         } catch {
             print("DATABASE ERROR PUBLIC PRIVATE \n", error)
             throw DatabaseErrors.publicAndPrivate
         }
-        return audios
+        return categories
     }
 }
