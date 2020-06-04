@@ -17,6 +17,7 @@ class AudioManagerTestsSuccess: XCTestCase {
     var nowPlayingInfos: [String: Any]?
 
     override func setUp() {
+        super.setUp()
         sut = AudioManager(notificationCenter: MockedNotificationCenter(), nowPlayingInfoCenter: nil)
 
         // Sample Audio has to be target to main Application
@@ -34,6 +35,7 @@ class AudioManagerTestsSuccess: XCTestCase {
     }
 
     override func tearDown() {
+        super.tearDown()
         // Since singleton will be used, just set all the properties back to nil
         sut = AudioManager()
         sampleAudio = nil

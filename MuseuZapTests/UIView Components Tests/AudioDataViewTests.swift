@@ -14,10 +14,12 @@ class AudioDataViewTests: XCTestCase {
     var sut: AudioDataView!
 
     override func setUp() {
+        super.setUp()
         sut = AudioDataView()
     }
 
     override func tearDown() {
+        super.tearDown()
         sut = nil
     }
 

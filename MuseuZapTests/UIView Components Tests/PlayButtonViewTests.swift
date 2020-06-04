@@ -23,10 +23,12 @@ class PlayButtonViewTests: XCTestCase {
     var sut: PlayButtonView!
 
     override func setUp() {
+        super.setUp()
         sut = PlayButtonView()
     }
 
     override func tearDown() {
+        super.tearDown()
         sut = nil
     }
 

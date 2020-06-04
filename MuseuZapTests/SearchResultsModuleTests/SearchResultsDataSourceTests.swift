@@ -17,6 +17,7 @@ class SearchResultsDataSourceTests: XCTestCase {
     var mockedModel: MockSearchResultsViewModel!
 
     override func setUp() {
+        super.setUp()
         mockedModel = MockSearchResultsViewModel()
         let cellIdentifier = "test"
         sut = SearchResultsDataSource(viewModel: mockedModel, withIdentifier: cellIdentifier)
@@ -30,6 +31,7 @@ class SearchResultsDataSourceTests: XCTestCase {
     }
 
     override func tearDown() {
+        super.tearDown()
         sut = nil
         mockedModel = nil
         tableView = nil

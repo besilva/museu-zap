@@ -16,6 +16,7 @@ class AudioManagerTestsError: XCTestCase {
     var nonExistingFile: URL!
 
     override func setUp() {
+        super.setUp()
         sut = AudioManager(notificationCenter: MockedNotificationCenter(), nowPlayingInfoCenter: nil)
 
         // NoAudioFile has to be target to main Application, is a file with the wrong extension
@@ -28,6 +29,7 @@ class AudioManagerTestsError: XCTestCase {
     }
 
     override func tearDown() {
+        super.tearDown()
         // Since singleton will be used, just set all the properties back to nil
         sut = AudioManager()
         noAudioFile = nil

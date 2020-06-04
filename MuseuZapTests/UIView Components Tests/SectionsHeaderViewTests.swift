@@ -14,24 +14,30 @@ class SectionsHeaderViewTests: XCTestCase {
     var sut: SectionsHeaderView!
 
     override func setUp() {
+        super.setUp()
         sut = SectionsHeaderView()
     }
 
     override func tearDown() {
+        super.tearDown()
         sut = nil
     }
 
     // MARK: - Label
 
-//    func testTitleLabel() {
-//        XCTAssertNotNil(sut.titleLabel)
-//        XCTAssertEqual(sut.titleLabel.textColor, UIColor.Default.label)
-//    }
+    func testSectionLabelNotNil() {
+        XCTAssertNotNil(sut.sectionLabel)
+    }
+
+    func testSectionLabelColor() {
+        XCTAssertEqual(sut.sectionLabel.textColor, UIColor.Default.label)
+    }
 
     // MARK: - Button
 
     func testButtonLabelText() {
         XCTAssertEqual(sut.seeAllButton.titleLabel?.text, "Ver todos")
+
     }
 
     func testButtonLabelColor() {

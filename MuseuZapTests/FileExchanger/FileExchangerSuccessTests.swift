@@ -16,6 +16,7 @@ class FileExchangerSuccessTests: XCTestCase {
     var fileURL: URL!
 
     override func setUp() {
+        super.setUp()
         // This method is called before the invocation of each test method in the class.
 
         // For test purposes, appGroupFolder will be a folder inside the Temp Directory
@@ -28,6 +29,7 @@ class FileExchangerSuccessTests: XCTestCase {
     }
 
     override func tearDown() {
+        super.tearDown()
         // This method is called after the invocation of each test method in the class.
         deleteFilesAtTempDir()
         sut = nil
