@@ -70,15 +70,14 @@ extension HighlightsCell: ViewCodable {
     
     func render() {
         self.backgroundColor = UIColor.Default.background
-//        audioImage.image = UIImage.Highlights.armando?.withRoundedCorners(radius: 10)
-        
     }
 
     // MARK: - Set Up Helpers
 
     func setUpAudioImage() {
-        audioImage.image = UIImage.Highlights.armando
-        audioImage.contentMode = .scaleAspectFit
+        // TODO: resolver isso
+        audioImage.contentMode = .scaleAspectFill
+        audioImage.image = UIImage.Highlights.uma?.withRoundedCorners(radius: 10)
     }
 
     func setUpPlayButton() {

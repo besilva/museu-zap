@@ -16,13 +16,16 @@ extension UIImage {
         static let pauseIconHighlights = UIImage(named: "pause-highlights")
     }
 
+    // TODO: olhar case iterable
     struct Highlights {
-        static let armando = UIImage(named: "armando")
+        static let uma = UIImage(named: "Seu Armando")
+        static let dois = UIImage(named: "Ivan tentando vender queijos")
+        static let tres = UIImage(named: "Três conchada de galinha!")
     }
 }
 
 public extension UIImage {
-    // Image with rounded corners
+    /// Using view.layer.cornerRadius turns only background (the layer) with cornerRadius. An image from imageView needs to be also drawn with this.
     func withRoundedCorners(radius: CGFloat? = nil) -> UIImage? {
        let maxRadius = min(size.width, size.height) / 2
        let cornerRadius: CGFloat
