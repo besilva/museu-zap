@@ -872,15 +872,15 @@
 		C531EF00248ABC7100A107A3 /* Public Audios */ = {
 			isa = PBXGroup;
 			children = (
-				C5AD885D248AC2B60098EDD8 /* Quarentena */,
-				C5AD8850248AC2B50098EDD8 /* Sextou! */,
-				C5AD8855248AC2B50098EDD8 /* Trotes */,
-				C577FA2E248ABEAC00405D94 /* Áudio resposta */,
-				C577FA41248ABEAD00405D94 /* Clássicos do Zap */,
 				C577FA1C248ABEAC00405D94 /* Engraçados */,
-				C577FA3C248ABEAC00405D94 /* Musicais */,
-				C577FA4C248ABEAE00405D94 /* Para a família */,
+				C577FA41248ABEAD00405D94 /* Clássicos do Zap */,
 				C577FA27248ABEAC00405D94 /* Piadas */,
+				C577FA3C248ABEAC00405D94 /* Musicais */,
+				C5AD8850248AC2B50098EDD8 /* Sextou! */,
+				C577FA2E248ABEAC00405D94 /* Áudio resposta */,
+				C577FA4C248ABEAE00405D94 /* Para a família */,
+				C5AD8855248AC2B50098EDD8 /* Trotes */,
+				C5AD885D248AC2B60098EDD8 /* Quarentena */,
 			);
 			path = "Public Audios";
 			sourceTree = "<group>";

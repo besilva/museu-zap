@@ -92,30 +92,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return friday.contains(name)
         }
 
-
-
         // Loop through array and add audio to its correnponding category
-//        for category in categoryArray {
-//            switch category.assetIdentifier {
-//                case "friday":
-//                <#code#>
-//                default:
-//                    print()
-//            }
-//        }
-
-        let category = categoryArray[0]
-
-        for url in urls {
-            let name = url.deletingPathExtension().lastPathComponent
-
-            let publicAudio = Audio(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
-            publicAudio.audioName = name
-            publicAudio.audioPath = url.path
-            publicAudio.duration = AudioManager.shared.getDurationFrom(file: url)
-            publicAudio.isPrivate = false
-            publicAudio.category = category
+        for category in categoryArray {
+            switch category.assetIdentifier {
+            case "friday":
+                addCategoryToAudios(audios: fridayAudios, withCategory: category)
+            default:
+                print()
+            }
         }
+
+//        let category = categoryArray[0]
+
+//        for url in urls {
+//            let name = url.deletingPathExtension().lastPathComponent
+//
+//            let publicAudio = Audio(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+//            publicAudio.audioName = name
+//            publicAudio.audioPath = url.path
+//            publicAudio.duration = AudioManager.shared.getDurationFrom(file: url)
+//            publicAudio.isPrivate = false
+//            publicAudio.category = category
+//        }
     }
 
     private func addPrivateCategories() {
@@ -230,6 +228,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - PUBLIC AUDIOS HELPER
 
+    func addCategoryToAudios(audios: [URL], withCategory category: AudioCategory) {
+        for url in audios {
+            let name = url.deletingPathExtension().lastPathComponent
+
+            let publicAudio = Audio(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+            publicAudio.audioName = name
+            publicAudio.audioPath = url.path
+            publicAudio.duration = AudioManager.shared.getDurationFrom(file: url)
+            publicAudio.isPrivate = false
+            publicAudio.category = category
+        }
+    }
+
     let funny = [
         "Infelizmente vou ter que sair do grupo",
         "Sgonoff, feijão torpedo, pudim de leite condenado, linguiça estocana",
@@ -243,6 +254,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         "Tá em casa quietinho, né?"
     ]
 
+    let classic = [
+        "Aqui tá chovendo e repangalejando, aqui choveu e relampagou",
+        "Gemidão do Zapo",
+        "Cristiano Ronaldo, líder nato",
+        "Oloquinho, meu!",
+        "Peixoto",
+        "Hoje é dia de maldade!"
+    ]
+
+    let jokes = [
+        "O ladrão de pato e o poeta",
+        "Mensagem errada acabou matando a velha",
+        "Mulher do Zé no hospital",
+        "Se você ver um óculos, não pegue",
+        "Piadas do Costinha",
+        "Piada do chifrudo"
+    ]
+
+    let musical = [
+        "Jesus humilha o Satanás",
+        "Tá chovendo aí?",
+        "Cantando a música do Jaspion",
+        "As verdadeiras letras das músicas"
+    ]
+
     let friday = [
         "Sextou, seus aligenigena!",
         "Hoje eu tô igual manga com ovo",
@@ -250,5 +286,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         "Bom dia, família!"
     ]
 
+    let answer = [
+        "Oxe, e quem liga?",
+        "Tá bonitão na foto, hein?",
+        "Sai fora, doido",
+        "Tem alguém vivo aí?",
+        "Tome vergonha, vai cuidar da sua vida!",
+        "Coé, rapaziada?",
+        "Ah, vá à m*rda!",
+        "Aplausos! Arrasou, bonita!",
+        "Você é burro, cara?",
+        "Mais ou menos",
+        "Tu tá demais, mulher!",
+        "Tudo sacanagem!",
+        "Você é zueiro mesmo, hein?"
+    ]
+
+    let family = [
+        "Cadê os bois?",
+        "Eu gosto muito desse grupo",
+        "Esse pessoal do grupo tá muito ocupado",
+        "Calados do grupo, quem são?",
+        "Esse grupo tá precisando de uns apito",
+        "Chamando o pessoal do grupo"
+    ]
+
+    let pranks = [
+        "O Vinícius fugiu!",
+        "Filha passando trote no pai",
+        "Quanto tá o corte de cabelo?",
+        "Moça, você ligou numa hora ruim",
+        "Trote do Jesus",
+        "Trote na atendente da Vivo",
+        "Antedeguemon"
+    ]
+
+    let quarantine = [
+        "Mãe desesperada com o coronavírus",
+        "Mãe surtada na quarentena",
+        "Caiu auxílio emergencial",
+        "Senhora enlouquecendo na quarentena",
+        "A mãe do Coronga",
+        "Maridos reclamando do coronavírus",
+        "Gaúchos em quarentena",
+        "The Walking Velho"
+    ]
 
 }
