@@ -303,7 +303,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         "Cristiano Ronaldo, líder nato",
         "Oloquinho, meu!",
         "Peixoto",
-        "Hoje é dia de maldade!"
+        "Hoje é dia de maldade!",
+        // Destaques
+        "Três conchada de galinha!",
+        "Ivan tentando vender queijos",
+        "Seu Armando"
     ]
 
     let jokes = [
