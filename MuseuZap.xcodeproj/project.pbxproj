@@ -99,7 +99,6 @@
 		C50DEAAB24898EAE002CEDBF /* SectionsHeaderViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DEAAA24898EAE002CEDBF /* SectionsHeaderViewTests.swift */; };
 		C50DEAAE2489A3EC002CEDBF /* HighlightsCollectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DEAAD2489A3EB002CEDBF /* HighlightsCollectionViewModelTests.swift */; };
 		C51338BC2485646A0000F760 /* AudioCategoryServicesMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51338BB2485646A0000F760 /* AudioCategoryServicesMock.swift */; };
-		C5149217247315FE0080B9B1 /* Sextou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5149216247315FE0080B9B1 /* Sextou.mp3 */; };
 		C525643F24803A9100EF9509 /* SearchResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C525643E24803A9100EF9509 /* SearchResultsCell.swift */; };
 		C5256442248042CF00EF9509 /* PlayButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5256441248042CF00EF9509 /* PlayButtonView.swift */; };
 		C5256444248044F500EF9509 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5256443248044F500EF9509 /* UIImage+Extension.swift */; };
@@ -114,6 +113,52 @@
 		C564E5D324780B2300A696D8 /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564E5D024780B2300A696D8 /* SearchResultsView.swift */; };
 		C564E5D424780B2300A696D8 /* SearchResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564E5D124780B2300A696D8 /* SearchResultsViewModel.swift */; };
 		C564E5D524780B2300A696D8 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564E5D224780B2300A696D8 /* SearchResultsViewController.swift */; };
+		C577FA54248ABEAE00405D94 /* Infelizmente vou ter que sair do grupo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA1D248ABEAC00405D94 /* Infelizmente vou ter que sair do grupo.mp3 */; };
+		C577FA55248ABEAE00405D94 /* Sgonoff, feijão torpedo, pudim de leite condenado, linguiça estocana.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA1E248ABEAC00405D94 /* Sgonoff, feijão torpedo, pudim de leite condenado, linguiça estocana.mp3 */; };
+		C577FA56248ABEAE00405D94 /* Oração contra o trabalho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA1F248ABEAC00405D94 /* Oração contra o trabalho.mp3 */; };
+		C577FA57248ABEAE00405D94 /* Nem gosto de churrasco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA20248ABEAC00405D94 /* Nem gosto de churrasco.mp3 */; };
+		C577FA58248ABEAE00405D94 /* Crianças sinceras.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA21248ABEAC00405D94 /* Crianças sinceras.mp3 */; };
+		C577FA59248ABEAE00405D94 /* Aviso para não saírem de casa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA22248ABEAC00405D94 /* Aviso para não saírem de casa.mp3 */; };
+		C577FA5A248ABEAE00405D94 /* Neiva do céu!.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA23248ABEAC00405D94 /* Neiva do céu!.mp3 */; };
+		C577FA5B248ABEAE00405D94 /* Sai do quarto, Vinícius.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA24248ABEAC00405D94 /* Sai do quarto, Vinícius.mp3 */; };
+		C577FA5C248ABEAE00405D94 /* Segunda vai trabalhar toda desgraçada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA25248ABEAC00405D94 /* Segunda vai trabalhar toda desgraçada.mp3 */; };
+		C577FA5D248ABEAE00405D94 /* Tá em casa quietinho, né?.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA26248ABEAC00405D94 /* Tá em casa quietinho, né?.mp3 */; };
+		C577FA5E248ABEAE00405D94 /* O ladrão de pato e o poeta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA28248ABEAC00405D94 /* O ladrão de pato e o poeta.mp3 */; };
+		C577FA5F248ABEAE00405D94 /* Mensagem errada acabou matando a velha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA29248ABEAC00405D94 /* Mensagem errada acabou matando a velha.mp3 */; };
+		C577FA60248ABEAE00405D94 /* Mulher do Zé no hospital.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA2A248ABEAC00405D94 /* Mulher do Zé no hospital.mp3 */; };
+		C577FA61248ABEAE00405D94 /* Se você ver um óculos, não pegue.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA2B248ABEAC00405D94 /* Se você ver um óculos, não pegue.mp3 */; };
+		C577FA62248ABEAE00405D94 /* Piadas do Costinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA2C248ABEAC00405D94 /* Piadas do Costinha.mp3 */; };
+		C577FA63248ABEAE00405D94 /* Piada do chifrudo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA2D248ABEAC00405D94 /* Piada do chifrudo.mp3 */; };
+		C577FA64248ABEAE00405D94 /* Oxe, e quem liga?.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA2F248ABEAC00405D94 /* Oxe, e quem liga?.mp3 */; };
+		C577FA65248ABEAE00405D94 /* Tá bonitão na foto, hein?.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA30248ABEAC00405D94 /* Tá bonitão na foto, hein?.mp3 */; };
+		C577FA66248ABEAE00405D94 /* Sai fora, doido.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA31248ABEAC00405D94 /* Sai fora, doido.mp3 */; };
+		C577FA67248ABEAE00405D94 /* Tem alguém vivo aí?.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA32248ABEAC00405D94 /* Tem alguém vivo aí?.mp3 */; };
+		C577FA68248ABEAE00405D94 /* Tome vergonha, vai cuidar da sua vida!.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA33248ABEAC00405D94 /* Tome vergonha, vai cuidar da sua vida!.mp3 */; };
+		C577FA69248ABEAE00405D94 /* Coé, rapaziada?.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA34248ABEAC00405D94 /* Coé, rapaziada?.mp3 */; };
+		C577FA6A248ABEAE00405D94 /* Ah, vá à m*rda!.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA35248ABEAC00405D94 /* Ah, vá à m*rda!.mp3 */; };
+		C577FA6B248ABEAE00405D94 /* Aplausos! Arrasou, bonita!.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA36248ABEAC00405D94 /* Aplausos! Arrasou, bonita!.mp3 */; };
+		C577FA6C248ABEAE00405D94 /* Você é burro, cara?.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA37248ABEAC00405D94 /* Você é burro, cara?.mp3 */; };
+		C577FA6D248ABEAE00405D94 /* Mais ou menos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA38248ABEAC00405D94 /* Mais ou menos.mp3 */; };
+		C577FA6E248ABEAE00405D94 /* Tu tá demais, mulher!.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA39248ABEAC00405D94 /* Tu tá demais, mulher!.mp3 */; };
+		C577FA6F248ABEAE00405D94 /* Tudo sacanagem!.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA3A248ABEAC00405D94 /* Tudo sacanagem!.mp3 */; };
+		C577FA70248ABEAE00405D94 /* Você é zueiro mesmo, hein?.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA3B248ABEAC00405D94 /* Você é zueiro mesmo, hein?.mp3 */; };
+		C577FA71248ABEAE00405D94 /* Jesus humilha o Satanás.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA3D248ABEAC00405D94 /* Jesus humilha o Satanás.mp3 */; };
+		C577FA72248ABEAE00405D94 /* Tá chovendo aí?.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA3E248ABEAC00405D94 /* Tá chovendo aí?.mp3 */; };
+		C577FA73248ABEAE00405D94 /* Cantando a música do Jaspion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA3F248ABEAC00405D94 /* Cantando a música do Jaspion.mp3 */; };
+		C577FA74248ABEAE00405D94 /* As verdadeiras letras das músicas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA40248ABEAC00405D94 /* As verdadeiras letras das músicas.mp3 */; };
+		C577FA75248ABEAE00405D94 /* Aqui tá chovendo e repangalejando, aqui choveu e relampagou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA42248ABEAD00405D94 /* Aqui tá chovendo e repangalejando, aqui choveu e relampagou.mp3 */; };
+		C577FA76248ABEAE00405D94 /* Gemidão do Zap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA43248ABEAD00405D94 /* Gemidão do Zap.mp3 */; };
+		C577FA78248ABEAE00405D94 /* Cristiano Ronaldo, líder nato.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA45248ABEAD00405D94 /* Cristiano Ronaldo, líder nato.mp3 */; };
+		C577FA79248ABEAE00405D94 /* Oloquinho, meu!.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA46248ABEAD00405D94 /* Oloquinho, meu!.mp3 */; };
+		C577FA7A248ABEAE00405D94 /* Peixoto.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA47248ABEAD00405D94 /* Peixoto.mp3 */; };
+		C577FA7B248ABEAE00405D94 /* Hoje é dia de maldade!.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA48248ABEAD00405D94 /* Hoje é dia de maldade!.mp3 */; };
+		C577FA7F248ABEAE00405D94 /* Cadê os bois?.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA4D248ABEAE00405D94 /* Cadê os bois?.mp3 */; };
+		C577FA80248ABEAE00405D94 /* Eu gosto muito desse grupo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA4E248ABEAE00405D94 /* Eu gosto muito desse grupo.mp3 */; };
+		C577FA81248ABEAE00405D94 /* Esse pessoal do grupo tá muito ocupado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA4F248ABEAE00405D94 /* Esse pessoal do grupo tá muito ocupado.mp3 */; };
+		C577FA82248ABEAE00405D94 /* Calados do grupo, quem são?.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA50248ABEAE00405D94 /* Calados do grupo, quem são?.mp3 */; };
+		C577FA83248ABEAE00405D94 /* Esse grupo tá precisando de uns apito.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA51248ABEAE00405D94 /* Esse grupo tá precisando de uns apito.mp3 */; };
+		C577FA84248ABEAE00405D94 /* Chamando o pessoal do grupo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA52248ABEAE00405D94 /* Chamando o pessoal do grupo.mp3 */; };
+		C577FA85248ABEAE00405D94 /* Bom dia, família!.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA53248ABEAE00405D94 /* Bom dia, família!.mp3 */; };
 		C586E2C72465AA2400B1930B /* FileExchangerErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C586E2C62465AA2400B1930B /* FileExchangerErrorTests.swift */; };
 		C5904C69246AEED4004B9921 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904C68246AEED4004B9921 /* AudioManager.swift */; };
 		C5A05B502489760F0046402D /* AudioCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A05B4F2489760F0046402D /* AudioCellProtocol.swift */; };
@@ -279,7 +324,6 @@
 		C50DEAAA24898EAE002CEDBF /* SectionsHeaderViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsHeaderViewTests.swift; sourceTree = "<group>"; };
 		C50DEAAD2489A3EB002CEDBF /* HighlightsCollectionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsCollectionViewModelTests.swift; sourceTree = "<group>"; };
 		C51338BB2485646A0000F760 /* AudioCategoryServicesMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCategoryServicesMock.swift; sourceTree = "<group>"; };
-		C5149216247315FE0080B9B1 /* Sextou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Sextou.mp3; sourceTree = "<group>"; };
 		C525643E24803A9100EF9509 /* SearchResultsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsCell.swift; sourceTree = "<group>"; };
 		C5256441248042CF00EF9509 /* PlayButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButtonView.swift; sourceTree = "<group>"; };
 		C5256443248044F500EF9509 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
@@ -293,6 +337,52 @@
 		C564E5D024780B2300A696D8 /* SearchResultsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
 		C564E5D124780B2300A696D8 /* SearchResultsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewModel.swift; sourceTree = "<group>"; };
 		C564E5D224780B2300A696D8 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		C577FA1D248ABEAC00405D94 /* Infelizmente vou ter que sair do grupo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Infelizmente vou ter que sair do grupo.mp3"; sourceTree = "<group>"; };
+		C577FA1E248ABEAC00405D94 /* Sgonoff, feijão torpedo, pudim de leite condenado, linguiça estocana.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sgonoff, feijão torpedo, pudim de leite condenado, linguiça estocana.mp3"; sourceTree = "<group>"; };
+		C577FA1F248ABEAC00405D94 /* Oração contra o trabalho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Oração contra o trabalho.mp3"; sourceTree = "<group>"; };
+		C577FA20248ABEAC00405D94 /* Nem gosto de churrasco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nem gosto de churrasco.mp3"; sourceTree = "<group>"; };
+		C577FA21248ABEAC00405D94 /* Crianças sinceras.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Crianças sinceras.mp3"; sourceTree = "<group>"; };
+		C577FA22248ABEAC00405D94 /* Aviso para não saírem de casa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Aviso para não saírem de casa.mp3"; sourceTree = "<group>"; };
+		C577FA23248ABEAC00405D94 /* Neiva do céu!.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Neiva do céu!.mp3"; sourceTree = "<group>"; };
+		C577FA24248ABEAC00405D94 /* Sai do quarto, Vinícius.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sai do quarto, Vinícius.mp3"; sourceTree = "<group>"; };
+		C577FA25248ABEAC00405D94 /* Segunda vai trabalhar toda desgraçada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Segunda vai trabalhar toda desgraçada.mp3"; sourceTree = "<group>"; };
+		C577FA26248ABEAC00405D94 /* Tá em casa quietinho, né?.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tá em casa quietinho, né?.mp3"; sourceTree = "<group>"; };
+		C577FA28248ABEAC00405D94 /* O ladrão de pato e o poeta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O ladrão de pato e o poeta.mp3"; sourceTree = "<group>"; };
+		C577FA29248ABEAC00405D94 /* Mensagem errada acabou matando a velha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mensagem errada acabou matando a velha.mp3"; sourceTree = "<group>"; };
+		C577FA2A248ABEAC00405D94 /* Mulher do Zé no hospital.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mulher do Zé no hospital.mp3"; sourceTree = "<group>"; };
+		C577FA2B248ABEAC00405D94 /* Se você ver um óculos, não pegue.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Se você ver um óculos, não pegue.mp3"; sourceTree = "<group>"; };
+		C577FA2C248ABEAC00405D94 /* Piadas do Costinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Piadas do Costinha.mp3"; sourceTree = "<group>"; };
+		C577FA2D248ABEAC00405D94 /* Piada do chifrudo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Piada do chifrudo.mp3"; sourceTree = "<group>"; };
+		C577FA2F248ABEAC00405D94 /* Oxe, e quem liga?.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Oxe, e quem liga?.mp3"; sourceTree = "<group>"; };
+		C577FA30248ABEAC00405D94 /* Tá bonitão na foto, hein?.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tá bonitão na foto, hein?.mp3"; sourceTree = "<group>"; };
+		C577FA31248ABEAC00405D94 /* Sai fora, doido.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sai fora, doido.mp3"; sourceTree = "<group>"; };
+		C577FA32248ABEAC00405D94 /* Tem alguém vivo aí?.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tem alguém vivo aí?.mp3"; sourceTree = "<group>"; };
+		C577FA33248ABEAC00405D94 /* Tome vergonha, vai cuidar da sua vida!.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tome vergonha, vai cuidar da sua vida!.mp3"; sourceTree = "<group>"; };
+		C577FA34248ABEAC00405D94 /* Coé, rapaziada?.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Coé, rapaziada?.mp3"; sourceTree = "<group>"; };
+		C577FA35248ABEAC00405D94 /* Ah, vá à m*rda!.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ah, vá à m*rda!.mp3"; sourceTree = "<group>"; };
+		C577FA36248ABEAC00405D94 /* Aplausos! Arrasou, bonita!.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Aplausos! Arrasou, bonita!.mp3"; sourceTree = "<group>"; };
+		C577FA37248ABEAC00405D94 /* Você é burro, cara?.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Você é burro, cara?.mp3"; sourceTree = "<group>"; };
+		C577FA38248ABEAC00405D94 /* Mais ou menos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mais ou menos.mp3"; sourceTree = "<group>"; };
+		C577FA39248ABEAC00405D94 /* Tu tá demais, mulher!.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tu tá demais, mulher!.mp3"; sourceTree = "<group>"; };
+		C577FA3A248ABEAC00405D94 /* Tudo sacanagem!.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tudo sacanagem!.mp3"; sourceTree = "<group>"; };
+		C577FA3B248ABEAC00405D94 /* Você é zueiro mesmo, hein?.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Você é zueiro mesmo, hein?.mp3"; sourceTree = "<group>"; };
+		C577FA3D248ABEAC00405D94 /* Jesus humilha o Satanás.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jesus humilha o Satanás.mp3"; sourceTree = "<group>"; };
+		C577FA3E248ABEAC00405D94 /* Tá chovendo aí?.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tá chovendo aí?.mp3"; sourceTree = "<group>"; };
+		C577FA3F248ABEAC00405D94 /* Cantando a música do Jaspion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cantando a música do Jaspion.mp3"; sourceTree = "<group>"; };
+		C577FA40248ABEAC00405D94 /* As verdadeiras letras das músicas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "As verdadeiras letras das músicas.mp3"; sourceTree = "<group>"; };
+		C577FA42248ABEAD00405D94 /* Aqui tá chovendo e repangalejando, aqui choveu e relampagou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Aqui tá chovendo e repangalejando, aqui choveu e relampagou.mp3"; sourceTree = "<group>"; };
+		C577FA43248ABEAD00405D94 /* Gemidão do Zap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gemidão do Zap.mp3"; sourceTree = "<group>"; };
+		C577FA45248ABEAD00405D94 /* Cristiano Ronaldo, líder nato.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Ronaldo, líder nato.mp3"; sourceTree = "<group>"; };
+		C577FA46248ABEAD00405D94 /* Oloquinho, meu!.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Oloquinho, meu!.mp3"; sourceTree = "<group>"; };
+		C577FA47248ABEAD00405D94 /* Peixoto.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Peixoto.mp3; sourceTree = "<group>"; };
+		C577FA48248ABEAD00405D94 /* Hoje é dia de maldade!.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Hoje é dia de maldade!.mp3"; sourceTree = "<group>"; };
+		C577FA4D248ABEAE00405D94 /* Cadê os bois?.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cadê os bois?.mp3"; sourceTree = "<group>"; };
+		C577FA4E248ABEAE00405D94 /* Eu gosto muito desse grupo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu gosto muito desse grupo.mp3"; sourceTree = "<group>"; };
+		C577FA4F248ABEAE00405D94 /* Esse pessoal do grupo tá muito ocupado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Esse pessoal do grupo tá muito ocupado.mp3"; sourceTree = "<group>"; };
+		C577FA50248ABEAE00405D94 /* Calados do grupo, quem são?.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Calados do grupo, quem são?.mp3"; sourceTree = "<group>"; };
+		C577FA51248ABEAE00405D94 /* Esse grupo tá precisando de uns apito.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Esse grupo tá precisando de uns apito.mp3"; sourceTree = "<group>"; };
+		C577FA52248ABEAE00405D94 /* Chamando o pessoal do grupo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Chamando o pessoal do grupo.mp3"; sourceTree = "<group>"; };
+		C577FA53248ABEAE00405D94 /* Bom dia, família!.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bom dia, família!.mp3"; sourceTree = "<group>"; };
 		C586E2C62465AA2400B1930B /* FileExchangerErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExchangerErrorTests.swift; sourceTree = "<group>"; };
 		C5904C68246AEED4004B9921 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		C5A05B4F2489760F0046402D /* AudioCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioCellProtocol.swift; sourceTree = "<group>"; };
@@ -601,7 +691,6 @@
 			children = (
 				C531EF00248ABC7100A107A3 /* Public Audios */,
 				C5C77AF72489406E00A1DB6B /* HighlightsAudios */,
-				C5149216247315FE0080B9B1 /* Sextou.mp3 */,
 				80C274C92458719B0051A1E6 /* Fonts */,
 				6473EDDD243B6D3E00A10F2C /* Assets.xcassets */,
 				6473EDDF243B6D3E00A10F2C /* LaunchScreen.storyboard */,
@@ -747,6 +836,12 @@
 		C531EF00248ABC7100A107A3 /* Public Audios */ = {
 			isa = PBXGroup;
 			children = (
+				C577FA2E248ABEAC00405D94 /* Áudio resposta */,
+				C577FA41248ABEAD00405D94 /* Clássicos do Zap */,
+				C577FA1C248ABEAC00405D94 /* Engraçados */,
+				C577FA3C248ABEAC00405D94 /* Musicais */,
+				C577FA4C248ABEAE00405D94 /* Para a família */,
+				C577FA27248ABEAC00405D94 /* Piadas */,
 			);
 			path = "Public Audios";
 			sourceTree = "<group>";
@@ -788,6 +883,94 @@
 				C564E5D124780B2300A696D8 /* SearchResultsViewModel.swift */,
 			);
 			path = SearchResults;
+			sourceTree = "<group>";
+		};
+		C577FA1C248ABEAC00405D94 /* Engraçados */ = {
+			isa = PBXGroup;
+			children = (
+				C577FA1D248ABEAC00405D94 /* Infelizmente vou ter que sair do grupo.mp3 */,
+				C577FA1E248ABEAC00405D94 /* Sgonoff, feijão torpedo, pudim de leite condenado, linguiça estocana.mp3 */,
+				C577FA1F248ABEAC00405D94 /* Oração contra o trabalho.mp3 */,
+				C577FA20248ABEAC00405D94 /* Nem gosto de churrasco.mp3 */,
+				C577FA21248ABEAC00405D94 /* Crianças sinceras.mp3 */,
+				C577FA22248ABEAC00405D94 /* Aviso para não saírem de casa.mp3 */,
+				C577FA23248ABEAC00405D94 /* Neiva do céu!.mp3 */,
+				C577FA24248ABEAC00405D94 /* Sai do quarto, Vinícius.mp3 */,
+				C577FA25248ABEAC00405D94 /* Segunda vai trabalhar toda desgraçada.mp3 */,
+				C577FA26248ABEAC00405D94 /* Tá em casa quietinho, né?.mp3 */,
+			);
+			path = "Engraçados";
+			sourceTree = "<group>";
+		};
+		C577FA27248ABEAC00405D94 /* Piadas */ = {
+			isa = PBXGroup;
+			children = (
+				C577FA28248ABEAC00405D94 /* O ladrão de pato e o poeta.mp3 */,
+				C577FA29248ABEAC00405D94 /* Mensagem errada acabou matando a velha.mp3 */,
+				C577FA2A248ABEAC00405D94 /* Mulher do Zé no hospital.mp3 */,
+				C577FA2B248ABEAC00405D94 /* Se você ver um óculos, não pegue.mp3 */,
+				C577FA2C248ABEAC00405D94 /* Piadas do Costinha.mp3 */,
+				C577FA2D248ABEAC00405D94 /* Piada do chifrudo.mp3 */,
+			);
+			path = Piadas;
+			sourceTree = "<group>";
+		};
+		C577FA2E248ABEAC00405D94 /* Áudio resposta */ = {
+			isa = PBXGroup;
+			children = (
+				C577FA2F248ABEAC00405D94 /* Oxe, e quem liga?.mp3 */,
+				C577FA30248ABEAC00405D94 /* Tá bonitão na foto, hein?.mp3 */,
+				C577FA31248ABEAC00405D94 /* Sai fora, doido.mp3 */,
+				C577FA32248ABEAC00405D94 /* Tem alguém vivo aí?.mp3 */,
+				C577FA33248ABEAC00405D94 /* Tome vergonha, vai cuidar da sua vida!.mp3 */,
+				C577FA34248ABEAC00405D94 /* Coé, rapaziada?.mp3 */,
+				C577FA35248ABEAC00405D94 /* Ah, vá à m*rda!.mp3 */,
+				C577FA36248ABEAC00405D94 /* Aplausos! Arrasou, bonita!.mp3 */,
+				C577FA37248ABEAC00405D94 /* Você é burro, cara?.mp3 */,
+				C577FA38248ABEAC00405D94 /* Mais ou menos.mp3 */,
+				C577FA39248ABEAC00405D94 /* Tu tá demais, mulher!.mp3 */,
+				C577FA3A248ABEAC00405D94 /* Tudo sacanagem!.mp3 */,
+				C577FA3B248ABEAC00405D94 /* Você é zueiro mesmo, hein?.mp3 */,
+			);
+			path = "Áudio resposta";
+			sourceTree = "<group>";
+		};
+		C577FA3C248ABEAC00405D94 /* Musicais */ = {
+			isa = PBXGroup;
+			children = (
+				C577FA3D248ABEAC00405D94 /* Jesus humilha o Satanás.mp3 */,
+				C577FA3E248ABEAC00405D94 /* Tá chovendo aí?.mp3 */,
+				C577FA3F248ABEAC00405D94 /* Cantando a música do Jaspion.mp3 */,
+				C577FA40248ABEAC00405D94 /* As verdadeiras letras das músicas.mp3 */,
+			);
+			path = Musicais;
+			sourceTree = "<group>";
+		};
+		C577FA41248ABEAD00405D94 /* Clássicos do Zap */ = {
+			isa = PBXGroup;
+			children = (
+				C577FA42248ABEAD00405D94 /* Aqui tá chovendo e repangalejando, aqui choveu e relampagou.mp3 */,
+				C577FA43248ABEAD00405D94 /* Gemidão do Zap.mp3 */,
+				C577FA45248ABEAD00405D94 /* Cristiano Ronaldo, líder nato.mp3 */,
+				C577FA46248ABEAD00405D94 /* Oloquinho, meu!.mp3 */,
+				C577FA47248ABEAD00405D94 /* Peixoto.mp3 */,
+				C577FA48248ABEAD00405D94 /* Hoje é dia de maldade!.mp3 */,
+			);
+			path = "Clássicos do Zap";
+			sourceTree = "<group>";
+		};
+		C577FA4C248ABEAE00405D94 /* Para a família */ = {
+			isa = PBXGroup;
+			children = (
+				C577FA4D248ABEAE00405D94 /* Cadê os bois?.mp3 */,
+				C577FA4E248ABEAE00405D94 /* Eu gosto muito desse grupo.mp3 */,
+				C577FA4F248ABEAE00405D94 /* Esse pessoal do grupo tá muito ocupado.mp3 */,
+				C577FA50248ABEAE00405D94 /* Calados do grupo, quem são?.mp3 */,
+				C577FA51248ABEAE00405D94 /* Esse grupo tá precisando de uns apito.mp3 */,
+				C577FA52248ABEAE00405D94 /* Chamando o pessoal do grupo.mp3 */,
+				C577FA53248ABEAE00405D94 /* Bom dia, família!.mp3 */,
+			);
+			path = "Para a família";
 			sourceTree = "<group>";
 		};
 		C5A4D4FA24815B5C006C97FF /* SearchResultsModuleTests */ = {
@@ -974,17 +1157,62 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C577FA67248ABEAE00405D94 /* Tem alguém vivo aí?.mp3 in Resources */,
+				C577FA7A248ABEAE00405D94 /* Peixoto.mp3 in Resources */,
+				C577FA73248ABEAE00405D94 /* Cantando a música do Jaspion.mp3 in Resources */,
+				C577FA64248ABEAE00405D94 /* Oxe, e quem liga?.mp3 in Resources */,
 				C5C77AFC248940A200A1DB6B /* Ivan tentando vender queijos.mp3 in Resources */,
-				C5149217247315FE0080B9B1 /* Sextou.mp3 in Resources */,
+				C577FA84248ABEAE00405D94 /* Chamando o pessoal do grupo.mp3 in Resources */,
 				C52F15D4246C7D8B00FBDA98 /* AudioManagerTest.m4a in Resources */,
+				C577FA76248ABEAE00405D94 /* Gemidão do Zap.mp3 in Resources */,
+				C577FA6B248ABEAE00405D94 /* Aplausos! Arrasou, bonita!.mp3 in Resources */,
+				C577FA80248ABEAE00405D94 /* Eu gosto muito desse grupo.mp3 in Resources */,
+				C577FA5D248ABEAE00405D94 /* Tá em casa quietinho, né?.mp3 in Resources */,
+				C577FA60248ABEAE00405D94 /* Mulher do Zé no hospital.mp3 in Resources */,
+				C577FA6C248ABEAE00405D94 /* Você é burro, cara?.mp3 in Resources */,
+				C577FA75248ABEAE00405D94 /* Aqui tá chovendo e repangalejando, aqui choveu e relampagou.mp3 in Resources */,
 				80C274CC2458721C0051A1E6 /* Poppins-Regular.ttf in Resources */,
+				C577FA6E248ABEAE00405D94 /* Tu tá demais, mulher!.mp3 in Resources */,
+				C577FA62248ABEAE00405D94 /* Piadas do Costinha.mp3 in Resources */,
+				C577FA6D248ABEAE00405D94 /* Mais ou menos.mp3 in Resources */,
+				C577FA61248ABEAE00405D94 /* Se você ver um óculos, não pegue.mp3 in Resources */,
+				C577FA7F248ABEAE00405D94 /* Cadê os bois?.mp3 in Resources */,
+				C577FA85248ABEAE00405D94 /* Bom dia, família!.mp3 in Resources */,
+				C577FA78248ABEAE00405D94 /* Cristiano Ronaldo, líder nato.mp3 in Resources */,
+				C577FA65248ABEAE00405D94 /* Tá bonitão na foto, hein?.mp3 in Resources */,
+				C577FA7B248ABEAE00405D94 /* Hoje é dia de maldade!.mp3 in Resources */,
 				80C274CE2458721C0051A1E6 /* Poppins-SemiBold.ttf in Resources */,
+				C577FA5B248ABEAE00405D94 /* Sai do quarto, Vinícius.mp3 in Resources */,
+				C577FA54248ABEAE00405D94 /* Infelizmente vou ter que sair do grupo.mp3 in Resources */,
+				C577FA81248ABEAE00405D94 /* Esse pessoal do grupo tá muito ocupado.mp3 in Resources */,
+				C577FA68248ABEAE00405D94 /* Tome vergonha, vai cuidar da sua vida!.mp3 in Resources */,
+				C577FA63248ABEAE00405D94 /* Piada do chifrudo.mp3 in Resources */,
+				C577FA57248ABEAE00405D94 /* Nem gosto de churrasco.mp3 in Resources */,
+				C577FA6F248ABEAE00405D94 /* Tudo sacanagem!.mp3 in Resources */,
+				C577FA58248ABEAE00405D94 /* Crianças sinceras.mp3 in Resources */,
 				6473EDE1243B6D3E00A10F2C /* LaunchScreen.storyboard in Resources */,
+				C577FA71248ABEAE00405D94 /* Jesus humilha o Satanás.mp3 in Resources */,
+				C577FA5C248ABEAE00405D94 /* Segunda vai trabalhar toda desgraçada.mp3 in Resources */,
+				C577FA5E248ABEAE00405D94 /* O ladrão de pato e o poeta.mp3 in Resources */,
 				C5AFABEF246D8F1700E7AF31 /* wrongExtension.txt in Resources */,
+				C577FA69248ABEAE00405D94 /* Coé, rapaziada?.mp3 in Resources */,
+				C577FA56248ABEAE00405D94 /* Oração contra o trabalho.mp3 in Resources */,
+				C577FA66248ABEAE00405D94 /* Sai fora, doido.mp3 in Resources */,
+				C577FA82248ABEAE00405D94 /* Calados do grupo, quem são?.mp3 in Resources */,
+				C577FA79248ABEAE00405D94 /* Oloquinho, meu!.mp3 in Resources */,
 				C5C77AFD248940A200A1DB6B /* Seu Armando.mp3 in Resources */,
+				C577FA5F248ABEAE00405D94 /* Mensagem errada acabou matando a velha.mp3 in Resources */,
+				C577FA59248ABEAE00405D94 /* Aviso para não saírem de casa.mp3 in Resources */,
 				C5A0AE46248AB795009AFECF /* Três conchada de galinha!.mp3 in Resources */,
+				C577FA70248ABEAE00405D94 /* Você é zueiro mesmo, hein?.mp3 in Resources */,
 				64F50828246CE8F800625878 /* GoogleService-Info.plist in Resources */,
 				6473EDDE243B6D3E00A10F2C /* Assets.xcassets in Resources */,
+				C577FA55248ABEAE00405D94 /* Sgonoff, feijão torpedo, pudim de leite condenado, linguiça estocana.mp3 in Resources */,
+				C577FA72248ABEAE00405D94 /* Tá chovendo aí?.mp3 in Resources */,
+				C577FA6A248ABEAE00405D94 /* Ah, vá à m*rda!.mp3 in Resources */,
+				C577FA5A248ABEAE00405D94 /* Neiva do céu!.mp3 in Resources */,
+				C577FA74248ABEAE00405D94 /* As verdadeiras letras das músicas.mp3 in Resources */,
+				C577FA83248ABEAE00405D94 /* Esse grupo tá precisando de uns apito.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
