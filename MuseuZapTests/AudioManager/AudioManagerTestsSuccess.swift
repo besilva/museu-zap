@@ -17,6 +17,7 @@ class AudioManagerTestsSuccess: XCTestCase {
     var nowPlayingInfos: [String: Any]?
 
     override func setUp() {
+        super.setUp()
         sut = AudioManager(notificationCenter: MockedNotificationCenter(), nowPlayingInfoCenter: nil)
 
         // Sample Audio has to be target to main Application
@@ -38,6 +39,7 @@ class AudioManagerTestsSuccess: XCTestCase {
         sut = AudioManager()
         sampleAudio = nil
         nowPlayingInfos = nil
+        super.tearDown()
     }
 
     // MARK: - CreatePlayer

@@ -17,11 +17,13 @@ class SearchResultsDataSourceTests: XCTestCase {
     var mockedModel: MockSearchResultsViewModel!
 
     override func setUp() {
+        super.setUp()
         mockedModel = MockSearchResultsViewModel()
         let cellIdentifier = "test"
         sut = SearchResultsDataSource(viewModel: mockedModel, withIdentifier: cellIdentifier)
 
-        tableView = UITableView()
+        // Passing a frame to the view will avoid breaking contraints
+        tableView = UITableView(frame: UIScreen.main.bounds)
         tableView.register(SearchResultsCell.self, forCellReuseIdentifier: cellIdentifier)
         tableView.dataSource = sut
 
@@ -33,6 +35,7 @@ class SearchResultsDataSourceTests: XCTestCase {
         mockedModel = nil
         tableView = nil
         audioLabel = nil
+        super.tearDown()
     }
 
     // MARK: - Sections
@@ -49,26 +52,15 @@ class SearchResultsDataSourceTests: XCTestCase {
 
     // MARK: - Label
 
-    /*
-     This test is breaking the constraints when loading custom cell at a isolated tableView, not sure why
-
     func testAudioLabelText() {
+        // Assert that searchResultsArray contains one audio
+        mockedModel.arrayCount = .onePrivate
 
-        let table = UITableView()
-        let mock = MockSearchResultsViewModel()
-        mock.arrayCount = .onePrivate
-        table.register(SearchResultsCell.self, forCellReuseIdentifier: "oi")
-        let sut1 = SearchResultsDataSource(viewModel: mock, withIdentifier: "oi")
-        table.dataSource = sut1
+        tableView.reloadData()
 
-        table.reloadData()
-        print(sut1.viewModel.searchResultArray, "\n esse array deve conter APENAS 1 AUDIO")
-        print(table.numberOfRows(inSection: 0), "\n aqui mostra que a table view tem APENAS 1 AUDII, O PRIVATE")
+        let cell = tableView.visibleCells[0] as? SearchResultsCell
 
-        let cell = table.visibleCells[0] as? SearchResultsCell
-        print(cell?.titleLabel.text! as Any, "\n e aqui a gente ve que o titulo da celula NAO BATE com o search results array, da AUDIO PUBLIC")
-
+        XCTAssertEqual(cell?.titleLabel.text!, audioLabel, "Cell should contain only audioPrivate from MockSearchResultsViewModel")
     }
-     
-   */
+
 }

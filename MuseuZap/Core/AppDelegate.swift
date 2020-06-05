@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         setNavigationBarColor()
+        setStatusBarColor()
         
         // Audio Controls
         AudioManager.shared.configureAVAudioSession()
@@ -57,6 +58,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().isTranslucent = false
     }
 
+    func setStatusBarColor() {
+        if #available(iOS 13, *) {
+             let statusBar = UIView(frame: (UIApplication.shared.keyWindow?.windowScene?.statusBarManager?.statusBarFrame)!)
+             statusBar.backgroundColor = UIColor.Default.navBar
+             UIApplication.shared.keyWindow?.addSubview(statusBar)
+         } else {
+            // ADD THE STATUS BAR AND SET A CUSTOM COLOR
+            // swiftlint:disable force_cast
+            let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+            if statusBar.responds(to: #selector(setter: UIView.backgroundColor)) {
+               statusBar.backgroundColor = UIColor.Default.navBar
+            }
+            // swiftlint:enable force_cast
+         }
+    }
+
     private func addPublicAudio() {
         var categoryArray = [AudioCategory]()
         AudioCategoryServices().getAllCategoriesWith(isPrivate: false) { (error, array) in
@@ -67,17 +84,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
-        let path = Bundle.main.path(forResource: "Sextou", ofType: "mp3")!
-        let url = URL(fileURLWithPath: path, isDirectory: false)
         let category = categoryArray[0]
 
-        let publicAudio = Audio(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
-        publicAudio.audioName = "Sextou"
-        //
-        publicAudio.audioPath = url.path
-        publicAudio.duration = AudioManager.shared.getDurationFrom(file: url)
-        publicAudio.isPrivate = false
-        publicAudio.category = category
+        // All public audios
+        guard let urls = Bundle.main.urls(forResourcesWithExtension: "mp3", subdirectory: nil) else { return }
+
+        for url in urls {
+            let name = url.deletingPathExtension().lastPathComponent
+
+            let publicAudio = Audio(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+            publicAudio.audioName = name
+            publicAudio.audioPath = url.path
+            publicAudio.duration = AudioManager.shared.getDurationFrom(file: url)
+            publicAudio.isPrivate = false
+            publicAudio.category = category
+        }
     }
 
     private func addPrivateCategories() {

@@ -17,6 +17,7 @@ class SearchResultsViewModelTests: XCTestCase {
     var audioProp: AudioProperties!
 
     override func setUp() {
+        super.setUp()
         sut = SearchResultsViewModel()
         audios = AudioMock()
 
@@ -29,6 +30,7 @@ class SearchResultsViewModelTests: XCTestCase {
         sut = nil
         audios = nil
         audioProp = nil
+        super.tearDown()
     }
 
     // MARK: - GetSearchedAudioItemProperties
