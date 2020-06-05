@@ -56,13 +56,12 @@ class HighlightsCollectionViewModel: HighlightsCollectionViewModelProtocol {
 
     }
 
-    // TODO: enum com os nomes
     func filterHighlights(array: [Audio]) -> [Audio] {
         var filtered: [Audio] = []
         let highlights = [
-            "Ivan tentando vender queijos",
-            "Seu Armando",
-            "Tres conchada de galinha"
+            Constants.highlightArmando,
+            Constants.highlightIvan,
+            Constants.highlightGalinha
         ]
 
         filtered = array.filter { (audio) -> Bool in

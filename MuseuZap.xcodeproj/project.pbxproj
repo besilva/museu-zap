@@ -117,6 +117,7 @@
 		C586E2C72465AA2400B1930B /* FileExchangerErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C586E2C62465AA2400B1930B /* FileExchangerErrorTests.swift */; };
 		C5904C69246AEED4004B9921 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904C68246AEED4004B9921 /* AudioManager.swift */; };
 		C5A05B502489760F0046402D /* AudioCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A05B4F2489760F0046402D /* AudioCellProtocol.swift */; };
+		C5A0AE46248AB795009AFECF /* Três conchada de galinha!.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5A0AE45248AB795009AFECF /* Três conchada de galinha!.mp3 */; };
 		C5A4D4F9248159F6006C97FF /* SearchResultsCellSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A4D4F8248159F6006C97FF /* SearchResultsCellSnapshotTests.swift */; };
 		C5A4D4FC24815B91006C97FF /* SearchResultsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A4D4FB24815B91006C97FF /* SearchResultsViewModelTests.swift */; };
 		C5A4D4FE248161FB006C97FF /* AudioMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A4D4FD248161FB006C97FF /* AudioMock.swift */; };
@@ -127,7 +128,6 @@
 		C5AFABEC246D8CD000E7AF31 /* MockedNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AFABEB246D8CD000E7AF31 /* MockedNotificationCenter.swift */; };
 		C5AFABEF246D8F1700E7AF31 /* wrongExtension.txt in Resources */ = {isa = PBXBuildFile; fileRef = C5AFABED246D8F0000E7AF31 /* wrongExtension.txt */; };
 		C5B2B4FC24818059000D2C7F /* PlayButtonViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2B4FB24818059000D2C7F /* PlayButtonViewTests.swift */; };
-		C5B314BE248AB537009822EE /* Tres conchada de galinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5B314BD248AB537009822EE /* Tres conchada de galinha.mp3 */; };
 		C5BC02A62476C44300095A5C /* ListViewModelDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BC02A52476C44300095A5C /* ListViewModelDelegateMock.swift */; };
 		C5BC02A82476C4C200095A5C /* ListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BC02A72476C4C200095A5C /* ListViewModelTests.swift */; };
 		C5C5963724819A1900E8539E /* SearchResultsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C5963624819A1900E8539E /* SearchResultsViewControllerTests.swift */; };
@@ -296,6 +296,7 @@
 		C586E2C62465AA2400B1930B /* FileExchangerErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExchangerErrorTests.swift; sourceTree = "<group>"; };
 		C5904C68246AEED4004B9921 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		C5A05B4F2489760F0046402D /* AudioCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioCellProtocol.swift; sourceTree = "<group>"; };
+		C5A0AE45248AB795009AFECF /* Três conchada de galinha!.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Três conchada de galinha!.mp3"; sourceTree = "<group>"; };
 		C5A4D4F8248159F6006C97FF /* SearchResultsCellSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsCellSnapshotTests.swift; sourceTree = "<group>"; };
 		C5A4D4FB24815B91006C97FF /* SearchResultsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewModelTests.swift; sourceTree = "<group>"; };
 		C5A4D4FD248161FB006C97FF /* AudioMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMock.swift; sourceTree = "<group>"; };
@@ -305,7 +306,6 @@
 		C5AFABEB246D8CD000E7AF31 /* MockedNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedNotificationCenter.swift; sourceTree = "<group>"; };
 		C5AFABED246D8F0000E7AF31 /* wrongExtension.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wrongExtension.txt; sourceTree = "<group>"; };
 		C5B2B4FB24818059000D2C7F /* PlayButtonViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButtonViewTests.swift; sourceTree = "<group>"; };
-		C5B314BD248AB537009822EE /* Tres conchada de galinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tres conchada de galinha.mp3"; sourceTree = "<group>"; };
 		C5B87713246C4B5E0027A586 /* AudioManagerTest.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = AudioManagerTest.m4a; sourceTree = "<group>"; };
 		C5BC02A52476C44300095A5C /* ListViewModelDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModelDelegateMock.swift; sourceTree = "<group>"; };
 		C5BC02A72476C4C200095A5C /* ListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModelTests.swift; sourceTree = "<group>"; };
@@ -814,7 +814,7 @@
 		C5C77AF72489406E00A1DB6B /* HighlightsAudios */ = {
 			isa = PBXGroup;
 			children = (
-				C5B314BD248AB537009822EE /* Tres conchada de galinha.mp3 */,
+				C5A0AE45248AB795009AFECF /* Três conchada de galinha!.mp3 */,
 				C5C77AF9248940A200A1DB6B /* Ivan tentando vender queijos.mp3 */,
 				C5C77AFA248940A200A1DB6B /* Seu Armando.mp3 */,
 			);
@@ -968,13 +968,13 @@
 			files = (
 				C5C77AFC248940A200A1DB6B /* Ivan tentando vender queijos.mp3 in Resources */,
 				C5149217247315FE0080B9B1 /* Sextou.mp3 in Resources */,
-				C5B314BE248AB537009822EE /* Tres conchada de galinha.mp3 in Resources */,
 				C52F15D4246C7D8B00FBDA98 /* AudioManagerTest.m4a in Resources */,
 				80C274CC2458721C0051A1E6 /* Poppins-Regular.ttf in Resources */,
 				80C274CE2458721C0051A1E6 /* Poppins-SemiBold.ttf in Resources */,
 				6473EDE1243B6D3E00A10F2C /* LaunchScreen.storyboard in Resources */,
 				C5AFABEF246D8F1700E7AF31 /* wrongExtension.txt in Resources */,
 				C5C77AFD248940A200A1DB6B /* Seu Armando.mp3 in Resources */,
+				C5A0AE46248AB795009AFECF /* Três conchada de galinha!.mp3 in Resources */,
 				64F50828246CE8F800625878 /* GoogleService-Info.plist in Resources */,
 				6473EDDE243B6D3E00A10F2C /* Assets.xcassets in Resources */,
 			);
