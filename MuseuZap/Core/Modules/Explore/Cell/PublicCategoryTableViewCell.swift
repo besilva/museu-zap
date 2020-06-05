@@ -26,7 +26,7 @@ class PublicCategoryTableViewCell: UITableViewCell, ViewCodable, CategoryTableVi
 
 //    var container: UIView = UIView()
     var categoryCollection: CategoryCollectionView
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 16.0
@@ -39,6 +39,10 @@ class PublicCategoryTableViewCell: UITableViewCell, ViewCodable, CategoryTableVi
         
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupAction(action: @escaping ((AudioCategory) -> Void)) {
+        self.categoryCollection.action = action
     }
     
     func setupViewModel() {
