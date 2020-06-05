@@ -135,12 +135,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         category1.isPrivate = false
         
         let category2 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
-               category2.categoryName = "Clássicos do Zap"
-               category2.assetIdentifier = "classic"
-               category2.isPrivate = false
+        category2.categoryName = "Clássicos do Zap"
+        category2.assetIdentifier = "classic"
+        category2.isPrivate = false
+
+        let category3 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category3.categoryName = "Piadas"
+        category3.assetIdentifier = "jokes"
+        category3.isPrivate = false
+
+        let category4 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category4.categoryName = "Musicais"
+        category4.assetIdentifier = "musical"
+        category4.isPrivate = false
+
+        let category5 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category5.categoryName = "Sextou!"
+        category5.assetIdentifier = "friday"
+        category5.isPrivate = false
+
+        let category6 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category6.categoryName = "Áudios Resposta"
+        category6.assetIdentifier = "answer"
+        category6.isPrivate = false
+
+        let category7 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category7.categoryName = "Para a família"
+        category7.assetIdentifier = "family"
+        category7.isPrivate = false
+
+        let category8 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category8.categoryName = "Trotes"
+        category8.assetIdentifier = "pranks"
+        category8.isPrivate = false
+
+        let category9 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category9.categoryName = "Quarentena"
+        category9.assetIdentifier = "quarantine"
+        category9.isPrivate = false
         
         AudioCategoryServices().createCategory(category: category1) { _ in }
         AudioCategoryServices().createCategory(category: category2) { _ in }
+        AudioCategoryServices().createCategory(category: category3) { _ in }
+        // TODO: adicionar os outros cagoryServices
     }
     
     // MARK: - Default App Delegate
