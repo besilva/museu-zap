@@ -108,7 +108,7 @@ extension HighlightsCell: ViewCodable {
     func setUpAudioImage() {
         guard let viewModel = viewModel else { return }
 
-        audioImage.contentMode = .scaleAspectFill 
+        audioImage.contentMode = .scaleAspectFit
         audioImage.image = viewModel.image.withRoundedCorners(radius: 10)
     }
 

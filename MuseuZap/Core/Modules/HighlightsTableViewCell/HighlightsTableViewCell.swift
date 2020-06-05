@@ -128,7 +128,7 @@ extension HighlightsTableViewCell: ViewCodable {
             view.bottomAnchor.constraint(equalTo: pageControL.topAnchor, constant: 0).isActive = true
             view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
             view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-            view.heightAnchor.constraint(greaterThanOrEqualToConstant: 197).isActive = true
+            view.heightAnchor.constraint(greaterThanOrEqualToConstant: 217).isActive = true
         }
 
     }
