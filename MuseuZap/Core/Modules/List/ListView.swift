@@ -11,7 +11,7 @@ import UIKit
 class ListView: UIView, ViewCodable {
 
     private var loader: UIActivityIndicatorView!
-    internal var tableView: UITableView = UITableView()
+    internal var tableView: UITableView = UITableView(frame: .zero, style: .grouped)
     private var cellIdentifier: String = "cell"
     var placeholderView: PlaceholderView = PlaceholderView()
     var iconManager: CellIconManager = CellIconManager.shared

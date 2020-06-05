@@ -37,6 +37,9 @@ class ExploreView: ListView {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0,
             let cell = tableView.dequeueReusableCell(withIdentifier: "category", for: indexPath) as? PublicCategoryTableViewCell {
+            cell.setupAction { (category) in
+                self.viewModel?.navigationDelegate?.handleNavigation(action: .category(category))
+            }
             return cell
         } else {
             return super.tableView(tableView, cellForRowAt: indexPath)
