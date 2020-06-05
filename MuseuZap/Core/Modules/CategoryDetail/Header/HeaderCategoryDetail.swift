@@ -69,6 +69,7 @@ extension HeaderCategoryDetail {
     }
     
     func render() {
+        self.backgroundColor = UIColor.Default.background
         let titleFont = UIFont.Default.semibold
         titleLabel.font = titleFont.withSize(20)
         let audioCountFont = UIFont.Default.regular
