@@ -11,9 +11,8 @@ import UIKit
 class ListView: UIView, ViewCodable {
 
     private var loader: UIActivityIndicatorView!
-    private var tableView: UITableView = UITableView()
+    internal var tableView: UITableView = UITableView()
     private var audioCellIdentifier: String = "audioCell"
-    private var highlightsCellIdentifier: String = "highlightsCell"
     var placeholderView: PlaceholderView = PlaceholderView()
     var iconManager: CellIconManager = CellIconManager.shared
     var audioHandler: ((Action) -> Void)?
@@ -54,7 +53,6 @@ class ListView: UIView, ViewCodable {
         tableView.estimatedRowHeight = 76
         tableView.separatorStyle = .none
         tableView.register(AudioCell.self, forCellReuseIdentifier: self.audioCellIdentifier)
-        tableView.register(HighlightsTableViewCell.self, forCellReuseIdentifier: self.highlightsCellIdentifier)
         tableView.insertSubview(refreshControl, at: 0)
 
         // SearchController is configuered when viewModel is set
@@ -157,31 +155,25 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let viewModel = viewModel else { return 0 }
-        return (viewModel.count + 1) // Top áudios
+        return viewModel.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: self.highlightsCellIdentifier, for: indexPath) as? HighlightsTableViewCell {
-                return cell
-            }
-        } else {
-            guard let viewModel = viewModel else { return UITableViewCell() }
+        guard let viewModel = viewModel else { return UITableViewCell() }
 
-            let audio = viewModel.getAudioItemProperties(at: indexPath)
-            if let cell = tableView.dequeueReusableCell(withIdentifier: self.audioCellIdentifier, for: indexPath) as? AudioCell {
+        let audio = viewModel.getAudioItemProperties(at: indexPath)
+        if let cell = tableView.dequeueReusableCell(withIdentifier: self.audioCellIdentifier, for: indexPath) as? AudioCell {
 
-                let viewModel = AudioCellViewModel(title: audio.name, duration: audio.duration, audioPath: audio.path) { (action) in
-    //                Makes List View handle actions performed by the audio cell view model
-                    if let audioHandler = self.audioHandler {
-                        audioHandler(action)
-                    }
+            let viewModel = AudioCellViewModel(title: audio.name, duration: audio.duration, audioPath: audio.path) { (action) in
+//                Makes List View handle actions performed by the audio cell view model
+                if let audioHandler = self.audioHandler {
+                    audioHandler(action)
                 }
-
-                cell.viewModel = viewModel
-                return cell
-
             }
+
+            cell.viewModel = viewModel
+            return cell
+
         }
         return UITableViewCell()
     }

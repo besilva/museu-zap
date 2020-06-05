@@ -33,4 +33,6 @@ extension ViewCodable {
         render()
         setupAcessibilityIdentifiers()
     }
+    
+    func configure() {}
 }

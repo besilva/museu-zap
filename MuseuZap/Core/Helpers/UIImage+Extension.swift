@@ -19,7 +19,7 @@ extension UIImage {
     struct Highlights {
         static let armando = UIImage(named: "Seu Armando")
         static let ivan = UIImage(named: "Ivan tentando vender queijos")
-        static let galinha = UIImage(named: "Três conchada de galinha!")
+        static let galinha = UIImage(named: "Três conchada de galinha")
     }
 }
 

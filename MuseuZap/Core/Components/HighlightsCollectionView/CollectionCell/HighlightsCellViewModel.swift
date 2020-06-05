@@ -42,13 +42,14 @@ class HighlightsCellViewModel: HighlightsCellViewModelProtocol {
 
     // MARK: - Update highlight image
 
+    // TODO: enum com os nomes
     func updateHighlightImage() {
         switch audio.audioName {
         case "Seu Armando":
             self.image = UIImage.Highlights.armando!
         case "Ivan tentando vender queijos":
             self.image = UIImage.Highlights.ivan!
-        case "Três conchada de galinha!":
+        case "Três conchada de galinha":
             self.image = UIImage.Highlights.galinha!
         default:
             print("COULD NOT GET highlight image! \n")

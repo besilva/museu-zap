@@ -99,10 +99,10 @@ class ListViewModel: ListViewModelProtocol {
 
     func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties {
         // Initialize element with normal array and change it case isFiltering
-        var element = audios[indexPath.row - 1]
+        var element = audios[indexPath.row]
 
         if delegate?.isFiltering ?? false {
-            element = searchResultsArray[indexPath.row - 1]
+            element = searchResultsArray[indexPath.row]
         }
 
         return AudioProperties(from: element)

@@ -18,6 +18,7 @@ class ListViewModelTests: XCTestCase {
     var viewDeleg: ListViewModelDelegateMock!
     var audioPrivate: AudioProperties!
     var searchAudioProp: AudioProperties!
+    var index: IndexPath!
 
     override func setUp() {
         audioServices = AudioServicesMock()
@@ -27,6 +28,8 @@ class ListViewModelTests: XCTestCase {
 
         audioPrivate = AudioProperties(from: audioServices.audios.audioPrivate)
         searchAudioProp = AudioProperties(from: audioServices.audios.searchAudio)
+
+        index = IndexPath(row: 0, section: 0)
     }
 
     override func tearDown() {
@@ -35,6 +38,7 @@ class ListViewModelTests: XCTestCase {
         viewDeleg = nil
         audioPrivate = nil
         searchAudioProp = nil
+        index = nil
         sut = nil
         super.tearDown()
     }
@@ -51,9 +55,8 @@ class ListViewModelTests: XCTestCase {
 
     func testGetAudioItemPropertiesFilteringFalse() {
         // First audio from array created by AudioaudServicesMock is type MockAudio().audioPrivate
-        // TODO: ROW STARTING AT ONE DUE TO HIGHLIGHTSCELL apagar!!
-        let indexPath = IndexPath(row: 1, section: 0)
-        let properties = sut.getAudioItemProperties(at: indexPath)
+
+        let properties = sut.getAudioItemProperties(at: index)
 
         XCTAssert(properties == audioPrivate)
     }
@@ -64,9 +67,7 @@ class ListViewModelTests: XCTestCase {
         viewDeleg.isFiltering = true
 
         // GetAudioProperties should return properties from searchResultArray, which should contain only "Search" Audio
-        // TODO: ROW STARTING AT ONE DUE TO HIGHLIGHTSCELL apagar!!
-        let indexPath = IndexPath(row: 1, section: 0)
-        let properties = sut.getAudioItemProperties(at: indexPath)
+        let properties = sut.getAudioItemProperties(at: index)
 
         XCTAssert(properties == searchAudioProp)
     }

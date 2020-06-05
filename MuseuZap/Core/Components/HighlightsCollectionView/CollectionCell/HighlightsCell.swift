@@ -113,8 +113,8 @@ extension HighlightsCell: ViewCodable {
     }
 
     func setUpPlayButton() {
+        // PlayButton here in rendered as original image, not like its original PlayImage
         playButton.icon.image = UIImage.Default.playIconHighlights
-        playButton.icon.tintColor = UIColor.white
         // Adds behaviour to play audio on tap
         let tap = UITapGestureRecognizer(target: self, action: #selector(changePlayStatus))
         playButton.isUserInteractionEnabled = true

@@ -24,6 +24,8 @@ class AudioServicesMock: AudioServicesProtocol {
     }
 
     func getAllAudiosWith(isPrivate bool: Bool, _ completion: @escaping (Error?, [Audio]?) -> Void) {
+        self.isCalled = true
+        completion(nil, [audios.audioPublic])
     }
 
     func updateAllAudios(_ completion: (Error?) -> Void) {
