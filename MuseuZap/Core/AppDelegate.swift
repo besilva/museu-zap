@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func addPublicAudio() {
         var categoryArray = [AudioCategory]()
-        AudioCategoryServices().getAllCategories { (error, array) in
+        AudioCategoryServices().getAllCategoriesWith(isPrivate: false) { (error, array) in
             if let categories = array {
                categoryArray = categories
             } else {
