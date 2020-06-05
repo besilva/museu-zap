@@ -19,8 +19,8 @@ class AudioDataViewTests: XCTestCase {
     }
 
     override func tearDown() {
-        super.tearDown()
         sut = nil
+        super.tearDown()
     }
 
     // MARK: - Labels

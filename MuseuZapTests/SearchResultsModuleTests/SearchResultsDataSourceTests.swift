@@ -31,11 +31,11 @@ class SearchResultsDataSourceTests: XCTestCase {
     }
 
     override func tearDown() {
-        super.tearDown()
         sut = nil
         mockedModel = nil
         tableView = nil
         audioLabel = nil
+        super.tearDown()
     }
 
     // MARK: - Sections

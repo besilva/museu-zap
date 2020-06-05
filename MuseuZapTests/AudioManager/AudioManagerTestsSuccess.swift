@@ -35,11 +35,11 @@ class AudioManagerTestsSuccess: XCTestCase {
     }
 
     override func tearDown() {
-        super.tearDown()
         // Since singleton will be used, just set all the properties back to nil
         sut = AudioManager()
         sampleAudio = nil
         nowPlayingInfos = nil
+        super.tearDown()
     }
 
     // MARK: - CreatePlayer

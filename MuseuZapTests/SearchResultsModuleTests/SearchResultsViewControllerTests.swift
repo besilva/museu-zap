@@ -21,8 +21,8 @@ class SearchResultsViewControllerTests: XCTestCase {
     }
 
     override func tearDown() {
-        super.tearDown()
         sut = nil
+        super.tearDown()
     }
 
     // MARK: - Load View

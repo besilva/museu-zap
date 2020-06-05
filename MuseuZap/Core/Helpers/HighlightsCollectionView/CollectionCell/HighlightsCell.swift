@@ -26,7 +26,7 @@ class HighlightsCell: UICollectionViewCell, AudioCellProtocol {
     var pauseImage: UIImage
     var audioPath: String
 
-    var viewModel: HighlightsCellViewModel? {
+    var viewModel: HighlightsCellViewModelProtocol? {
         didSet {
             render()
             configure()
@@ -93,6 +93,7 @@ extension HighlightsCell: ViewCodable {
     
     func render() {
         self.backgroundColor = UIColor.Default.background
+        renderAudioDataView()
     }
 
     // MARK: - Set Up Helpers
@@ -128,6 +129,12 @@ extension HighlightsCell: ViewCodable {
 
         audioDataView.titleLabel.text = audioTitle
         audioDataView.durationLabel.text = duration.stringFromTimeInterval()
+    }
+
+    // Both light and dark appearance are the same color
+    func renderAudioDataView() {
+        audioDataView.titleLabel.textColor = UIColor.Default.labelHighlights
+        audioDataView.durationLabel.textColor = UIColor.Default.lightLabelHighlights
     }
 
     // MARK: - Constraints

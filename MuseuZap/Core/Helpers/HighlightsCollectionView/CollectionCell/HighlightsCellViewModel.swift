@@ -9,11 +9,17 @@
 import UIKit
 import DatabaseKit
 
-class HighlightsCellViewModel {
+protocol HighlightsCellViewModelProtocol {
+    var audio: Audio { get set }
+    var image: UIImage { get set }
+    func changePlayStatus(cell: HighlightsCell)
+}
+
+class HighlightsCellViewModel: HighlightsCellViewModelProtocol {
 
     // MARK: - Properties
 
-    let audio: Audio
+    var audio: Audio
     var iconManager: CellIconManager
     var image: UIImage
 

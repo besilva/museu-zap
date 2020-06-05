@@ -13,25 +13,33 @@ class HighlightsCollectionViewTests: XCTestCase {
 
     var sut: HighlightsCollectionView!
     var viewModelMock: HighlightsCollectionViewModelMock!
+    var frame: CGRect!
+    var layout: UICollectionViewFlowLayout!
+    var index: IndexPath!
 
     override func setUp() {
         super.setUp()
 
-        let layout = UICollectionViewFlowLayout()
+        layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
         layout.scrollDirection = .horizontal
         // This frame will be used to calculate testUpdateCurrentPage
-        let frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         sut = HighlightsCollectionView(frame: frame, collectionViewLayout: layout)
 
         viewModelMock = HighlightsCollectionViewModelMock()
-
         sut.viewModel = viewModelMock
+
+        index = IndexPath(row: 0, section: 0)
     }
 
     override func tearDown() {
         super.tearDown()
         sut = nil
+        viewModelMock = nil
+        frame = nil
+        layout = nil
+        index = nil
     }
 
     // MARK: - Configuration
@@ -50,7 +58,28 @@ class HighlightsCollectionViewTests: XCTestCase {
 
     // ViewModelMock highlightedAudios has exactly 4 audios, so result should be 4
     func testNumberOfItems() {
-         XCTAssertEqual(sut.numberOfItems(inSection: 0), 4)
+        sut.viewModel = viewModelMock
+        XCTAssertEqual(sut.numberOfItems(inSection: 0), 4)
+    }
+
+    // Test if cell is HighlightsCell, and test if model is the correct one
+    // ViewModelMock at indexPath row 0 should load audioPublic from AudioMock()
+    func testCellForItemAt() {
+
+        let cell = sut.collectionView(sut, cellForItemAt: index)
+
+        guard let highlightCell = cell as? HighlightsCell else {
+            XCTFail("Should be type HighlightsCell")
+            return
+        }
+
+        XCTAssertEqual(highlightCell.viewModel?.audio.audioName, AudioMock().audioPublic.audioName)
+    }
+
+    // Test if CollectionView occupies the entire HighlightsCollectionView
+    func testSize() {
+        let size = sut.collectionView(sut, layout: layout, sizeForItemAt: index)
+        XCTAssertEqual(size, frame.size)
     }
 
     // MARK: - Update page

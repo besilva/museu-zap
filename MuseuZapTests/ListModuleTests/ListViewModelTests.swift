@@ -36,6 +36,7 @@ class ListViewModelTests: XCTestCase {
         audioPrivate = nil
         searchAudioProp = nil
         sut = nil
+        super.tearDown()
     }
 
     // MARK: - Get Array

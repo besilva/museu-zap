@@ -14,10 +14,13 @@ extension UIColor {
         static let lightBackground = UIColor(named: "light-bg")
         static let lightGray = UIColor(named: "light-gray")
         static let label = UIColor(named: "label")
+        static let labelHighlights = UIColor(named: "label-highlights")
         static let lightLabel = UIColor(named: "light-label")
+        static let lightLabelHighlights = UIColor(named: "light-label-highlights")
         static let power = UIColor(named: "power")
         static let powerRefresh = UIColor(named: "powerRefresh")
         static let navBar = UIColor(named: "navBarColor")
         static let pageControl = UIColor(named: "pageControl")
+
     }
 }

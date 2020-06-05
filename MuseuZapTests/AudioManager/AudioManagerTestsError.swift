@@ -29,11 +29,11 @@ class AudioManagerTestsError: XCTestCase {
     }
 
     override func tearDown() {
-        super.tearDown()
         // Since singleton will be used, just set all the properties back to nil
         sut = AudioManager()
         noAudioFile = nil
         nonExistingFile = nil
+        super.tearDown()
     }
 
     // MARK: - Change Player Status

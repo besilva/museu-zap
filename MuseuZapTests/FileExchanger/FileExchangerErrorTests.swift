@@ -26,9 +26,9 @@ class FileExchangerErrorTests: XCTestCase {
     }
 
     override func tearDown() {
-        super.tearDown()
         // This method is called after the invocation of each test method in the class.
         sut = nil
+        super.tearDown()
     }
 
     // MARK: - List

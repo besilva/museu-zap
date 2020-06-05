@@ -19,8 +19,8 @@ class SectionsHeaderViewTests: XCTestCase {
     }
 
     override func tearDown() {
-        super.tearDown()
         sut = nil
+        super.tearDown()
     }
 
     // MARK: - Label

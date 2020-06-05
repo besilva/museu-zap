@@ -12,8 +12,8 @@ import DatabaseKit
 class HighlightsCollectionViewModelMock: HighlightsCollectionViewModelProtocol {
 
     // Protocol
-    var delegate: HighlightsCollectionViewModelDelegate?
-    var tableViewDelegate: HighlightsTableViewCellDelegate?
+    weak var delegate: HighlightsCollectionViewModelDelegate?
+    weak var tableViewDelegate: HighlightsTableViewCellDelegate?
     var highlightedAudios: [Audio]
     func updateCurrentPage(toPage: Int) {
         isCalled = true
