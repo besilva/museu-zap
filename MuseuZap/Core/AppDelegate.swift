@@ -87,33 +87,76 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // All public audios
         guard let urls = Bundle.main.urls(forResourcesWithExtension: "mp3", subdirectory: nil) else { return }
 
+        let funnyAudios = urls.filter { (url) -> Bool in
+            let name = url.deletingPathExtension().lastPathComponent
+            return funny.contains(name)
+        }
+
+        let classicAudios = urls.filter { (url) -> Bool in
+            let name = url.deletingPathExtension().lastPathComponent
+            return classic.contains(name)
+        }
+
+        let jokesAudios = urls.filter { (url) -> Bool in
+            let name = url.deletingPathExtension().lastPathComponent
+            return jokes.contains(name)
+        }
+
+        let musicalAudios = urls.filter { (url) -> Bool in
+            let name = url.deletingPathExtension().lastPathComponent
+            return musical.contains(name)
+        }
+
         let fridayAudios = urls.filter { (url) -> Bool in
             let name = url.deletingPathExtension().lastPathComponent
             return friday.contains(name)
         }
 
+        let answerAudios = urls.filter { (url) -> Bool in
+            let name = url.deletingPathExtension().lastPathComponent
+            return answer.contains(name)
+        }
+
+        let familyAudios = urls.filter { (url) -> Bool in
+            let name = url.deletingPathExtension().lastPathComponent
+            return family.contains(name)
+        }
+
+        let pranksAudios = urls.filter { (url) -> Bool in
+            let name = url.deletingPathExtension().lastPathComponent
+            return pranks.contains(name)
+        }
+
+        let quarantineAudios = urls.filter { (url) -> Bool in
+            let name = url.deletingPathExtension().lastPathComponent
+            return quarantine.contains(name)
+        }
+
         // Loop through array and add audio to its correnponding category
         for category in categoryArray {
             switch category.assetIdentifier {
+            case "funny":
+                addCategoryToAudios(audios: funnyAudios, withCategory: category)
+            case "classic":
+                addCategoryToAudios(audios: classicAudios, withCategory: category)
+            case "jokes":
+                addCategoryToAudios(audios: jokesAudios, withCategory: category)
+            case "musical":
+                addCategoryToAudios(audios: musicalAudios, withCategory: category)
             case "friday":
                 addCategoryToAudios(audios: fridayAudios, withCategory: category)
+            case "answer":
+                addCategoryToAudios(audios: answerAudios, withCategory: category)
+            case "family":
+                addCategoryToAudios(audios: familyAudios, withCategory: category)
+            case "pranks":
+                addCategoryToAudios(audios: pranksAudios, withCategory: category)
+            case "quarantine":
+                addCategoryToAudios(audios: quarantineAudios, withCategory: category)
             default:
                 print()
             }
         }
-
-//        let category = categoryArray[0]
-
-//        for url in urls {
-//            let name = url.deletingPathExtension().lastPathComponent
-//
-//            let publicAudio = Audio(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
-//            publicAudio.audioName = name
-//            publicAudio.audioPath = url.path
-//            publicAudio.duration = AudioManager.shared.getDurationFrom(file: url)
-//            publicAudio.isPrivate = false
-//            publicAudio.category = category
-//        }
     }
 
     private func addPrivateCategories() {
@@ -192,7 +235,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AudioCategoryServices().createCategory(category: category1) { _ in }
         AudioCategoryServices().createCategory(category: category2) { _ in }
         AudioCategoryServices().createCategory(category: category3) { _ in }
-        // TODO: adicionar os outros cagoryServices
+        // TODO: Adicionar os outros cagoryServices
     }
     
     // MARK: - Default App Delegate
