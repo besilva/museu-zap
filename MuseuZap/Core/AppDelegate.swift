@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Every time the application launches, change the main Bundle URL, so public audios are not saved
-        //addPublicAudio()
+        addPublicAudio()
 
         return true
     }
@@ -57,28 +57,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().isTranslucent = false
     }
 
-//    private func addPublicAudio() {
-//        var categoryArray = [AudioCategory]()
-//        AudioCategoryServices().getAllCategories { (error, array) in
-//            if let categories = array {
-//               categoryArray = categories
-//            } else {
-//                print(error ?? "addPublicAudio error\n")
-//            }
-//        }
-//
-//        let path = Bundle.main.path(forResource: "Sextou", ofType: "mp3")!
-//        let url = URL(fileURLWithPath: path, isDirectory: false)
-//        let category = categoryArray[0]
-//
-//        let publicAudio = Audio(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
-//        publicAudio.audioName = "Sextou"
-//        //
-//        publicAudio.audioPath = url.path
-//        publicAudio.duration = AudioManager.shared.getDurationFrom(file: url)
-//        publicAudio.isPrivate = false
-//        publicAudio.category = category
-//    }
+    private func addPublicAudio() {
+        var categoryArray = [AudioCategory]()
+        AudioCategoryServices().getAllCategoriesWith(isPrivate: false) { (error, array) in
+            if let categories = array {
+               categoryArray = categories
+            } else {
+                print(error ?? "addPublicAudio error\n")
+            }
+        }
+
+        let path = Bundle.main.path(forResource: "Sextou", ofType: "mp3")!
+        let url = URL(fileURLWithPath: path, isDirectory: false)
+        let category = categoryArray[0]
+
+        let publicAudio = Audio(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        publicAudio.audioName = "Sextou"
+        //
+        publicAudio.audioPath = url.path
+        publicAudio.duration = AudioManager.shared.getDurationFrom(file: url)
+        publicAudio.isPrivate = false
+        publicAudio.category = category
+    }
 
     private func addPrivateCategories() {
         let category1 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)

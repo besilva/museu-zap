@@ -9,26 +9,19 @@
 import UIKit
 import DatabaseKit
 
-class ExploreViewController: UIViewController, ViewController, NavigationDelegate {
-    var screenName: String { return "Início Destaques"}
-    
-    func handleNavigation(action: Action) {
-        return
-    }
-    
-    weak var delegate: NavigationDelegate?
-    
+class ExploreViewController: ListViewController {
+
     convenience init() {
         self.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     private var myView: ExploreView {
@@ -45,23 +38,26 @@ class ExploreViewController: UIViewController, ViewController, NavigationDelegat
             self.delegate?.handleNavigation(action: action)
         }
         view = myView
+        
+        // This was set to true so resultController could work properly
+        extendedLayoutIncludesOpaqueBars = true
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Fake doing request
-        let audioServices = AudioServices(dao: AudioDAO())
-        let viewModel = ListViewModel(audioServices: audioServices, audioCategoryServices: AudioCategoryServices(), delegate: myView)
-        viewModel.navigationDelegate = self
-        myView.viewModel = viewModel
+    override func retrieveAllAudios() {
+        let audioServices = AudioServices()
+        let audioCategoryServices = AudioCategoryServices()
+        
+        audioServices.getAllAudiosWith(isPrivate: false) { (error, audioArray) in
+            if let audios = audioArray {
+                let viewModel = ListViewModel(audioServices: audioServices, audioCategoryServices: audioCategoryServices, delegate: self.myView)
+                viewModel.navigationDelegate = self
+                viewModel.audios = audios
+                self.myView.viewModel = viewModel
+            } else {
+                // Display here some frendiler message based on Error Type (database error or not)
+                print(error ?? "Some default error value")
+            }
+        }
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-           super.viewDidAppear(animated)
-           self.setScreenName()
-       }
     
-    func setup() {
-        tabBarItem = UITabBarItem(title: "Explorar", image: UIImage(named: "explore-outline"), selectedImage: UIImage(named: "explore-filled"))
-    }
 }

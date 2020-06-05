@@ -19,6 +19,7 @@
 		64576F9A2487EF55003935DA /* StackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64576F952487EB40003935DA /* StackTests.swift */; };
 		64576F9D248880F2003935DA /* ExploreViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64576F9C248880F2003935DA /* ExploreViewTests.swift */; };
 		64576F9F24888B09003935DA /* ExploreViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64576F9E24888B09003935DA /* ExploreViewControllerTests.swift */; };
+		64576FA1248A6B80003935DA /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64576FA0248A6B80003935DA /* ExploreViewModel.swift */; };
 		6461820A24645363003BC3AB /* SnapshotContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6461820724645363003BC3AB /* SnapshotContainer.swift */; };
 		6461820B24645363003BC3AB /* TableViewCellSnapshotContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6461820824645363003BC3AB /* TableViewCellSnapshotContainer.swift */; };
 		6461820C24645363003BC3AB /* IPhoneWidthsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6461820924645363003BC3AB /* IPhoneWidthsEnum.swift */; };
@@ -183,6 +184,7 @@
 		64576F982487EEAA003935DA /* UIViewControllerExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensionTests.swift; sourceTree = "<group>"; };
 		64576F9C248880F2003935DA /* ExploreViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewTests.swift; sourceTree = "<group>"; };
 		64576F9E24888B09003935DA /* ExploreViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewControllerTests.swift; sourceTree = "<group>"; };
+		64576FA0248A6B80003935DA /* ExploreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
 		646181FB24644D8F003BC3AB /* DatabaseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DatabaseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6461820124644DEE003BC3AB /* DatabaseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DatabaseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6461820724645363003BC3AB /* SnapshotContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotContainer.swift; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 				648BCD5B2485283C00DD1A2F /* Cell */,
 				644720802475624300CEDB0B /* ExploreViewController.swift */,
 				64CC44E42476C63400ACC4B4 /* ExploreView.swift */,
+				64576FA0248A6B80003935DA /* ExploreViewModel.swift */,
 			);
 			path = Explore;
 			sourceTree = "<group>";
@@ -1010,6 +1013,7 @@
 				64CC44E32476C3FD00ACC4B4 /* CategoryCellViewModel.swift in Sources */,
 				8024DA2D2449F19000093D37 /* AboutView.swift in Sources */,
 				80C274D1245872980051A1E6 /* UIFont+Extension.swift in Sources */,
+				64576FA1248A6B80003935DA /* ExploreViewModel.swift in Sources */,
 				6443CD502478031500572AD8 /* CategoryCollectionViewModel.swift in Sources */,
 				64CC44E52476C63400ACC4B4 /* ExploreView.swift in Sources */,
 				80DF26FB2472B55C00B6A5FC /* FileErrors.swift in Sources */,
