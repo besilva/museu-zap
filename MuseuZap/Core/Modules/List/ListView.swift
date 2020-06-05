@@ -137,11 +137,9 @@ class ListView: UIView, ViewCodable {
         searchController.searchBar.tintColor = UIColor.Default.power
     }
 }
-
     // MARK: - Table View
 
 extension ListView: UITableViewDelegate, UITableViewDataSource {
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let viewModel = viewModel else { return 0 }
         return viewModel.count

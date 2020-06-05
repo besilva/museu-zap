@@ -33,10 +33,11 @@ class MyAudiosView: ListView {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            let categoriesAmount = Int(self.viewModel?.audioCategories.count ?? 2)
+            let categoriesAmount = Int(self.viewModel?.audioCategories.count ?? 0)
             return (categoriesAmount / 2)
         } else {
-            return super.tableView(tableView, numberOfRowsInSection: section)
+            guard let viewModel = self.viewModel as? MyAudiosViewModel else { return 0 }
+            return viewModel.audiosWithoutCategories.count
         }
     }
 
