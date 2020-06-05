@@ -83,7 +83,8 @@ class CustomCellViewTests: XCTestCase {
     // Tests if changing isPlaying status causes an icon change
     func testPlayAudioIcon() throws {
         self.customCellView.isPlaying = true
-        XCTAssertEqual(self.customCellView.playIcon.image, UIImage(named: "pause.fill"), "Output image does not match")
+
+        XCTAssertEqual(self.customCellView.playIcon.image, self.customCellView.pauseImage, "Output image does not match")
     }
 
     func testShare() throws {

@@ -22,7 +22,7 @@ class CellIconManager {
             self.updateCellStatus(visible: true, cell: audioCell)
         }
     }
-    var subjectCell: AudioCell?
+    var subjectCell: AudioCellProtocol?
     var isCellVisible: Bool
 
     /// Singleton
@@ -86,9 +86,9 @@ class CellIconManager {
     }
     
 //    Handles play status change
-    func changePlayStatus(audioPath: String, cell: AudioCell) {
+    func changePlayStatus(audioPath: String, cell: AudioCellProtocol) {
 //        If cell changed is not current monitored cell
-        if self.subjectCell != cell && self.subjectCell != nil {
+        if self.subjectCell?.audioPath != cell.audioPath && self.subjectCell != nil {
             self.subjectCell!.isPlaying = false
         }
         self.subjectCell = cell
@@ -102,14 +102,16 @@ class CellIconManager {
 }
 
 extension CellIconManager {
-    func updateCellStatus(visible: Bool, cell: AudioCell) {
+    func updateCellStatus(visible: Bool, cell: AudioCellProtocol) {
         
         // If given cell is visible
         if visible {
-            guard let audioPath = cell.viewModel?.audioPath else {
-                cell.isPlaying = false
-                return
-            }
+//            guard let audioPath = cell.viewModel?.audioPath else {
+//                cell.isPlaying = false
+//                return
+//            }
+            let audioPath = cell.audioPath
+
             // If my current state is playing the same audio as the current cell
             switch self.playStatus {
             case .playing(let playingPath):

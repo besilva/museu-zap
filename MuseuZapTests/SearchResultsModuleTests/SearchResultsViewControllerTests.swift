@@ -16,11 +16,13 @@ class SearchResultsViewControllerTests: XCTestCase {
     var sut: SearchResultsViewController!
 
     override func setUp() {
+        super.setUp()
         sut = SearchResultsViewController()
     }
 
     override func tearDown() {
         sut = nil
+        super.tearDown()
     }
 
     // MARK: - Load View

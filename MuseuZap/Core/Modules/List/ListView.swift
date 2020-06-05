@@ -12,7 +12,7 @@ class ListView: UIView, ViewCodable {
 
     private var loader: UIActivityIndicatorView!
     internal var tableView: UITableView = UITableView()
-    private var cellIdentifier: String = "cell"
+    private var audioCellIdentifier: String = "audioCell"
     var placeholderView: PlaceholderView = PlaceholderView()
     var iconManager: CellIconManager = CellIconManager.shared
     var audioHandler: ((Action) -> Void)?
@@ -52,8 +52,9 @@ class ListView: UIView, ViewCodable {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 76
         tableView.separatorStyle = .none
-        tableView.register(AudioCell.self, forCellReuseIdentifier: self.cellIdentifier)
+        tableView.register(AudioCell.self, forCellReuseIdentifier: self.audioCellIdentifier)
         tableView.insertSubview(refreshControl, at: 0)
+        tableView.showsVerticalScrollIndicator = false
 
         // SearchController is configuered when viewModel is set
 
@@ -100,8 +101,8 @@ class ListView: UIView, ViewCodable {
         tableView.setupConstraints { (tableView) in
             tableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
-            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.tableViewSpacing).isActive = true
+            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constants.tableViewSpacing).isActive = true
         }
         
         loader.setupConstraints { (loader) in
@@ -135,6 +136,17 @@ class ListView: UIView, ViewCodable {
         searchController.obscuresBackgroundDuringPresentation = true
         searchController.searchBar.placeholder = "Buscar áudio"
         searchController.searchBar.tintColor = UIColor.Default.power
+
+        // Set SearchBar Button
+       let attributes: [NSAttributedString.Key: Any] = [
+           .font: UIFont.Default.regular.withSize(15)
+       ]
+       UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes(attributes, for: .normal)
+
+        // If available, modify searchBar font
+        if #available(iOS 13, *) {
+            searchController.searchBar.searchTextField.font = UIFont.Default.regular.withSize(15)
+        }
     }
 }
 
@@ -151,18 +163,18 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
         guard let viewModel = viewModel else { return UITableViewCell() }
 
         let audio = viewModel.getAudioItemProperties(at: indexPath)
-        if let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as? AudioCell {
-            
+        if let cell = tableView.dequeueReusableCell(withIdentifier: self.audioCellIdentifier, for: indexPath) as? AudioCell {
+
             let viewModel = AudioCellViewModel(title: audio.name, duration: audio.duration, audioPath: audio.path) { (action) in
 //                Makes List View handle actions performed by the audio cell view model
                 if let audioHandler = self.audioHandler {
                     audioHandler(action)
-                }  
+                }
             }
 
-            cell.viewModel = viewModel           
+            cell.viewModel = viewModel
             return cell
-            
+
         }
         return UITableViewCell()
     }

@@ -35,16 +35,22 @@ class ExploreViewTests: XCTestCase {
     func testDataSource() {
         XCTAssertNotNil(sut.tableView.dataSource)
         let sections: Int = sut.tableView.dataSource?.numberOfSections?(in: sut.tableView) ?? 0
-        XCTAssertEqual(sections, 2)
+        XCTAssertEqual(sections, 3)
     }
     
     func testFirstCell() {
         XCTAssertNotNil(sut.tableView.visibleCells.first)
-        XCTAssert(sut.tableView.visibleCells.first is PublicCategoryTableViewCell)
+        XCTAssert(sut.tableView.visibleCells.first is HighlightsTableViewCell)
     }
-    
+
     func testSecondCell() {
         let cell = sut.tableView(sut.tableView, cellForRowAt: IndexPath(row: 0, section: 1))
+        XCTAssertNotNil(cell)
+        XCTAssert(cell is PublicCategoryTableViewCell)
+    }
+    
+    func testThirdCell() {
+        let cell = sut.tableView(sut.tableView, cellForRowAt: IndexPath(row: 0, section: 2))
         XCTAssertNotNil(cell)
         XCTAssert(cell is AudioCell)
     }

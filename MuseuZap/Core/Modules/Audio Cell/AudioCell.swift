@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AudioCell: UITableViewCell, ViewCodable {
+class AudioCell: UITableViewCell, ViewCodable, AudioCellProtocol {
 
     var container: UIView = UIView()
     var audioDataContentView: UIView = UIView()
@@ -20,11 +20,15 @@ class AudioCell: UITableViewCell, ViewCodable {
     var playIcon: UIImageView = UIImageView()
     var shareIcon: UIImageView = UIImageView()
 
+    // AudioCellProtocol
     var isPlaying: Bool {
         didSet {
-            self.playIcon.image = self.isPlaying ?  UIImage.Default.pauseIcon : UIImage.Default.playIcon
+            self.playIcon.image = self.isPlaying ?  pauseImage : playImage
         }
     }
+    var playImage: UIImage
+    var pauseImage: UIImage
+    var audioPath: String
 
     var viewModel: AudioCellViewModelProtocol? {
         didSet {
@@ -34,6 +38,9 @@ class AudioCell: UITableViewCell, ViewCodable {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         self.isPlaying = false
+        playImage = UIImage()
+        pauseImage = UIImage()
+        audioPath = String()
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
     }
@@ -43,6 +50,7 @@ class AudioCell: UITableViewCell, ViewCodable {
     }
     
     func configure() {
+        setUpAudioCellProtocolInfo()
         setupTitleLabel()
         setupDurationLabel()
         setupPlayButton()
@@ -107,6 +115,13 @@ class AudioCell: UITableViewCell, ViewCodable {
     
     func updateView() {
         configure()
+    }
+
+    func setUpAudioCellProtocolInfo() {
+        guard let viewModel = viewModel else { return }
+        self.playImage = UIImage.Default.playIcon!
+        self.pauseImage = UIImage.Default.pauseIcon!
+        self.audioPath = viewModel.audioPath
     }
     
     func setupAudioDataContentView() {
