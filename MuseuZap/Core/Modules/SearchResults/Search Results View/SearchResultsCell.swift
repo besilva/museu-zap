@@ -16,6 +16,7 @@ class SearchResultsCell: AudioCell {
 
     // So ShareButton does not get called
     override func configure() {
+        setUpAudioCellProtocolInfo()
         setupTitleLabel()
         setupDurationLabel()
         setupPlayButton()

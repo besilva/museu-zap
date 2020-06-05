@@ -109,7 +109,6 @@
 		C539FC1C2488114B00A8A6A0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C539FC1B2488114B00A8A6A0 /* Constants.swift */; };
 		C53A052424892E030002078A /* AudioDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53A052324892E030002078A /* AudioDataView.swift */; };
 		C53F4CAB246598C2001AAD57 /* FileExchangerSuccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53F4CAA246598C2001AAD57 /* FileExchangerSuccessTests.swift */; };
-		C546BB5D248A820F008AE08A /* Três conchada de galinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C546BB5C248A820F008AE08A /* Três conchada de galinha.mp3 */; };
 		C55013F42476C0730036CFFD /* AudioServicesMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55013F32476C0730036CFFD /* AudioServicesMock.swift */; };
 		C5645C6D24746B1B005C411C /* ShareExtensionErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5645C6C24746B1B005C411C /* ShareExtensionErrors.swift */; };
 		C564E5D324780B2300A696D8 /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564E5D024780B2300A696D8 /* SearchResultsView.swift */; };
@@ -128,6 +127,7 @@
 		C5AFABEC246D8CD000E7AF31 /* MockedNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AFABEB246D8CD000E7AF31 /* MockedNotificationCenter.swift */; };
 		C5AFABEF246D8F1700E7AF31 /* wrongExtension.txt in Resources */ = {isa = PBXBuildFile; fileRef = C5AFABED246D8F0000E7AF31 /* wrongExtension.txt */; };
 		C5B2B4FC24818059000D2C7F /* PlayButtonViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2B4FB24818059000D2C7F /* PlayButtonViewTests.swift */; };
+		C5B314BE248AB537009822EE /* Tres conchada de galinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5B314BD248AB537009822EE /* Tres conchada de galinha.mp3 */; };
 		C5BC02A62476C44300095A5C /* ListViewModelDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BC02A52476C44300095A5C /* ListViewModelDelegateMock.swift */; };
 		C5BC02A82476C4C200095A5C /* ListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BC02A72476C4C200095A5C /* ListViewModelTests.swift */; };
 		C5C5963724819A1900E8539E /* SearchResultsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C5963624819A1900E8539E /* SearchResultsViewControllerTests.swift */; };
@@ -288,7 +288,6 @@
 		C539FC1B2488114B00A8A6A0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C53A052324892E030002078A /* AudioDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDataView.swift; sourceTree = "<group>"; };
 		C53F4CAA246598C2001AAD57 /* FileExchangerSuccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExchangerSuccessTests.swift; sourceTree = "<group>"; };
-		C546BB5C248A820F008AE08A /* Três conchada de galinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Três conchada de galinha.mp3"; sourceTree = "<group>"; };
 		C55013F32476C0730036CFFD /* AudioServicesMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioServicesMock.swift; sourceTree = "<group>"; };
 		C5645C6C24746B1B005C411C /* ShareExtensionErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtensionErrors.swift; sourceTree = "<group>"; };
 		C564E5D024780B2300A696D8 /* SearchResultsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
@@ -306,6 +305,7 @@
 		C5AFABEB246D8CD000E7AF31 /* MockedNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedNotificationCenter.swift; sourceTree = "<group>"; };
 		C5AFABED246D8F0000E7AF31 /* wrongExtension.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wrongExtension.txt; sourceTree = "<group>"; };
 		C5B2B4FB24818059000D2C7F /* PlayButtonViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButtonViewTests.swift; sourceTree = "<group>"; };
+		C5B314BD248AB537009822EE /* Tres conchada de galinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tres conchada de galinha.mp3"; sourceTree = "<group>"; };
 		C5B87713246C4B5E0027A586 /* AudioManagerTest.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = AudioManagerTest.m4a; sourceTree = "<group>"; };
 		C5BC02A52476C44300095A5C /* ListViewModelDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModelDelegateMock.swift; sourceTree = "<group>"; };
 		C5BC02A72476C4C200095A5C /* ListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModelTests.swift; sourceTree = "<group>"; };
@@ -814,7 +814,7 @@
 		C5C77AF72489406E00A1DB6B /* HighlightsAudios */ = {
 			isa = PBXGroup;
 			children = (
-				C546BB5C248A820F008AE08A /* Três conchada de galinha.mp3 */,
+				C5B314BD248AB537009822EE /* Tres conchada de galinha.mp3 */,
 				C5C77AF9248940A200A1DB6B /* Ivan tentando vender queijos.mp3 */,
 				C5C77AFA248940A200A1DB6B /* Seu Armando.mp3 */,
 			);
@@ -968,11 +968,11 @@
 			files = (
 				C5C77AFC248940A200A1DB6B /* Ivan tentando vender queijos.mp3 in Resources */,
 				C5149217247315FE0080B9B1 /* Sextou.mp3 in Resources */,
+				C5B314BE248AB537009822EE /* Tres conchada de galinha.mp3 in Resources */,
 				C52F15D4246C7D8B00FBDA98 /* AudioManagerTest.m4a in Resources */,
 				80C274CC2458721C0051A1E6 /* Poppins-Regular.ttf in Resources */,
 				80C274CE2458721C0051A1E6 /* Poppins-SemiBold.ttf in Resources */,
 				6473EDE1243B6D3E00A10F2C /* LaunchScreen.storyboard in Resources */,
-				C546BB5D248A820F008AE08A /* Três conchada de galinha.mp3 in Resources */,
 				C5AFABEF246D8F1700E7AF31 /* wrongExtension.txt in Resources */,
 				C5C77AFD248940A200A1DB6B /* Seu Armando.mp3 in Resources */,
 				64F50828246CE8F800625878 /* GoogleService-Info.plist in Resources */,

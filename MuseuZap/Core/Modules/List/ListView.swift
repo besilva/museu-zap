@@ -54,6 +54,7 @@ class ListView: UIView, ViewCodable {
         tableView.separatorStyle = .none
         tableView.register(AudioCell.self, forCellReuseIdentifier: self.audioCellIdentifier)
         tableView.insertSubview(refreshControl, at: 0)
+        tableView.showsVerticalScrollIndicator = false
 
         // SearchController is configuered when viewModel is set
 
