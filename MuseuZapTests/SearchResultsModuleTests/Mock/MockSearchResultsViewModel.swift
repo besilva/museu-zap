@@ -30,8 +30,11 @@ class MockSearchResultsViewModel: SearchResultsViewModelProtocol {
 
     // MARK: - Audio
 
+    // Function is equal to its original
     func getSearchedAudioItemProperties(at indexPath: IndexPath) -> AudioProperties {
-        return AudioProperties(from: audios.audioPublic)
+        let element = searchResultArray[indexPath.row]
+
+        return AudioProperties(from: element)
     }
 
     // MARK: - Helper

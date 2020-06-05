@@ -16,8 +16,10 @@ class AudioMock {
 
     public var audioPublic = Audio()
     public var audioPrivate = Audio()
-
+    public var highlightAudio = Audio()
     public var searchAudio = Audio()
+
+    public var audioArray: [Audio] = []
 
     init() {
         // Prepare audios
@@ -36,12 +38,19 @@ class AudioMock {
         audioPrivate.duration = 10
         audioPrivate.isPrivate = true
 
+        highlightAudio.audioName = "Seu Armando"
+        highlightAudio.audioPath = FileManager.default.temporaryDirectory.path
+        highlightAudio.category = category2
+        highlightAudio.duration = 1
+        highlightAudio.isPrivate = true
+
         searchAudio.audioName = "Search"
         searchAudio.audioPath = FileManager.default.temporaryDirectory.path
         searchAudio.category = category1
         searchAudio.duration = 5
         searchAudio.isPrivate = false
-        
+
+        audioArray = [audioPublic, audioPrivate, highlightAudio, searchAudio]
     }
     
     internal func addPublicCategories() -> [AudioCategory] {
