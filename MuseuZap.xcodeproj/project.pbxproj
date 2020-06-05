@@ -158,7 +158,6 @@
 		C577FA82248ABEAE00405D94 /* Calados do grupo, quem são?.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA50248ABEAE00405D94 /* Calados do grupo, quem são?.mp3 */; };
 		C577FA83248ABEAE00405D94 /* Esse grupo tá precisando de uns apito.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA51248ABEAE00405D94 /* Esse grupo tá precisando de uns apito.mp3 */; };
 		C577FA84248ABEAE00405D94 /* Chamando o pessoal do grupo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA52248ABEAE00405D94 /* Chamando o pessoal do grupo.mp3 */; };
-		C577FA85248ABEAE00405D94 /* Bom dia, família!.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA53248ABEAE00405D94 /* Bom dia, família!.mp3 */; };
 		C586E2C72465AA2400B1930B /* FileExchangerErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C586E2C62465AA2400B1930B /* FileExchangerErrorTests.swift */; };
 		C5904C69246AEED4004B9921 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904C68246AEED4004B9921 /* AudioManager.swift */; };
 		C5A05B502489760F0046402D /* AudioCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A05B4F2489760F0046402D /* AudioCellProtocol.swift */; };
@@ -167,6 +166,25 @@
 		C5A4D4FC24815B91006C97FF /* SearchResultsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A4D4FB24815B91006C97FF /* SearchResultsViewModelTests.swift */; };
 		C5A4D4FE248161FB006C97FF /* AudioMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A4D4FD248161FB006C97FF /* AudioMock.swift */; };
 		C5AAEDD82487E3BF0059F02A /* SectionsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AAEDD72487E3BF0059F02A /* SectionsHeaderView.swift */; };
+		C5AD8866248AC2B60098EDD8 /* Sextou, seus aligenigena!.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5AD8851248AC2B50098EDD8 /* Sextou, seus aligenigena!.mp3 */; };
+		C5AD8867248AC2B60098EDD8 /* Hoje eu tô igual manga com ovo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5AD8852248AC2B50098EDD8 /* Hoje eu tô igual manga com ovo.mp3 */; };
+		C5AD8868248AC2B60098EDD8 /* Nunca quis tanto que o fim chegasse.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5AD8853248AC2B50098EDD8 /* Nunca quis tanto que o fim chegasse.mp3 */; };
+		C5AD8869248AC2B60098EDD8 /* Bom dia, família!.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5AD8854248AC2B50098EDD8 /* Bom dia, família!.mp3 */; };
+		C5AD886A248AC2B60098EDD8 /* O Vinícius fugiu!.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5AD8856248AC2B50098EDD8 /* O Vinícius fugiu!.mp3 */; };
+		C5AD886B248AC2B60098EDD8 /* Filha passando trote no pai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5AD8857248AC2B50098EDD8 /* Filha passando trote no pai.mp3 */; };
+		C5AD886C248AC2B60098EDD8 /* Quanto tá o corte de cabelo?.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5AD8858248AC2B50098EDD8 /* Quanto tá o corte de cabelo?.mp3 */; };
+		C5AD886D248AC2B60098EDD8 /* Moça, você ligou numa hora ruim.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5AD8859248AC2B50098EDD8 /* Moça, você ligou numa hora ruim.mp3 */; };
+		C5AD886E248AC2B60098EDD8 /* Trote do Jesus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5AD885A248AC2B50098EDD8 /* Trote do Jesus.mp3 */; };
+		C5AD886F248AC2B60098EDD8 /* Trote na atendente da Vivo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5AD885B248AC2B50098EDD8 /* Trote na atendente da Vivo.mp3 */; };
+		C5AD8870248AC2B60098EDD8 /* Antedeguemon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5AD885C248AC2B50098EDD8 /* Antedeguemon.mp3 */; };
+		C5AD8871248AC2B60098EDD8 /* Mãe desesperada com o coronavírus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5AD885E248AC2B60098EDD8 /* Mãe desesperada com o coronavírus.mp3 */; };
+		C5AD8872248AC2B60098EDD8 /* Mãe surtada na quarentena.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5AD885F248AC2B60098EDD8 /* Mãe surtada na quarentena.mp3 */; };
+		C5AD8873248AC2B60098EDD8 /* Caiu auxílio emergencial.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5AD8860248AC2B60098EDD8 /* Caiu auxílio emergencial.mp3 */; };
+		C5AD8874248AC2B60098EDD8 /* Senhora enlouquecendo na quarentena.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5AD8861248AC2B60098EDD8 /* Senhora enlouquecendo na quarentena.mp3 */; };
+		C5AD8875248AC2B60098EDD8 /* A mãe do Coronga.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5AD8862248AC2B60098EDD8 /* A mãe do Coronga.mp3 */; };
+		C5AD8876248AC2B60098EDD8 /* Maridos reclamando do coronavírus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5AD8863248AC2B60098EDD8 /* Maridos reclamando do coronavírus.mp3 */; };
+		C5AD8877248AC2B60098EDD8 /* Gaúchos em quarentena.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5AD8864248AC2B60098EDD8 /* Gaúchos em quarentena.mp3 */; };
+		C5AD8878248AC2B60098EDD8 /* The Walking Velho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5AD8865248AC2B60098EDD8 /* The Walking Velho.mp3 */; };
 		C5AFABE7246D814600E7AF31 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AFABE6246D814600E7AF31 /* FileManager+Extension.swift */; };
 		C5AFABE8246D86E000E7AF31 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AFABE6246D814600E7AF31 /* FileManager+Extension.swift */; };
 		C5AFABEA246D8C8200E7AF31 /* AudioManagerTestsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AFABE9246D8C8200E7AF31 /* AudioManagerTestsError.swift */; };
@@ -382,7 +400,6 @@
 		C577FA50248ABEAE00405D94 /* Calados do grupo, quem são?.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Calados do grupo, quem são?.mp3"; sourceTree = "<group>"; };
 		C577FA51248ABEAE00405D94 /* Esse grupo tá precisando de uns apito.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Esse grupo tá precisando de uns apito.mp3"; sourceTree = "<group>"; };
 		C577FA52248ABEAE00405D94 /* Chamando o pessoal do grupo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Chamando o pessoal do grupo.mp3"; sourceTree = "<group>"; };
-		C577FA53248ABEAE00405D94 /* Bom dia, família!.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bom dia, família!.mp3"; sourceTree = "<group>"; };
 		C586E2C62465AA2400B1930B /* FileExchangerErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExchangerErrorTests.swift; sourceTree = "<group>"; };
 		C5904C68246AEED4004B9921 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		C5A05B4F2489760F0046402D /* AudioCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioCellProtocol.swift; sourceTree = "<group>"; };
@@ -391,6 +408,25 @@
 		C5A4D4FB24815B91006C97FF /* SearchResultsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewModelTests.swift; sourceTree = "<group>"; };
 		C5A4D4FD248161FB006C97FF /* AudioMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMock.swift; sourceTree = "<group>"; };
 		C5AAEDD72487E3BF0059F02A /* SectionsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsHeaderView.swift; sourceTree = "<group>"; };
+		C5AD8851248AC2B50098EDD8 /* Sextou, seus aligenigena!.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sextou, seus aligenigena!.mp3"; sourceTree = "<group>"; };
+		C5AD8852248AC2B50098EDD8 /* Hoje eu tô igual manga com ovo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Hoje eu tô igual manga com ovo.mp3"; sourceTree = "<group>"; };
+		C5AD8853248AC2B50098EDD8 /* Nunca quis tanto que o fim chegasse.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nunca quis tanto que o fim chegasse.mp3"; sourceTree = "<group>"; };
+		C5AD8854248AC2B50098EDD8 /* Bom dia, família!.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bom dia, família!.mp3"; sourceTree = "<group>"; };
+		C5AD8856248AC2B50098EDD8 /* O Vinícius fugiu!.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O Vinícius fugiu!.mp3"; sourceTree = "<group>"; };
+		C5AD8857248AC2B50098EDD8 /* Filha passando trote no pai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Filha passando trote no pai.mp3"; sourceTree = "<group>"; };
+		C5AD8858248AC2B50098EDD8 /* Quanto tá o corte de cabelo?.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Quanto tá o corte de cabelo?.mp3"; sourceTree = "<group>"; };
+		C5AD8859248AC2B50098EDD8 /* Moça, você ligou numa hora ruim.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Moça, você ligou numa hora ruim.mp3"; sourceTree = "<group>"; };
+		C5AD885A248AC2B50098EDD8 /* Trote do Jesus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Trote do Jesus.mp3"; sourceTree = "<group>"; };
+		C5AD885B248AC2B50098EDD8 /* Trote na atendente da Vivo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Trote na atendente da Vivo.mp3"; sourceTree = "<group>"; };
+		C5AD885C248AC2B50098EDD8 /* Antedeguemon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Antedeguemon.mp3; sourceTree = "<group>"; };
+		C5AD885E248AC2B60098EDD8 /* Mãe desesperada com o coronavírus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mãe desesperada com o coronavírus.mp3"; sourceTree = "<group>"; };
+		C5AD885F248AC2B60098EDD8 /* Mãe surtada na quarentena.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mãe surtada na quarentena.mp3"; sourceTree = "<group>"; };
+		C5AD8860248AC2B60098EDD8 /* Caiu auxílio emergencial.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Caiu auxílio emergencial.mp3"; sourceTree = "<group>"; };
+		C5AD8861248AC2B60098EDD8 /* Senhora enlouquecendo na quarentena.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Senhora enlouquecendo na quarentena.mp3"; sourceTree = "<group>"; };
+		C5AD8862248AC2B60098EDD8 /* A mãe do Coronga.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A mãe do Coronga.mp3"; sourceTree = "<group>"; };
+		C5AD8863248AC2B60098EDD8 /* Maridos reclamando do coronavírus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Maridos reclamando do coronavírus.mp3"; sourceTree = "<group>"; };
+		C5AD8864248AC2B60098EDD8 /* Gaúchos em quarentena.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gaúchos em quarentena.mp3"; sourceTree = "<group>"; };
+		C5AD8865248AC2B60098EDD8 /* The Walking Velho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "The Walking Velho.mp3"; sourceTree = "<group>"; };
 		C5AFABE6246D814600E7AF31 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		C5AFABE9246D8C8200E7AF31 /* AudioManagerTestsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManagerTestsError.swift; sourceTree = "<group>"; };
 		C5AFABEB246D8CD000E7AF31 /* MockedNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedNotificationCenter.swift; sourceTree = "<group>"; };
@@ -836,6 +872,9 @@
 		C531EF00248ABC7100A107A3 /* Public Audios */ = {
 			isa = PBXGroup;
 			children = (
+				C5AD885D248AC2B60098EDD8 /* Quarentena */,
+				C5AD8850248AC2B50098EDD8 /* Sextou! */,
+				C5AD8855248AC2B50098EDD8 /* Trotes */,
 				C577FA2E248ABEAC00405D94 /* Áudio resposta */,
 				C577FA41248ABEAD00405D94 /* Clássicos do Zap */,
 				C577FA1C248ABEAC00405D94 /* Engraçados */,
@@ -968,7 +1007,6 @@
 				C577FA50248ABEAE00405D94 /* Calados do grupo, quem são?.mp3 */,
 				C577FA51248ABEAE00405D94 /* Esse grupo tá precisando de uns apito.mp3 */,
 				C577FA52248ABEAE00405D94 /* Chamando o pessoal do grupo.mp3 */,
-				C577FA53248ABEAE00405D94 /* Bom dia, família!.mp3 */,
 			);
 			path = "Para a família";
 			sourceTree = "<group>";
@@ -982,6 +1020,46 @@
 				C5CDA3C32481BDE7006A481B /* SearchResultsDataSourceTests.swift */,
 			);
 			path = SearchResultsModuleTests;
+			sourceTree = "<group>";
+		};
+		C5AD8850248AC2B50098EDD8 /* Sextou! */ = {
+			isa = PBXGroup;
+			children = (
+				C5AD8851248AC2B50098EDD8 /* Sextou, seus aligenigena!.mp3 */,
+				C5AD8852248AC2B50098EDD8 /* Hoje eu tô igual manga com ovo.mp3 */,
+				C5AD8853248AC2B50098EDD8 /* Nunca quis tanto que o fim chegasse.mp3 */,
+				C5AD8854248AC2B50098EDD8 /* Bom dia, família!.mp3 */,
+			);
+			path = "Sextou!";
+			sourceTree = "<group>";
+		};
+		C5AD8855248AC2B50098EDD8 /* Trotes */ = {
+			isa = PBXGroup;
+			children = (
+				C5AD8856248AC2B50098EDD8 /* O Vinícius fugiu!.mp3 */,
+				C5AD8857248AC2B50098EDD8 /* Filha passando trote no pai.mp3 */,
+				C5AD8858248AC2B50098EDD8 /* Quanto tá o corte de cabelo?.mp3 */,
+				C5AD8859248AC2B50098EDD8 /* Moça, você ligou numa hora ruim.mp3 */,
+				C5AD885A248AC2B50098EDD8 /* Trote do Jesus.mp3 */,
+				C5AD885B248AC2B50098EDD8 /* Trote na atendente da Vivo.mp3 */,
+				C5AD885C248AC2B50098EDD8 /* Antedeguemon.mp3 */,
+			);
+			path = Trotes;
+			sourceTree = "<group>";
+		};
+		C5AD885D248AC2B60098EDD8 /* Quarentena */ = {
+			isa = PBXGroup;
+			children = (
+				C5AD885E248AC2B60098EDD8 /* Mãe desesperada com o coronavírus.mp3 */,
+				C5AD885F248AC2B60098EDD8 /* Mãe surtada na quarentena.mp3 */,
+				C5AD8860248AC2B60098EDD8 /* Caiu auxílio emergencial.mp3 */,
+				C5AD8861248AC2B60098EDD8 /* Senhora enlouquecendo na quarentena.mp3 */,
+				C5AD8862248AC2B60098EDD8 /* A mãe do Coronga.mp3 */,
+				C5AD8863248AC2B60098EDD8 /* Maridos reclamando do coronavírus.mp3 */,
+				C5AD8864248AC2B60098EDD8 /* Gaúchos em quarentena.mp3 */,
+				C5AD8865248AC2B60098EDD8 /* The Walking Velho.mp3 */,
+			);
+			path = Quarentena;
 			sourceTree = "<group>";
 		};
 		C5AFABE5246D811200E7AF31 /* Files */ = {
@@ -1163,32 +1241,46 @@
 				C577FA64248ABEAE00405D94 /* Oxe, e quem liga?.mp3 in Resources */,
 				C5C77AFC248940A200A1DB6B /* Ivan tentando vender queijos.mp3 in Resources */,
 				C577FA84248ABEAE00405D94 /* Chamando o pessoal do grupo.mp3 in Resources */,
+				C5AD8866248AC2B60098EDD8 /* Sextou, seus aligenigena!.mp3 in Resources */,
 				C52F15D4246C7D8B00FBDA98 /* AudioManagerTest.m4a in Resources */,
+				C5AD8874248AC2B60098EDD8 /* Senhora enlouquecendo na quarentena.mp3 in Resources */,
 				C577FA76248ABEAE00405D94 /* Gemidão do Zap.mp3 in Resources */,
 				C577FA6B248ABEAE00405D94 /* Aplausos! Arrasou, bonita!.mp3 in Resources */,
 				C577FA80248ABEAE00405D94 /* Eu gosto muito desse grupo.mp3 in Resources */,
 				C577FA5D248ABEAE00405D94 /* Tá em casa quietinho, né?.mp3 in Resources */,
+				C5AD886E248AC2B60098EDD8 /* Trote do Jesus.mp3 in Resources */,
 				C577FA60248ABEAE00405D94 /* Mulher do Zé no hospital.mp3 in Resources */,
 				C577FA6C248ABEAE00405D94 /* Você é burro, cara?.mp3 in Resources */,
 				C577FA75248ABEAE00405D94 /* Aqui tá chovendo e repangalejando, aqui choveu e relampagou.mp3 in Resources */,
 				80C274CC2458721C0051A1E6 /* Poppins-Regular.ttf in Resources */,
 				C577FA6E248ABEAE00405D94 /* Tu tá demais, mulher!.mp3 in Resources */,
+				C5AD8876248AC2B60098EDD8 /* Maridos reclamando do coronavírus.mp3 in Resources */,
+				C5AD8872248AC2B60098EDD8 /* Mãe surtada na quarentena.mp3 in Resources */,
+				C5AD8873248AC2B60098EDD8 /* Caiu auxílio emergencial.mp3 in Resources */,
+				C5AD8871248AC2B60098EDD8 /* Mãe desesperada com o coronavírus.mp3 in Resources */,
 				C577FA62248ABEAE00405D94 /* Piadas do Costinha.mp3 in Resources */,
 				C577FA6D248ABEAE00405D94 /* Mais ou menos.mp3 in Resources */,
 				C577FA61248ABEAE00405D94 /* Se você ver um óculos, não pegue.mp3 in Resources */,
+				C5AD8878248AC2B60098EDD8 /* The Walking Velho.mp3 in Resources */,
 				C577FA7F248ABEAE00405D94 /* Cadê os bois?.mp3 in Resources */,
-				C577FA85248ABEAE00405D94 /* Bom dia, família!.mp3 in Resources */,
 				C577FA78248ABEAE00405D94 /* Cristiano Ronaldo, líder nato.mp3 in Resources */,
 				C577FA65248ABEAE00405D94 /* Tá bonitão na foto, hein?.mp3 in Resources */,
 				C577FA7B248ABEAE00405D94 /* Hoje é dia de maldade!.mp3 in Resources */,
+				C5AD8877248AC2B60098EDD8 /* Gaúchos em quarentena.mp3 in Resources */,
+				C5AD8875248AC2B60098EDD8 /* A mãe do Coronga.mp3 in Resources */,
 				80C274CE2458721C0051A1E6 /* Poppins-SemiBold.ttf in Resources */,
+				C5AD886A248AC2B60098EDD8 /* O Vinícius fugiu!.mp3 in Resources */,
+				C5AD886C248AC2B60098EDD8 /* Quanto tá o corte de cabelo?.mp3 in Resources */,
 				C577FA5B248ABEAE00405D94 /* Sai do quarto, Vinícius.mp3 in Resources */,
+				C5AD886D248AC2B60098EDD8 /* Moça, você ligou numa hora ruim.mp3 in Resources */,
 				C577FA54248ABEAE00405D94 /* Infelizmente vou ter que sair do grupo.mp3 in Resources */,
 				C577FA81248ABEAE00405D94 /* Esse pessoal do grupo tá muito ocupado.mp3 in Resources */,
 				C577FA68248ABEAE00405D94 /* Tome vergonha, vai cuidar da sua vida!.mp3 in Resources */,
 				C577FA63248ABEAE00405D94 /* Piada do chifrudo.mp3 in Resources */,
+				C5AD8867248AC2B60098EDD8 /* Hoje eu tô igual manga com ovo.mp3 in Resources */,
 				C577FA57248ABEAE00405D94 /* Nem gosto de churrasco.mp3 in Resources */,
 				C577FA6F248ABEAE00405D94 /* Tudo sacanagem!.mp3 in Resources */,
+				C5AD8870248AC2B60098EDD8 /* Antedeguemon.mp3 in Resources */,
 				C577FA58248ABEAE00405D94 /* Crianças sinceras.mp3 in Resources */,
 				6473EDE1243B6D3E00A10F2C /* LaunchScreen.storyboard in Resources */,
 				C577FA71248ABEAE00405D94 /* Jesus humilha o Satanás.mp3 in Resources */,
@@ -1207,8 +1299,12 @@
 				C577FA70248ABEAE00405D94 /* Você é zueiro mesmo, hein?.mp3 in Resources */,
 				64F50828246CE8F800625878 /* GoogleService-Info.plist in Resources */,
 				6473EDDE243B6D3E00A10F2C /* Assets.xcassets in Resources */,
+				C5AD886F248AC2B60098EDD8 /* Trote na atendente da Vivo.mp3 in Resources */,
+				C5AD886B248AC2B60098EDD8 /* Filha passando trote no pai.mp3 in Resources */,
 				C577FA55248ABEAE00405D94 /* Sgonoff, feijão torpedo, pudim de leite condenado, linguiça estocana.mp3 in Resources */,
+				C5AD8869248AC2B60098EDD8 /* Bom dia, família!.mp3 in Resources */,
 				C577FA72248ABEAE00405D94 /* Tá chovendo aí?.mp3 in Resources */,
+				C5AD8868248AC2B60098EDD8 /* Nunca quis tanto que o fim chegasse.mp3 in Resources */,
 				C577FA6A248ABEAE00405D94 /* Ah, vá à m*rda!.mp3 in Resources */,
 				C577FA5A248ABEAE00405D94 /* Neiva do céu!.mp3 in Resources */,
 				C577FA74248ABEAE00405D94 /* As verdadeiras letras das músicas.mp3 in Resources */,
