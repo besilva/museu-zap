@@ -21,6 +21,7 @@ class ExploreView: ListView {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        // when there is no audios show place holder view
         guard let viewModel = viewModel, viewModel.count > 0 else { return 0 }
         return 2
     }

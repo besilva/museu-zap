@@ -43,4 +43,21 @@ class ExploreViewController: ListViewController {
         extendedLayoutIncludesOpaqueBars = true
     }
     
+    override func retrieveAllAudios() {
+        let audioServices = AudioServices()
+        let audioCategoryServices = AudioCategoryServices()
+        
+        audioServices.getAllAudiosWith(isPrivate: false) { (error, audioArray) in
+            if let audios = audioArray {
+                let viewModel = ListViewModel(audioServices: audioServices, audioCategoryServices: audioCategoryServices, delegate: self.myView)
+                viewModel.navigationDelegate = self
+                viewModel.audios = audios
+                self.myView.viewModel = viewModel
+            } else {
+                // Display here some frendiler message based on Error Type (database error or not)
+                print(error ?? "Some default error value")
+            }
+        }
+    }
+    
 }
