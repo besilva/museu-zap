@@ -84,10 +84,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
-        let category = categoryArray[0]
-
         // All public audios
         guard let urls = Bundle.main.urls(forResourcesWithExtension: "mp3", subdirectory: nil) else { return }
+
+        let fridayAudios = urls.filter { (url) -> Bool in
+            let name = url.deletingPathExtension().lastPathComponent
+            return friday.contains(name)
+        }
+
+
+
+        // Loop through array and add audio to its correnponding category
+//        for category in categoryArray {
+//            switch category.assetIdentifier {
+//                case "friday":
+//                <#code#>
+//                default:
+//                    print()
+//            }
+//        }
+
+        let category = categoryArray[0]
 
         for url in urls {
             let name = url.deletingPathExtension().lastPathComponent
@@ -210,4 +227,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+
+    // MARK: - PUBLIC AUDIOS HELPER
+
+    let funny = [
+        "Infelizmente vou ter que sair do grupo",
+        "Sgonoff, feijão torpedo, pudim de leite condenado, linguiça estocana",
+        "Oração contra o trabalho",
+        "Nem gosto de churrasco",
+        "Crianças sinceras",
+        "Aviso para não saírem de casa",
+        "Neiva do céu!",
+        "Sai do quarto, Vinícius",
+        "Segunda vai trabalhar toda desgraçada",
+        "Tá em casa quietinho, né?"
+    ]
+
+    let friday = [
+        "Sextou, seus aligenigena!",
+        "Hoje eu tô igual manga com ovo",
+        "Nunca quis tanto que o fim chegasse",
+        "Bom dia, família!"
+    ]
+
+
 }
