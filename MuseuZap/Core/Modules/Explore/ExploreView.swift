@@ -44,6 +44,9 @@ class ExploreView: ListView {
             }
         } else if indexPath.section == 1,
             let cell = tableView.dequeueReusableCell(withIdentifier: categoriesCellIdentifier, for: indexPath) as? PublicCategoryTableViewCell {
+            cell.setupAction { (category) in
+                self.viewModel?.navigationDelegate?.handleNavigation(action: .category(category))
+            }
             return cell
         } else {
             return super.tableView(tableView, cellForRowAt: indexPath)

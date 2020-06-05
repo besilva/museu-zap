@@ -17,6 +17,7 @@ class CategoryCollectionView: UICollectionView, ViewCodable {
             updateView()
         }
     }
+    var action: ((AudioCategory) -> Void)?
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
@@ -60,6 +61,11 @@ extension CategoryCollectionView: UICollectionViewDataSource, UICollectionViewDe
         return CGSize(width: 162, height: 162)
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let categories = viewModel?.categories, let action = action else {  return }
+        action(categories[indexPath.row])
+    }
+    
 }
 
 extension CategoryCollectionView {

@@ -14,7 +14,7 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
     var screenName: String { return "Início Destaques"}
     
     func handleNavigation(action: Action) {
-        return
+        self.delegate?.handleNavigation(action: action)
     }
     
     weak var delegate: NavigationDelegate?
@@ -89,4 +89,5 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
             }
         }
     }
+    
 }
