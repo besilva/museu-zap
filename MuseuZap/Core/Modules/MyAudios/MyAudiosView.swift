@@ -26,6 +26,8 @@ class MyAudiosView: ListView {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        // When there is no audios show place holder view
+        guard let viewModel = viewModel, viewModel.count > 0 else { return 0 }
         return 2
     }
     

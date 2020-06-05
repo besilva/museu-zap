@@ -206,7 +206,6 @@ extension ListView: UISearchResultsUpdating {
     // MARK: - For ViewModel
 
 extension ListView: ListViewModelDelegate {
-
     func reloadTableView() {
         tableView.reloadData()
         guard self.viewModel?.count == 0 || self.viewModel == nil else {

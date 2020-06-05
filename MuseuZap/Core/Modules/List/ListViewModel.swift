@@ -136,6 +136,8 @@ class ListViewModel: ListViewModelProtocol {
     // MARK: - Search
 
     func performSearch(with text: String) {
+//        guard text != "" else { return }
+//        TODO: search should be performed using a service
         searchResultsArray = audios.filter { (audio) -> Bool in
             return audio.audioName.lowercased().contains(text.lowercased())
         }

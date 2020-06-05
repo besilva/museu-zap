@@ -9,15 +9,13 @@
 import UIKit
 import DatabaseKit
 
-class MyAudiosViewController: UIViewController, ViewController, NavigationDelegate {
-    var screenName: String { return "Meus Áudios"}
+class MyAudiosViewController: ListViewController {
+    override var screenName: String { return "Meus Áudios"}
     
-    func handleNavigation(action: Action) {
+    override func handleNavigation(action: Action) {
         return
     }
-    
-    weak var delegate: NavigationDelegate?
-    
+
     convenience init() {
         self.init(nibName: nil, bundle: nil)
     }
@@ -38,7 +36,16 @@ class MyAudiosViewController: UIViewController, ViewController, NavigationDelega
  
     override func loadView() {
         let myView = MyAudiosView()
+//        Sets the action handler for the List View
+        myView.audioHandler = { (action) in
+//            The list view performs the action using the list view controller
+//            Navigation delegate
+            self.delegate?.handleNavigation(action: action)
+        }
         view = myView
+        
+        // This was set to true so resultController could work properly
+        extendedLayoutIncludesOpaqueBars = true
     }
     
     override func viewDidLoad() {
@@ -56,7 +63,24 @@ class MyAudiosViewController: UIViewController, ViewController, NavigationDelega
            self.setScreenName()
        }
     
-    func setup() {
+    override func setup() {
         tabBarItem = UITabBarItem(title: "Meus áudios", image: UIImage(named: "folder"), selectedImage: UIImage(named: "folder.fill"))
+    }
+    
+    override func retrieveAllAudios() {
+        let audioServices = AudioServices()
+        let audioCategoryServices = AudioCategoryServices()
+        
+        audioServices.getAllAudiosWith(isPrivate: true) { (error, audioArray) in
+            if let audios = audioArray {
+                let viewModel = MyAudiosViewModel(audioServices: audioServices, audioCategoryServices: audioCategoryServices, delegate: self.myView)
+                viewModel.navigationDelegate = self
+                viewModel.audios = audios
+                self.myView.viewModel = viewModel
+            } else {
+                // Display here some frendiler message based on Error Type (database error or not)
+                print(error ?? "Some default error value")
+            }
+        }
     }
 }

@@ -10,6 +10,7 @@ import DatabaseKit
 import UIKit
 
 class MyAudiosViewModel: ListViewModel {
+    var audiosWithoutCategories: [Audio] = []
     required init(audioServices: AudioServicesProtocol, audioCategoryServices: AudioCategoryServicesProtocol, delegate: ListViewModelDelegate) {
         super.init(audioServices: audioServices, audioCategoryServices: audioCategoryServices, delegate: delegate)
         retrieveAllCategoriesWith(isPrivate: true)
@@ -17,5 +18,10 @@ class MyAudiosViewModel: ListViewModel {
     
     // TODO: Retrieve audios w/o categories here
     override func retrieveAllAudios() {
+    }
+    
+    override func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties {
+        let element = audiosWithoutCategories[indexPath.row]
+        return AudioProperties(from: element)
     }
 }
