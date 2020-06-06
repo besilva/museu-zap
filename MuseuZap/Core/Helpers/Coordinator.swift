@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DatabaseKit
 
 protocol Coordinator {
     func startFlow()
@@ -17,6 +18,7 @@ enum Action {
     case presentAlert(String?, String?, Double?, UIAlertController.Style)
     case share(String)
     case play(String, ((Error?) -> Void))
+    case category(AudioCategory)
 }
 protocol NavigationDelegate: class {
     func handleNavigation(action: Action)

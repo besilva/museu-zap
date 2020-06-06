@@ -41,6 +41,7 @@ class ExploreViewController: ListViewController {
         
         // This was set to true so resultController could work properly
         extendedLayoutIncludesOpaqueBars = true
+        self.title = "Descobrir"
     }
     
     override func retrieveAllAudios() {

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1C775023F3958F2F42CF9A96 /* libPods-MuseuZap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E240853FC9B2F64191FAD0E3 /* libPods-MuseuZap.a */; };
+		64285BD7248A8EAD0011E91D /* CategoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64285BD6248A8EAD0011E91D /* CategoryDetailView.swift */; };
+		64285BDA248A8F860011E91D /* HeaderCategoryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64285BD9248A8F860011E91D /* HeaderCategoryDetail.swift */; };
+		64285BDC248A92A70011E91D /* HeaderCategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64285BDB248A92A70011E91D /* HeaderCategoryDetailViewModel.swift */; };
 		642C63A4246EC7CE0059FBDC /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C63A3246EC7CE0059FBDC /* AnalyticsManager.swift */; };
 		642C63A7246EE73D0059FBDC /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C63A6246EE73D0059FBDC /* main.swift */; };
 		642C63AB246EE9990059FBDC /* AppDelegateFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C63A8246EE97C0059FBDC /* AppDelegateFake.swift */; };
@@ -34,6 +37,7 @@
 		64A60C3024489D62003B0F26 /* UIView+ConstraintsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A60C2F24489D62003B0F26 /* UIView+ConstraintsExtension.swift */; };
 		64A60C322448A78C003B0F26 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A60C312448A78C003B0F26 /* ListView.swift */; };
 		64A60C342448BD33003B0F26 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A60C332448BD33003B0F26 /* UIViewControllerExtension.swift */; };
+		64ACA157248A9787000F15F7 /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ACA156248A9787000F15F7 /* CategoryDetailViewController.swift */; };
 		64C7757D2457162700FDEA03 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C7757C2457162700FDEA03 /* ShareViewController.swift */; };
 		64C775802457162700FDEA03 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64C7757E2457162700FDEA03 /* MainInterface.storyboard */; };
 		64C775842457162700FDEA03 /* MuseuZapShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 64C7757A2457162700FDEA03 /* MuseuZapShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -204,6 +208,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		64285BD6248A8EAD0011E91D /* CategoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailView.swift; sourceTree = "<group>"; };
+		64285BD9248A8F860011E91D /* HeaderCategoryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCategoryDetail.swift; sourceTree = "<group>"; };
+		64285BDB248A92A70011E91D /* HeaderCategoryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCategoryDetailViewModel.swift; sourceTree = "<group>"; };
 		642C63A3246EC7CE0059FBDC /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		642C63A6246EE73D0059FBDC /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		642C63A8246EE97C0059FBDC /* AppDelegateFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateFake.swift; sourceTree = "<group>"; };
@@ -236,6 +243,7 @@
 		64A60C2F24489D62003B0F26 /* UIView+ConstraintsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ConstraintsExtension.swift"; sourceTree = "<group>"; };
 		64A60C312448A78C003B0F26 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		64A60C332448BD33003B0F26 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		64ACA156248A9787000F15F7 /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
 		64C77575245715E200FDEA03 /* MuseuZap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MuseuZap.entitlements; sourceTree = "<group>"; };
 		64C7757A2457162700FDEA03 /* MuseuZapShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MuseuZapShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		64C7757C2457162700FDEA03 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
@@ -396,6 +404,25 @@
 				DF64FC4F5B2F7DE84F22A03F /* libPods-MuseuZapTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		64285BD5248A8E7B0011E91D /* CategoryDetail */ = {
+			isa = PBXGroup;
+			children = (
+				64285BD8248A8F6D0011E91D /* Header */,
+				64285BD6248A8EAD0011E91D /* CategoryDetailView.swift */,
+				64ACA156248A9787000F15F7 /* CategoryDetailViewController.swift */,
+			);
+			path = CategoryDetail;
+			sourceTree = "<group>";
+		};
+		64285BD8248A8F6D0011E91D /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				64285BD9248A8F860011E91D /* HeaderCategoryDetail.swift */,
+				64285BDB248A92A70011E91D /* HeaderCategoryDetailViewModel.swift */,
+			);
+			path = Header;
 			sourceTree = "<group>";
 		};
 		6447207B24755DB300CEDB0B /* Components */ = {
@@ -611,12 +638,13 @@
 			isa = PBXGroup;
 			children = (
 				80C3AB7C2485456900B17066 /* MyAudios */,
-				6447207F2475622700CEDB0B /* Explore */,
-				803816552476BC990029FE88 /* Placeholder */,
-				80ABB7AD245717F40020CF42 /* Audio Cell */,
-				C5E784D12486C01F00222919 /* HighlightsTableViewCell */,
+				64285BD5248A8E7B0011E91D /* CategoryDetail */,
 				80D80EF12447374400915F1C /* About */,
+				80ABB7AD245717F40020CF42 /* Audio Cell */,
+				6447207F2475622700CEDB0B /* Explore */,
 				64DD6FEA243E0BB800404321 /* List */,
+				803816552476BC990029FE88 /* Placeholder */,
+				C5E784D12486C01F00222919 /* HighlightsTableViewCell */,
 				C564E5CF24780AB600A696D8 /* SearchResults */,
 			);
 			path = Modules;
@@ -1174,6 +1202,7 @@
 				C5E784CD2486BF6700222919 /* HighlightsCollectionView.swift in Sources */,
 				80C6F4D624868B7F00880BEB /* PrivateCategoryCollectionViewModel.swift in Sources */,
 				64A60C2E24489B9E003B0F26 /* ViewCodable.swift in Sources */,
+				64285BDA248A8F860011E91D /* HeaderCategoryDetail.swift in Sources */,
 				C525643F24803A9100EF9509 /* SearchResultsCell.swift in Sources */,
 				80ABB7B1245718300020CF42 /* AudioCell.swift in Sources */,
 				C539FC1C2488114B00A8A6A0 /* Constants.swift in Sources */,
@@ -1197,6 +1226,8 @@
 				80DF26FB2472B55C00B6A5FC /* FileErrors.swift in Sources */,
 				80BB0487246D8856006E4154 /* CellIconManagerDelegate.swift in Sources */,
 				642C63AB246EE9990059FBDC /* AppDelegateFake.swift in Sources */,
+				64ACA157248A9787000F15F7 /* CategoryDetailViewController.swift in Sources */,
+				64285BD7248A8EAD0011E91D /* CategoryDetailView.swift in Sources */,
 				644720812475624300CEDB0B /* ExploreViewController.swift in Sources */,
 				80D80EF02447365C00915F1C /* AboutCoordinator.swift in Sources */,
 				80ABB7B72457230C0020CF42 /* TimeInterval+Extension.swift in Sources */,
@@ -1233,6 +1264,7 @@
 				C5E784D32486C01F00222919 /* HighlightsTableViewCell.swift in Sources */,
 				80C6F4D4248689EC00880BEB /* PrivateCategoryTableViewCell.swift in Sources */,
 				6447207E24755F5900CEDB0B /* CategoryCollectionView.swift in Sources */,
+				64285BDC248A92A70011E91D /* HeaderCategoryDetailViewModel.swift in Sources */,
 				64DD6FF5243E0BB800404321 /* ListViewController.swift in Sources */,
 				6473EDD5243B6D3700A10F2C /* AppDelegate.swift in Sources */,
 				C5E784CE2486BF6700222919 /* HighlightsCollectionViewModel.swift in Sources */,

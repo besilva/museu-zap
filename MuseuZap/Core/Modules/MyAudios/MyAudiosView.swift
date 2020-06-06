@@ -48,6 +48,9 @@ class MyAudiosView: ListView {
             let endIndex = 2*indexPath.row + 2
             cell.categories = self.viewModel?.audioCategories ?? []
             cell.categories = Array(self.viewModel?.audioCategories[startIndex..<endIndex]  ?? [])
+            cell.setupAction { (category) in
+                self.viewModel?.navigationDelegate?.handleNavigation(action: .category(category))
+            }
             return cell
         } else {
             return super.tableView(tableView, cellForRowAt: indexPath)

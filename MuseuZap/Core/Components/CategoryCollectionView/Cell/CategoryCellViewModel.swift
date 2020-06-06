@@ -47,9 +47,9 @@ class CategoryCellViewModel {
         guard let audios = audios, audios > 0 else { return "Sem audios" }
         switch audios {
         case 1:
-            return "\(audios) audio"
+            return "\(audios) áudio"
         default:
-            return "\(audios) audios"
+            return "\(audios) áudios"
         }
     }
     

@@ -31,6 +31,10 @@ class PrivateCategoryTableViewCell: UITableViewCell, ViewCodable, CategoryTableV
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setupAction(action: @escaping ((AudioCategory) -> Void)) {
+        self.categoryCollection.action = action
+    }
+    
     func setupViewModel() {
          categoryCollection.viewModel = PrivateCategoryCollectionViewModel(service: AudioCategoryServices())
     }

@@ -51,6 +51,7 @@ class MyAudiosViewController: ListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Fake doing request
+        self.title = "Meus Áudios"
         let categoryServices = AudioCategoryServices()
         let audioServices = AudioServices(dao: AudioDAO())
         let viewModel = MyAudiosViewModel(audioServices: audioServices, audioCategoryServices: categoryServices, delegate: myView)
