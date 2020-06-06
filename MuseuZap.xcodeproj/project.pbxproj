@@ -612,7 +612,6 @@
 			children = (
 				80C3AB7C2485456900B17066 /* MyAudios */,
 				6447207F2475622700CEDB0B /* Explore */,
-				804A613324780D950053F011 /* MyAudios */,
 				803816552476BC990029FE88 /* Placeholder */,
 				80ABB7AD245717F40020CF42 /* Audio Cell */,
 				C5E784D12486C01F00222919 /* HighlightsTableViewCell */,
@@ -653,13 +652,6 @@
 				804A612E2476D3520053F011 /* PlaceholderError.swift */,
 			);
 			path = Placeholder;
-			sourceTree = "<group>";
-		};
-		804A613324780D950053F011 /* MyAudios */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = MyAudios;
 			sourceTree = "<group>";
 		};
 		80AB6DDD248A92BF00B4DDE5 /* MyAudios */ = {
