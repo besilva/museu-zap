@@ -10,7 +10,7 @@ import UIKit
 
 class ListView: UIView, ViewCodable {
 
-    private var loader: UIActivityIndicatorView!
+    var loader: UIActivityIndicatorView!
     internal var tableView: UITableView = UITableView()
     private var audioCellIdentifier: String = "audioCell"
     var placeholderView: PlaceholderView = PlaceholderView()
@@ -149,11 +149,9 @@ class ListView: UIView, ViewCodable {
         }
     }
 }
-
     // MARK: - Table View
 
 extension ListView: UITableViewDelegate, UITableViewDataSource {
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let viewModel = viewModel else { return 0 }
         return viewModel.count
@@ -218,7 +216,6 @@ extension ListView: UISearchResultsUpdating {
     // MARK: - For ViewModel
 
 extension ListView: ListViewModelDelegate {
-
     func reloadTableView() {
         tableView.reloadData()
         guard self.viewModel?.count == 0 || self.viewModel == nil else {

@@ -14,7 +14,7 @@ protocol CategoryCollectionViewModelDelegate: class {
 }
 
 protocol CategoryCollectionViewModelProtocol {
-    var categories: [AudioCategory] {get}
+    var categories: [AudioCategory] {get set}
     var service: AudioCategoryServicesProtocol {get}
     var delegate: CategoryCollectionViewModelDelegate? {get set}
 }

@@ -110,28 +110,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func addPrivateCategories() {
         let category1 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
         category1.categoryName = "Humor"
-        category1.assetIdentifier = "funny"
+        category1.assetIdentifier = "funny-private"
         category1.isPrivate = true
 
         let category2 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
         category2.categoryName = "Familia"
-        category2.assetIdentifier = "family"
+        category2.assetIdentifier = "family-private"
         category2.isPrivate = true
         
         let category3 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
         category3.categoryName = "Trabalho"
-        category3.assetIdentifier = "work"
+        category3.assetIdentifier = "work-private"
         category3.isPrivate = true
         
         let category4 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
         category4.categoryName = "Estudos"
-        category4.assetIdentifier = "study"
+        category4.assetIdentifier = "study-private"
         category4.isPrivate = true
+        
+        let category5 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category5.categoryName = "Sem Categoria"
+        category5.isPrivate = true
         
         AudioCategoryServices().createCategory(category: category1) { _ in }
         AudioCategoryServices().createCategory(category: category2) { _ in }
         AudioCategoryServices().createCategory(category: category3) { _ in }
         AudioCategoryServices().createCategory(category: category4) { _ in }
+        AudioCategoryServices().createCategory(category: category5) { _ in }
     }
     
     func addPublicCategories() {

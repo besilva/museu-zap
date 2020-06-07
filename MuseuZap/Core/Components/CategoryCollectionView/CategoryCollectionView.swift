@@ -36,6 +36,20 @@ class CategoryCollectionView: UICollectionView, ViewCodable {
     func updateView() {
         self.reloadData()
     }
+    
+    func configure() {
+        self.delegate = self
+        self.dataSource = self
+        self.register(CategoryCell.self, forCellWithReuseIdentifier: "category")
+        self.showsVerticalScrollIndicator = false
+        self.showsHorizontalScrollIndicator = false
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 162, height: 162)
+    }
 }
 
 extension CategoryCollectionView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -54,35 +68,21 @@ extension CategoryCollectionView: UICollectionViewDataSource, UICollectionViewDe
         }
         return UICollectionViewCell()
     }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 162, height: 162)
-    }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let categories = viewModel?.categories, let action = action else {  return }
         action(categories[indexPath.row])
     }
-    
 }
 
 extension CategoryCollectionView {
-    func configure() {
-        self.delegate = self
-        self.dataSource = self
-        self.register(CategoryCell.self, forCellWithReuseIdentifier: "category")
-        self.showsVerticalScrollIndicator = false
-        self.showsHorizontalScrollIndicator = false
-    }
-    
     func setupHierarchy() { }
     
     func setupConstraints() {}
     
     func render() {
         self.backgroundColor = UIColor.Default.background
+        self.layer.masksToBounds = false
     }
 }
 

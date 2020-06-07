@@ -107,7 +107,8 @@ class ListViewModel: ListViewModelProtocol {
 
         return AudioProperties(from: element)
     }
-
+        
+    // MARK: - Categories
     func retrieveAllCategories() {
         audioCategoryServices.getAllCategories { (error, audioCategories) in
             if let categories = audioCategories {
@@ -119,10 +120,24 @@ class ListViewModel: ListViewModelProtocol {
             }
         }
     }
-
+    
+    func retrieveAllCategoriesWith(isPrivate: Bool) {
+        audioCategoryServices.getAllCategoriesWith(isPrivate: isPrivate) { (error, audioCategories) in
+            if let categories = audioCategories {
+                // Assign
+                self.audioCategories = categories.filter({ $0.categoryName != "Sem Categoria"})
+            } else {
+                // Display here some frendiler message based on Error Type (database error or not)
+                print(error ?? "Some default error value")
+            }
+        }
+    }
+    
     // MARK: - Search
 
     func performSearch(with text: String) {
+//        guard text != "" else { return }
+//        TODO: search should be performed using a service
         searchResultsArray = audios.filter { (audio) -> Bool in
             return audio.audioName.lowercased().contains(text.lowercased())
         }

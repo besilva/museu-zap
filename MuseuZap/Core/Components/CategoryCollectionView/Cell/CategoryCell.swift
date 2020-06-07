@@ -56,22 +56,30 @@ class CategoryCell: UICollectionViewCell, ViewCodable {
     }
     
     private func changeColor() {
-        backgroundColor = viewModel?.backgroundColor?.withAlphaComponent(viewModel!.opacity)
-
+        contentView.backgroundColor = viewModel?.backgroundColor?.withAlphaComponent(viewModel!.opacity)
+    }
+    
+    func render() {
+        titleLabel.numberOfLines = 0
+        titleLabel.textColor = UIColor.Default.label
+        titleLabel.font = UIFont.Default.semibold
+        
+        numberOfAudiosLabel.numberOfLines = 1
+        numberOfAudiosLabel.textColor = UIColor.Default.lightLabel
+        numberOfAudiosLabel.font = UIFont.Default.regular.withSize(12)
+        
+        changeColor()
+        layer.cornerRadius = 16
+        self.contentView.layer.cornerRadius = 16
     }
 }
 
 extension CategoryCell {
-    
     func configure() {
         guard let viewModel = viewModel else { return }
         iconImageView.image = viewModel.icon
         titleLabel.text = viewModel.title
         numberOfAudiosLabel.text = viewModel.audiosText
-    }
-    
-    func setupHierarchy() {
-        contentView.addSubviews(iconImageView, titleLabel, numberOfAudiosLabel)
     }
     
     func setupConstraints() {
@@ -101,24 +109,11 @@ extension CategoryCell {
             view.heightAnchor.constraint(equalToConstant: 13).isActive = true
         }
     }
-    
-    func render() {
-        titleLabel.numberOfLines = 0
-        titleLabel.textColor = UIColor.Default.label
-        titleLabel.font = UIFont.Default.semibold
-        
-        numberOfAudiosLabel.numberOfLines = 1
-        numberOfAudiosLabel.textColor = UIColor.Default.lightLabel
-        numberOfAudiosLabel.font = UIFont.Default.regular.withSize(12)
-        
-        changeColor()
-        
-        layer.cornerRadius = 16
-        
+
+    func setupHierarchy() {
+        contentView.addSubviews(iconImageView, titleLabel, numberOfAudiosLabel)
     }
-    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         changeColor()
     }
-    
 }

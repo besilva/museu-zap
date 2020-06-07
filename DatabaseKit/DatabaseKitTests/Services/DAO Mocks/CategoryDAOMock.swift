@@ -10,7 +10,6 @@ import CoreData
 
 /// Mocked Category DAO to throw DatabaseErrors, case shouldThrowError. Else, do nothing.
 class CategoryDAOMock: AudioCategoryDAOProtocol {
-    
     var shouldThrowError: Bool = false
 
     var coreDataHelper = CoreDataTestHelper()
