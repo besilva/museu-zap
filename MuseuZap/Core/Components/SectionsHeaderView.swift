@@ -11,8 +11,6 @@ import UIKit
 /// Creates the view used for tableView Sections
 class SectionsHeaderView: UIView, ViewCodable {
 
-    // TODO: alterar espaçamento da fonte?
-
     // MARK: - Properties
 
     public var seeAllButton: UIButton
@@ -73,8 +71,6 @@ class SectionsHeaderView: UIView, ViewCodable {
         seeAllButton.setTitle("Ver todos", for: .normal)
         seeAllButton.setTitleColor(UIColor.Default.power, for: .normal)
         seeAllButton.titleLabel?.font = UIFont.Default.regular.withSize(15)
-//      seeAllButton.dynamicFont = seeAllButton.titleLabel?.font
-        // TODO: ver a extensão dynamic também para botões ou só colocar label mesmo
     }
 
     // MARK: - Constraints

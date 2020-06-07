@@ -26,21 +26,6 @@ extension AutoLayoutView where Self: UIView {
     }
     
 }
-//
-//extension NSLayoutAnchor {
-//    @discardableResult @objc func equal(to constraint: NSLayoutAnchor, constant: CGFloat) -> NSLayoutConstraint {
-//        let constraint = self.constraint(equalTo: constraint, constant: constant)
-//        constraint.isActive = true
-//        return constraint
-//    }
-//
-//}
-//
-//extension NSLayoutDimension {
-//    @discardableResult @objc func equalTo(constant: CGFloat) -> NSLayoutConstraint {
-//        return self.constraint(equalToConstant: constant)
-//    }
-//}
 
 extension UIView {
     func addSubviews(_ views: UIView...) {

@@ -1,5 +1,5 @@
 //
-//  HeaderCategoryDetail.swift
+//  HeaderCategoryDetailCell.swift
 //  MuseuZap
 //
 //  Created by Bernardo Silva on 05/06/20.
@@ -8,32 +8,34 @@
 
 import UIKit
 
-class HeaderCategoryDetail: UIView, ViewCodable {
+class HeaderCategoryDetailCell: UITableViewCell {
 
     var titleLabel: UILabel
     var audioCountLabel: UILabel
     var lineView: UIView
-    var viewModel: HeaderCategoryDetailViewModel? {
+    var viewModel: HeaderCategoryDetailCellViewModel? {
         didSet {
              configure()
         }
     }
-    
-    override init(frame: CGRect) {
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         titleLabel = UILabel()
         audioCountLabel = UILabel()
         lineView = UIView()
-        super.init(frame: frame)
+
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
         setupView()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
 }
 
-extension HeaderCategoryDetail {
+extension HeaderCategoryDetailCell: ViewCodable {
     
     func configure() {
         titleLabel.text = viewModel?.title
@@ -47,14 +49,14 @@ extension HeaderCategoryDetail {
     func setupConstraints() {
 
         titleLabel.setupConstraints { (view) in
-            view.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+            view.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
             view.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
             view.topAnchor.constraint(equalTo: self.topAnchor, constant: 32).isActive = true
             view.heightAnchor.constraint(equalToConstant: 20).isActive = true
             view.bottomAnchor.constraint(equalTo: self.audioCountLabel.topAnchor, constant: -8).isActive = true
         }
         audioCountLabel.setupConstraints { (view) in
-            view.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+            view.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
             view.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
             view.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor, constant: -24).isActive = true
             view.heightAnchor.constraint(equalToConstant: 12).isActive = true

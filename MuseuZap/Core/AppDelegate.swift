@@ -78,7 +78,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Initialize Entities
 
-    // Warning: cyclomatic_complexity
     private func addPublicAudio(categories: [AudioCategory], helper: PublicAudiosInitializer) {
 
         // Loop through array and add audio to its correnponding category
@@ -184,7 +183,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AudioCategoryServices().createCategory(category: category1) { _ in }
         AudioCategoryServices().createCategory(category: category2) { _ in }
         AudioCategoryServices().createCategory(category: category3) { _ in }
-        // TODO: Adicionar os outros cagoryServices
     }
 
     func getAllPublicCategories() -> [AudioCategory] {

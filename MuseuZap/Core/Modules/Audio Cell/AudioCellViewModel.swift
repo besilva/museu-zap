@@ -26,7 +26,6 @@ class AudioCellViewModel: AudioCellViewModelProtocol {
     
     required init(audioPath: String, audioHandler: @escaping (Action) -> Void) {
         self.audioPath = audioPath
-        // TODO: Call to API function to retrieve audio data
         self.title = "Lorem Ipsum"
         self.duration = 90
         actionHandler = audioHandler
