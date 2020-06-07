@@ -69,7 +69,6 @@
 		808C9E30245F283900FF4FEB /* PublicAudioCellViewModel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808C9E2E245F17D600FF4FEB /* PublicAudioCellViewModel+Extension.swift */; };
 		80A7E965246EDB8D00E7EAA2 /* CellIconManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A7E964246EDB8D00E7EAA2 /* CellIconManagerTests.swift */; };
 		80AB6DDF248A92E700B4DDE5 /* MyAudiosViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AB6DDE248A92E700B4DDE5 /* MyAudiosViewTests.swift */; };
-		80AB6DE1248A92F500B4DDE5 /* MyAudiosViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AB6DE0248A92F400B4DDE5 /* MyAudiosViewControllerTests.swift */; };
 		80AB6DE4248A98BC00B4DDE5 /* MyAudiosViewModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AB6DE3248A98BC00B4DDE5 /* MyAudiosViewModelMock.swift */; };
 		80ABB7AF2457181F0020CF42 /* AudioCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ABB7AE2457181F0020CF42 /* AudioCellViewModelProtocol.swift */; };
 		80ABB7B1245718300020CF42 /* AudioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ABB7B0245718300020CF42 /* AudioCell.swift */; };
@@ -271,7 +270,6 @@
 		808C9E2E245F17D600FF4FEB /* PublicAudioCellViewModel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PublicAudioCellViewModel+Extension.swift"; sourceTree = "<group>"; };
 		80A7E964246EDB8D00E7EAA2 /* CellIconManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellIconManagerTests.swift; sourceTree = "<group>"; };
 		80AB6DDE248A92E700B4DDE5 /* MyAudiosViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAudiosViewTests.swift; sourceTree = "<group>"; };
-		80AB6DE0248A92F400B4DDE5 /* MyAudiosViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAudiosViewControllerTests.swift; sourceTree = "<group>"; };
 		80AB6DE3248A98BC00B4DDE5 /* MyAudiosViewModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAudiosViewModelMock.swift; sourceTree = "<group>"; };
 		80ABB7AE2457181F0020CF42 /* AudioCellViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCellViewModelProtocol.swift; sourceTree = "<group>"; };
 		80ABB7B0245718300020CF42 /* AudioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCell.swift; sourceTree = "<group>"; };
@@ -687,7 +685,6 @@
 			children = (
 				80AB6DE2248A98A200B4DDE5 /* Mocks */,
 				80AB6DDE248A92E700B4DDE5 /* MyAudiosViewTests.swift */,
-				80AB6DE0248A92F400B4DDE5 /* MyAudiosViewControllerTests.swift */,
 			);
 			path = MyAudios;
 			sourceTree = "<group>";
@@ -1291,7 +1288,6 @@
 				C5AFABEC246D8CD000E7AF31 /* MockedNotificationCenter.swift in Sources */,
 				C5F8FB0F2489B17C00DBB1A7 /* HighlightsTableViewCellDelegateMock.swift in Sources */,
 				C527F28D246C22F800714778 /* AudioManagerTestsSuccess.swift in Sources */,
-				80AB6DE1248A92F500B4DDE5 /* MyAudiosViewControllerTests.swift in Sources */,
 				808C9E30245F283900FF4FEB /* PublicAudioCellViewModel+Extension.swift in Sources */,
 				80AB6DDF248A92E700B4DDE5 /* MyAudiosViewTests.swift in Sources */,
 				C586E2C72465AA2400B1930B /* FileExchangerErrorTests.swift in Sources */,
@@ -1504,7 +1500,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 18;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = P33TK2RVAJ;
 				INFOPLIST_FILE = MuseuZap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
