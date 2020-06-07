@@ -13,7 +13,7 @@ class MyAudiosViewController: ListViewController {
     override var screenName: String { return "Meus Áudios"}
     
     override func handleNavigation(action: Action) {
-        return
+        delegate?.handleNavigation(action: action)
     }
 
     convenience init() {

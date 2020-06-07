@@ -122,10 +122,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         category4.assetIdentifier = "study-private"
         category4.isPrivate = true
         
+        let category5 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category5.categoryName = "Sem Categoria"
+        category5.isPrivate = true
+        
         AudioCategoryServices().createCategory(category: category1) { _ in }
         AudioCategoryServices().createCategory(category: category2) { _ in }
         AudioCategoryServices().createCategory(category: category3) { _ in }
         AudioCategoryServices().createCategory(category: category4) { _ in }
+        AudioCategoryServices().createCategory(category: category5) { _ in }
     }
     
     func addPublicCategories() {
