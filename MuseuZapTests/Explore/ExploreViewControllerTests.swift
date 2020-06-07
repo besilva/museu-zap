@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import MuseuZap
+@testable import Blin
 
 class ExploreViewControllerMock: ExploreViewController {
     func setScreenName(analytics: AnalyticsProtocol = FirebaseAnalytics.shared) -> Bool {

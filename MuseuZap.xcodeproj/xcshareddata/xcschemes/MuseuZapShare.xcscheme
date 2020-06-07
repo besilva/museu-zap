@@ -30,7 +30,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6473EDD0243B6D3700A10F2C"
-               BuildableName = "MuseuZap.app"
+               BuildableName = "Blin.app"
                BlueprintName = "MuseuZap"
                ReferencedContainer = "container:MuseuZap.xcodeproj">
             </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6473EDD0243B6D3700A10F2C"
-            BuildableName = "MuseuZap.app"
+            BuildableName = "Blin.app"
             BlueprintName = "MuseuZap"
             ReferencedContainer = "container:MuseuZap.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6473EDD0243B6D3700A10F2C"
-            BuildableName = "MuseuZap.app"
+            BuildableName = "Blin.app"
             BlueprintName = "MuseuZap"
             ReferencedContainer = "container:MuseuZap.xcodeproj">
          </BuildableReference>

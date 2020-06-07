@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import MuseuZap
+@testable import Blin
 
 class StackTests: XCTestCase {
     

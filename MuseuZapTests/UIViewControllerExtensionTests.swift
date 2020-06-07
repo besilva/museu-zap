@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import MuseuZap
+@testable import Blin
 
 class ViewControllerMock: AboutViewController {
     override var screenName: String { return "teste"}

@@ -7,7 +7,7 @@
 //
 
 import DatabaseKit
-@testable import MuseuZap
+@testable import Blin
 
 class HighlightsCollectionViewModelMock: HighlightsCollectionViewModelProtocol {
 

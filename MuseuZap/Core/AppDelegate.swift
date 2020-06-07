@@ -84,20 +84,78 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
-        let category = categoryArray[0]
-
         // All public audios
         guard let urls = Bundle.main.urls(forResourcesWithExtension: "mp3", subdirectory: nil) else { return }
 
-        for url in urls {
+        let funnyAudios = urls.filter { (url) -> Bool in
             let name = url.deletingPathExtension().lastPathComponent
+            return funny.contains(name)
+        }
 
-            let publicAudio = Audio(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
-            publicAudio.audioName = name
-            publicAudio.audioPath = url.path
-            publicAudio.duration = AudioManager.shared.getDurationFrom(file: url)
-            publicAudio.isPrivate = false
-            publicAudio.category = category
+        let classicAudios = urls.filter { (url) -> Bool in
+            let name = url.deletingPathExtension().lastPathComponent
+            return classic.contains(name)
+        }
+
+        let jokesAudios = urls.filter { (url) -> Bool in
+            let name = url.deletingPathExtension().lastPathComponent
+            return jokes.contains(name)
+        }
+
+        let musicalAudios = urls.filter { (url) -> Bool in
+            let name = url.deletingPathExtension().lastPathComponent
+            return musical.contains(name)
+        }
+
+        let fridayAudios = urls.filter { (url) -> Bool in
+            let name = url.deletingPathExtension().lastPathComponent
+            return friday.contains(name)
+        }
+
+        let answerAudios = urls.filter { (url) -> Bool in
+            let name = url.deletingPathExtension().lastPathComponent
+            return answer.contains(name)
+        }
+
+        let familyAudios = urls.filter { (url) -> Bool in
+            let name = url.deletingPathExtension().lastPathComponent
+            return family.contains(name)
+        }
+
+        let pranksAudios = urls.filter { (url) -> Bool in
+            let name = url.deletingPathExtension().lastPathComponent
+            return pranks.contains(name)
+        }
+
+        let quarantineAudios = urls.filter { (url) -> Bool in
+            let name = url.deletingPathExtension().lastPathComponent
+            return quarantine.contains(name)
+        }
+
+        // Loop through array and add audio to its correnponding category
+        for category in categoryArray {
+            switch category.assetIdentifier {
+            case "funny":
+                addCategoryToAudios(audios: funnyAudios, withCategory: category)
+            case "classic":
+                addCategoryToAudios(audios: classicAudios, withCategory: category)
+            case "jokes":
+                addCategoryToAudios(audios: jokesAudios, withCategory: category)
+            case "musical":
+                addCategoryToAudios(audios: musicalAudios, withCategory: category)
+            case "friday":
+                addCategoryToAudios(audios: fridayAudios, withCategory: category)
+            case "answer":
+                addCategoryToAudios(audios: answerAudios, withCategory: category)
+            case "family":
+                addCategoryToAudios(audios: familyAudios, withCategory: category)
+            case "pranks":
+                addCategoryToAudios(audios: pranksAudios, withCategory: category)
+            case "quarantine":
+                addCategoryToAudios(audios: quarantineAudios, withCategory: category)
+            default:
+                print()
+            }
         }
     }
 
@@ -135,12 +193,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         category1.isPrivate = false
         
         let category2 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
-               category2.categoryName = "Clássicos do Zap"
-               category2.assetIdentifier = "classic"
-               category2.isPrivate = false
+        category2.categoryName = "Clássicos do Zap"
+        category2.assetIdentifier = "classic"
+        category2.isPrivate = false
+
+        let category3 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category3.categoryName = "Piadas"
+        category3.assetIdentifier = "jokes"
+        category3.isPrivate = false
+
+        let category4 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category4.categoryName = "Musicais"
+        category4.assetIdentifier = "musical"
+        category4.isPrivate = false
+
+        let category5 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category5.categoryName = "Sextou!"
+        category5.assetIdentifier = "friday"
+        category5.isPrivate = false
+
+        let category6 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category6.categoryName = "Áudios Resposta"
+        category6.assetIdentifier = "answer"
+        category6.isPrivate = false
+
+        let category7 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category7.categoryName = "Para a família"
+        category7.assetIdentifier = "family"
+        category7.isPrivate = false
+
+        let category8 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category8.categoryName = "Trotes"
+        category8.assetIdentifier = "pranks"
+        category8.isPrivate = false
+
+        let category9 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category9.categoryName = "Quarentena"
+        category9.assetIdentifier = "quarantine"
+        category9.isPrivate = false
         
         AudioCategoryServices().createCategory(category: category1) { _ in }
         AudioCategoryServices().createCategory(category: category2) { _ in }
+        AudioCategoryServices().createCategory(category: category3) { _ in }
+        // TODO: Adicionar os outros cagoryServices
     }
     
     // MARK: - Default App Delegate
@@ -173,4 +268,115 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+
+    // MARK: - PUBLIC AUDIOS HELPER
+
+    func addCategoryToAudios(audios: [URL], withCategory category: AudioCategory) {
+        for url in audios {
+            let name = url.deletingPathExtension().lastPathComponent
+
+            let publicAudio = Audio(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+            publicAudio.audioName = name
+            publicAudio.audioPath = url.path
+            publicAudio.duration = AudioManager.shared.getDurationFrom(file: url)
+            publicAudio.isPrivate = false
+            publicAudio.category = category
+        }
+    }
+
+    let funny = [
+        "Infelizmente vou ter que sair do grupo",
+        "Sgonoff, feijão torpedo, pudim de leite condenado, linguiça estocana",
+        "Oração contra o trabalho",
+        "Nem gosto de churrasco",
+        "Crianças sinceras",
+        "Aviso para não saírem de casa",
+        "Neiva do céu!",
+        "Sai do quarto, Vinícius",
+        "Segunda vai trabalhar toda desgraçada",
+        "Tá em casa quietinho, né?"
+    ]
+
+    let classic = [
+        "Aqui tá chovendo e repangalejando, aqui choveu e relampagou",
+        "Gemidão do Zapo",
+        "Cristiano Ronaldo, líder nato",
+        "Oloquinho, meu!",
+        "Peixoto",
+        "Hoje é dia de maldade!",
+        // Destaques
+        "Três conchada de galinha!",
+        "Ivan tentando vender queijos",
+        "Seu Armando"
+    ]
+
+    let jokes = [
+        "O ladrão de pato e o poeta",
+        "Mensagem errada acabou matando a velha",
+        "Mulher do Zé no hospital",
+        "Se você ver um óculos, não pegue",
+        "Piadas do Costinha",
+        "Piada do chifrudo"
+    ]
+
+    let musical = [
+        "Jesus humilha o Satanás",
+        "Tá chovendo aí?",
+        "Cantando a música do Jaspion",
+        "As verdadeiras letras das músicas"
+    ]
+
+    let friday = [
+        "Sextou, seus aligenigena!",
+        "Hoje eu tô igual manga com ovo",
+        "Nunca quis tanto que o fim chegasse",
+        "Bom dia, família!"
+    ]
+
+    let answer = [
+        "Oxe, e quem liga?",
+        "Tá bonitão na foto, hein?",
+        "Sai fora, doido",
+        "Tem alguém vivo aí?",
+        "Tome vergonha, vai cuidar da sua vida!",
+        "Coé, rapaziada?",
+        "Ah, vá à m*rda!",
+        "Aplausos! Arrasou, bonita!",
+        "Você é burro, cara?",
+        "Mais ou menos",
+        "Tu tá demais, mulher!",
+        "Tudo sacanagem!",
+        "Você é zueiro mesmo, hein?"
+    ]
+
+    let family = [
+        "Cadê os bois?",
+        "Eu gosto muito desse grupo",
+        "Esse pessoal do grupo tá muito ocupado",
+        "Calados do grupo, quem são?",
+        "Esse grupo tá precisando de uns apito",
+        "Chamando o pessoal do grupo"
+    ]
+
+    let pranks = [
+        "O Vinícius fugiu!",
+        "Filha passando trote no pai",
+        "Quanto tá o corte de cabelo?",
+        "Moça, você ligou numa hora ruim",
+        "Trote do Jesus",
+        "Trote na atendente da Vivo",
+        "Antedeguemon"
+    ]
+
+    let quarantine = [
+        "Mãe desesperada com o coronavírus",
+        "Mãe surtada na quarentena",
+        "Caiu auxílio emergencial",
+        "Senhora enlouquecendo na quarentena",
+        "A mãe do Coronga",
+        "Maridos reclamando do coronavírus",
+        "Gaúchos em quarentena",
+        "The Walking Velho"
+    ]
+
 }

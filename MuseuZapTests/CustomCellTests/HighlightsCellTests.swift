@@ -8,7 +8,7 @@
 
 import DatabaseKit
 import XCTest
-@testable import MuseuZap
+@testable import Blin
 
 class HighlightsCellViewModelMock: HighlightsCellViewModelProtocol {
     // Protocol
