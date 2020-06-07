@@ -8,8 +8,6 @@
 
 import Foundation
 
-// TODO: FileExchanger deveria estar em MuseuZap? Só esta sendo utulziada pela shareExtension, mas a shareExtension no momento não tem tests
-
 /// Helper Class to exchange files between ShareExtension and out AppGroup using FileManager
 public class FileExchanger {
 
@@ -48,7 +46,7 @@ public class FileExchanger {
 
         do {
             list = try FileManager.default.contentsOfDirectory(at: appGroupFolderURL,
-                                                               includingPropertiesForKeys:[URLResourceKey.fileSizeKey])
+                                                               includingPropertiesForKeys: [URLResourceKey.fileSizeKey])
         } catch {
             print("COULD NOT LIST ITEMS in GROUP FOLDER FOR SOME REASON \n", error)
             throw FileErrors.listContents

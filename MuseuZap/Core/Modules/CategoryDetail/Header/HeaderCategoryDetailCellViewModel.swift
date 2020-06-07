@@ -1,5 +1,5 @@
 //
-//  HeaderCategoryDetailViewModel.swift
+//  HeaderCategoryDetailCellViewModel.swift
 //  MuseuZap
 //
 //  Created by Bernardo Silva on 05/06/20.
@@ -9,7 +9,7 @@
 import Foundation
 import DatabaseKit
 
-class HeaderCategoryDetailViewModel {
+class HeaderCategoryDetailCellViewModel {
     let category: AudioCategory
     
     lazy var title: String = {
