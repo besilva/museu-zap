@@ -1,4 +1,3 @@
-
 //
 //  HighlightsTableViewCellTestss.swift
 //  MuseuZapTests
@@ -8,7 +7,7 @@
 //
 
 import XCTest
-@testable import MuseuZap
+@testable import Blin
 
 class HighlightsTableViewCellTests: XCTestCase {
 

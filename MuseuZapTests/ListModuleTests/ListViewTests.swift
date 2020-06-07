@@ -9,7 +9,7 @@
 import XCTest
 import UIKit
 import DatabaseKit
-@testable import MuseuZap
+@testable import Blin
 
 class ListViewModelMock: ListViewModelProtocol {
     var audios: [Audio] = []

@@ -8,7 +8,7 @@
 
 import XCTest
 import MediaPlayer
-@testable import MuseuZap
+@testable import Blin
 
 class AudioManagerTestsSuccess: XCTestCase {
 

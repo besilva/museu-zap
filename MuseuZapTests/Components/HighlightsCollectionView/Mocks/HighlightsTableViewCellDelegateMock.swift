@@ -6,7 +6,7 @@
 //  Copyright © 2020 Bernardo. All rights reserved.
 //
 
-@testable import MuseuZap
+@testable import Blin
 
 class HighlightsTableViewCellDelegateMock: HighlightsTableViewCellDelegate {
     public var isCalled: Bool = false

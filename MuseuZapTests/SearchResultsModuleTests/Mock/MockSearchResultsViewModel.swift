@@ -7,7 +7,7 @@
 //
 
 import DatabaseKit
-@testable import MuseuZap
+@testable import Blin
 
 class MockSearchResultsViewModel: SearchResultsViewModelProtocol {
     // MARK: - Properties
