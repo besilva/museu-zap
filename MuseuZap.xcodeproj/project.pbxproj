@@ -99,6 +99,8 @@
 		AA44CB276164DDA1890005A1 /* libPods-MuseuZapTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF64FC4F5B2F7DE84F22A03F /* libPods-MuseuZapTests.a */; };
 		C500AF6F246B8A1A00F5AC0A /* AudioErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500AF6E246B8A1A00F5AC0A /* AudioErrors.swift */; };
 		C500AF70246B8AC700F5AC0A /* AudioErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500AF6E246B8A1A00F5AC0A /* AudioErrors.swift */; };
+		C5054A2E248D6BE300510850 /* PublicAudiosInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5054A2D248D6BE300510850 /* PublicAudiosInitializer.swift */; };
+		C5054A30248D727F00510850 /* PublicAudiosInitializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5054A2F248D727F00510850 /* PublicAudiosInitializerTests.swift */; };
 		C50DEAA924898086002CEDBF /* AudioDataViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DEAA824898086002CEDBF /* AudioDataViewTests.swift */; };
 		C50DEAAB24898EAE002CEDBF /* SectionsHeaderViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DEAAA24898EAE002CEDBF /* SectionsHeaderViewTests.swift */; };
 		C50DEAAE2489A3EC002CEDBF /* HighlightsCollectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DEAAD2489A3EB002CEDBF /* HighlightsCollectionViewModelTests.swift */; };
@@ -346,6 +348,8 @@
 		A2D4D7BBFE78FDD91CF8A220 /* Pods-MuseuZapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseuZapTests.debug.xcconfig"; path = "Target Support Files/Pods-MuseuZapTests/Pods-MuseuZapTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA4B57FE60AB825365349231 /* Pods-MuseuZap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseuZap.debug.xcconfig"; path = "Target Support Files/Pods-MuseuZap/Pods-MuseuZap.debug.xcconfig"; sourceTree = "<group>"; };
 		C500AF6E246B8A1A00F5AC0A /* AudioErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioErrors.swift; sourceTree = "<group>"; };
+		C5054A2D248D6BE300510850 /* PublicAudiosInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicAudiosInitializer.swift; sourceTree = "<group>"; };
+		C5054A2F248D727F00510850 /* PublicAudiosInitializerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicAudiosInitializerTests.swift; sourceTree = "<group>"; };
 		C50DEAA824898086002CEDBF /* AudioDataViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDataViewTests.swift; sourceTree = "<group>"; };
 		C50DEAAA24898EAE002CEDBF /* SectionsHeaderViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsHeaderViewTests.swift; sourceTree = "<group>"; };
 		C50DEAAD2489A3EB002CEDBF /* HighlightsCollectionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsCollectionViewModelTests.swift; sourceTree = "<group>"; };
@@ -587,6 +591,7 @@
 				6461820824645363003BC3AB /* TableViewCellSnapshotContainer.swift */,
 				6461820924645363003BC3AB /* IPhoneWidthsEnum.swift */,
 				C5A4D4FD248161FB006C97FF /* AudioMock.swift */,
+				C5054A2F248D727F00510850 /* PublicAudiosInitializerTests.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -730,6 +735,7 @@
 				642C63A3246EC7CE0059FBDC /* AnalyticsManager.swift */,
 				C539FC1B2488114B00A8A6A0 /* Constants.swift */,
 				C5A05B4F2489760F0046402D /* AudioCellProtocol.swift */,
+				C5054A2D248D6BE300510850 /* PublicAudiosInitializer.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1490,6 +1496,7 @@
 				80F7235E245319DA00583137 /* UILabel+Extension.swift in Sources */,
 				804A612F2476D3520053F011 /* PlaceholderError.swift in Sources */,
 				80ABB7AF2457181F0020CF42 /* AudioCellViewModelProtocol.swift in Sources */,
+				C5054A2E248D6BE300510850 /* PublicAudiosInitializer.swift in Sources */,
 				C500AF6F246B8A1A00F5AC0A /* AudioErrors.swift in Sources */,
 				C5A05B502489760F0046402D /* AudioCellProtocol.swift in Sources */,
 				80D80EF62447378A00915F1C /* AboutViewModel.swift in Sources */,
@@ -1524,6 +1531,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5054A30248D727F00510850 /* PublicAudiosInitializerTests.swift in Sources */,
 				648297DF2487E8D6000E6376 /* CategoryCollectionViewTests.swift in Sources */,
 				C5A4D4FE248161FB006C97FF /* AudioMock.swift in Sources */,
 				C50DEAA924898086002CEDBF /* AudioDataViewTests.swift in Sources */,
