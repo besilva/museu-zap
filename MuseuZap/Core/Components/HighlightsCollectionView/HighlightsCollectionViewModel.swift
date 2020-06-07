@@ -9,8 +9,6 @@
 import Foundation
 import DatabaseKit
 
-// TODO: pra que quem é pra quem?
-
 protocol HighlightsCollectionViewModelDelegate: class {
     func reloadCollectionData()
 }
