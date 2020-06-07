@@ -8,7 +8,7 @@
 
 import SnapshotTesting
 import XCTest
-@testable import MuseuZap
+@testable import Blin
 @testable import DatabaseKit
 
 class CategoryCollectionViewSnapshotTests: XCTestCase {

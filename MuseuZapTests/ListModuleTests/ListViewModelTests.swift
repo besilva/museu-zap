@@ -8,7 +8,7 @@
 
 import XCTest
 import DatabaseKit
-@testable import MuseuZap
+@testable import Blin
 
 class ListViewModelTests: XCTestCase {
 

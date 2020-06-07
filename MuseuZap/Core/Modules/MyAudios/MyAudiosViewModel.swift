@@ -16,8 +16,17 @@ class MyAudiosViewModel: ListViewModel {
         retrieveAllCategoriesWith(isPrivate: true)
     }
     
+    func getNoCategory() {
+        AudioCategoryServices().getAllCategoriesWith(isPrivate: true) { (_, categories) in // error, categories
+            if let categories = categories,
+                let category = categories.first(where: { $0.categoryName == "Sem Categoria"}) {
+                self.audiosWithoutCategories = Array(category.audios ?? [])
+            }
+        }
+    }
     // TODO: Retrieve audios w/o categories here
     override func retrieveAllAudios() {
+        getNoCategory()
     }
     
     override func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties {

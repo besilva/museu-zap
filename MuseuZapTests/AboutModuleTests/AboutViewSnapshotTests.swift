@@ -9,7 +9,7 @@
 import UIKit
 import XCTest
 import SnapshotTesting
-@testable import MuseuZap
+@testable import Blin
 
 class AboutViewSnapshotTests: XCTestCase {
     var aboutView: AboutView!

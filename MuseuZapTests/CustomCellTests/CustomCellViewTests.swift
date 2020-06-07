@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import MuseuZap
+@testable import Blin
 
 class MockAudioCellViewModel: AudioCellViewModelProtocol {
     weak var delegate: AudioCellViewModelDelegate?

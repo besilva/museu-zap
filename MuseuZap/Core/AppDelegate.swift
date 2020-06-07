@@ -45,7 +45,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Every time the application launches, change the main Bundle URL, so public audios are not saved
-        addPublicAudio()
+        let publicCategories = getAllPublicCategories()
+        let publicAudiosInit = PublicAudiosInitializer()
+        addPublicAudio(categories: publicCategories, helper: publicAudiosInit)
 
         return true
     }
@@ -74,30 +76,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          }
     }
 
-    private func addPublicAudio() {
-        var categoryArray = [AudioCategory]()
-        AudioCategoryServices().getAllCategoriesWith(isPrivate: false) { (error, array) in
-            if let categories = array {
-               categoryArray = categories
-            } else {
-                print(error ?? "addPublicAudio error\n")
+    // MARK: - Initialize Entities
+
+    // Warning: cyclomatic_complexity
+    private func addPublicAudio(categories: [AudioCategory], helper: PublicAudiosInitializer) {
+
+        // Loop through array and add audio to its correnponding category
+        for category in categories {
+            switch category.assetIdentifier {
+            case "funny":
+                addCategoryToAudios(audios: helper.funnyAudios, withCategory: category)
+            case "classic":
+                addCategoryToAudios(audios: helper.classicAudios, withCategory: category)
+            case "jokes":
+                addCategoryToAudios(audios: helper.jokesAudios, withCategory: category)
+            case "musical":
+                addCategoryToAudios(audios: helper.musicalAudios, withCategory: category)
+            case "friday":
+                addCategoryToAudios(audios: helper.fridayAudios, withCategory: category)
+            case "answer":
+                addCategoryToAudios(audios: helper.answerAudios, withCategory: category)
+            case "family":
+                addCategoryToAudios(audios: helper.familyAudios, withCategory: category)
+            case "pranks":
+                addCategoryToAudios(audios: helper.pranksAudios, withCategory: category)
+            case "quarantine":
+                addCategoryToAudios(audios: helper.quarantineAudios, withCategory: category)
+            default:
+                print()
             }
-        }
-
-        let category = categoryArray[0]
-
-        // All public audios
-        guard let urls = Bundle.main.urls(forResourcesWithExtension: "mp3", subdirectory: nil) else { return }
-
-        for url in urls {
-            let name = url.deletingPathExtension().lastPathComponent
-
-            let publicAudio = Audio(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
-            publicAudio.audioName = name
-            publicAudio.audioPath = url.path
-            publicAudio.duration = AudioManager.shared.getDurationFrom(file: url)
-            publicAudio.isPrivate = false
-            publicAudio.category = category
         }
     }
 
@@ -140,12 +147,77 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         category1.isPrivate = false
         
         let category2 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
-               category2.categoryName = "Clássicos do Zap"
-               category2.assetIdentifier = "classic"
-               category2.isPrivate = false
+        category2.categoryName = "Clássicos do Zap"
+        category2.assetIdentifier = "classic"
+        category2.isPrivate = false
+
+        let category3 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category3.categoryName = "Piadas"
+        category3.assetIdentifier = "jokes"
+        category3.isPrivate = false
+
+        let category4 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category4.categoryName = "Musicais"
+        category4.assetIdentifier = "musical"
+        category4.isPrivate = false
+
+        let category5 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category5.categoryName = "Sextou!"
+        category5.assetIdentifier = "friday"
+        category5.isPrivate = false
+
+        let category6 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category6.categoryName = "Áudios Resposta"
+        category6.assetIdentifier = "answer"
+        category6.isPrivate = false
+
+        let category7 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category7.categoryName = "Para a família"
+        category7.assetIdentifier = "family"
+        category7.isPrivate = false
+
+        let category8 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category8.categoryName = "Trotes"
+        category8.assetIdentifier = "pranks"
+        category8.isPrivate = false
+
+        let category9 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+        category9.categoryName = "Quarentena"
+        category9.assetIdentifier = "quarantine"
+        category9.isPrivate = false
         
         AudioCategoryServices().createCategory(category: category1) { _ in }
         AudioCategoryServices().createCategory(category: category2) { _ in }
+        AudioCategoryServices().createCategory(category: category3) { _ in }
+        // TODO: Adicionar os outros cagoryServices
+    }
+
+    func getAllPublicCategories() -> [AudioCategory] {
+        var categoryArray = [AudioCategory]()
+
+        AudioCategoryServices().getAllCategoriesWith(isPrivate: false) { (error, array) in
+            if let categories = array {
+               categoryArray = categories
+            } else {
+                print(error ?? "addPublicAudio error\n")
+            }
+        }
+
+        return categoryArray
+    }
+
+    // Public audios helper
+    func addCategoryToAudios(audios: [URL], withCategory category: AudioCategory) {
+        for url in audios {
+            let name = url.deletingPathExtension().lastPathComponent
+
+            let publicAudio = Audio(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+            publicAudio.audioName = name
+            publicAudio.audioPath = url.path
+            publicAudio.duration = AudioManager.shared.getDurationFrom(file: url)
+            publicAudio.isPrivate = false
+            publicAudio.category = category
+        }
     }
     
     // MARK: - Default App Delegate
