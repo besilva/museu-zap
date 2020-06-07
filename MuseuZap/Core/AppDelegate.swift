@@ -40,8 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Add a default category and default audio, only once per user Defaults
         if UserDefaults.standard.object(forKey: "isFirstTime") == nil {
             UserDefaults.standard.set(false, forKey: "isFirstTime")
-            addPrivateCategories()
             addPublicCategories()
+        }
+        AudioCategoryServices().getAllCategoriesWith(isPrivate: true) { (_, categories) in
+            if (categories?.count ?? 0) == 0 {
+                self.addPrivateCategories()
+            }
         }
         
         // Every time the application launches, change the main Bundle URL, so public audios are not saved
