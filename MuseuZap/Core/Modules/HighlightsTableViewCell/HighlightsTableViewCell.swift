@@ -26,8 +26,6 @@ class HighlightsTableViewCell: UITableViewCell {
         sectionView = SectionsHeaderView()
 
         let layout = UICollectionViewFlowLayout()
-        // TODO: colocar espacamento igual a Constants.tableViewSpacing To better give the carousel sensation,
-        // Mas isso quebra o layout das células, teria que pensar melhor nisso
         layout.minimumLineSpacing = 0
         layout.scrollDirection = .horizontal
 

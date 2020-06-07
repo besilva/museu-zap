@@ -42,7 +42,6 @@ class AudioCellViewModelMock: AudioCellViewModelProtocol {
         self.audioURL = audioURL
         self.playing = false
         self.shareTouch = false
-        // TODO: Call to API function to retrieve audio data
         self.title = "Lorem Ipsum"
         self.duration = 60
     }
