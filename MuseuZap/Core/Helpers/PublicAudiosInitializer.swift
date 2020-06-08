@@ -142,9 +142,9 @@ public class PublicAudiosInitializer {
     ]
 
     let family = [
-        "Cadê os bois?",
+        //"Cadê os bois?",
         "Eu gosto muito desse grupo",
-        "Esse pessoal do grupo tá muito ocupado",
+        //"Esse pessoal do grupo tá muito ocupado",
         "Calados do grupo, quem são?",
         "Esse grupo tá precisando de uns apito",
         "Chamando o pessoal do grupo"
