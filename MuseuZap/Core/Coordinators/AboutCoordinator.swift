@@ -10,21 +10,26 @@ import UIKit
 
 class AboutCoordinator: BaseCoordinator {
 
-    var rootViewController: UINavigationController
-    
-    init(rootViewController: UINavigationController = UINavigationController()) {
+    var rootViewController: UIViewController
+    weak var appCoordinatorDelegate: AppCoordinatorDelegate?
+
+    init(rootViewController: UIViewController = UIViewController()) {
         self.rootViewController = rootViewController
     }
     
     func startFlow() {
+        let navController = UINavigationController()
         let aboutController = AboutViewController()
         aboutController.delegate = self
-        self.rootViewController.pushViewController(aboutController, animated: true)
+        navController.modalPresentationStyle = .fullScreen
+        navController.pushViewController(aboutController, animated: false)
+        self.rootViewController.present(navController, animated: true)
     }
 
     func handleNavigation(action: Action) {
         switch action {
         case .back:
+            self.appCoordinatorDelegate?.handleAppNavigation(action: .back)
             self.rootViewController.dismiss(animated: true)
         default:
             break

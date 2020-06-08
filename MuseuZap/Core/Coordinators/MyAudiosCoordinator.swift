@@ -13,6 +13,7 @@ class MyAudiosCoordinator: BaseCoordinator {
 
     var rootViewController: UINavigationController
     var analyticsManager: AnalyticsManager
+    var appCoordinatorDelegate: AppCoordinatorDelegate?
     
     init(rootViewController: UINavigationController = UINavigationController(),
          analyticsManager: AnalyticsManager = AnalyticsManager()) {
@@ -50,6 +51,8 @@ class MyAudiosCoordinator: BaseCoordinator {
             let controller = CategoryDetailViewController(category: category)
             controller.delegate = self
             self.rootViewController.pushViewController(controller, animated: true)
+        case .about:
+            self.appCoordinatorDelegate?.handleAppNavigation(action: .about)
         default:
             break
         }

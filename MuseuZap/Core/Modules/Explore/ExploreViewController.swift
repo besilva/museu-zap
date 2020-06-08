@@ -61,4 +61,15 @@ class ExploreViewController: ListViewController {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let rightButton = UIBarButtonItem(title: "About", style: .plain, target: self, action: #selector(aboutTapped))
+        rightButton.image = UIImage(named: "envelope")
+        rightButton.tintColor = UIColor.Default.power
+        navigationItem.rightBarButtonItem = rightButton
+    }
+    
+    @objc func aboutTapped() {
+        self.delegate?.handleNavigation(action: .about)
+    }
 }

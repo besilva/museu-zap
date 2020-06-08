@@ -21,7 +21,7 @@ class ShareViewController: SLComposeServiceViewController {
     /// The correct URL that the Application can use, inside shared Application Group folder
     var appAudioFileURL: URL!
     var category: AudioCategory?
-    var noCategory: AudioCategory?{
+    var noCategory: AudioCategory? {
        didSet {
            guard let name = category?.categoryName else { return }
            categoryText = name
