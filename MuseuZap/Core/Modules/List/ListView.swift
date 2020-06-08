@@ -258,7 +258,7 @@ extension ListView: ListViewModelDelegate {
 extension ListView {
     func setupPlaceholderView() {
         let title = "Você ainda não adicionou áudios.\nTá esperando o quê?! 😜"
-        let subtitle = "No Blin/Pleen você pode organizar áudios do WhatsApp de acordo com categorias."
+        let subtitle = "No Blin você pode organizar áudios do WhatsApp de acordo com categorias."
         let actionMessage = "Saiba como adicionar áudios"
         let actionURL = URL(string: "https://www.youtube.com/watch?v=dQw4w9WgXcQ")!
         let placeholderViewModel = PlaceholderViewModel(title: title,
