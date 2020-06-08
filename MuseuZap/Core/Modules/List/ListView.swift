@@ -12,7 +12,7 @@ class ListView: UIView, ViewCodable {
 
     var loader: UIActivityIndicatorView!
     internal var tableView: UITableView = UITableView()
-    private var audioCellIdentifier: String = "audioCell"
+    var audioCellIdentifier: String = "audioCell"
     var placeholderView: PlaceholderView = PlaceholderView()
     var iconManager: CellIconManager = CellIconManager.shared
     var audioHandler: ((Action) -> Void)?

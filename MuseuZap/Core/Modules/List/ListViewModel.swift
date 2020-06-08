@@ -31,6 +31,7 @@ protocol ListViewModelProtocol {
     var delegate: ListViewModelDelegate? { get set }
     func handleRefresh()
     func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties
+    func getAudioItemProperties(at indexPath: IndexPath, withCategory category: AudioCategory) -> AudioProperties
     func performSearch(with text: String)
     func back()
     init(audioServices: AudioServicesProtocol, audioCategoryServices: AudioCategoryServicesProtocol, delegate: ListViewModelDelegate)
@@ -39,6 +40,15 @@ protocol ListViewModelProtocol {
 extension ListViewModelProtocol {
     func getAudioItemProperties(at indexPath: IndexPath) -> AudioProperties {
         let element = audios[indexPath.row]
+        return AudioProperties(from: element)
+    }
+
+    func getAudioItemProperties(at indexPath: IndexPath, withCategory category: AudioCategory) -> AudioProperties {
+        let arrayFiltered = audios.filter { (audio) -> Bool in
+            return audio.category == category
+        }
+
+        let element = arrayFiltered[indexPath.row]
         return AudioProperties(from: element)
     }
 }
