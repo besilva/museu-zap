@@ -6,7 +6,7 @@
 //  Copyright © 2020 Bernardo. All rights reserved.
 //
 import XCTest
-@testable import MuseuZap
+@testable import Blin
 
 class MyAudiosViewTests: XCTestCase {
 

@@ -71,7 +71,9 @@ class ExploreView: ListView {
                 }
                 return cell
             }
-            return super.tableView(tableView, cellForRowAt: indexPath)
+            // Minus 1 because of the header
+            let newIndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
+            return super.tableView(tableView, cellForRowAt: newIndexPath)
         }
         return UITableViewCell()
     }
