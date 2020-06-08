@@ -50,7 +50,7 @@ class ExploreViewController: ListViewController {
         
         audioServices.getAllAudiosWith(isPrivate: false) { (error, audioArray) in
             if let audios = audioArray {
-                let viewModel = ListViewModel(audioServices: audioServices, audioCategoryServices: audioCategoryServices, delegate: self.myView)
+                let viewModel = ExploreViewModel(audioServices: audioServices, audioCategoryServices: audioCategoryServices, delegate: self.myView)
                 viewModel.navigationDelegate = self
                 viewModel.audios = audios
                 self.myView.viewModel = viewModel

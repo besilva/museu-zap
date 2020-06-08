@@ -26,14 +26,15 @@ class ExploreView: ListView {
     func numberOfSections(in tableView: UITableView) -> Int {
         // When there is no audios show place holder view
         guard let viewModel = viewModel, viewModel.count > 0 else { return 0 }
-        return 3
+        return 2 + (viewModel.audioCategories.count)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 || section == 1 {
             return 1
         } else {
-            return super.tableView(tableView, numberOfRowsInSection: section)
+            let audios = viewModel?.audioCategories[section - 2].audios
+            return (audios?.count ?? 0) + 1
         }
     }
 
@@ -49,8 +50,24 @@ class ExploreView: ListView {
             }
             return cell
         } else {
+            if indexPath.row == 0 {
+                let cell = UITableViewCell()
+                let header = SectionsHeaderView()
+                header.viewModel = SectionsHeaderViewModel(category: viewModel?.audioCategories[indexPath.section]) { category in
+                    self.viewModel?.navigationDelegate?.handleNavigation(action: .category(category))
+                }
+                cell.addSubview(header)
+                header.setupConstraints { (view) in
+                    view.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
+                    view.bottomAnchor.constraint(equalTo: cell.bottomAnchor).isActive = true
+                    view.leadingAnchor.constraint(equalTo: cell.leadingAnchor).isActive = true
+                    view.trailingAnchor.constraint(equalTo: cell.trailingAnchor).isActive = true
+                }
+                return cell
+            }
             return super.tableView(tableView, cellForRowAt: indexPath)
         }
         return UITableViewCell()
     }
+    
 }

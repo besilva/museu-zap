@@ -26,6 +26,7 @@ class ExploreViewModel: ListViewModel {
                 print(error ?? "Some default error value")
             }
         }
+        retrieveAllCategoriesWith(isPrivate: false)
     }
 
 }
