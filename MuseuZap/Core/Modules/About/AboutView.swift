@@ -237,7 +237,7 @@ class AboutView: UIView, ViewCodable {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 0.86
         
-        let emailDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi elementum nunc, sollicitudin non:"
+        let emailDescription = "Gostaria de compartilhar algo que não viu por aqui? Envie sua sugestão, estamos curiosos. 😉 "
         mailDescription.attributedText = NSMutableAttributedString(string: emailDescription,
                                                                    attributes: [NSAttributedString.Key.kern: 0.28,
                                                                                 NSAttributedString.Key.paragraphStyle: paragraphStyle])

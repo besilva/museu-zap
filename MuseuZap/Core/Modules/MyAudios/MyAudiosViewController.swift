@@ -57,6 +57,11 @@ class MyAudiosViewController: ListViewController {
         let viewModel = MyAudiosViewModel(audioServices: audioServices, audioCategoryServices: categoryServices, delegate: myView)
         viewModel.navigationDelegate = self
         myView.viewModel = viewModel
+        
+        let rightButton = UIBarButtonItem(title: "About", style: .plain, target: self, action: #selector(aboutTapped))
+        rightButton.image = UIImage(named: "envelope")
+        rightButton.tintColor = UIColor.Default.power
+        navigationItem.rightBarButtonItem = rightButton
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -83,5 +88,9 @@ class MyAudiosViewController: ListViewController {
                 print(error ?? "Some default error value")
             }
         }
+    }
+    
+    @objc func aboutTapped() {
+        self.delegate?.handleNavigation(action: .about)
     }
 }

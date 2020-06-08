@@ -15,6 +15,7 @@ protocol Coordinator {
 
 enum Action {
     case back
+    case about
     case presentAlert(String?, String?, Double?, UIAlertController.Style)
     case share(String)
     case play(String, ((Error?) -> Void))
@@ -27,5 +28,5 @@ protocol NavigationDelegate: class {
 protocol BaseCoordinator: Coordinator, NavigationDelegate {
     associatedtype T: UIViewController
     var rootViewController: T { get set }
-    
+    var appCoordinatorDelegate: AppCoordinatorDelegate? { get set }
 }

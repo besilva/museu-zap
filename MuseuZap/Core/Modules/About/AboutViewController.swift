@@ -9,7 +9,7 @@
 import UIKit
 
 class AboutViewController: UIViewController, ViewController, NavigationDelegate {
-    var screenName: String { return "Sobre" }
+    var screenName: String { return "Contato" }
     weak var delegate: NavigationDelegate?
     var viewModel: AboutViewModel?
     // swiftlint:disable force_cast
@@ -43,12 +43,12 @@ class AboutViewController: UIViewController, ViewController, NavigationDelegate 
         // Sets view content
         self.title = "Info"
         // swiftlint:disable line_length
-        let aboutDescription1 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi elementum nunc, sollicitudin non pellentesque. In egestas adipiscing vestibulum varius "
-        let aboutDescription2 = "urna sed ornare consectetur. Convallis in volutpat fermentum ipsum in condimentum ut. Odio ornare id ornare augue. Aliquam sit cras arcu amet erat maecenas mi, amet."
+        let aboutDescription = "Blin surgiu com a intenção de organizar e compartilhar áudios que circulam de forma desordenada pela internet.\n\nNão nos responsabilizamos pelo conteúdo dos áudios aqui compartilhados. Se encontrar algo que considere impróprio, ofensivo e/ou abusivo, fale conosco."
         // swiftlint:enable line_length
         
         // Initializes view model and binds to view
-        let viewModel = AboutViewModel(email: "sample@mail.com", description: aboutDescription1 + aboutDescription2)
+        let viewModel = AboutViewModel(email: "sample@mail.com", description: aboutDescription)
+        setNavBarItem()
         myView.viewModel = viewModel
         viewModel.navigationDelegate = self
     }
@@ -79,7 +79,24 @@ class AboutViewController: UIViewController, ViewController, NavigationDelegate 
         self.setScreenName()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        self.delegate?.handleNavigation(action: .back)
+    }
+    
     func setup() {
           tabBarItem = UITabBarItem(title: "Sobre", image: UIImage(named: "about-outline"), selectedImage: UIImage(named: "about-filled"))
+    }
+    
+    func setNavBarItem() {
+        let barItem = UIBarButtonItem(title: "Cancelar",
+                                      style: .plain,
+                                      target: self,
+                                      action: #selector(backTapped))
+        barItem.tintColor = UIColor.Default.power
+        navigationItem.leftBarButtonItem = barItem
+    }
+    
+    @objc func backTapped() {
+        self.handleNavigation(action: .back)
     }
 }
