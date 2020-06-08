@@ -34,7 +34,13 @@ class ExploreView: ListView {
             return 1
         } else {
             let audios = viewModel?.audioCategories[section - 2].audios
-            return (audios?.count ?? 0) + 1
+            var numberOfAudios: Int
+            if (audios?.count ?? 0) < 4 {
+                numberOfAudios = (audios?.count ?? 0)
+            } else {
+                numberOfAudios = 4
+            }
+            return numberOfAudios + 1
         }
     }
 
@@ -53,7 +59,7 @@ class ExploreView: ListView {
             if indexPath.row == 0 {
                 let cell = UITableViewCell()
                 let header = SectionsHeaderView()
-                header.viewModel = SectionsHeaderViewModel(category: viewModel?.audioCategories[indexPath.section]) { category in
+                header.viewModel = SectionsHeaderViewModel(category: viewModel?.audioCategories[indexPath.section - 2]) { category in
                     self.viewModel?.navigationDelegate?.handleNavigation(action: .category(category))
                 }
                 cell.addSubview(header)
