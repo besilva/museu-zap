@@ -246,7 +246,7 @@ class AboutView: UIView, ViewCodable {
     func setupMoreInfoTitle() {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 0.86
-        moreInfoTitle.attributedText = NSMutableAttributedString(string: "Sobre o Museu do Zap",
+        moreInfoTitle.attributedText = NSMutableAttributedString(string: "Sobre o Blin",
                                                                  attributes: [NSAttributedString.Key.kern: 0.28,
                                                                          NSAttributedString.Key.paragraphStyle: paragraphStyle])
     }
