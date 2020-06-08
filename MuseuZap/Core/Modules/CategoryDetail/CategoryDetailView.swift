@@ -28,6 +28,7 @@ class CategoryDetailView: ListView {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard category.audios?.count ?? 0 > 0 else { return 0 }
         if section == 0 {
             return 1
         } else {

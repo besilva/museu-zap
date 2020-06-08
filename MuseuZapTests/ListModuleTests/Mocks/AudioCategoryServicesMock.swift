@@ -25,7 +25,7 @@ class AudioCategoryServicesMock: AudioCategoryServicesProtocol {
         if !bool {
             let mock = AudioMock()
             _ = mock.addPublicCategories()
-            completion(nil, [mock.category1, mock.category2])
+            completion(nil, [mock.category1, mock.category2]) 
         }
     }
 

@@ -62,8 +62,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().backgroundColor = UIColor.Default.navBar
         UINavigationBar.appearance().barTintColor = UIColor.Default.navBar
         UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().tintColor = UIColor.Default.power
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont.Default.semibold]
-
     }
 
     func setStatusBarColor() {
