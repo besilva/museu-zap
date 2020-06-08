@@ -22,6 +22,7 @@ class MyAudiosViewModel: ListViewModel {
                 let category = categories.first(where: { $0.categoryName == "Sem Categoria"}) {
                 self.audiosWithoutCategories = Array(category.audios ?? [])
             }
+            self.delegate?.endRefreshing()
         }
     }
     // TODO: Retrieve audios w/o categories here

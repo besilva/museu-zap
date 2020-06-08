@@ -13,7 +13,7 @@ class MyAudiosCoordinator: BaseCoordinator {
 
     var rootViewController: UINavigationController
     var analyticsManager: AnalyticsManager
-    var appCoordinatorDelegate: AppCoordinatorDelegate?
+    weak var appCoordinatorDelegate: AppCoordinatorDelegate?
     
     init(rootViewController: UINavigationController = UINavigationController(),
          analyticsManager: AnalyticsManager = AnalyticsManager()) {
