@@ -48,6 +48,7 @@ class ExploreCoordinator: BaseCoordinator {
             }
         case .category(let category):
             let controller = CategoryDetailViewController(category: category)
+            controller.delegate = self
             self.rootViewController.pushViewController(controller, animated: true)
         default:
             break
