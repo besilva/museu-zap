@@ -7,11 +7,23 @@
 //
 
 import UIKit
+import DatabaseKit
+
+struct SectionsHeaderViewModel {
+    let category: AudioCategory?
+    var action: (AudioCategory) -> Void
+    var title: String { return category?.categoryName ?? ""}
+}
 
 /// Creates the view used for tableView Sections
 class SectionsHeaderView: UIView, ViewCodable {
 
     // MARK: - Properties
+    internal var viewModel: SectionsHeaderViewModel? {
+        didSet {
+            renderLabels()
+        }
+    }
 
     public var seeAllButton: UIButton
     public var sectionLabel: UILabel
@@ -33,10 +45,18 @@ class SectionsHeaderView: UIView, ViewCodable {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    @objc func seeAll() {
+        guard let category  = viewModel?.category else { return }
+        viewModel?.action(category)
+    }
 
     // MARK: - Set Up
 
-    func configure() { }
+    func configure() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(seeAll))
+        seeAllButton.addGestureRecognizer(tap)
+    }
 
     func setupHierarchy() {
         contentView.addSubviews(sectionLabel, seeAllButton)
@@ -45,13 +65,6 @@ class SectionsHeaderView: UIView, ViewCodable {
     }
 
     func setupConstraints() {
-        // SectionsHeaderView width should be equal to screenWidth - 2x(tableViewSpacing), leading and trailing
-        self.translatesAutoresizingMaskIntoConstraints = false
-        let width = UIScreen.main.bounds.width - (2 * Constants.tableViewSpacing)
-        self.widthAnchor.constraint(equalToConstant: width).isActive = true
-        // UIButton at this label has height equal to 33
-        self.heightAnchor.constraint(greaterThanOrEqualToConstant: 33).isActive = true
-
         setContentViewConstraints()
         setSectionLabelConstraints()
         setSeeAllButtonConstraints()
@@ -64,7 +77,7 @@ class SectionsHeaderView: UIView, ViewCodable {
     // MARK: - Set Up Helpers
 
     func renderLabels() {
-        sectionLabel.text = "Default"
+        sectionLabel.text = viewModel?.title
         sectionLabel.textColor = UIColor.Default.label
         sectionLabel.font = UIFont.Default.semibold.withSize(20)
 
@@ -91,7 +104,10 @@ class SectionsHeaderView: UIView, ViewCodable {
         sectionLabel.setupConstraints { (view) in
             view.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .vertical)
             view.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-            view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+            view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
+            view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8).isActive = true
+            view.heightAnchor.constraint(equalToConstant: 44).isActive = true
+            view.trailingAnchor.constraint(lessThanOrEqualTo: seeAllButton.leadingAnchor, constant: -8).isActive = true
         }
     }
 
@@ -101,6 +117,10 @@ class SectionsHeaderView: UIView, ViewCodable {
         seeAllButton.setupConstraints { (view) in
             view.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .vertical)
             view.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+            view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
+            view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8).isActive = true
+            view.heightAnchor.constraint(equalToConstant: 44).isActive = true
+            view.widthAnchor.constraint(equalToConstant: 80).isActive = true
         }
         seeAllButton.titleLabel?.lastBaselineAnchor.constraint(equalTo: sectionLabel.lastBaselineAnchor).isActive = true
     }

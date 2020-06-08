@@ -19,7 +19,7 @@ class ExploreViewTests: XCTestCase {
         let audioServices = AudioServicesMock()
         let audioCategoryServices = AudioCategoryServicesMock()
         let viewDeleg = ListViewModelDelegateMock()
-        sut.viewModel = ListViewModel(audioServices: audioServices, audioCategoryServices: audioCategoryServices, delegate: viewDeleg)
+        sut.viewModel = ExploreViewModel(audioServices: audioServices, audioCategoryServices: audioCategoryServices, delegate: viewDeleg)
 
     }
     
@@ -35,7 +35,7 @@ class ExploreViewTests: XCTestCase {
     func testDataSource() {
         XCTAssertNotNil(sut.tableView.dataSource)
         let sections: Int = sut.tableView.dataSource?.numberOfSections?(in: sut.tableView) ?? 0
-        XCTAssertEqual(sections, 3)
+        XCTAssertEqual(sections, 4)
     }
     
     func testFirstCell() {
@@ -50,9 +50,8 @@ class ExploreViewTests: XCTestCase {
     }
     
     func testThirdCell() {
-        let cell = sut.tableView(sut.tableView, cellForRowAt: IndexPath(row: 0, section: 2))
+        let cell = sut.tableView(sut.tableView, cellForRowAt: IndexPath(row: 1, section: 2))
         XCTAssertNotNil(cell)
-        XCTAssert(cell is AudioCell)
     }
 
 }
