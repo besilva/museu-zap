@@ -56,10 +56,11 @@ class ExploreView: ListView {
             }
             return cell
         } else {
+            guard let category = viewModel?.audioCategories[indexPath.section - 2] else { return UITableViewCell()}
             if indexPath.row == 0 {
                 let cell = UITableViewCell()
                 let header = SectionsHeaderView()
-                header.viewModel = SectionsHeaderViewModel(category: viewModel?.audioCategories[indexPath.section - 2]) { category in
+                header.viewModel = SectionsHeaderViewModel(category: category) { category in
                     self.viewModel?.navigationDelegate?.handleNavigation(action: .category(category))
                 }
                 cell.addSubview(header)
@@ -73,7 +74,25 @@ class ExploreView: ListView {
             }
             // Minus 1 because of the header
             let newIndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
-            return super.tableView(tableView, cellForRowAt: newIndexPath)
+
+            guard let viewModel = viewModel else { return UITableViewCell() }
+
+            let audio = viewModel.getAudioItemProperties(at: newIndexPath, withCategory: category)
+
+            if let cell = tableView.dequeueReusableCell(withIdentifier: self.audioCellIdentifier, for: indexPath) as? AudioCell {
+
+                let viewModel = AudioCellViewModel(title: audio.name, duration: audio.duration, audioPath: audio.path) { (action) in
+    //                Makes List View handle actions performed by the audio cell view model
+                    if let audioHandler = self.audioHandler {
+                        audioHandler(action)
+                    }
+                }
+
+                cell.viewModel = viewModel
+                return cell
+
+            }
+//            return super.tableView(tableView, cellForRowAt: newIndexPath)
         }
         return UITableViewCell()
     }
