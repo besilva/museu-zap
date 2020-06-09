@@ -168,6 +168,7 @@ public class PublicAudiosInitializer {
         "A mãe do Coronga",
         "Maridos reclamando do coronavírus",
         "Gaúchos em quarentena",
-        "The Walking Velho"
+        "The Walking Velho",
+        "Espirra pra lá!"
     ]
 }
