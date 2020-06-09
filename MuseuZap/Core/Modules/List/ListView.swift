@@ -260,7 +260,7 @@ extension ListView {
         let title = "Você ainda não adicionou áudios.\nTá esperando o quê?! 😜"
         let subtitle = "No Blin você pode organizar áudios do WhatsApp de acordo com categorias."
         let actionMessage = "Saiba como adicionar áudios"
-        let actionURL = URL(string: "https://www.youtube.com/watch?v=dQw4w9WgXcQ")!
+        let actionURL = URL(string: "https://youtu.be/sxNcH6u3_h0")!
         let placeholderViewModel = PlaceholderViewModel(title: title,
                                                         subtitle: subtitle,
                                                         actionMessage: actionMessage,
