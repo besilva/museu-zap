@@ -34,6 +34,6 @@ class PublicAudiosInitializerTests: XCTestCase {
         XCTAssertEqual(sut.friday.count, 4)
         XCTAssertEqual(sut.family.count, 4)
         XCTAssertEqual(sut.pranks.count, 7)
-        XCTAssertEqual(sut.quarantine.count, 8)
+        XCTAssertEqual(sut.quarantine.count, 9)
     }
 }
