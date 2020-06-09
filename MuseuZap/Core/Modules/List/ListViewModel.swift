@@ -44,8 +44,9 @@ extension ListViewModelProtocol {
     }
 
     func getAudioItemProperties(at indexPath: IndexPath, withCategory category: AudioCategory) -> AudioProperties {
-        let arrayFiltered = audios.filter { (audio) -> Bool in
-            return audio.category == category
+        let arrayFiltered = audios.filter {
+            $0.category.categoryName == category.categoryName &&
+            $0.category.assetIdentifier == category.assetIdentifier
         }
 
         let element = arrayFiltered[indexPath.row]
