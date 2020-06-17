@@ -26,11 +26,11 @@ class CategoryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         categoryService.getAllCategories({ (_, categories) in // error, categories
+        categoryService.getAllCategoriesWith(isPrivate: true) { (_, categories) in // error, categories
             if let categories = categories {
-                self.categories = categories
+                self.categories = categories.filter({ $0.categoryName != "Sem Categoria"})
             }
-        })
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -21,7 +21,7 @@ struct Stack<Element> {
         }
     }
     
-    mutating func pop() -> Element? {
+    @discardableResult mutating func pop() -> Element? {
         return array.popLast()
     }
     

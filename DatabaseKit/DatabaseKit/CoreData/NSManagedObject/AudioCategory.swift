@@ -13,18 +13,22 @@ import CoreData
     // MARK: - Properties Struct
 
 /// Used to reduce clutter for View
-public struct CategoryProperties {
+public struct AudioCategoryProperties {
 
     // MARK: - Properties
 
     var name: String
     var audios: [String]?
+    var assetIdentifier: String?
+    var isPrivate: Bool
 
     // MARK: - Init
 
     init(from category: AudioCategory) {
         self.name = category.categoryName
-
+        self.assetIdentifier = category.assetIdentifier
+        self.isPrivate = category.isPrivate
+        
         if let audios = category.audios {
             for audio in audios {
                 self.audios?.append(audio.audioName)
@@ -57,6 +61,18 @@ public class AudioCategory: NSManagedObject {
         // Call super
         self.init(entity: entityDescription!, insertInto: currentManagedObjectContext)
     }
+
+    // Used for test purpose
+    public convenience init() {
+         // Get context
+         let managedObjectContext: NSManagedObjectContext = CoreDataManager.sharedInstance.persistentContainer.viewContext
+
+         // Create entity description
+         let entityDescription = NSEntityDescription.entity(forEntityName: Entities.audioCategory.rawValue, in: managedObjectContext)
+
+         // Call super
+         self.init(entity: entityDescription!, insertInto: nil)
+    }
 }
 
 extension AudioCategory {
@@ -66,7 +82,9 @@ extension AudioCategory {
     }
 
     @NSManaged public var categoryName: String
+    @NSManaged public var assetIdentifier: String?
     @NSManaged public var audios: Set<Audio>?
+    @NSManaged public var isPrivate: Bool
 
 }
 

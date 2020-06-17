@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import MuseuZap
+@testable import Blin
 
 class FileExchangerSuccessTests: XCTestCase {
 
@@ -16,6 +16,7 @@ class FileExchangerSuccessTests: XCTestCase {
     var fileURL: URL!
 
     override func setUp() {
+        super.setUp()
         // This method is called before the invocation of each test method in the class.
 
         // For test purposes, appGroupFolder will be a folder inside the Temp Directory
@@ -31,6 +32,7 @@ class FileExchangerSuccessTests: XCTestCase {
         // This method is called after the invocation of each test method in the class.
         deleteFilesAtTempDir()
         sut = nil
+        super.tearDown()
     }
 
     // Create a mock file at temp directory
@@ -87,7 +89,7 @@ class FileExchangerSuccessTests: XCTestCase {
 
         do {
             _ = try sut.copyAudioToGroupFolder(sourceURL: fileURL, destinationName: newFile)
-        } catch {
+        } catch { 
             XCTFail("No errors should be Produced when copying")
         }
 

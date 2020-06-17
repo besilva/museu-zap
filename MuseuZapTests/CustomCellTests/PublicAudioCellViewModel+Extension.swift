@@ -7,7 +7,7 @@
 //
 
 import UIKit
-@testable import MuseuZap
+@testable import Blin
 // swiftlint:disable line_length
 extension AudioCellViewModel {
     struct Helper {

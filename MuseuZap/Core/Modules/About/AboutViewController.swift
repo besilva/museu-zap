@@ -9,7 +9,7 @@
 import UIKit
 
 class AboutViewController: UIViewController, ViewController, NavigationDelegate {
-    var screenName: String { return "Sobre" }
+    var screenName: String { return "Contato" }
     weak var delegate: NavigationDelegate?
     var viewModel: AboutViewModel?
     // swiftlint:disable force_cast
@@ -18,6 +18,7 @@ class AboutViewController: UIViewController, ViewController, NavigationDelegate 
     }
     // swiftlint:enable force_cast
     
+    // Sets default view
     override func loadView() {
         let myView = AboutView()
         view = myView
@@ -38,20 +39,26 @@ class AboutViewController: UIViewController, ViewController, NavigationDelegate 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Sets view content
         self.title = "Info"
         // swiftlint:disable line_length
-        let aboutDescription1 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi elementum nunc, sollicitudin non pellentesque. In egestas adipiscing vestibulum varius "
-        let aboutDescription2 = "urna sed ornare consectetur. Convallis in volutpat fermentum ipsum in condimentum ut. Odio ornare id ornare augue. Aliquam sit cras arcu amet erat maecenas mi, amet."
+        let aboutDescription = "Blin surgiu com a intenção de organizar e compartilhar áudios que circulam de forma desordenada pela internet.\n\nNão nos responsabilizamos pelo conteúdo dos áudios aqui compartilhados. Se encontrar algo que considere impróprio, ofensivo e/ou abusivo, fale conosco."
         // swiftlint:enable line_length
         
-        let viewModel = AboutViewModel(email: "sample@mail.com", description: aboutDescription1 + aboutDescription2)
+        // Initializes view model and binds to view
+        let viewModel = AboutViewModel(email: "sample@mail.com", description: aboutDescription)
+        setNavBarItem()
         myView.viewModel = viewModel
         viewModel.navigationDelegate = self
     }
     
+    // Handles navigation actions
     func handleNavigation(action: Action) {
         switch action {
+        // Handles alert when copying an email
         case .presentAlert( _, let message, let timeout, let preferredStyle):
+            // Shows and dismisses alert
             let alert = UIAlertController(title: nil, message: message, preferredStyle: preferredStyle)
             
             alert.show(self, sender: nil)
@@ -72,8 +79,24 @@ class AboutViewController: UIViewController, ViewController, NavigationDelegate 
         self.setScreenName()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        self.delegate?.handleNavigation(action: .back)
+    }
+    
     func setup() {
           tabBarItem = UITabBarItem(title: "Sobre", image: UIImage(named: "about-outline"), selectedImage: UIImage(named: "about-filled"))
-       
+    }
+    
+    func setNavBarItem() {
+        let barItem = UIBarButtonItem(title: "Cancelar",
+                                      style: .plain,
+                                      target: self,
+                                      action: #selector(backTapped))
+        barItem.tintColor = UIColor.Default.power
+        navigationItem.leftBarButtonItem = barItem
+    }
+    
+    @objc func backTapped() {
+        self.handleNavigation(action: .back)
     }
 }

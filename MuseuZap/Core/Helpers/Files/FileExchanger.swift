@@ -8,8 +8,6 @@
 
 import Foundation
 
-// TODO: FileExchanger deveria estar em MuseuZap? Só esta sendo utulziada pela shareExtension, mas a shareExtension no momento não tem tests
-
 /// Helper Class to exchange files between ShareExtension and out AppGroup using FileManager
 public class FileExchanger {
 
@@ -48,42 +46,13 @@ public class FileExchanger {
 
         do {
             list = try FileManager.default.contentsOfDirectory(at: appGroupFolderURL,
-                                                               includingPropertiesForKeys: nil)
+                                                               includingPropertiesForKeys: [URLResourceKey.fileSizeKey])
         } catch {
             print("COULD NOT LIST ITEMS in GROUP FOLDER FOR SOME REASON \n", error)
             throw FileErrors.listContents
         }
 
         return list
-    }
-
-}
-
-// MARK: - Methods to use to create items in Document Folder (find through iPhone Files App)
-
-// Extension is useful to debug
-extension FileExchanger {
-    // MARK: - Set Info.plist
-
-    // Application supports iTunes file sharing
-    // Supports opening documents in place
-
-    var appDocumentPublicFolder: URL {
-        return FileManager.default.urls(for: .documentDirectory,
-                                        in: .userDomainMask).first!
-    }
-
-    func addSimpleFileToDocumentPublicFolder() {
-        let file = "Example.txt"
-        let content = "Some text..."
-
-        let fileURL = appDocumentPublicFolder.appendingPathComponent(file)
-
-        do {
-            try content.write(to: fileURL, atomically: false, encoding: .utf8)
-        } catch {
-            print(error)
-        }
     }
 
 }

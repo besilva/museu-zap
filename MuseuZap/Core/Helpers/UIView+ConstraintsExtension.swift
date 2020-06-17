@@ -9,16 +9,24 @@
 import UIKit
 
 protocol AutoLayoutView {
-    func setupConstraints(completion: (UIView) -> Void)
+    func setupConstraints(completion: (UIView) -> Void, activateAll activate: Bool)
 }
 extension AutoLayoutView where Self: UIView {
-    func setupConstraints(completion: (UIView) -> Void) {
+    
+    func setupConstraints(completion: (UIView) -> Void, activateAll activate: Bool = false) {
         if self.translatesAutoresizingMaskIntoConstraints {
             self.translatesAutoresizingMaskIntoConstraints = false
         }
         completion(self)
+        if activate {
+            self.constraints.forEach { (constraint) in
+                constraint.isActive = true
+            }
+        }
     }
+    
 }
+
 extension UIView {
     func addSubviews(_ views: UIView...) {
         for view in views {

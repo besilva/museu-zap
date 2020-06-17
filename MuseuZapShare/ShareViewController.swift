@@ -20,7 +20,8 @@ class ShareViewController: SLComposeServiceViewController {
     var externalAudioFileURL: URL!
     /// The correct URL that the Application can use, inside shared Application Group folder
     var appAudioFileURL: URL!
-    var category: AudioCategory? {
+    var category: AudioCategory?
+    var noCategory: AudioCategory? {
        didSet {
            guard let name = category?.categoryName else { return }
            categoryText = name
@@ -37,6 +38,12 @@ class ShareViewController: SLComposeServiceViewController {
 
     override func loadView() {
         super.loadView()
+        AudioCategoryServices().getAllCategoriesWith(isPrivate: true) { (_, categories) in // error, categories
+            if categories == nil || (categories?.count ?? 0) == 0 {
+                self.addPrivateCategories()
+            }
+        }
+        getNoCategory()
         let context = self.extensionContext
         extensionItem = context?.inputItems[0] as? NSExtensionItem
         setupNavigation()
@@ -65,7 +72,7 @@ class ShareViewController: SLComposeServiceViewController {
 
     override func isContentValid() -> Bool {
         // Do validation of contentText and/or NSExtensionContext attachments here
-        return !contentText.isEmpty && externalAudioFileURL != nil && category != nil
+        return !contentText.isEmpty && externalAudioFileURL != nil
     }
 
     /// This is called after the user selects Post. Do the upload of contentText and/or NSExtensionContext attachments.
@@ -97,6 +104,14 @@ class ShareViewController: SLComposeServiceViewController {
         // To add configuration options via table cells at the bottom of the sheet, return an array of SLComposeSheetConfigurationItem here.
         return [item!]
     }
+    
+    func getNoCategory() {
+        AudioCategoryServices().getAllCategoriesWith(isPrivate: true) { (_, categories) in // error, categories
+            if let categories = categories {
+                self.noCategory = categories.first(where: { $0.categoryName == "Sem Categoria"})
+            }
+        }
+    }
 
     let imageView = UIImageView()
     override func loadPreviewView() -> UIView! {
@@ -115,7 +130,7 @@ class ShareViewController: SLComposeServiceViewController {
     }
 
     func setupNavigation() {
-        self.title = "Blin/Pleen"
+        self.title = "Blin"
         if let navBar = self.navigationController?.navigationBar {
             navBar.topItem?.leftBarButtonItem?.title = "Cancelar"
             navBar.topItem?.rightBarButtonItem?.title = "Salvar"
@@ -153,6 +168,12 @@ extension ShareViewController {
             // Create the audio name with extension
             let audioExtension = audioSource.pathExtension
             let audioName = contentText + ".\(audioExtension)"
+            var category: AudioCategory?
+            if let audioCategory = self.category {
+                category = audioCategory
+            } else if let audioCategory = self.noCategory {
+                category = audioCategory
+            }
 
             do {
                 // Ensures that appAudioFileURL is not optional
@@ -162,27 +183,25 @@ extension ShareViewController {
                     throw FileErrors.appSharedURL
                 }
                 self.appAudioFileURL = auxURL
-                createEntities()
+                createEntities(withCategory: category)
             } catch {
                 print(error)
                 throw FileErrors.copy
             }
         } else {
-            print("COULD NOT GET external audio URL")
+            print("COULD NOT GET external audio URL\n")
             throw FileErrors.externalAudioURL
         }
     }
 
-    func createEntities() {
-        let category = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
-        category.categoryName = categoryText
-
+    func createEntities(withCategory audioCategory: AudioCategory?) {
+        guard let audioCategory = audioCategory else { return }
         let audio = Audio(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
         audio.audioName = contentText
         audio.audioPath = appAudioFileURL.path
         // All imported audios are private
         audio.isPrivate = true
-        audio.category = category
+        audio.category = audioCategory
         audio.duration = AudioManager.shared.getDurationFrom(file: appAudioFileURL)
 
         AudioServices().createAudio(audio: audio) { (error) in
@@ -191,5 +210,37 @@ extension ShareViewController {
             }
         }
     }
+
+    private func addPrivateCategories() {
+           let category1 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+           category1.categoryName = "Humor"
+           category1.assetIdentifier = "funny-private"
+           category1.isPrivate = true
+
+           let category2 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+           category2.categoryName = "Familia"
+           category2.assetIdentifier = "family-private"
+           category2.isPrivate = true
+           
+           let category3 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+           category3.categoryName = "Trabalho"
+           category3.assetIdentifier = "work-private"
+           category3.isPrivate = true
+           
+           let category4 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+           category4.categoryName = "Estudos"
+           category4.assetIdentifier = "study-private"
+           category4.isPrivate = true
+           
+           let category5 = AudioCategory(intoContext: CoreDataManager.sharedInstance.managedObjectContext)
+           category5.categoryName = "Sem Categoria"
+           category5.isPrivate = true
+           
+           AudioCategoryServices().createCategory(category: category1) { _ in }
+           AudioCategoryServices().createCategory(category: category2) { _ in }
+           AudioCategoryServices().createCategory(category: category3) { _ in }
+           AudioCategoryServices().createCategory(category: category4) { _ in }
+           AudioCategoryServices().createCategory(category: category5) { _ in }
+       }
     
 }

@@ -10,7 +10,6 @@ import CoreData
 
 /// Mocked Category DAO to throw DatabaseErrors, case shouldThrowError. Else, do nothing.
 class CategoryDAOMock: AudioCategoryDAOProtocol {
-    
     var shouldThrowError: Bool = false
 
     var coreDataHelper = CoreDataTestHelper()
@@ -57,4 +56,12 @@ class CategoryDAOMock: AudioCategoryDAOProtocol {
             throw DatabaseErrors.delete
         }
     }
+
+    func fetchCategoriesWith(isPrivate: Bool) throws -> [AudioCategory] {
+        if shouldThrowError {
+            throw DatabaseErrors.read
+        }
+        return []
+    }
+    
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ViewCodable {
-    /// Use to setup delegates and things like delegates
+    /// Use to setup delegates and things like delegates and Images from imageViews
     func configure()
     /// Use to add any UI components inside the view
     func setupHierarchy()
@@ -33,4 +33,6 @@ extension ViewCodable {
         render()
         setupAcessibilityIdentifiers()
     }
+    
+    func configure() {}
 }

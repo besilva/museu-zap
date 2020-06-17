@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import MuseuZap
+@testable import Blin
 
 class CellIconManagerTests: XCTestCase {
     var cellIconManager: CellIconManager!
@@ -57,7 +57,7 @@ class CellIconManagerTests: XCTestCase {
         cellIconManager.subjectCell = mockedCell
         notificationCenter.post(name: .playbackStarted, object: mockedCell.viewModel?.audioPath)
         XCTAssertEqual(cellIconManager.playStatus, State.playing(mockedViewModel.audioPath))
-        XCTAssertEqual(self.mockedCell.playIcon.image, UIImage(named: "pause.fill"))
+        XCTAssertEqual(self.mockedCell.playIcon.image, self.mockedCell.pauseImage)
     }
     
     // Tests if posting a playback pause after a start causes an icon change in the cell
@@ -66,6 +66,6 @@ class CellIconManagerTests: XCTestCase {
         notificationCenter.post(name: .playbackStarted, object: mockedCell.viewModel?.audioPath)
         notificationCenter.post(name: .playbackPaused, object: mockedCell.viewModel?.audioPath)
         XCTAssertEqual(cellIconManager.playStatus, State.paused(mockedViewModel.audioPath))
-        XCTAssertEqual(self.mockedCell.playIcon.image, UIImage(named: "play.fill"))
+        XCTAssertEqual(self.mockedCell.playIcon.image, self.mockedCell.playImage)
     }
 }

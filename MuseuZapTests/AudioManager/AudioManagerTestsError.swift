@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import MuseuZap
+@testable import Blin
 
 class AudioManagerTestsError: XCTestCase {
 
@@ -16,6 +16,7 @@ class AudioManagerTestsError: XCTestCase {
     var nonExistingFile: URL!
 
     override func setUp() {
+        super.setUp()
         sut = AudioManager(notificationCenter: MockedNotificationCenter(), nowPlayingInfoCenter: nil)
 
         // NoAudioFile has to be target to main Application, is a file with the wrong extension
@@ -32,6 +33,7 @@ class AudioManagerTestsError: XCTestCase {
         sut = AudioManager()
         noAudioFile = nil
         nonExistingFile = nil
+        super.tearDown()
     }
 
     // MARK: - Change Player Status

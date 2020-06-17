@@ -101,8 +101,18 @@ class AudioManager: NSObject {
             print("UNKNOWN CHANGE STATUS\n")
             throw AudioErrors.unknownCase
         }
+        
+        self.notificationCenter.addObserver(self,
+                selector: #selector(finishedPlaying),
+                name: .AVPlayerItemDidPlayToEndTime,
+                object: nil)
+
     }
     
+    @objc func finishedPlaying(_ notification: Notification) {
+        changeState(state: .idle)
+    }
+
     func changeState( state: State) {
         self.state = state
     }
@@ -180,11 +190,10 @@ extension AudioManager {
         case .paused(let audio):
             notificationCenter.post(name: .playbackPaused, object: audio)
         case .idle:
+            self.player?.seek(to: .zero)
             notificationCenter.post(name: .playbackStopped, object: nil)
         }
     }
-
-    // TODO: add a observer to Notification.Name.AVPlayerItemDidPlayToEndTime
 }
 
 // This extension should be placed here because state is private

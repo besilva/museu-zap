@@ -8,10 +8,23 @@
 
 import UIKit
 
+// MARK: - Protocol For test purpose
+
+public protocol AudioCategoryServicesProtocol {
+    // CRUD Operations: Create, Read, Update, Delete
+    func createCategory(category: AudioCategory, _ completion: (_ error: Error?) -> Void)
+    func getAllCategories(_ completion: @escaping (_ errorMessage: Error?,
+                                                   _ entity: [AudioCategory]?) -> Void)
+    func updateAllCategories(_ completion: (_ error: Error?) -> Void)
+    func deleteCategory(category: AudioCategory, _ completion: (_ error: Error?) -> Void)
+    func getAllCategoriesWith(isPrivate bool: Bool, _ completion: @escaping (_ errorMessage: Error?,
+    _ entity: [AudioCategory]?) -> Void)
+}
+
 /// Services Layer for Category Entity.
 /// Independent from adopted database.
 /// Error Handling + doing aditional treatment to data.
-public class AudioCategoryServices {
+public class AudioCategoryServices: AudioCategoryServicesProtocol {
 
     /// Used Data Access Object
     var categoryDAO: AudioCategoryDAOProtocol
@@ -70,7 +83,25 @@ public class AudioCategoryServices {
             print("Unexpected error: \(error).")
         }
     }
+    
+    public func getAllCategoriesWith(isPrivate bool: Bool, _ completion: @escaping (_ errorMessage: Error?,
+                                                                         _ entity: [AudioCategory]?) -> Void) {
+        // Error to be returned in case of failure
+        var raisedError: DatabaseErrors?
+        var categories: [AudioCategory]?
 
+        do {
+            categories = try categoryDAO.fetchCategoriesWith(isPrivate: bool)
+            completion(nil, categories)
+        } catch let error as DatabaseErrors {
+            raisedError = error
+            completion(raisedError, nil)
+        } catch {
+            completion(error, nil)
+            print("Unexpected error: \(error).")
+        }
+    }
+    
     // MARK: - Update
 
     /// Function responsible for updating all category records
