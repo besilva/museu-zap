@@ -8,6 +8,8 @@
 
 import Foundation
 
+// TODO: FileExchanger deveria estar neste diretório? por hora só é usada na share extension
+
 /// Helper Class to exchange files between ShareExtension and out AppGroup using FileManager
 public class FileExchanger {
 

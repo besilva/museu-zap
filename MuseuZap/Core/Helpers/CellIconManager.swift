@@ -9,6 +9,11 @@
 import UIKit
 import AVFoundation
 
+// TODO: Movimento: da tela principal e dar play em um audio - ir pra tela de resultados com esse audio playado -  e dar pause com remote control -> só atualiza o ícone da céluca da tela pincipal e nao da tela de resultados
+// Acho que bastaria um refresh na tela de resultados no momento em que o app VOLTA a tona.
+// Tipo criar no app delegate quando o app volta pra primeiro plano um update geral do icon manager.
+
+
 protocol CellIconManagerDelegate: class {
     func updateCellStatus(visible: Bool, audioPath: String, cell: AudioCell)
 }
