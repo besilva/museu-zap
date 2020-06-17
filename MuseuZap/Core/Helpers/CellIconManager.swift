@@ -9,6 +9,10 @@
 import UIKit
 import AVFoundation
 
+protocol CellIconManagerDelegate: class {
+    func updateCellStatus(visible: Bool, audioPath: String, cell: AudioCell)
+}
+
 class CellIconManager {
 //    Updates icon when changing play status
     var playStatus: State {
