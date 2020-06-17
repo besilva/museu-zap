@@ -57,6 +57,7 @@ class ListViewController: UIViewController, ViewController, NavigationDelegate {
         // Somehow topBarHeight has to be populated here, because outside here reference to navigationBar is nil
         // Set the navBarHeight to calculate topBarHeight for refreshController
         myView.navBarHeight = self.navBarHeight
+        // TODO: olhar onde a search pode ser setada. Precisa de uma viewModel para setar ela, e a viewModel é setada no retrieveAllAudios
         navigationItem.searchController = myView.searchController
     }
 

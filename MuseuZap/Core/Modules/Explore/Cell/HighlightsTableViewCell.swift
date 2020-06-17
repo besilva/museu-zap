@@ -25,6 +25,8 @@ class HighlightsTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         sectionView = SectionsHeaderView()
 
+        // TODO: colocar espaçamento igual a Contants.tableViewSpacing to better give the carousel sensation
+        // MAs isso quebra o layout das células, na verdade o que tem que fazer é a table view ocupar a view inteira e as customViews possuirem espacamento.
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
         layout.scrollDirection = .horizontal

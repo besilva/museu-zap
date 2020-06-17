@@ -15,6 +15,8 @@ struct SectionsHeaderViewModel {
     var title: String { return category?.categoryName ?? ""}
 }
 
+// TODO: alterar espaçamento da fonte?
+
 /// Creates the view used for tableView Sections
 class SectionsHeaderView: UIView, ViewCodable {
 
@@ -84,6 +86,8 @@ class SectionsHeaderView: UIView, ViewCodable {
         seeAllButton.setTitle("Ver todos", for: .normal)
         seeAllButton.setTitleColor(UIColor.Default.power, for: .normal)
         seeAllButton.titleLabel?.font = UIFont.Default.regular.withSize(15)
+//        seeAllButton.dynamicFont
+        // TODO: ver a extensão dynamic também para botões
     }
 
     // MARK: - Constraints

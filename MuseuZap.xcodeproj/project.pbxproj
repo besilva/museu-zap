@@ -787,6 +787,9 @@
 		64DD6FE2243E081E00404321 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				64103EDD249A396100A054C9 /* UI Helper */,
+				C500AF6D246B8A0200F5AC0A /* Audio */,
+				C5AFABE5246D811200E7AF31 /* Files */,
 				642C63A3246EC7CE0059FBDC /* AnalyticsManager.swift */,
 				80BB0484246D7F02006E4154 /* CellIconManager.swift */,
 				C539FC1B2488114B00A8A6A0 /* Constants.swift */,
@@ -794,9 +797,6 @@
 				C5054A2D248D6BE300510850 /* PublicAudiosInitializer.swift */,
 				64DD6FE5243E0A4700404321 /* Stack.swift */,
 				80ABB7B62457230C0020CF42 /* TimeInterval+Extension.swift */,
-				C500AF6D246B8A0200F5AC0A /* Audio */,
-				C5AFABE5246D811200E7AF31 /* Files */,
-				64103EDD249A396100A054C9 /* UI Helper */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1853,7 +1853,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 23;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				DEVELOPMENT_TEAM = 8C3NFSJWVT;
 				INFOPLIST_FILE = MuseuZap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1879,7 +1879,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 23;
-				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				DEVELOPMENT_TEAM = 8C3NFSJWVT;
 				INFOPLIST_FILE = MuseuZap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1903,7 +1903,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				DEVELOPMENT_TEAM = 8C3NFSJWVT;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -1938,7 +1938,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				DEVELOPMENT_TEAM = 8C3NFSJWVT;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -1972,7 +1972,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 23;
-				DEVELOPMENT_TEAM = P33TK2RVAJ;
+				DEVELOPMENT_TEAM = 8C3NFSJWVT;
 				INFOPLIST_FILE = MuseuZapShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (

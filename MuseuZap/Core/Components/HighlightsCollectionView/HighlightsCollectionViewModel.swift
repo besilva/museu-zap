@@ -9,6 +9,8 @@
 import Foundation
 import DatabaseKit
 
+// TODOO: desenhar, rever pra quem é o que pra quem quem que é o que de quem
+
 protocol HighlightsCollectionViewModelDelegate: class {
     func reloadCollectionData()
 }
