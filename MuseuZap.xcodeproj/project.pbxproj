@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -176,6 +176,9 @@
 		C577FA83248ABEAE00405D94 /* Esse grupo tá precisando de uns apito.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA51248ABEAE00405D94 /* Esse grupo tá precisando de uns apito.mp3 */; };
 		C577FA84248ABEAE00405D94 /* Chamando o pessoal do grupo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C577FA52248ABEAE00405D94 /* Chamando o pessoal do grupo.mp3 */; };
 		C586E2C72465AA2400B1930B /* FileExchangerErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C586E2C62465AA2400B1930B /* FileExchangerErrorTests.swift */; };
+		C588827C24DB3CBA00B9581D /* Unzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C588827B24DB3CBA00B9581D /* Unzip.swift */; };
+		C588827F24DB3CF400B9581D /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = C588827E24DB3CF400B9581D /* ZIPFoundation */; };
+		C588828124DB3D4F00B9581D /* WhatsApp Chat - Blin Áudios.zip in Resources */ = {isa = PBXBuildFile; fileRef = C588828024DB3D4F00B9581D /* WhatsApp Chat - Blin Áudios.zip */; };
 		C5904C69246AEED4004B9921 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904C68246AEED4004B9921 /* AudioManager.swift */; };
 		C5A0AE46248AB795009AFECF /* Três conchada de galinha!.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5A0AE45248AB795009AFECF /* Três conchada de galinha!.mp3 */; };
 		C5A4D4F9248159F6006C97FF /* SearchResultsCellSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A4D4F8248159F6006C97FF /* SearchResultsCellSnapshotTests.swift */; };
@@ -434,6 +437,8 @@
 		C577FA51248ABEAE00405D94 /* Esse grupo tá precisando de uns apito.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Esse grupo tá precisando de uns apito.mp3"; sourceTree = "<group>"; };
 		C577FA52248ABEAE00405D94 /* Chamando o pessoal do grupo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Chamando o pessoal do grupo.mp3"; sourceTree = "<group>"; };
 		C586E2C62465AA2400B1930B /* FileExchangerErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExchangerErrorTests.swift; sourceTree = "<group>"; };
+		C588827B24DB3CBA00B9581D /* Unzip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unzip.swift; sourceTree = "<group>"; };
+		C588828024DB3D4F00B9581D /* WhatsApp Chat - Blin Áudios.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "WhatsApp Chat - Blin Áudios.zip"; sourceTree = "<group>"; };
 		C5904C68246AEED4004B9921 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		C5A0AE45248AB795009AFECF /* Três conchada de galinha!.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Três conchada de galinha!.mp3"; sourceTree = "<group>"; };
 		C5A4D4F8248159F6006C97FF /* SearchResultsCellSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsCellSnapshotTests.swift; sourceTree = "<group>"; };
@@ -497,6 +502,7 @@
 			files = (
 				64F50824246C38E500625878 /* DatabaseKit.framework in Frameworks */,
 				1C775023F3958F2F42CF9A96 /* libPods-MuseuZap.a in Frameworks */,
+				C588827F24DB3CF400B9581D /* ZIPFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -818,6 +824,7 @@
 		64DD6FE9243E0B3100404321 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C588828024DB3D4F00B9581D /* WhatsApp Chat - Blin Áudios.zip */,
 				C531EF00248ABC7100A107A3 /* Public Audios */,
 				C5C77AF72489406E00A1DB6B /* HighlightsAudios */,
 				80C274C92458719B0051A1E6 /* Fonts */,
@@ -1196,6 +1203,7 @@
 				C5AFABE6246D814600E7AF31 /* FileManager+Extension.swift */,
 				80DF26F92472B55C00B6A5FC /* FileErrors.swift */,
 				80DF26FA2472B55C00B6A5FC /* FileExchanger.swift */,
+				C588827B24DB3CBA00B9581D /* Unzip.swift */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -1268,6 +1276,9 @@
 				64C775832457162700FDEA03 /* PBXTargetDependency */,
 			);
 			name = MuseuZap;
+			packageProductDependencies = (
+				C588827E24DB3CF400B9581D /* ZIPFoundation */,
+			);
 			productName = MuseuZap;
 			productReference = 6473EDD1243B6D3700A10F2C /* Blin.app */;
 			productType = "com.apple.product-type.application";
@@ -1339,6 +1350,9 @@
 				Base,
 			);
 			mainGroup = 6473EDC8243B6D3700A10F2C;
+			packageReferences = (
+				C588827D24DB3CF400B9581D /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
+			);
 			productRefGroup = 6473EDD2243B6D3700A10F2C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1385,6 +1399,7 @@
 				C577FA7F248ABEAE00405D94 /* Cadê os bois?.mp3 in Resources */,
 				C577FA78248ABEAE00405D94 /* Cristiano Ronaldo, líder nato.mp3 in Resources */,
 				C577FA65248ABEAE00405D94 /* Tá bonitão na foto, hein?.mp3 in Resources */,
+				C588828124DB3D4F00B9581D /* WhatsApp Chat - Blin Áudios.zip in Resources */,
 				C577FA7B248ABEAE00405D94 /* Hoje é dia de maldade!.mp3 in Resources */,
 				C5AD8877248AC2B60098EDD8 /* Gaúchos em quarentena.mp3 in Resources */,
 				C5AD8875248AC2B60098EDD8 /* A mãe do Coronga.mp3 in Resources */,
@@ -1569,6 +1584,7 @@
 				8024DA2D2449F19000093D37 /* AboutView.swift in Sources */,
 				80C274D1245872980051A1E6 /* UIFont+Extension.swift in Sources */,
 				64576FA1248A6B80003935DA /* ExploreViewModel.swift in Sources */,
+				C588827C24DB3CBA00B9581D /* Unzip.swift in Sources */,
 				6443CD502478031500572AD8 /* CategoryCollectionViewModel.swift in Sources */,
 				64CC44E52476C63400ACC4B4 /* ExploreView.swift in Sources */,
 				80DEA48F2487E73800C2BC5B /* PrivateCategoryCell.swift in Sources */,
@@ -2053,6 +2069,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C588827D24DB3CF400B9581D /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/weichsel/ZIPFoundation.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.11;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C588827E24DB3CF400B9581D /* ZIPFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C588827D24DB3CF400B9581D /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
+			productName = ZIPFoundation;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6473EDC9243B6D3700A10F2C /* Project object */;
 }
