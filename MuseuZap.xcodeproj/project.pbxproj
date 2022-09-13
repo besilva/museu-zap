@@ -1843,7 +1843,7 @@
 				CODE_SIGN_ENTITLEMENTS = MuseuZap/MuseuZap.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = P33TK2RVAJ;
 				INFOPLIST_FILE = MuseuZap/Info.plist;
@@ -1870,7 +1870,7 @@
 				CODE_SIGN_ENTITLEMENTS = MuseuZap/MuseuZap.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = P33TK2RVAJ;
 				INFOPLIST_FILE = MuseuZap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1963,7 +1963,7 @@
 				CODE_SIGN_ENTITLEMENTS = MuseuZapShare/MuseuZapShare.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = P33TK2RVAJ;
 				INFOPLIST_FILE = MuseuZapShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1987,7 +1987,7 @@
 				CODE_SIGN_ENTITLEMENTS = MuseuZapShare/MuseuZapShare.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = P33TK2RVAJ;
 				INFOPLIST_FILE = MuseuZapShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
