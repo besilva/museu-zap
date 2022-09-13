@@ -57,4 +57,17 @@ public class FileExchanger {
         return list
     }
 
+    func listAllFilesIn(url: URL) -> [URL] {
+        var list = [URL]()
+
+        do {
+            list = try FileManager.default.contentsOfDirectory(at: url,
+                                                               includingPropertiesForKeys: [URLResourceKey.fileSizeKey])
+        } catch {
+            print("COULD NOT LIST ITEMS in GROUP FOLDER FOR SOME REASON \n", error)
+        }
+
+        return list
+    }
+
 }

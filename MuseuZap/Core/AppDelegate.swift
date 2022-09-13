@@ -53,6 +53,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let publicAudiosInit = PublicAudiosInitializer()
         addPublicAudio(categories: publicCategories, helper: publicAudiosInit)
 
+        // UNZIP
+        let _ = Unzip()
+
         return true
     }
     
